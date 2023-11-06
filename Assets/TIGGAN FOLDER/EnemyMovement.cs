@@ -10,8 +10,10 @@ public class EnemyMovement : MonoBehaviour
     protected bool isChasingElectricity;
 
     [SerializeField] float defaultSpeed;
+    [SerializeField] float defaultAcceleration;
+
     [SerializeField] float angerSpeed;
-    [SerializeField] float disableElectricitySpeed;
+    [SerializeField] float angerAcceleration;
 
     public bool IsChasingElectricity { get { return  isChasingElectricity; } }
 
@@ -22,6 +24,14 @@ public class EnemyMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         FindNewDestination();
+    }
+
+    private void Update()
+    {
+        if (agent.speed < 0.001f && !isChasingElectricity)
+        {
+            FindNewDestination();
+        }
     }
 
     void FindNewDestination()
@@ -50,18 +60,24 @@ public class EnemyMovement : MonoBehaviour
         agent.SetDestination(other.position);
         isChasingElectricity = true;
         agent.speed = angerSpeed;
+        agent.acceleration = angerAcceleration;
     }
 
-    public void GoToDisabling()
+    public void GoToDisabling(float time)
     {
-        StartCoroutine(Disabling());
+        StartCoroutine(Disabling(time));
     }
 
-    IEnumerator Disabling()
+    IEnumerator Disabling(float time)
     {
         Debug.Log("i be disabling");
-        yield return new WaitForSeconds(disableElectricitySpeed);
+        agent.destination = transform.position;
+        yield return new WaitForSeconds(time);
         isChasingElectricity = false;
+
+        agent.speed = defaultSpeed;
+        agent.acceleration = defaultAcceleration;
+
         FindNewDestination();
     }
 }

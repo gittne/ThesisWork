@@ -7,6 +7,7 @@ public class ElectricTrigger : MonoBehaviour
     [SerializeField] bool isElectrified;
     float timeLeftOfElectricity;
     [SerializeField] float electricityUptime;
+    [SerializeField] float disableElectricitySpeed;
 
     public bool IsElectrified { get { return isElectrified; } }
 
@@ -43,12 +44,19 @@ public class ElectricTrigger : MonoBehaviour
     {
         if(other.CompareTag("Enemy"))
         {
-            Debug.Log("gon do styuff xd");
-            other.GetComponent<EnemyMovement>().GoToDisabling();
+            other.GetComponent<EnemyMovement>().GoToDisabling(disableElectricitySpeed);
+            StartCoroutine(DisableTimer());
         }
         else
         {
             Debug.Log("nah not an enemy");
         }
+    }
+
+    IEnumerator DisableTimer()
+    {
+        yield return new WaitForSeconds(disableElectricitySpeed);
+        Debug.Log("I am no longer electrified");
+        isElectrified = false;
     }
 }

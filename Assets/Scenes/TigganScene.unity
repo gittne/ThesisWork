@@ -2783,7 +2783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &499797823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5624,6 +5624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isElectrified: 0
   electricityUptime: 60
+  disableElectricitySpeed: 0
 --- !u!65 &1217604717
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5916,6 +5917,7 @@ GameObject:
   - component: {fileID: 1325925432}
   - component: {fileID: 1325925431}
   - component: {fileID: 1325925436}
+  - component: {fileID: 1325925437}
   m_Layer: 0
   m_Name: enem
   m_TagString: Enemy
@@ -5936,8 +5938,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSpeed: 3.5
-  angerSpeed: 10
-  disableElectricitySpeed: 4
+  defaultAcceleration: 10
+  angerSpeed: 20
+  angerAcceleration: 80
 --- !u!195 &1325925432
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5949,7 +5952,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 20
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 240
   m_StoppingDistance: 0
@@ -6053,6 +6056,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &1325925437
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325925430}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!1 &1397586997
 GameObject:
   m_ObjectHideFlags: 0
@@ -8569,6 +8595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isElectrified: 0
   electricityUptime: 60
+  disableElectricitySpeed: 0
 --- !u!65 &2106175018
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9026,6 +9053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isElectrified: 0
   electricityUptime: 60
+  disableElectricitySpeed: 3
 --- !u!65 &2144082148
 BoxCollider:
   m_ObjectHideFlags: 0

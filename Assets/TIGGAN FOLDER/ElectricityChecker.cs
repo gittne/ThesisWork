@@ -25,8 +25,6 @@ public class ElectricityChecker : MonoBehaviour
 
             if (electricTrigger.IsElectrified)
             {
-                Debug.Log("preggers");
-
                 enemyMovement.GoChaseElectricity(other.transform);
             }
         }
