@@ -17,20 +17,21 @@ public class EnemyMovement : MonoBehaviour
 
     public bool IsChasingElectricity { get { return  isChasingElectricity; } }
 
-    enum EnemyState { WANDERING, STALKING, ELECTRICITYHUNTING, CHASING }
+    enum EnemyState { IDLE, WANDERING, STALKING, ELECTRICITYHUNTING, CHASING }
     EnemyState enemyState;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         FindNewDestination();
+        InvokeRepeating("DestinationPoint", 0, 0.25f);
     }
 
     private void Update()
     {
-        if (agent.speed < 0.001f && !isChasingElectricity)
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            FindNewDestination();
+            Debug.Log("The current target destination for the enemy is this: " + agent.destination);
         }
     }
 
@@ -79,5 +80,10 @@ public class EnemyMovement : MonoBehaviour
         agent.acceleration = defaultAcceleration;
 
         FindNewDestination();
+    }
+
+    void DestinationPoint()
+    {
+        Debug.DrawLine(transform.position, agent.destination, Color.blue, 0.25f);
     }
 }
