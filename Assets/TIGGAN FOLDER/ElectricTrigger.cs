@@ -29,7 +29,7 @@ public class ElectricTrigger : MonoBehaviour
         }
     }
 
-    void ToggleOn()
+    public void ToggleOn()
     {
         isElectrified = true;
         timeLeftOfElectricity = electricityUptime;
