@@ -40,7 +40,7 @@ public class EnemyMovement : MonoBehaviour
         if (isChasingElectricity)
             return;
 
-        agent.SetDestination(RandomNavmeshLocation(50));
+        agent.SetDestination(RandomNavmeshLocation(100));
     }
 
     public Vector3 RandomNavmeshLocation(float radius)

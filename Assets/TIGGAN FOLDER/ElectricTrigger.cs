@@ -47,10 +47,6 @@ public class ElectricTrigger : MonoBehaviour
             other.GetComponent<EnemyMovement>().GoToDisabling(disableElectricitySpeed);
             StartCoroutine(DisableTimer());
         }
-        else
-        {
-            Debug.Log("nah not an enemy");
-        }
     }
 
     IEnumerator DisableTimer()
