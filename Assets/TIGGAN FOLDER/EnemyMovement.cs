@@ -32,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             Debug.Log("The current target destination for the enemy is this: " + agent.destination);
-        }
+        } 
     }
 
     void FindNewDestination()
