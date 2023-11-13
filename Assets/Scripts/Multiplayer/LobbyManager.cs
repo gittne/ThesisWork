@@ -277,35 +277,35 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
-    public async void UpdatePlayerCharacter(PlayerCharacter playerCharacter)
-    {
-        if (joinedLobby != null)
-        {
-            try
-            {
-                UpdatePlayerOptions options = new UpdatePlayerOptions();
+    //public async void UpdatePlayerCharacter(PlayerCharacter playerCharacter)
+    //{
+    //    if (joinedLobby != null)
+    //    {
+    //        try
+    //        {
+    //            UpdatePlayerOptions options = new UpdatePlayerOptions();
 
-                options.Data = new Dictionary<string, PlayerDataObject>() {
-                    {
-                        KEY_PLAYER_CHARACTER, new PlayerDataObject(
-                            visibility: PlayerDataObject.VisibilityOptions.Public,
-                            value: playerCharacter.ToString())
-                    }
-                };
+    //            options.Data = new Dictionary<string, PlayerDataObject>() {
+    //                {
+    //                    KEY_PLAYER_CHARACTER, new PlayerDataObject(
+    //                        visibility: PlayerDataObject.VisibilityOptions.Public,
+    //                        value: playerCharacter.ToString())
+    //                }
+    //            };
 
-                string playerId = AuthenticationService.Instance.PlayerId;
+    //            string playerId = AuthenticationService.Instance.PlayerId;
 
-                Lobby lobby = await LobbyService.Instance.UpdatePlayerAsync(joinedLobby.Id, playerId, options);
-                joinedLobby = lobby;
+    //            Lobby lobby = await LobbyService.Instance.UpdatePlayerAsync(joinedLobby.Id, playerId, options);
+    //            joinedLobby = lobby;
 
-                OnJoinedLobbyUpdate?.Invoke(this, new LobbyEventArgs { lobby = joinedLobby });
-            }
-            catch (LobbyServiceException e)
-            {
-                Debug.Log(e);
-            }
-        }
-    }
+    //            OnJoinedLobbyUpdate?.Invoke(this, new LobbyEventArgs { lobby = joinedLobby });
+    //        }
+    //        catch (LobbyServiceException e)
+    //        {
+    //            Debug.Log(e);
+    //        }
+    //    }
+    //}
 
     public async void QuickJoinLobby()
     {
@@ -358,27 +358,27 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
-    public async void UpdateLobbyGameMode(GameMode gameMode)
-    {
-        try
-        {
-            Debug.Log("UpdateLobbyGameMode " + gameMode);
+    //public async void UpdateLobbyGameMode(GameMode gameMode)
+    //{
+    //    try
+    //    {
+    //        Debug.Log("UpdateLobbyGameMode " + gameMode);
 
-            Lobby lobby = await Lobbies.Instance.UpdateLobbyAsync(joinedLobby.Id, new UpdateLobbyOptions
-            {
-                Data = new Dictionary<string, DataObject> {
-                    { KEY_GAME_MODE, new DataObject(DataObject.VisibilityOptions.Public, gameMode.ToString()) }
-                }
-            });
+    //        Lobby lobby = await Lobbies.Instance.UpdateLobbyAsync(joinedLobby.Id, new UpdateLobbyOptions
+    //        {
+    //            Data = new Dictionary<string, DataObject> {
+    //                { KEY_GAME_MODE, new DataObject(DataObject.VisibilityOptions.Public, gameMode.ToString()) }
+    //            }
+    //        });
 
-            joinedLobby = lobby;
+    //        joinedLobby = lobby;
 
-            OnLobbyGameModeChanged?.Invoke(this, new LobbyEventArgs { lobby = joinedLobby });
-        }
-        catch (LobbyServiceException e)
-        {
-            Debug.Log(e);
-        }
-    }
+    //        OnLobbyGameModeChanged?.Invoke(this, new LobbyEventArgs { lobby = joinedLobby });
+    //    }
+    //    catch (LobbyServiceException e)
+    //    {
+    //        Debug.Log(e);
+    //    }
+    //}
 
 }
