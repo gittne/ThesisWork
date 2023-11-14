@@ -26,15 +26,6 @@ public class EnemyMovement : MonoBehaviour
         FindNewDestination();
         InvokeRepeating("DestinationPoint", 0, 0.25f);
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Debug.Log("The current target destination for the enemy is this: " + agent.destination);
-        } 
-    }
-
     void FindNewDestination()
     {
         if (isChasingElectricity)
@@ -71,7 +62,6 @@ public class EnemyMovement : MonoBehaviour
 
     IEnumerator Disabling(float time)
     {
-        Debug.Log("i be disabling");
         agent.destination = transform.position;
         yield return new WaitForSeconds(time);
         isChasingElectricity = false;
