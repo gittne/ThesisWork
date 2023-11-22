@@ -24,12 +24,15 @@ public class EditPlayerName : MonoBehaviour {
     {
         Instance = this;
 
-        //GetComponent<Button>().onClick.AddListener(() => {
+        //GetComponent<Button>().onClick.AddListener(() =>
+        //{
         //    UI_InputWindow.Show_Static("Player Name", playerName, "abcdefghijklmnopqrstuvxywzABCDEFGHIJKLMNOPQRSTUVXYWZ .,-", 20,
-        //    () => {
+        //    () =>
+        //    {
         //        // Cancel
         //    },
-        //    (string newName) => {
+        //    (string newName) =>
+        //    {
         //        playerName = newName;
 
         //        playerNameText.text = playerName;
@@ -53,6 +56,4 @@ public class EditPlayerName : MonoBehaviour {
     public string GetPlayerName() {
         return playerName;
     }
-
-
 }

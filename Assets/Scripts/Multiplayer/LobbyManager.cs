@@ -8,7 +8,7 @@ using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEditor.ShaderGraph;
+using Unity.VisualScripting;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -38,6 +38,15 @@ public class LobbyManager : MonoBehaviour
     public event EventHandler<LobbyEventArgs> OnLobbyGameModeChanged;
 
     public event EventHandler<EventArgs> OnGameStarted;
+
+    [Space(10)]
+    [Header("Display ThingyMajingies")]
+    [SerializeField] TextMeshProUGUI lobbyCodeDisplay;
+    [SerializeField] TextMeshProUGUI lobbyNameDisplay;
+    [SerializeField] TextMeshProUGUI lobbyCodeInput;
+    [SerializeField] GameObject player2NameDisplay;
+
+    string attemptJoinCode;
 
     public class LobbyEventArgs : EventArgs
     {
@@ -117,7 +126,49 @@ public class LobbyManager : MonoBehaviour
 
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
 
-        Debug.Log("Lobby successfully created.");
+        Debug.Log("Lobby successfully created: " + lobby.LobbyCode);
+        lobbyCodeDisplay.text = lobby.LobbyCode;
+        SetLobbyDisplay();
+    }
+
+    public async void JoinLobby()
+    {
+        try {
+            JoinLobbyByCodeOptions joinLobbyByCodeOptions = new JoinLobbyByCodeOptions
+            {
+                Player = GetPlayer(),
+            };
+            await Lobbies.Instance.JoinLobbyByCodeAsync(attemptJoinCode);
+
+            Debug.Log("Joined lobby with code: " + lobbyCodeDisplay.text.ToUpper());
+
+            SetLobbyDisplay();
+        } catch(LobbyServiceException e)
+        {
+            Debug.LogError(e);
+        }
+    }
+
+    private void SetLobbyDisplay()
+    {
+        Player player = GetPlayer();
+
+        lobbyNameDisplay.text = joinedLobby.Name;
+        Debug.Log("set the lobby name display with the code: " + joinedLobby.Name);
+
+        if (joinedLobby.Players.Count > 1)
+            player2NameDisplay.SetActive(true);
+        else
+            player2NameDisplay.SetActive(false);
+
+    }
+
+    public void SetLobbyJoinCode()
+    {
+        if (attemptJoinCode == null)
+            return;
+
+        attemptJoinCode = lobbyCodeInput.text.ToUpper();
     }
 
     public async void UpdatePlayerName(string playerName)

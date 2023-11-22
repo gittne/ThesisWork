@@ -52,7 +52,6 @@ public class ElectricTrigger : MonoBehaviour
     IEnumerator DisableTimer()
     {
         yield return new WaitForSeconds(disableElectricitySpeed);
-        Debug.Log("I am no longer electrified");
         isElectrified = false;
     }
 }
