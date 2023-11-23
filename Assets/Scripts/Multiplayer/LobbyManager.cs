@@ -39,12 +39,13 @@ public class LobbyManager : MonoBehaviour
 
     public event EventHandler<EventArgs> OnGameStarted;
 
-    [Space(10)]
+    [Space(30)]
     [Header("Display ThingyMajingies")]
     [SerializeField] TextMeshProUGUI lobbyCodeDisplay;
     [SerializeField] TextMeshProUGUI lobbyNameDisplay;
-    [SerializeField] TextMeshProUGUI lobbyCodeInput;
-    [SerializeField] GameObject player2NameDisplay;
+    [SerializeField] GameObject lobbyCodeInput;
+    [SerializeField] TextMeshProUGUI player1NameDisplay;
+    [SerializeField] TextMeshProUGUI player2NameDisplay;
 
     string attemptJoinCode;
 
@@ -81,15 +82,13 @@ public class LobbyManager : MonoBehaviour
 
         AuthenticationService.Instance.SignedIn += () => {
             // do nothing
-            Debug.Log("Signed in with ID: " + AuthenticationService.Instance.PlayerId + "\n and username: " + playerName);
+            Debug.Log("Signed in with ID: " + AuthenticationService.Instance.PlayerId + "\n and username: " + EditPlayerName.Instance.GetPlayerName());
 
             //RefreshLobbyList();
         };
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
-
-    public void UpdateUsername() { playerName = usernameText.text; }
 
     public void SetLobbyStats()
     {
@@ -120,7 +119,7 @@ public class LobbyManager : MonoBehaviour
             }
         };
 
-        Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, 1, options);
+        Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, 2, options);
 
         joinedLobby = lobby;
 
@@ -133,14 +132,17 @@ public class LobbyManager : MonoBehaviour
 
     public async void JoinLobby()
     {
+        Debug.Log("I AM TRYNA JOIN WITH THIS CODE: " + attemptJoinCode);
         try {
             JoinLobbyByCodeOptions joinLobbyByCodeOptions = new JoinLobbyByCodeOptions
             {
                 Player = GetPlayer(),
             };
-            await Lobbies.Instance.JoinLobbyByCodeAsync(attemptJoinCode);
+            Lobby lobby = await Lobbies.Instance.JoinLobbyByCodeAsync(attemptJoinCode, joinLobbyByCodeOptions);
 
             Debug.Log("Joined lobby with code: " + lobbyCodeDisplay.text.ToUpper());
+
+            joinedLobby = lobby;
 
             SetLobbyDisplay();
         } catch(LobbyServiceException e)
@@ -154,21 +156,21 @@ public class LobbyManager : MonoBehaviour
         Player player = GetPlayer();
 
         lobbyNameDisplay.text = joinedLobby.Name;
-        Debug.Log("set the lobby name display with the code: " + joinedLobby.Name);
+        Debug.Log("set the lobby name display with the code: " + joinedLobby.Name + ". My player name is: " + joinedLobby.Players[0].Data["PlayerName"].Value);
+
+        player1NameDisplay.text = joinedLobby.Players[0].Data["PlayerName"].Value;
+        player2NameDisplay.text = "";
 
         if (joinedLobby.Players.Count > 1)
-            player2NameDisplay.SetActive(true);
-        else
-            player2NameDisplay.SetActive(false);
-
+        {
+            Debug.Log("I GOT TWO PLAYERS");
+            player2NameDisplay.text = joinedLobby.Players[1].Data["PlayerName"].Value;
+        }
     }
 
     public void SetLobbyJoinCode()
     {
-        if (attemptJoinCode == null)
-            return;
-
-        attemptJoinCode = lobbyCodeInput.text.ToUpper();
+        attemptJoinCode = lobbyCodeInput.GetComponent<TMP_InputField>().text.ToUpper().ToSafeString();
     }
 
     public async void UpdatePlayerName(string playerName)
@@ -189,6 +191,7 @@ public class LobbyManager : MonoBehaviour
                     }
                 };
 
+                Debug.Log("Set the username to " + this.playerName);
                 string playerId = AuthenticationService.Instance.PlayerId;
 
                 Lobby lobby = await LobbyService.Instance.UpdatePlayerAsync(joinedLobby.Id, playerId, options);

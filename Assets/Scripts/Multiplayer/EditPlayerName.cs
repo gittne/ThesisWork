@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using CodeMonkey.Utils;
+
 
 public class EditPlayerName : MonoBehaviour {
 
@@ -15,7 +15,7 @@ public class EditPlayerName : MonoBehaviour {
     public event EventHandler OnNameChanged;
 
 
-    [SerializeField] private TextMeshProUGUI playerNameText;
+    [SerializeField] private GameObject playerNameText;
 
 
     private string playerName = "Player";
@@ -23,37 +23,15 @@ public class EditPlayerName : MonoBehaviour {
     private void Awake()
     {
         Instance = this;
-
-        //GetComponent<Button>().onClick.AddListener(() =>
-        //{
-        //    UI_InputWindow.Show_Static("Player Name", playerName, "abcdefghijklmnopqrstuvxywzABCDEFGHIJKLMNOPQRSTUVXYWZ .,-", 20,
-        //    () =>
-        //    {
-        //        // Cancel
-        //    },
-        //    (string newName) =>
-        //    {
-        //        playerName = newName;
-
-        //        playerNameText.text = playerName;
-
-        //        OnNameChanged?.Invoke(this, EventArgs.Empty);
-        //    });
-        //});
-
-        playerNameText.text = playerName;
-    }
-
-
-    private void Start() {
-        OnNameChanged += EditPlayerName_OnNameChanged;
-    }
-
-    private void EditPlayerName_OnNameChanged(object sender, EventArgs e) {
-        LobbyManager.Instance.UpdatePlayerName(GetPlayerName());
     }
 
     public string GetPlayerName() {
         return playerName;
+    }
+
+    public void UpdatePlayerName()
+    {
+        playerName = playerNameText.GetComponent<TMP_InputField>().text.ToUpper();
+        LobbyManager.Instance.UpdatePlayerName(playerName);
     }
 }
