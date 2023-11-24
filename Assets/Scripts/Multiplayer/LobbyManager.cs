@@ -218,19 +218,4 @@ public class LobbyManager : MonoBehaviour
     public Lobby GetJoinedLobby() { return joinedLobby; }
 
     public bool IsLobbyHost() { return joinedLobby != null && joinedLobby.HostId == AuthenticationService.Instance.PlayerId; }
-
-    public void ToggleLobbyPrivacy()
-    {
-        if(!privateLobby)
-        {
-            passwordObject.SetActive(true);
-        }
-        else
-        {
-            passwordObject.GetComponentInChildren<TextMeshProUGUI>().text = "";
-            passwordObject.SetActive(false);
-        }
-
-        privateLobby = !privateLobby;
-    }
 }
