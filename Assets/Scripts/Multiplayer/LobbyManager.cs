@@ -47,6 +47,9 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI player1NameDisplay;
     [SerializeField] TextMeshProUGUI player2NameDisplay;
 
+    [SerializeField] GameObject passwordObject;
+    bool privateLobby;
+
     string attemptJoinCode;
 
     public class LobbyEventArgs : EventArgs
@@ -106,13 +109,19 @@ public class LobbyManager : MonoBehaviour
     public async void CreateLobby()
     {
         Player player = GetPlayer();
-        bool isPrivate = (lobbyPass == null) ? true : false;
+        //bool isPrivate = (lobbyPass == null) ? true : false;
         GameMode gm = GameMode.Difficulty_Normal;
+
+        Debug.Log("creating a lobby with pass: " + lobbyPass);
+
+
 
         CreateLobbyOptions options = new CreateLobbyOptions
         {
             Player = player,
-            IsPrivate = isPrivate,
+            IsPrivate = false,
+            Password = lobbyPass,
+            //IsPrivate = isPrivate,
             Data = new Dictionary<string, DataObject> {
                 { KEY_GAME_MODE, new DataObject(DataObject.VisibilityOptions.Public, gm.ToString()) },
                 { KEY_START_GAME, new DataObject(DataObject.VisibilityOptions.Member, "0") }
@@ -209,4 +218,19 @@ public class LobbyManager : MonoBehaviour
     public Lobby GetJoinedLobby() { return joinedLobby; }
 
     public bool IsLobbyHost() { return joinedLobby != null && joinedLobby.HostId == AuthenticationService.Instance.PlayerId; }
+
+    public void ToggleLobbyPrivacy()
+    {
+        if(!privateLobby)
+        {
+            passwordObject.SetActive(true);
+        }
+        else
+        {
+            passwordObject.GetComponentInChildren<TextMeshProUGUI>().text = "";
+            passwordObject.SetActive(false);
+        }
+
+        privateLobby = !privateLobby;
+    }
 }
