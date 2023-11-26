@@ -274,7 +274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7310900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1216,16 +1216,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usernameText: {fileID: 0}
   lobbyNameText: {fileID: 0}
-  lobbyPassText: {fileID: 0}
   playerName: 
   lobbyName: 
-  lobbyPass: 
   lobbyCodeDisplay: {fileID: 0}
   lobbyNameDisplay: {fileID: 0}
   lobbyCodeInput: {fileID: 0}
   player1NameDisplay: {fileID: 0}
   player2NameDisplay: {fileID: 0}
-  passwordObject: {fileID: 0}
 --- !u!4 &106762196
 Transform:
   m_ObjectHideFlags: 0
@@ -2277,7 +2274,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 804258546}
         m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
-        m_MethodName: CreateLobby
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8153,16 +8150,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usernameText: {fileID: 1313396793}
   lobbyNameText: {fileID: 1793185047}
-  lobbyPassText: {fileID: 0}
   playerName: 
   lobbyName: 
-  lobbyPass: 
   lobbyCodeDisplay: {fileID: 1387655198}
   lobbyNameDisplay: {fileID: 1033924145}
   lobbyCodeInput: {fileID: 658785511}
   player1NameDisplay: {fileID: 4818160}
   player2NameDisplay: {fileID: 1834166255}
-  passwordObject: {fileID: 0}
 --- !u!114 &804258547
 MonoBehaviour:
   m_ObjectHideFlags: 0
