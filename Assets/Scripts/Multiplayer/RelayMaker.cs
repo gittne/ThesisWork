@@ -10,9 +10,9 @@ using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
 using System.Threading.Tasks;
 
-public class TestRelay : MonoBehaviour
+public class RelayMaker : MonoBehaviour
 {
-    public static TestRelay Instance { get; private set; }
+    public static RelayMaker Instance { get; private set; }
     private void Awake() { Instance = this; }
 
     [ContextMenu("Create a Relay")]

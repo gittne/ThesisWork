@@ -243,7 +243,7 @@ public class LobbyManager : MonoBehaviour
             {
                 Debug.Log("Starting the game.");
 
-                string relayCode = await TestRelay.Instance.CreateRelay();
+                string relayCode = await RelayMaker.Instance.CreateRelay();
 
                 Lobby lobby = await Lobbies.Instance.UpdateLobbyAsync(joinedLobby.Id, new UpdateLobbyOptions
                 {
@@ -327,7 +327,7 @@ public class LobbyManager : MonoBehaviour
                 {
                     if(!IsLobbyHost())
                     {
-                        TestRelay.Instance.JoinRelay(joinedLobby.Data[KEY_START_GAME].Value);
+                        RelayMaker.Instance.JoinRelay(joinedLobby.Data[KEY_START_GAME].Value);
                     }
 
                     joinedLobby = null;
