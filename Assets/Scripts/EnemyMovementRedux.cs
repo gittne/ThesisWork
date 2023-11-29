@@ -5,25 +5,29 @@ using UnityEngine.AI;
 
 public class EnemyMovementRedux : EnemyUtilities
 {
-    int rageMeter;
-    int roamRange;
+    int roamRange = 50;
 
     EnemyState enemyState;
 
-
+    GameObject player;
 
     NavMeshAgent agent;
     bool hasDestination;
 
+    EnemyVision vision;
+
     private void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        vision = GetComponentInChildren<EnemyVision>();
         enemyState = EnemyState.ROAM;
+        if(GameObject.FindWithTag("Player") != null) {
+            player = GameObject.FindWithTag("Player");
+        }
     }
 
     private void Update()
     {
-        rageMeter = Mathf.Clamp(rageMeter, 0, 100);
-
         if(enemyState == EnemyState.ROAM)
         {
             Roam();
@@ -38,6 +42,22 @@ public class EnemyMovementRedux : EnemyUtilities
         }
 
         StatusUpdate();
+        Debug.DrawLine(transform.position, agent.destination, Color.blue, 0.1f);
+
+        if(vision.HasVisionOfPlayer)
+        {
+            EnemyUtilities utils = GetComponent<EnemyUtilities>();
+
+            switch(utils.GetRage())
+            {
+                case < 50:
+                    Debug.Log("not high enough");
+                    break;
+                case > 50:
+                    Debug.Log("your death is imminent.");
+                    break;
+            }
+        }
     }
 
     void Roam()
@@ -45,7 +65,8 @@ public class EnemyMovementRedux : EnemyUtilities
         if (hasDestination)
             return;
 
-        RandomNavmeshPosition(roamRange);
+        Debug.Log("Found new dstination.");
+        agent.destination = RandomNavmeshPosition(roamRange);
         hasDestination = true;
     }
 

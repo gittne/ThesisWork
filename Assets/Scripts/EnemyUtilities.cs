@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,12 @@ public class EnemyUtilities : MonoBehaviour
 {
     public enum EnemyState { ROAM, FOLLOW, HUNT }
     public int[] rageSourceStrengths;
+    [SerializeField] int rageMeter;
+
+    private void Update()
+    {
+        rageMeter = Mathf.Clamp(rageMeter, 0, 100);
+    }
 
     //Get a random position on a navmesh sphere around it.
     public Vector3 RandomNavmeshPosition(float radius)
@@ -28,8 +35,24 @@ public class EnemyUtilities : MonoBehaviour
     //Checks if it is close enough to its roam destination to find a new one.
     public bool DestinationReach(Vector3 origin, Vector3 target)
     {
-        if (Vector3.Distance(origin, target) < 0.5f)
-            return true;
-        return false;
+        Vector3 originFoot = origin -= new Vector3(0, 2, 0);
+
+
+        if (Vector3.Distance(originFoot, target) < 1f)
+        {
+            return false;
+        }
+  
+        return true;
+    }
+
+    public void AlterRage(int val)
+    {
+        rageMeter += val;
+    }
+
+    public int GetRage()
+    {
+        return rageMeter;
     }
 }
