@@ -5,28 +5,28 @@ using UnityEngine.AI;
 
 public class ElectricityChecker : MonoBehaviour
 {
-    EnemyMovement enemyMovement;
+    EnemyMovementRedux enemyMovement;
     NavMeshAgent agento;
 
     private void Start()
     {
-        enemyMovement = GetComponentInParent<EnemyMovement>();
+        enemyMovement = GetComponentInParent<EnemyMovementRedux>();
         agento = GetComponentInParent<NavMeshAgent>();
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (enemyMovement.IsChasingElectricity)
-            return;
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (enemyMovement.IsChasingElectricity)
+    //        return;
 
-        if (other.CompareTag("ElectricityEmitter"))
-        {
-            ElectricTrigger electricTrigger = other.GetComponent<ElectricTrigger>();
+    //    if (other.CompareTag("ElectricityEmitter"))
+    //    {
+    //        ElectricTrigger electricTrigger = other.GetComponent<ElectricTrigger>();
 
-            if (electricTrigger.IsElectrified)
-            {
-                enemyMovement.GoChaseElectricity(other.transform);
-            }
-        }
-    }
+    //        if (electricTrigger.IsElectrified)
+    //        {
+    //            enemyMovement.GoChaseElectricity(other.transform);
+    //        }
+    //    }
+    //}
 }
