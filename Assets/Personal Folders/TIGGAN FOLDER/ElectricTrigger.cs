@@ -44,7 +44,7 @@ public class ElectricTrigger : MonoBehaviour
     {
         if(other.CompareTag("Enemy"))
         {
-            other.GetComponent<EnemyMovement>().GoToDisabling(disableElectricitySpeed);
+            other.GetComponent<OLDENEMYSTUFF>().GoToDisabling(disableElectricitySpeed);
             StartCoroutine(DisableTimer());
         }
     }

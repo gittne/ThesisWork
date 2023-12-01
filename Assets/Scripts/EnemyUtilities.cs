@@ -10,13 +10,6 @@ using UnityEngine.AI;
 public class EnemyUtilities : MonoBehaviour
 {
     public enum EnemyState { ROAM, FOLLOW, HUNT }
-    public int[] rageSourceStrengths;
-    [SerializeField] int rageMeter;
-
-    private void Update()
-    {
-        rageMeter = Mathf.Clamp(rageMeter, 0, 100);
-    }
 
     //Get a random position on a navmesh sphere around it.
     public Vector3 RandomNavmeshPosition(float radius)
@@ -44,15 +37,5 @@ public class EnemyUtilities : MonoBehaviour
         }
   
         return true;
-    }
-
-    public void AlterRage(int val)
-    {
-        rageMeter += val;
-    }
-
-    public int GetRage()
-    {
-        return rageMeter;
     }
 }

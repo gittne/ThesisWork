@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+public class OLDENEMYSTUFF : MonoBehaviour
 {
     protected NavMeshAgent agent;
 
@@ -14,6 +14,8 @@ public class EnemyMovement : MonoBehaviour
 
     [SerializeField] float angerSpeed;
     [SerializeField] float angerAcceleration;
+
+    [SerializeField] int rageMeter;
 
     public bool IsChasingElectricity { get { return  isChasingElectricity; } }
 
@@ -26,6 +28,12 @@ public class EnemyMovement : MonoBehaviour
         FindNewDestination();
         InvokeRepeating("DestinationPoint", 0, 0.25f);
     }
+
+    private void Update()
+    {
+        rageMeter = Mathf.Clamp(rageMeter, 0, 100);
+    }
+
     void FindNewDestination()
     {
         if (isChasingElectricity)
@@ -75,5 +83,15 @@ public class EnemyMovement : MonoBehaviour
     void DestinationPoint()
     {
         Debug.DrawLine(transform.position, agent.destination, Color.blue, 0.25f);
+    }
+
+    public void AlterRage(int val)
+    {
+        rageMeter += val;
+    }
+
+    public int GetRage()
+    {
+        return rageMeter;
     }
 }

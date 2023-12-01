@@ -10,6 +10,9 @@ using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
 using System.Threading.Tasks;
 
+using Unity.Services.Vivox;
+using VivoxUnity;
+
 public class RelayMaker : MonoBehaviour
 {
     public static RelayMaker Instance { get; private set; }
@@ -29,8 +32,11 @@ public class RelayMaker : MonoBehaviour
             RelayServerData relayServerData = new RelayServerData(allocation, "dtls");
 
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
-
             NetworkManager.Singleton.StartHost();
+
+
+
+            VivoxService.Instance.Initialize();
 
             return joinCode;
         }
@@ -50,8 +56,11 @@ public class RelayMaker : MonoBehaviour
             RelayServerData relayServerData = new RelayServerData(joinAllocation, "dtls");
 
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
-
             NetworkManager.Singleton.StartClient();
+
+
+
+            VivoxService.Instance.Initialize();
         }
         catch (RelayServiceException e)
         {
