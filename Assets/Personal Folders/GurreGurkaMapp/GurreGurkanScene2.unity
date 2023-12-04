@@ -846,10 +846,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8f7a7f666af504687032393103d7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothing: 1.75
-  swayMultiplier: 170
-  lerpSpeed: 0.75
-  movementDenominator: 1
+  smoothing: 6
+  swayMultiplier: 100
+  xMaxRotation: 5
+  yMaxRotation: 35
+  lerpSpeed: 1
+  movementMultiplier: 0.65
+  yMinMovement: 0.5
+  yMaxMovement: 0.175
 --- !u!1 &1043304532
 GameObject:
   m_ObjectHideFlags: 0
