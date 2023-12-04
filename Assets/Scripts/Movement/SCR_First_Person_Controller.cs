@@ -5,10 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class SCR_First_Person_Controller : MonoBehaviour
 {
+    //SUMMARY: This script is responsible for character movement and looking
+    //Base code provided by "Comp-3 Interactive": https://www.youtube.com/watch?v=Ew4l5RPltG8&list=PLfhbBaEcybmgidDH3RX_qzFM0mIxWJa21
+
     public bool canMove { get; private set; } = true;
+    public bool isSprinting => canSprint && Input.GetKey(sprintKey);
+
+    [Header("Functional Options")]
+    [SerializeField] bool canSprint = true;
+
+    [Header("Controls")]
+    [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
 
     [Header("Movement Variables")]
-    [SerializeField] float walkingSpeed = 3f;
+    [SerializeField] float walkingSpeed = 2f;
+    [SerializeField] float runningSpeed = 5f;
     [SerializeField] float gravity = 30f;
 
     [Header("Mouse Look Variables")]
@@ -16,10 +27,6 @@ public class SCR_First_Person_Controller : MonoBehaviour
     [SerializeField, Range(1, 10)] float yLookSensitivity = 2f;
     [SerializeField, Range(1, 100)] float upperLookLimit = 80f;
     [SerializeField, Range(1, 100)] float lowerLookLimit = 80f;
-    [SerializeField, Range(1, 500)] float middleScreenRadius = 50f;
-    Vector2 mousePosition;
-    Vector2 screenCenter;
-    float distanceFromCenter;
 
     Camera playerCamera;
     CharacterController characterController;
@@ -34,43 +41,27 @@ public class SCR_First_Person_Controller : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
 
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        CalculateCursorDistance();
-
         if (canMove)
         {
             MovementInput();
 
-            //MouseLook();
+            MouseLook();
 
             ApplyMovement();
         }
     }
 
-    void CalculateCursorDistance()
-    {
-        mousePosition = Input.mousePosition;
-
-        screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
-
-        distanceFromCenter = Vector2.Distance(mousePosition, screenCenter);
-
-        if (distanceFromCenter > middleScreenRadius)
-        {
-            Debug.Log("Utanför radien");
-        }
-        Debug.Log(distanceFromCenter);
-    }
-
     void MovementInput()
     {
-        currentInput = new Vector2(walkingSpeed * Input.GetAxis("Vertical"), walkingSpeed * Input.GetAxis("Horizontal"));
+        currentInput = new Vector2((isSprinting ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical"), 
+            (isSprinting ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal"));
 
         float movementDirectionY = movementDirection.y;
 
