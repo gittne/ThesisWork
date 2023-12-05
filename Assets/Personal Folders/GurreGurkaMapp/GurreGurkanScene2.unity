@@ -846,14 +846,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8f7a7f666af504687032393103d7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothing: 6
-  swayMultiplier: 100
-  xMaxRotation: 5
-  yMaxRotation: 35
-  lerpSpeed: 1
-  movementMultiplier: 0.65
-  yMinMovement: 0.5
-  yMaxMovement: 0.175
+  smoothing: 8
+  swayMultiplier: 75
+  xMaxRotation: 0.2
+  yMaxRotation: 0.3
+  lerpSpeed: 0.8
+  movementMultiplier: 0.8
+  xMinMovement: 0.5
+  xMaxMovement: 0.3
+  yMinMovement: 0.4
+  yMaxMovement: 0.2
 --- !u!1 &1043304532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,14 +1202,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSprint: 1
+  canCrouch: 1
+  canHeadbob: 1
   sprintKey: 304
+  crouchKey: 306
   walkingSpeed: 2
   runningSpeed: 5
+  crouchSpeed: 1
   gravity: 30
   xLookSensitivity: 2
   yLookSensitivity: 2
   upperLookLimit: 80
   lowerLookLimit: 80
+  crouchHeight: 0.5
+  standingHeight: 2
+  timeToCrouch: 0.25
+  crouchCenter: {x: 0, y: 0.5, z: 0}
+  standingCenter: {x: 0, y: 0, z: 0}
+  walkBobSpeed: 14
+  walkBobAmount: 0.05
+  runningBobSpeed: 18
+  runningBobAmount: 0.1
+  crouchBobSpeed: 8
+  crouchBobAmount: 0.025
 --- !u!143 &1884475131
 CharacterController:
   m_ObjectHideFlags: 0
