@@ -11,13 +11,15 @@ public class SCR_Item_Sway : MonoBehaviour
     [Header("Sway Rotation Variables")]
     [SerializeField] float smoothing; //The amount of smoothing the item does when going back to default state
     [SerializeField] float swayMultiplier; //The multiplier for sway amount
-    [SerializeField] float xMaxRotation;
+    [SerializeField] float xMaxRotation; 
     [SerializeField] float yMaxRotation;
     [Header("Sway Movement Variables")]
     [SerializeField] float lerpSpeed; //The speed at which the item lerps when moving
     [SerializeField] float movementMultiplier; //The amount to divide the mouse input for moving the gameobject
-    [SerializeField] float yMinMovement;
-    [SerializeField] float yMaxMovement;
+    [SerializeField] float xMinMovement; //The max distance the item can travel on the X axis to the left
+    [SerializeField] float xMaxMovement; //The max distance the item can travel on the X axis to the right
+    [SerializeField] float yMinMovement; //The max distance the item can travel on the Y axis to the left
+    [SerializeField] float yMaxMovement; //The max distance the item can travel on the Y axis to the right
     Vector3 resetTransform;
 
     void Awake()
@@ -31,6 +33,7 @@ public class SCR_Item_Sway : MonoBehaviour
         Sway();
     }
 
+    //The method which is responsible for the rotation and movement of the arm when moving the mouse
     void Sway()
     {
         //These floats take the input from the mouse when moving it
@@ -45,21 +48,12 @@ public class SCR_Item_Sway : MonoBehaviour
         //The target rotation, which is the X and Y rotation multiplied
         Quaternion targetRotation = xRotation * yRotation;
 
+        targetRotation.x = Mathf.Clamp(targetRotation.x, -xMaxRotation, xMaxRotation);
+
+        targetRotation.y = Mathf.Clamp(targetRotation.y, -yMaxRotation, yMaxRotation);
+
         //The code which rotates the item
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, smoothing * Time.deltaTime);
-
-        if (transform.localRotation.x > xMaxRotation)
-        {
-            transform.localRotation = ClampRotation(targetRotation, xMaxRotation);
-            Debug.Log("Roterade över X");
-        }
-
-        if (transform.localRotation.y > yMaxRotation)
-        {
-            transform.localRotation = ClampRotation(targetRotation, yMaxRotation);
-            Debug.Log("Roterade över Y");
-        }
-
 
         // These floats take the input from the mouse when moving it
         float moveX = Input.GetAxisRaw("Mouse X");
@@ -69,22 +63,13 @@ public class SCR_Item_Sway : MonoBehaviour
         //towards when moving the mouse
         Vector3 targetPosition = new Vector3(moveX * movementMultiplier, moveY * movementMultiplier, 0);
 
+        //Limits how much the arm can travel when looking around on the X axis
+        targetPosition.x = Mathf.Clamp(targetPosition.x, -xMinMovement, xMaxMovement);
+
+        //Limits how much the arm can travel when looking around on the Y axis
         targetPosition.y = Mathf.Clamp(targetPosition.y, -yMinMovement, yMaxMovement);
 
         // Apply damping to the movement
         transform.localPosition = Vector3.Lerp(transform.localPosition, resetTransform + targetPosition, lerpSpeed * Time.deltaTime);
-    }
-
-    Quaternion ClampRotation(Quaternion rotation, float maxAngle)
-    {
-        // Extract the euler angles from the quaternion
-        Vector3 eulerAngles = rotation.eulerAngles;
-
-        // Clamp the rotation angles on both X and Y axes
-        eulerAngles.x = Mathf.Clamp(eulerAngles.x, -maxAngle, maxAngle);
-        eulerAngles.y = Mathf.Clamp(eulerAngles.y, -maxAngle, maxAngle);
-
-        // Convert the clamped euler angles back to quaternion
-        return Quaternion.Euler(eulerAngles);
     }
 }
