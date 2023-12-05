@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9208323658307659484}
   - component: {fileID: 3239321219588621927}
   m_Layer: 0
-  m_Name: PlayerDetection
+  m_Name: VisionDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,9 +79,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8164263696958972703}
   - component: {fileID: 7703387107363727252}
-  - component: {fileID: 2179738243592005409}
+  - component: {fileID: 6976991442437128774}
   m_Layer: 0
-  m_Name: ElectricityRadar
+  m_Name: RadarDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,9 +121,9 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 75
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2179738243592005409
+--- !u!114 &6976991442437128774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4573991649635906168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fa146b6afd5eaf45873ea74039cccbe, type: 3}
+  m_Script: {fileID: 11500000, guid: a97ea35d796a61641bac1c2021b6dc9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5836137306576391418

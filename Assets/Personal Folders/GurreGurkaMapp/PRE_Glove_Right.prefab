@@ -692,6 +692,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3671991642604739431}
   - component: {fileID: 4582642903688663900}
+  - component: {fileID: 1125190974569176467}
+  - component: {fileID: 5884712835451350589}
   m_Layer: 0
   m_Name: PRE_Glove_Right
   m_TagString: Untagged
@@ -724,7 +726,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6861359997770061640}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 1e4665eec9084654d9dff9b37ac3d6cb, type: 3}
   m_Controller: {fileID: 9100000, guid: 716bac57ebf4193428fa713b064861eb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -736,6 +738,77 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1125190974569176467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6861359997770061640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216603ae797479a43a75f7b11ce98cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pinchAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Pinch
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1af95603-06ad-4625-a0b2-2770d1ef8a1b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  gripAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 83d5cbc6-6d27-4a4f-9cf3-eeefcfcac8ea
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  handAnimator: {fileID: 4582642903688663900}
+--- !u!114 &5884712835451350589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6861359997770061640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d368e7091c9def41ab3e13b993047a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handType: 1
+  root: {fileID: 3671991642604739431}
+  animator: {fileID: 4582642903688663900}
+  fingerBones:
+  - {fileID: 4916676043321657663}
+  - {fileID: 7857710319181109448}
+  - {fileID: 1064884123904316223}
+  - {fileID: 8059519682254419157}
+  - {fileID: 4280225494189427789}
+  - {fileID: 8852888209090356441}
+  - {fileID: 7553127928118496762}
+  - {fileID: 5726786814039510091}
+  - {fileID: 5031659710395204156}
+  - {fileID: 6435758581249147104}
+  - {fileID: 3744965316606330552}
+  - {fileID: 1841779304463358539}
+  - {fileID: 9104097666999106325}
+  - {fileID: 7972140786399963583}
+  - {fileID: 3716463799346927614}
+  - {fileID: 6905428097863187879}
 --- !u!1 &7197500506452410640
 GameObject:
   m_ObjectHideFlags: 0

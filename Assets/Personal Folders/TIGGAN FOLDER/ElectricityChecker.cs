@@ -5,12 +5,12 @@ using UnityEngine.AI;
 
 public class ElectricityChecker : MonoBehaviour
 {
-    EnemyMovementRedux enemyMovement;
+    EnemyBrain enemyMovement;
     NavMeshAgent agento;
 
     private void Start()
     {
-        enemyMovement = GetComponentInParent<EnemyMovementRedux>();
+        enemyMovement = GetComponentInParent<EnemyBrain>();
         agento = GetComponentInParent<NavMeshAgent>();
     }
 
