@@ -77,6 +77,17 @@ public class LobbyManager : MonoBehaviour
         HandleLobbyPolling();
     }
 
+    private void Start()
+    {
+        //InvokeRepeating("HandleLobbyHeartbeat", 0, 1);
+        //InvokeRepeating("HandleLobbyPolling", 0, 1);
+    }
+
+    private void OnApplicationQuit()
+    {
+        if(joinedLobby != null) LeaveLobby();
+    }
+
     public void GoAuthenticate()
     {
         Authenticate(EditPlayerName.Instance.GetPlayerName());
@@ -185,14 +196,12 @@ public class LobbyManager : MonoBehaviour
 
         lobbyNameDisplay.text = joinedLobby.Name;
         lobbyCodeDisplay.text = joinedLobby.LobbyCode;
-        Debug.Log("set the lobby name display with the code: " + joinedLobby.Name + ". My player name is: " + joinedLobby.Players[0].Data["PlayerName"].Value);
 
         player1NameDisplay.text = joinedLobby.Players[0].Data["PlayerName"].Value;
         player2NameDisplay.text = "";
 
         if (joinedLobby.Players.Count > 1)
         {
-            Debug.Log("I GOT TWO PLAYERS");
             player2NameDisplay.text = joinedLobby.Players[1].Data["PlayerName"].Value;
         }
     }
@@ -259,6 +268,10 @@ public class LobbyManager : MonoBehaviour
                 Debug.Log(e);
             }
         }
+        else
+        {
+            Debug.Log("not enough players to start the lobby.");
+        }
     }
 
     public Lobby GetJoinedLobby() { return joinedLobby; }
@@ -291,7 +304,6 @@ public class LobbyManager : MonoBehaviour
                 float heartbeatTimerMax = 15f;
                 heartbeatTimer = heartbeatTimerMax;
 
-                Debug.Log("Heartbeat");
                 await LobbyService.Instance.SendHeartbeatPingAsync(joinedLobby.Id);
             }
         }

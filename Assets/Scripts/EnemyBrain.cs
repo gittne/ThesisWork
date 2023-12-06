@@ -88,4 +88,9 @@ public class EnemyBrain : EnemyUtilities
         }
         
     }
+
+    public void SetTargetPlayer(GameObject target)
+    {
+        agent.destination = target.transform.position;
+    }
 }

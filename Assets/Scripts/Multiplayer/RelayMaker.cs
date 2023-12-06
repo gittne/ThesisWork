@@ -18,6 +18,8 @@ public class RelayMaker : MonoBehaviour
     public static RelayMaker Instance { get; private set; }
     private void Awake() { Instance = this; }
 
+    [SerializeField] GameObject multiplayerMenu;
+
     [ContextMenu("Create a Relay")]
     public async Task<string> CreateRelay()
     {
@@ -34,9 +36,12 @@ public class RelayMaker : MonoBehaviour
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
             NetworkManager.Singleton.StartHost();
 
-
+            Debug.Log("Created a relay.");
 
             VivoxService.Instance.Initialize();
+            VivoxPlayer.Instance.LoginToVivox();
+
+            multiplayerMenu.SetActive(false);
 
             return joinCode;
         }
@@ -58,9 +63,12 @@ public class RelayMaker : MonoBehaviour
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
             NetworkManager.Singleton.StartClient();
 
-
+            Debug.Log("Joined a relay.");
 
             VivoxService.Instance.Initialize();
+            VivoxPlayer.Instance.LoginToVivox();
+
+            multiplayerMenu.SetActive(false);
         }
         catch (RelayServiceException e)
         {
