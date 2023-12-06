@@ -8,7 +8,18 @@ using System;
 public class VoiceManager : MonoBehaviour
 {
     public ILoginSession LoginSession;
-    
+
+    private void Start()
+    {
+        //Login("hey");
+        //JoinChannel("1", )
+    }
+
+    private void OnApplicationQuit()
+    {
+        if(LoginSession != null) LoginSession.Logout();
+    }
+
     public void JoinChannel(string channelName, ChannelType channelType, bool connectAudio, bool connectText, bool transmissionSwitch = true, Channel3DProperties properties = null)
     {
         if (LoginSession.State == LoginState.LoggedIn)
@@ -40,7 +51,7 @@ public class VoiceManager : MonoBehaviour
     {
         var account = new Account(displayName);
         bool connectAudio = true;
-        bool connectText = false;
+        bool connectText = true;
 
         LoginSession = VivoxService.Instance.Client.GetLoginSession(account);
         LoginSession.PropertyChanged += LoginSession_PropertyChanged;
@@ -57,14 +68,13 @@ public class VoiceManager : MonoBehaviour
                 // Handle error
                 return;
             }
+
             // At this point, we have successfully requested to login. 
             // When you are able to join channels, LoginSession.State will be set to LoginState.LoggedIn.
-            // Reference LoginSession_PropertyChanged()
+            // Reference LoginSession_PropertyChanged() 
         });
     }
 
-    // For this example, we immediately join a channel after LoginState changes to LoginState.LoggedIn.
-    // In an actual game, when to join a channel will vary by implementation.
     private void LoginSession_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
     {
         var loginSession = (ILoginSession)sender;
@@ -73,7 +83,7 @@ public class VoiceManager : MonoBehaviour
             if (loginSession.State == LoginState.LoggedIn)
             {
                 bool connectAudio = true;
-                bool connectText = false;
+                bool connectText = true;
 
                 // This puts you into an echo channel where you can hear yourself speaking.
                 // If you can hear yourself, then everything is working and you are ready to integrate Vivox into your project.

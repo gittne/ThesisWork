@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using VivoxUnity;
 
 public class PlayerNetwork : NetworkBehaviour
 {
     private void Start()
     {
         transform.position = new Vector3(0, 1, 0);
+        if (IsOwner) InvokeRepeating("GoUpdatePosition", 0, 1);
     }
+
     void Update()
     {
         if (!IsOwner) return;
@@ -22,19 +27,17 @@ public class PlayerNetwork : NetworkBehaviour
 
         float moveSpeed = 3f;
         transform.position += moveDir * moveSpeed * Time.deltaTime;
-
-        if(Input.GetKeyDown(KeyCode.L) && IsHost)
-        {
-            SpawnEnemy();
-        }
     }
 
-    [SerializeField] private Transform prefab;
-
-    void SpawnEnemy()
+    void GoUpdatePosition()
     {
-        Transform enemyTransform = Instantiate(prefab);
-        enemyTransform.GetComponent<NetworkObject>().Spawn(true);
+        Update3DPosition(transform, transform);
+    }
+
+    void Update3DPosition(Transform listener, Transform speaker)
+    {
+            VivoxPlayer.Instance.TransmittingSession.Set3DPosition(speaker.position, listener.position,
+                listener.forward, listener.up);
     }
 
 }

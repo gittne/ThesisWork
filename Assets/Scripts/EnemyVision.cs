@@ -11,7 +11,6 @@ public class EnemyVision : MonoBehaviour
 
     public bool HasVisionOfPlayer { get { return hasVisionOfPlayer; } }
 
-
     float distanceToPlayer;
 
     // Start is called before the first frame update
@@ -35,6 +34,7 @@ public class EnemyVision : MonoBehaviour
 
                     hasVisionOfPlayer = true;
                     distanceToPlayer = Vector3.Distance(transform.position, hit.point);
+                    brain.SetTargetPlayer(other.gameObject);
                     return;
                 }
             }
