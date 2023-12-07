@@ -11,8 +11,8 @@ public class SCR_Item_Sway : MonoBehaviour
     [Header("Sway Rotation Variables")]
     [SerializeField] float smoothing; //The amount of smoothing the item does when going back to default state
     [SerializeField] float swayMultiplier; //The multiplier for sway amount
-    [SerializeField] float xMaxRotation; 
-    [SerializeField] float yMaxRotation;
+    [SerializeField] float xMaxRotation; //The max rotation the object can rotate on the X axis
+    [SerializeField] float yMaxRotation; //The max rotation the object can rotate on the Y axis
     [Header("Sway Movement Variables")]
     [SerializeField] float lerpSpeed; //The speed at which the item lerps when moving
     [SerializeField] float movementMultiplier; //The amount to divide the mouse input for moving the gameobject
