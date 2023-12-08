@@ -54,7 +54,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     float yDefaultPosition = 0;
     float timer;
 
-    [SerializeField] Camera playerCamera;
+    [SerializeField] Transform cameraTransform;
+    [SerializeField] GameObject playerCamera;
     [SerializeField] CharacterController characterController;
 
     Vector3 movementDirection;
@@ -71,7 +72,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         transform.position = spawnpoint;
 
-        yDefaultPosition = playerCamera.transform.localPosition.y;
+        yDefaultPosition = cameraTransform.transform.localPosition.y;
+
+        Instantiate(playerCamera, cameraTransform);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -122,7 +125,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         xRotation -= Input.GetAxis("Mouse Y") * yLookSensitivity;
         xRotation = Mathf.Clamp(xRotation, -upperLookLimit, lowerLookLimit);
 
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        cameraTransform.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * xLookSensitivity, 0 );
     }
@@ -138,9 +141,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         {
             timer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
 
-            playerCamera.transform.localPosition = new Vector3(playerCamera.transform.localPosition.x, 
+            cameraTransform.transform.localPosition = new Vector3(cameraTransform.transform.localPosition.x, 
                 yDefaultPosition + Mathf.Sin(timer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount), 
-                playerCamera.transform.localPosition.z);
+                cameraTransform.transform.localPosition.z);
         }
     }
 
