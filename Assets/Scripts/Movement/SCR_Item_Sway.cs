@@ -81,6 +81,6 @@ public class SCR_Item_Sway : NetworkBehaviour
         targetPosition.y = Mathf.Clamp(targetPosition.y, -yMinMovement, yMaxMovement);
 
         // Apply damping to the movement
-        transform.localPosition = Vector3.Lerp(transform.localPosition, resetTransform + targetPosition, lerpSpeed * Time.deltaTime);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, lerpSpeed * Time.deltaTime);
     }
 }
