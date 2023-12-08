@@ -210,8 +210,35 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             Debug.LogWarning("Kamera inte instantierad");
         }
 
+        VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
+        InvokeRepeating("GoUpdatePosition", 0, 0.1f);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    void GoUpdatePosition()
+    {
+        if (!VivoxPlayer.Instance.LoginSession.GetChannelSession(VivoxPlayer.Instance.localChannel).IsTransmitting)
+            return;
+
+        Update3DPosition(transform, transform);
+        Debug.Log("Updating 3D position.");
+    }
+
+    void Update3DPosition(Transform listener, Transform speaker)
+    {
+        VivoxPlayer.Instance.TransmittingSession.Set3DPosition(speaker.position, listener.position,
+            listener.forward, listener.up);
+    }
+
+    void EnableRadio()
+    {
+        VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.globalChannel);
+    }
+
+    private void DisableRadio()
+    {
+        VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
     }
 }
