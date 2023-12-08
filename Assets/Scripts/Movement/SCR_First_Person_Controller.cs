@@ -216,7 +216,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        yield return new WaitForSeconds(0.1f);
         VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
         InvokeRepeating("GoUpdatePosition", 0, 0.1f);
     }
