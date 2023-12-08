@@ -120,6 +120,7 @@ public class VivoxPlayer : MonoBehaviour
     public IAudioDevices AudioInputDevices => _client.AudioInputDevices;
     public IAudioDevices AudioOutputDevices => _client.AudioOutputDevices;
 
+
     #endregion
 
     #region Properties
@@ -144,6 +145,9 @@ public class VivoxPlayer : MonoBehaviour
         }
     }
     #endregion
+
+    public ChannelId localChannel { get; private set; }
+    public ChannelId globalChannel { get; private set; }
 
     private void Awake()
     {
@@ -311,7 +315,11 @@ public class VivoxPlayer : MonoBehaviour
                 {
                     VivoxLog("Connected to voice server and logged in.");
                     OnUserLoggedInEvent?.Invoke();
-                    JoinChannel("mainChannel", ChannelType.Positional, VivoxPlayer.ChatCapability.AudioOnly);
+                    JoinChannel("LocalChannel", ChannelType.Positional, ChatCapability.AudioOnly);
+                    JoinChannel("RadioChannel", ChannelType.NonPositional, ChatCapability.AudioOnly);
+
+                    localChannel = ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == "LocalChannel").Key;
+                    globalChannel = ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == "RadioChannel").Key;
                     break;
                 }
             case LoginState.LoggingOut:
