@@ -10,13 +10,14 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     //Base code provided by "Comp-3 Interactive": https://www.youtube.com/watch?v=Ew4l5RPltG8&list=PLfhbBaEcybmgidDH3RX_qzFM0mIxWJa21
 
     public bool canMove { get; private set; } = true;
-    public bool isRunning => canSprint && Input.GetKey(sprintKey);
+    public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
     public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKey(crouchKey);
 
-    [Header("Functional Options")]
-    [SerializeField] bool canSprint = true;
-    [SerializeField] bool canCrouch = true;
-    [SerializeField] bool canHeadbob = true;
+    [Header("Functions")]
+    [SerializeField] Vector3 spawnpoint = new Vector3(0, 0, 0);
+    [SerializeField] bool canSprintDebug = true;
+    [SerializeField] bool canCrouchDebug = true;
+    [SerializeField] bool canHeadbobDebug = true;
 
     [Header("Controls")]
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
@@ -68,6 +69,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             return;
         }
 
+        transform.position = spawnpoint;
+
         yDefaultPosition = playerCamera.transform.localPosition.y;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -90,12 +93,12 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
             ApplyMovement();
 
-            if (canCrouch)
+            if (canCrouchDebug)
             {
                 Crouch();
             }
 
-            if (canHeadbob)
+            if (canHeadbobDebug)
             {
                 Headbob();
             }

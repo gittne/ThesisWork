@@ -68344,9 +68344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b259bad77f36ef4f988eb5ca61bb84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canSprint: 1
-  canCrouch: 1
-  canHeadbob: 1
+  spawnpoint: {x: 0, y: 0, z: 0}
+  canSprintDebug: 1
+  canCrouchDebug: 1
+  canHeadbobDebug: 1
   sprintKey: 304
   crouchKey: 306
   walkingSpeed: 2
@@ -68368,6 +68369,8 @@ MonoBehaviour:
   runningBobAmount: 0.1
   crouchBobSpeed: 8
   crouchBobAmount: 0.025
+  playerCamera: {fileID: 0}
+  characterController: {fileID: 0}
 --- !u!143 &1714483141
 CharacterController:
   m_ObjectHideFlags: 0
