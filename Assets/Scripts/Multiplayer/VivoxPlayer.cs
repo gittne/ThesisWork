@@ -313,6 +313,9 @@ public class VivoxPlayer : MonoBehaviour
                 }
             case LoginState.LoggedIn:
                 {
+                    _client.Uninitialize();
+                    _client.Initialize();
+
                     VivoxLog("Connected to voice server and logged in.");
                     OnUserLoggedInEvent?.Invoke();
                     JoinChannel("LocalChannel", ChannelType.Positional, ChatCapability.AudioOnly);
