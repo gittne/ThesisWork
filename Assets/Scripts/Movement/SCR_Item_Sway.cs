@@ -21,7 +21,7 @@ public class SCR_Item_Sway : NetworkBehaviour
     [SerializeField] float xMaxMovement; //The max distance the item can travel on the X axis to the right
     [SerializeField] float yMinMovement; //The max distance the item can travel on the Y axis to the left
     [SerializeField] float yMaxMovement; //The max distance the item can travel on the Y axis to the right
-    Vector3 resetTransform;
+    
 
     void Awake()
     {
@@ -29,8 +29,6 @@ public class SCR_Item_Sway : NetworkBehaviour
         {
             return;
         }
-
-        resetTransform = transform.localPosition;
     }
 
     // Update is called once per frame
