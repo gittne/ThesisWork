@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class SCR_Item_Sway : MonoBehaviour
+public class SCR_Item_Sway : NetworkBehaviour
 {
     //SUMMARY: This code is responsible for making items sway when
     //holding them in hand in the game.
@@ -24,12 +25,22 @@ public class SCR_Item_Sway : MonoBehaviour
 
     void Awake()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         resetTransform = transform.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         Sway();
     }
 

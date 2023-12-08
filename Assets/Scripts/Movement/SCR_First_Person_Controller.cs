@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 [RequireComponent(typeof(CharacterController))]
-public class SCR_First_Person_Controller : MonoBehaviour
+public class SCR_First_Person_Controller : NetworkBehaviour
 {
     //SUMMARY: This script is responsible for character movement and looking
     //Base code provided by "Comp-3 Interactive": https://www.youtube.com/watch?v=Ew4l5RPltG8&list=PLfhbBaEcybmgidDH3RX_qzFM0mIxWJa21
@@ -62,6 +63,11 @@ public class SCR_First_Person_Controller : MonoBehaviour
 
     void Awake()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
 
@@ -74,6 +80,11 @@ public class SCR_First_Person_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         if (canMove)
         {
             MovementInput();
