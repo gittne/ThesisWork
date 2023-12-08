@@ -63,7 +63,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     float xRotation = 0;
 
-    void Awake()
+    void Start()
     {
         if (!IsOwner)
         {
