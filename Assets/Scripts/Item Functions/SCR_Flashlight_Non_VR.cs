@@ -14,6 +14,9 @@ public class SCR_Flashlight_Non_VR : NetworkBehaviour
     [SerializeField] AudioClip offSound;
     [SerializeField] AudioSource audioSource;
 
+    public bool FlashLightIsOn { get; private set; }
+
+
     void Start()
     {
         if (!IsOwner)
@@ -46,11 +49,13 @@ public class SCR_Flashlight_Non_VR : NetworkBehaviour
         if (spotLight.enabled)
         {
             audioSource.PlayOneShot(onSound);
+            FlashLightIsOn = true;
         }
 
         if (!spotLight.enabled)
         {
             audioSource.PlayOneShot(offSound);
+            FlashLightIsOn = false;
         }
     }
 }

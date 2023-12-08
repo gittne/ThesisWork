@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using VivoxUnity;
+using UnityEngine.Experimental.GlobalIllumination;
 
 [RequireComponent(typeof(CharacterController))]
 public class SCR_First_Person_Controller : NetworkBehaviour
@@ -65,12 +66,34 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     float xRotation = 0;
 
+    List<GameObject> players;
+
     void Start()
     {
         if (IsOwner)
         {
             StartCoroutine(SetupDelay());
         }
+
+        StartCoroutine(PlayerListSetup());
+    }
+
+    IEnumerator PlayerListSetup()
+    {
+        while(players.Count < 2)
+        {
+            foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                players.Add(player);
+            }
+
+            if (players.Count < 2)
+                players.Clear();
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        InvokeRepeating("PlayerStatusUpdate", 0, 0.1f);
     }
 
     // Update is called once per frame
@@ -231,6 +254,17 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             return;
 
         Update3DPosition(transform, transform);
+    }
+
+    void PlayerStatusUpdate()
+    {
+        foreach(GameObject player in players)
+        {
+            if (player.GetComponent<SCR_Flashlight_Non_VR>().FlashLightIsOn)
+                player.GetComponent<Light>().intensity = 1;
+            else
+                player.GetComponent<Light>().intensity = 0;
+        }
     }
 
     void Update3DPosition(Transform listener, Transform speaker)
