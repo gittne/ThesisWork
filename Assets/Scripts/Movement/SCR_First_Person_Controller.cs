@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using VivoxUnity;
 
 [RequireComponent(typeof(CharacterController))]
 public class SCR_First_Person_Controller : NetworkBehaviour
@@ -65,28 +66,12 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     void Start()
     {
-        if (!IsOwner)
+        if (IsOwner)
         {
-            Debug.LogError("I'm not owner of this object >:(");
-            return;
+            StartCoroutine(SetupDelay());
         }
 
-        transform.position = spawnpoint;
-
-        yDefaultPosition = cameraTransform.transform.localPosition.y;
-
-        if (Instantiate(playerCamera, cameraTransform))
-        {
-            Debug.LogWarning("Kamera instantierad");
-        }
-        else
-        {
-            Debug.LogWarning("Kamera inte instantierad");
-        }
-
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
     }
 
     // Update is called once per frame
@@ -203,5 +188,30 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         }
 
         characterController.Move(movementDirection * Time.deltaTime);
+    }
+
+    IEnumerator SetupDelay()
+    {
+        while (VivoxPlayer.Instance.LoginState != LoginState.LoggedIn)
+        {
+            yield return null;
+        }
+
+        transform.position = spawnpoint;
+
+        yDefaultPosition = cameraTransform.transform.localPosition.y;
+
+        if (Instantiate(playerCamera, cameraTransform))
+        {
+            Debug.LogWarning("Kamera instantierad");
+        }
+        else
+        {
+            Debug.LogWarning("Kamera inte instantierad");
+        }
+
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
