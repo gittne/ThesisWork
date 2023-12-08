@@ -229,8 +229,15 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     void Update3DPosition(Transform listener, Transform speaker)
     {
-        VivoxPlayer.Instance.TransmittingSession.Set3DPosition(speaker.position, listener.position,
+        try
+        {
+            VivoxPlayer.Instance.TransmittingSession.Set3DPosition(speaker.position, listener.position,
             listener.forward, listener.up);
+        }
+        catch
+        {
+            Debug.Log("No AudioState yet.");
+        }
     }
 
     void EnableRadio()
