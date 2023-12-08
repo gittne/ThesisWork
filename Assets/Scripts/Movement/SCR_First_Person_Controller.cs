@@ -23,6 +23,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [Header("Controls")]
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
+    [SerializeField] KeyCode radioKey = KeyCode.Q;
 
     [Header("Movement Variables")]
     [SerializeField] float walkingSpeed = 2f;
@@ -70,8 +71,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         {
             StartCoroutine(SetupDelay());
         }
-
-        
     }
 
     // Update is called once per frame
@@ -100,6 +99,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
                 Headbob();
             }
         }
+
+        if (Input.GetKeyDown(radioKey)) EnableRadio();
+        if (Input.GetKeyUp(radioKey)) DisableRadio();
     }
 
     void MovementInput()
