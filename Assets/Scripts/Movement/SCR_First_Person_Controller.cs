@@ -53,7 +53,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     float yDefaultPosition = 0;
     float timer;
 
-    Camera playerCamera;
+    [SerializeField] Camera playerCamera;
     CharacterController characterController;
 
     Vector3 movementDirection;
@@ -68,7 +68,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             return;
         }
 
-        playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
 
         yDefaultPosition = playerCamera.transform.localPosition.y;
