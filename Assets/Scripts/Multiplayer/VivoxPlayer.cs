@@ -411,7 +411,7 @@ public class VivoxPlayer : MonoBehaviour
         {
             case "SpeechDetected":
                 {
-                    VivoxLog($"OnSpeechDetectedEvent: {username} in {channel}.");
+                    // VivoxLog($"OnSpeechDetectedEvent: {username} in {channel}.");
                     OnSpeechDetectedEvent?.Invoke(username, channel, valueEventArg.Value.SpeechDetected);
                     break;
                 }
