@@ -223,7 +223,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             return;
 
         Update3DPosition(transform, transform);
-        Debug.Log("Updating 3D position.");
     }
 
     void Update3DPosition(Transform listener, Transform speaker)
