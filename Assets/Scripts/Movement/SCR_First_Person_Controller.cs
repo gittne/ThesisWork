@@ -76,7 +76,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         if (Instantiate(playerCamera, cameraTransform))
         {
-            Debug.Log("Kamera instantierad");
+            Debug.LogWarning("Kamera instantierad");
         }
         else
         {
