@@ -220,7 +220,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         {
             yield return null;
         }
-
+        
         VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
         InvokeRepeating("GoUpdatePosition", 0, 0.1f);
     }
@@ -242,7 +242,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         }
         catch
         {
-            //Empty catch tbh.
+
         }
     }
 
