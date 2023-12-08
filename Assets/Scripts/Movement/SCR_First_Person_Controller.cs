@@ -66,7 +66,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     float xRotation = 0;
 
-    List<GameObject> players;
+    List<GameObject> players = new List<GameObject>();
 
     void Start()
     {
