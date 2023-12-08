@@ -64,6 +64,7 @@ public class VoiceManager : MonoBehaviour
             }
             catch (Exception e)
             {
+                Debug.LogError($"Could not connect to channel: {e.Message}");
                 // Unbind any login session-related events you might be subscribed to.
                 // Handle error
                 return;
