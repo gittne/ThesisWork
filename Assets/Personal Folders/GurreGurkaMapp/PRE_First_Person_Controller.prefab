@@ -480,7 +480,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8566969064540330011}
   - component: {fileID: 7381359561557117661}
-  - component: {fileID: 3127365462715979814}
   m_Layer: 0
   m_Name: Flashlight Holder
   m_TagString: Untagged
@@ -527,26 +526,6 @@ MonoBehaviour:
   xMaxMovement: 0.15
   yMinMovement: 0.6
   yMaxMovement: 0.2
---- !u!114 &3127365462715979814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3451893225309842804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &4048432447978591078
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,7 +540,6 @@ GameObject:
   - component: {fileID: 4171966163562018322}
   - component: {fileID: 6326977412016989627}
   - component: {fileID: 3326993229343148486}
-  - component: {fileID: 4455765945494321465}
   m_Layer: 0
   m_Name: PRE_Flashlight_Flatscreen
   m_TagString: Untagged
@@ -771,26 +749,6 @@ MonoBehaviour:
   onSound: {fileID: 8300000, guid: 522e7b30b761a62499ec3852d200646a, type: 3}
   offSound: {fileID: 8300000, guid: b8f2354c44cfc9f4fbf024b71cbeaac0, type: 3}
   audioSource: {fileID: 6326977412016989627}
---- !u!114 &4455765945494321465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4048432447978591078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &4107795898970438725
 GameObject:
   m_ObjectHideFlags: 0
