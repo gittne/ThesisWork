@@ -67,6 +67,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         if (!IsOwner)
         {
+            Debug.LogError("I'm not owner of this object >:(");
             return;
         }
 
