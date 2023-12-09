@@ -15,6 +15,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
     public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKey(crouchKey);
 
+    [SerializeField] Transform cameraTransform;
+    [SerializeField] GameObject playerCamera;
+    [SerializeField] CharacterController characterController;
     [Header("Functions")]
     [SerializeField] Vector3 spawnpoint = new Vector3(0, 0, 0);
     [SerializeField] bool canSprintDebug = true;
@@ -55,11 +58,20 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [SerializeField] float crouchBobSpeed;
     [SerializeField] float crouchBobAmount;
     float yDefaultPosition = 0;
-    float timer;
+    float headbobTimer;
 
-    [SerializeField] Transform cameraTransform;
-    [SerializeField] GameObject playerCamera;
-    [SerializeField] CharacterController characterController;
+    [Header("Footstep Variables")]
+    [SerializeField] float baseStepSpeed;
+    [SerializeField] float crouchStepMultiplier;
+    [SerializeField] float runStepMultiplier;
+    [SerializeField] AudioSource audioSource = default;
+    [SerializeField] AudioClip[] carpetClips = default;
+    [SerializeField] AudioClip[] woodClips = default;
+    [SerializeField] AudioClip[] stoneClips = default;
+    float footstepTimer;
+    float getCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : isRunning ? baseStepSpeed * runStepMultiplier : baseStepSpeed;
+
+    
 
     Vector3 movementDirection;
     Vector2 currentInput;
@@ -74,8 +86,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         }
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         if (!IsOwner)
@@ -100,6 +110,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             {
                 Headbob();
             }
+
+            HandleFootsteps();
         }
 
         if (Input.GetKeyDown(radioKey)) EnableRadio();
@@ -137,10 +149,10 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         if (Mathf.Abs(movementDirection.x) > 0.1f || Mathf.Abs(movementDirection.z) > 0.1f)
         {
-            timer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
+            headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
 
             cameraTransform.transform.localPosition = new Vector3(cameraTransform.transform.localPosition.x, 
-                yDefaultPosition + Mathf.Sin(timer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount), 
+                yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount), 
                 cameraTransform.transform.localPosition.z);
         }
     }
@@ -182,6 +194,39 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         isCrouching = !isCrouching;
 
         duringCrouchAnimation = false;
+    }
+
+    void HandleFootsteps()
+    {
+        if (!characterController.isGrounded || currentInput == Vector2.zero)
+        {
+            return;
+        }
+
+        footstepTimer -= Time.deltaTime;
+
+        if (footstepTimer <= 0)
+        {
+            if (Physics.Raycast(cameraTransform.transform.position, Vector3.down, out RaycastHit hit, 3))
+            {
+                switch (hit.collider.tag)
+                {
+                    case "Material/Fabric":
+                        audioSource.PlayOneShot(carpetClips[Random.Range(0, carpetClips.Length - 1)]);
+                        break;
+                    case "Material/Wood":
+                        audioSource.PlayOneShot(woodClips[Random.Range(0, woodClips.Length - 1)]);
+                        break;
+                    case "Material/Stone":
+                        audioSource.PlayOneShot(stoneClips[Random.Range(0, stoneClips.Length - 1)]);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            footstepTimer = getCurrentOffset;
+        }
     }
 
     void ApplyMovement()
