@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class SCR_Item_Bobbing : MonoBehaviour
+public class SCR_Item_Bobbing : NetworkBehaviour
 {
     [SerializeField] CharacterController controller;
     [Header("Bobbing Values")]
     [SerializeField] float curveSpeed;
     [SerializeField] Vector3 travelLimit = Vector3.one * 0.025f;
     [SerializeField] Vector3 bobLimit = Vector3.one * 0.01f;
+
+    [SerializeField] float smoothing = 10f;
+    [SerializeField] float smoothingRotation = 12f;
 
     float sinCurve { get => Mathf.Sin(curveSpeed); }
     float cosCurve { get => Mathf.Cos(curveSpeed); }
@@ -23,15 +27,14 @@ public class SCR_Item_Bobbing : MonoBehaviour
     [SerializeField] Vector3 multiplier;
     Vector3 eulerRotation;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
@@ -68,8 +71,6 @@ public class SCR_Item_Bobbing : MonoBehaviour
 
     void CompositePositionRotation()
     {
-        float smoothing = 10f;
-        float smoothingRotation = 12f;
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, bobPosition, Time.deltaTime * smoothing);
 
