@@ -69,7 +69,7 @@ public class SCR_Item_Sway : NetworkBehaviour
 
         BobOffset();
         BobRotation();
-        CompositePositionRotation();
+        //CompositePositionRotation();
     }
 
     //The method which is responsible for the rotation and movement of the arm when moving the mouse
