@@ -25,8 +25,9 @@ public class EnemyVision : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Vector3 dir = -(transform.position - other.transform.position).normalized;
+            Ray ray = new Ray(transform.position, other.transform.position.normalized);
 
-            if (Physics.Raycast(transform.position, dir, out hit, 10f, mask))
+            if(Physics.SphereCast(transform.position, 0.75f, dir, out hit, 30, mask))
             {
                 if (hit.transform.CompareTag("Player"))
                 {
@@ -38,6 +39,19 @@ public class EnemyVision : MonoBehaviour
                     return;
                 }
             }
+
+            //if (Physics.Raycast(transform.position, dir, out hit, 10f, mask))
+            //{
+            //    if (hit.transform.CompareTag("Player"))
+            //    {
+            //        Debug.DrawRay(transform.position, 10 * dir, UnityEngine.Color.red, 2);
+
+            //        hasVisionOfPlayer = true;
+            //        distanceToPlayer = Vector3.Distance(transform.position, hit.point);
+            //        brain.SetTargetPlayer(other.gameObject);
+            //        return;
+            //    }
+            //}
 
             hasVisionOfPlayer = false;
         }
