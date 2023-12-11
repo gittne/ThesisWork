@@ -17,6 +17,7 @@ public class EnemyKill : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("I KILLED!");
             PlayerDeathServerRpc(other.gameObject);
         }
     }

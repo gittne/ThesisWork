@@ -306,6 +306,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [ClientRpc]
     public void PlayerDeathClientRpc()
     {
+        Debug.Log("I fucking died omg");
         transform.position = new Vector3(0, 1, 0);
     }
 }
