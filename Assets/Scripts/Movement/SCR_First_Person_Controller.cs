@@ -302,4 +302,10 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
     }
+
+    [ClientRpc]
+    public void PlayerDeathClientRpc()
+    {
+        transform.position = new Vector3(0, 1, 0);
+    }
 }

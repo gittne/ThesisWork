@@ -28,7 +28,7 @@ public class EnemyUtilities : MonoBehaviour
     //Checks if it is close enough to its roam destination to find a new one.
     public bool DestinationReach(Vector3 origin, Vector3 target)
     {
-        Vector3 originFoot = origin -= new Vector3(0, 2, 0);
+        Vector3 originFoot = origin -= new Vector3(0, 1, 0);
 
 
         if (Vector3.Distance(originFoot, target) < 1f)

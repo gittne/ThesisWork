@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,13 @@ public class EnemyKill : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // KILL
+            PlayerDeathServerRpc(other.gameObject);
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void PlayerDeathServerRpc(GameObject other)
+    {
+        other.gameObject.GetComponent<SCR_First_Person_Controller>().PlayerDeathClientRpc();
     }
 }
