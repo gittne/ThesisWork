@@ -15,7 +15,7 @@ public class EnemyKill : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("I KILLED!");
             PlayerDeathServerRpc(other.gameObject);
