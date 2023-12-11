@@ -16,8 +16,6 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
     bool isEnabled;
 
-    public NetworkVariable<bool> State = new NetworkVariable<bool>();
-
     void Start()
     {
         if (!IsOwner)
@@ -39,13 +37,15 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            ToggleFlashlightServerRpc(isEnabled);
+            isEnabled = !isEnabled;
         }
+
+        ToggleFlashlightServerRpc(isEnabled);
     }
 
     public void ChangeFlashlightState(bool currentState)
     {
-        if (State.Value)
+        if (currentState)
         {
             audioSource.PlayOneShot(onSound);
             spotLight.enabled = true;
@@ -66,8 +66,6 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         if (NetworkManager.ConnectedClients.ContainsKey(clientId))
         {
             ChangeFlashlightState(enabled);
-
-            isEnabled = !isEnabled;
         }
     }
 }
