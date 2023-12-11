@@ -304,9 +304,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void PlayerDeathClientRpc()
-    {
-        Debug.Log("I fucking died omg");
+    public static void PlayerDeathClientRpc()
+    { 
         transform.position = new Vector3(0, 1, 0);
     }
 }

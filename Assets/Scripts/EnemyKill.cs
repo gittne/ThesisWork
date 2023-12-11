@@ -18,13 +18,13 @@ public class EnemyKill : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("I KILLED!");
-            PlayerDeathServerRpc(other.gameObject);
+            PlayerDeathServerRpc();
         }
     }
 
     [ServerRpc(RequireOwnership = false)]
-    void PlayerDeathServerRpc(GameObject other)
+    void PlayerDeathServerRpc()
     {
-        other.gameObject.GetComponent<SCR_First_Person_Controller>().PlayerDeathClientRpc();
+        SCR_First_Person_Controller.PlayerDeathClientRpc();
     }
 }
