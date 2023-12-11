@@ -15,7 +15,6 @@ public class EnemyBrain : EnemyUtilities
     bool hasDestination;
 
     EnemyVision vision;
-    OLDENEMYSTUFF brain;
 
     [SerializeField] int rageMeter;
     [SerializeField] float rageDuration;
@@ -92,5 +91,13 @@ public class EnemyBrain : EnemyUtilities
     public void SetTargetPlayer(GameObject target)
     {
         agent.destination = target.transform.position;
+    }
+
+    public void KilledPlayer()
+    {
+        hasDestination = false;
+        rageMeter = 0;
+        rageDuration = 0;
+        enemyState = EnemyState.ROAM;
     }
 }
