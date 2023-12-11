@@ -72,7 +72,6 @@ public class EnemyBrain : EnemyUtilities
     void StatusUpdate()
     {
         hasDestination = DestinationReach(transform.position, agent.destination);
-        Debug.Log(hasDestination);
     }
 
     public void AlterRage(int val)
