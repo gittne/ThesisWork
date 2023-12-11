@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using VivoxUnity;
+using UnityEngine.Experimental.GlobalIllumination;
 
 [RequireComponent(typeof(CharacterController))]
 public class SCR_First_Person_Controller : NetworkBehaviour
@@ -10,17 +12,22 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     //Base code provided by "Comp-3 Interactive": https://www.youtube.com/watch?v=Ew4l5RPltG8&list=PLfhbBaEcybmgidDH3RX_qzFM0mIxWJa21
 
     public bool canMove { get; private set; } = true;
-    public bool isRunning => canSprint && Input.GetKey(sprintKey);
+    public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
     public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKey(crouchKey);
 
-    [Header("Functional Options")]
-    [SerializeField] bool canSprint = true;
-    [SerializeField] bool canCrouch = true;
-    [SerializeField] bool canHeadbob = true;
+    [SerializeField] Transform cameraTransform;
+    [SerializeField] GameObject playerCamera;
+    [SerializeField] CharacterController characterController;
+    [Header("Functions")]
+    [SerializeField] Vector3 spawnpoint = new Vector3(0, 0, 0);
+    [SerializeField] bool canSprintDebug = true;
+    [SerializeField] bool canCrouchDebug = true;
+    [SerializeField] bool canHeadbobDebug = true;
 
     [Header("Controls")]
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
+    [SerializeField] KeyCode radioKey = KeyCode.Q;
 
     [Header("Movement Variables")]
     [SerializeField] float walkingSpeed = 2f;
@@ -51,30 +58,34 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [SerializeField] float crouchBobSpeed;
     [SerializeField] float crouchBobAmount;
     float yDefaultPosition = 0;
-    float timer;
+    float headbobTimer;
 
-    [SerializeField] Camera playerCamera;
-    [SerializeField] CharacterController characterController;
+    [Header("Footstep Variables")]
+    [SerializeField] float baseStepSpeed;
+    [SerializeField] float crouchStepMultiplier;
+    [SerializeField] float runStepMultiplier;
+    [SerializeField] AudioSource audioSource = default;
+    [SerializeField] AudioClip[] carpetClips = default;
+    [SerializeField] AudioClip[] woodClips = default;
+    [SerializeField] AudioClip[] stoneClips = default;
+    float footstepTimer;
+    float getCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : isRunning ? baseStepSpeed * runStepMultiplier : baseStepSpeed;
+
+    
 
     Vector3 movementDirection;
     Vector2 currentInput;
 
     float xRotation = 0;
 
-    void Awake()
+    void Start()
     {
-        if (!IsOwner)
+        if (IsOwner)
         {
-            return;
+            StartCoroutine(SetupDelay());
         }
-
-        yDefaultPosition = playerCamera.transform.localPosition.y;
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!IsOwner)
@@ -90,16 +101,21 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
             ApplyMovement();
 
-            if (canCrouch)
+            if (canCrouchDebug)
             {
                 Crouch();
             }
 
-            if (canHeadbob)
+            if (canHeadbobDebug)
             {
                 Headbob();
             }
+
+            HandleFootsteps();
         }
+
+        if (Input.GetKeyDown(radioKey)) EnableRadio();
+        if (Input.GetKeyUp(radioKey)) DisableRadio();
     }
 
     void MovementInput()
@@ -119,7 +135,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         xRotation -= Input.GetAxis("Mouse Y") * yLookSensitivity;
         xRotation = Mathf.Clamp(xRotation, -upperLookLimit, lowerLookLimit);
 
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        cameraTransform.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * xLookSensitivity, 0 );
     }
@@ -133,11 +149,11 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         if (Mathf.Abs(movementDirection.x) > 0.1f || Mathf.Abs(movementDirection.z) > 0.1f)
         {
-            timer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
+            headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
 
-            playerCamera.transform.localPosition = new Vector3(playerCamera.transform.localPosition.x, 
-                yDefaultPosition + Mathf.Sin(timer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount), 
-                playerCamera.transform.localPosition.z);
+            cameraTransform.transform.localPosition = new Vector3(cameraTransform.transform.localPosition.x, 
+                yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount), 
+                cameraTransform.transform.localPosition.z);
         }
     }
 
@@ -180,6 +196,39 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         duringCrouchAnimation = false;
     }
 
+    void HandleFootsteps()
+    {
+        if (!characterController.isGrounded || currentInput == Vector2.zero)
+        {
+            return;
+        }
+
+        footstepTimer -= Time.deltaTime;
+
+        if (footstepTimer <= 0)
+        {
+            if (Physics.Raycast(cameraTransform.transform.position, Vector3.down, out RaycastHit hit, 3))
+            {
+                switch (hit.collider.tag)
+                {
+                    case "Material/Fabric":
+                        audioSource.PlayOneShot(carpetClips[Random.Range(0, carpetClips.Length - 1)]);
+                        break;
+                    case "Material/Wood":
+                        audioSource.PlayOneShot(woodClips[Random.Range(0, woodClips.Length - 1)]);
+                        break;
+                    case "Material/Stone":
+                        audioSource.PlayOneShot(stoneClips[Random.Range(0, stoneClips.Length - 1)]);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            footstepTimer = getCurrentOffset;
+        }
+    }
+
     void ApplyMovement()
     {
         if (!characterController.isGrounded)
@@ -188,5 +237,69 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         }
 
         characterController.Move(movementDirection * Time.deltaTime);
+    }
+
+    IEnumerator SetupDelay()
+    {
+        while (VivoxPlayer.Instance.LoginState != LoginState.LoggedIn)
+        {
+            yield return null;
+        }
+
+        transform.position = spawnpoint;
+
+        yDefaultPosition = cameraTransform.transform.localPosition.y;
+
+        if (Instantiate(playerCamera, cameraTransform))
+        {
+            Debug.LogWarning("Kamera instantierad");
+        }
+        else
+        {
+            Debug.LogWarning("Kamera inte instantierad");
+        }
+
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        while(!VivoxPlayer.Instance.LocalChannelExists)
+        {
+            yield return null;
+        }
+        
+        VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
+        InvokeRepeating("GoUpdatePosition", 0, 0.1f);
+    }
+
+    void GoUpdatePosition()
+    {
+        if (!VivoxPlayer.Instance.LoginSession.GetChannelSession(VivoxPlayer.Instance.localChannel).IsTransmitting)
+            return;
+
+        Update3DPosition(transform, transform);
+    }
+
+    void Update3DPosition(Transform listener, Transform speaker)
+    {
+        try
+        {
+            VivoxPlayer.Instance.TransmittingSession.Set3DPosition(speaker.position, listener.position,
+            listener.forward, listener.up);
+        }
+        catch
+        {
+
+        }
+    }
+
+    void EnableRadio()
+    {
+        VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.globalChannel);
+    }
+
+    private void DisableRadio()
+    {
+        VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
     }
 }

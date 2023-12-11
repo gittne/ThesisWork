@@ -9,8 +9,9 @@ public class SCR_Item_Sway : NetworkBehaviour
     //holding them in hand in the game.
     //Base code provided by "Plai": https://www.youtube.com/watch?v=QIVN-T-1QBE
 
+    [SerializeField] CharacterController controller;
     [Header("Sway Rotation Variables")]
-    [SerializeField] float smoothing; //The amount of smoothing the item does when going back to default state
+    [SerializeField] float swaySmoothing; //The amount of smoothing the item does when going back to default state
     [SerializeField] float swayMultiplier; //The multiplier for sway amount
     [SerializeField] float xMaxRotation; //The max rotation the object can rotate on the X axis
     [SerializeField] float yMaxRotation; //The max rotation the object can rotate on the Y axis
@@ -21,7 +22,6 @@ public class SCR_Item_Sway : NetworkBehaviour
     [SerializeField] float xMaxMovement; //The max distance the item can travel on the X axis to the right
     [SerializeField] float yMinMovement; //The max distance the item can travel on the Y axis to the left
     [SerializeField] float yMaxMovement; //The max distance the item can travel on the Y axis to the right
-    Vector3 resetTransform;
 
     void Awake()
     {
@@ -29,8 +29,6 @@ public class SCR_Item_Sway : NetworkBehaviour
         {
             return;
         }
-
-        resetTransform = transform.localPosition;
     }
 
     // Update is called once per frame
@@ -64,7 +62,7 @@ public class SCR_Item_Sway : NetworkBehaviour
         targetRotation.y = Mathf.Clamp(targetRotation.y, -yMaxRotation, yMaxRotation);
 
         //The code which rotates the item
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, smoothing * Time.deltaTime);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, swaySmoothing * Time.deltaTime);
 
         // These floats take the input from the mouse when moving it
         float moveX = Input.GetAxisRaw("Mouse X");
@@ -81,6 +79,6 @@ public class SCR_Item_Sway : NetworkBehaviour
         targetPosition.y = Mathf.Clamp(targetPosition.y, -yMinMovement, yMaxMovement);
 
         // Apply damping to the movement
-        transform.localPosition = Vector3.Lerp(transform.localPosition, resetTransform + targetPosition, lerpSpeed * Time.deltaTime);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, lerpSpeed * Time.deltaTime);
     }
 }

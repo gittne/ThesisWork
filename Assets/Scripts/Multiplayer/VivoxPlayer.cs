@@ -290,6 +290,7 @@ public class VivoxPlayer : MonoBehaviour
         OnTextMessageLogReceivedEvent?.Invoke(channelTextMessage.Sender.DisplayName, channelTextMessage);
     }
 
+    public bool LocalChannelExists { get; private set; }
     private void OnLoginSessionPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
     {
         if (propertyChangedEventArgs.PropertyName == "RecoveryState")
@@ -317,6 +318,8 @@ public class VivoxPlayer : MonoBehaviour
                     OnUserLoggedInEvent?.Invoke();
                     JoinChannel("LocalChannel", ChannelType.Positional, ChatCapability.AudioOnly);
                     JoinChannel("RadioChannel", ChannelType.NonPositional, ChatCapability.AudioOnly);
+
+                    LocalChannelExists = true;
 
                     localChannel = ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == "LocalChannel").Key;
                     globalChannel = ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == "RadioChannel").Key;
@@ -411,7 +414,7 @@ public class VivoxPlayer : MonoBehaviour
         {
             case "SpeechDetected":
                 {
-                    VivoxLog($"OnSpeechDetectedEvent: {username} in {channel}.");
+                    // VivoxLog($"OnSpeechDetectedEvent: {username} in {channel}.");
                     OnSpeechDetectedEvent?.Invoke(username, channel, valueEventArg.Value.SpeechDetected);
                     break;
                 }
