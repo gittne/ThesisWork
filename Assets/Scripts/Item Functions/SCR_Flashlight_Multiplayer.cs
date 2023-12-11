@@ -37,10 +37,8 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            isEnabled = !isEnabled;
+            ToggleFlashlightClientRpc(isEnabled);
         }
-
-        ToggleFlashlightServerRpc(isEnabled);
     }
 
     public void ChangeFlashlightState(bool currentState)
@@ -59,10 +57,11 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         }
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    public void ToggleFlashlightServerRpc(bool enabled, ServerRpcParams serverRpcParams = default)
+    [ClientRpc]
+    public void ToggleFlashlightClientRpc(bool enabled, ServerRpcParams serverRpcParams = default)
     {
-        
         ChangeFlashlightState(enabled);
+
+        isEnabled = !isEnabled;
     }
 }
