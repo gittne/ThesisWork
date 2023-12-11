@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 954204414862630320}
   - component: {fileID: 4171966163562018322}
   - component: {fileID: 6326977412016989627}
-  - component: {fileID: 3326993229343148486}
+  - component: {fileID: 5622867590011242823}
   m_Layer: 0
   m_Name: PRE_Flashlight_Flatscreen
   m_TagString: Untagged
@@ -829,7 +829,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3326993229343148486
+--- !u!114 &5622867590011242823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -838,14 +838,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4048432447978591078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b9ef6cda884a04b8bbeddceb1b4906, type: 3}
+  m_Script: {fileID: 11500000, guid: af7329fc31827584b90d375e1d2db7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spotLight: {fileID: 8493663326679843486}
-  lightBulb: {fileID: 5521248642062687711}
-  onSound: {fileID: 8300000, guid: 522e7b30b761a62499ec3852d200646a, type: 3}
-  offSound: {fileID: 8300000, guid: b8f2354c44cfc9f4fbf024b71cbeaac0, type: 3}
-  audioSource: {fileID: 6326977412016989627}
+  spotLight: {fileID: 0}
+  lightBulb: {fileID: 0}
+  onSound: {fileID: 0}
+  offSound: {fileID: 0}
+  audioSource: {fileID: 0}
+  State:
+    m_InternalValue: 0
 --- !u!1 &4107795898970438725
 GameObject:
   m_ObjectHideFlags: 0
