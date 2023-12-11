@@ -39,8 +39,6 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         {
             ToggleFlashlightServerRpc(isEnabled);
 
-            ToggleFlashlightClientRpc(isEnabled);
-
             isEnabled = !isEnabled;
         }
     }
