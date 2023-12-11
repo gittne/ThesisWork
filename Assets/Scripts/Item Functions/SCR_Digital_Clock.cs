@@ -17,13 +17,7 @@ public class SCR_Digital_Clock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DateTime time = DateTime.Now;
-
-        string hours = LeadingZero(time.Hour);
-        string minutes = LeadingZero(time.Minute);
-        string seconds = LeadingZero(time.Second);
-
-        clockText.text = hours + ":" + minutes + ":" + seconds;
+        string hours = "18";
     }
 
     string LeadingZero(int number)
