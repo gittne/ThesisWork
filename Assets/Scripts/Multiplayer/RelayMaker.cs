@@ -19,7 +19,8 @@ public class RelayMaker : MonoBehaviour
     private void Awake() { Instance = this; }
 
     [SerializeField] GameObject multiplayerMenu;
-
+    [SerializeField] GameObject tempCamera;
+ 
     [ContextMenu("Create a Relay")]
     public async Task<string> CreateRelay()
     {
@@ -42,6 +43,7 @@ public class RelayMaker : MonoBehaviour
             VivoxPlayer.Instance.LoginToVivox();
 
             multiplayerMenu.SetActive(false);
+            Destroy(tempCamera);
 
             return joinCode;
         }
@@ -69,6 +71,7 @@ public class RelayMaker : MonoBehaviour
             VivoxPlayer.Instance.LoginToVivox();
 
             multiplayerMenu.SetActive(false);
+            Destroy(tempCamera);
         }
         catch (RelayServiceException e)
         {
