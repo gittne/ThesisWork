@@ -64,7 +64,7 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void ToggleFlashlightServerRpc(bool enabled, ServerRpcParams serverRpcParams = default)
     {
-        ChangeFlashlightState(enabled);
+        ToggleFlashlightClientRpc(enabled);
     }
 
     [ClientRpc]
