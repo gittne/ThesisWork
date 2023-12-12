@@ -36,29 +36,4 @@ public class MultiplayerOverlord : MonoBehaviour
             players.Add(player);
         }
     }
-
-
-
-
-
-    [ServerRpc(RequireOwnership = false)]
-    public void PlayerDeathServerRpc()
-    {
-        if (deathGrace) return;
-
-        Debug.Log("die");
-        Debug.Log("Number of players: " + players.Count + " and their positions are: " + players[0].transform.position + " and " + players[1].transform.position);
-
-        foreach (GameObject player in players)
-            player.GetComponent<ClientNetworkTransform>();
-
-        StartCoroutine(DeathGrace());
-    }
-
-    IEnumerator DeathGrace()
-    {
-        deathGrace = true;
-        yield return new WaitForSeconds(5);
-        deathGrace = false;
-    }
 }

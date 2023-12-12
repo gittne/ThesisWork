@@ -302,19 +302,4 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
     }
-
-    [ServerRpc(RequireOwnership = false)]
-    public void PlayerDeathServerRpc()
-    {
-        PlayerDeathClientRpc();
-    }
-
-    [ClientRpc]
-    public void PlayerDeathClientRpc()
-    {
-        Debug.Log("im heading to spawn." + Random.Range(0, 10000));
-        ClientNetworkTransform tr = GetComponent<ClientNetworkTransform>();
-        tr.Teleport(new Vector3(0, 1, 0), Quaternion.identity, new Vector3(1, 1, 1));
-        transform.position = new Vector3(0, 1, 0);
-    }
 }
