@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Multiplayer.Samples.Utilities.ClientAuthority;
 using Unity.Netcode;
 using UnityEngine;
 using VivoxUnity;
@@ -49,7 +50,7 @@ public class MultiplayerOverlord : MonoBehaviour
         Debug.Log("Number of players: " + players.Count + " and their positions are: " + players[0].transform.position + " and " + players[1].transform.position);
 
         foreach (GameObject player in players)
-            player.transform.position = new Vector3(0, 1, 0);
+            player.GetComponent<ClientNetworkTransform>();
 
         StartCoroutine(DeathGrace());
     }

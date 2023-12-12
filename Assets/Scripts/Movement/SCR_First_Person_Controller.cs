@@ -310,6 +310,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [ClientRpc]
     public void PlayerDeathClientRpc()
     {
+        Debug.Log("im heading to spawn." + Random.Range(0, 10000));
         transform.position = new Vector3(0, 1, 0);
     }
 }
