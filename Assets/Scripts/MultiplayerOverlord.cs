@@ -49,6 +49,8 @@ public class MultiplayerOverlord : MonoBehaviour
 
         foreach (GameObject player in players)
             player.transform.position = new Vector3(0, 1, 0);
+
+        StartCoroutine(DeathGrace());
     }
 
     IEnumerator DeathGrace()
