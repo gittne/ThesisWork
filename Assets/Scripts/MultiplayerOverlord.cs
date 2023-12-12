@@ -10,7 +10,7 @@ public class MultiplayerOverlord : MonoBehaviour
 
 
 
-
+    bool deathGrace;
 
     public static MultiplayerOverlord Instance { get; private set; }
     private void Awake() { Instance = this; }
@@ -24,13 +24,14 @@ public class MultiplayerOverlord : MonoBehaviour
 
     IEnumerator SetupDelay()
     {
-        while (VivoxPlayer.Instance.LoginState != LoginState.LoggedIn)
+        while (GameObject.FindGameObjectsWithTag("Player").Length < 2)
         {
             yield return null;
         }
 
         foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
+            Debug.Log("added a player");
             players.Add(player);
         }
     }
@@ -42,9 +43,21 @@ public class MultiplayerOverlord : MonoBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void PlayerDeathServerRpc()
     {
+        if (deathGrace) return;
+
         Debug.Log("die");
+        Debug.Log("Number of players: " + players.Count + " and their positions are: " + players[0].transform.position + " and " + players[1].transform.position);
 
         foreach (GameObject player in players)
             player.transform.position = new Vector3(0, 1, 0);
+
+        StartCoroutine(DeathGrace());
+    }
+
+    IEnumerator DeathGrace()
+    {
+        deathGrace = true;
+        yield return new WaitForSeconds(5);
+        deathGrace = false;
     }
 }
