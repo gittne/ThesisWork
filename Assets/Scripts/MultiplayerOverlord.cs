@@ -39,9 +39,11 @@ public class MultiplayerOverlord : MonoBehaviour
 
 
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void PlayerDeathServerRpc()
     {
+        Debug.Log("die");
+
         foreach (GameObject player in players)
             player.transform.position = new Vector3(0, 1, 0);
     }
