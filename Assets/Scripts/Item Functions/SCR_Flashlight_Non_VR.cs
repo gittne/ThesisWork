@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
 
-public class SCR_Flashlight_Non_VR : NetworkBehaviour
+public class SCR_Flashlight_Non_VR : MonoBehaviour
 {
     [Header("Light Sources")]
     [SerializeField] Light spotLight;
@@ -16,22 +15,12 @@ public class SCR_Flashlight_Non_VR : NetworkBehaviour
 
     void Start()
     {
-        if (!IsOwner)
-        {
-            return;
-        }
-
         spotLight.enabled = false;
         lightBulb.enabled = false;
     }
 
     void Update()
     {
-        if (!IsOwner)
-        {
-            return;
-        }
-
         if (Input.GetButtonDown("Fire1"))
         {
             TurnOnOrOff();

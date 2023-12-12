@@ -1,12 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
-using VivoxUnity;
-using UnityEngine.Experimental.GlobalIllumination;
 
-[RequireComponent(typeof(CharacterController))]
-public class SCR_First_Person_Controller : NetworkBehaviour
+public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 {
     //SUMMARY: This script is responsible for character movement and looking
     //Base code provided by "Comp-3 Interactive": https://www.youtube.com/watch?v=Ew4l5RPltG8&list=PLfhbBaEcybmgidDH3RX_qzFM0mIxWJa21
@@ -15,11 +11,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
     public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKey(crouchKey);
 
-    [SerializeField] Transform cameraTransform;
-    [SerializeField] GameObject playerCamera;
+    [SerializeField] Camera playerCamera;
     [SerializeField] CharacterController characterController;
     [Header("Functions")]
-    [SerializeField] Vector3 spawnpoint = new Vector3(0, 0, 0);
     [SerializeField] bool canSprintDebug = true;
     [SerializeField] bool canCrouchDebug = true;
     [SerializeField] bool canHeadbobDebug = true;
@@ -76,21 +70,14 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     float xRotation = 0;
 
-    void Start()
+    void Awake()
     {
-        if (IsOwner)
-        {
-            StartCoroutine(SetupDelay());
-        }
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        if (!IsOwner)
-        {
-            return;
-        }
-
         if (canMove)
         {
             MovementInput();
@@ -111,14 +98,11 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
             HandleFootsteps();
         }
-
-        if (Input.GetKeyDown(radioKey)) EnableRadio();
-        if (Input.GetKeyUp(radioKey)) DisableRadio();
     }
 
     void MovementInput()
     {
-        currentInput = new Vector2((isCrouching ? crouchSpeed : isRunning? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical"),
+        currentInput = new Vector2((isCrouching ? crouchSpeed : isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical"),
             (isCrouching ? crouchSpeed : isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal"));
 
         float movementDirectionY = movementDirection.y;
@@ -133,9 +117,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         xRotation -= Input.GetAxis("Mouse Y") * yLookSensitivity;
         xRotation = Mathf.Clamp(xRotation, -upperLookLimit, lowerLookLimit);
 
-        cameraTransform.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * xLookSensitivity, 0 );
+        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * xLookSensitivity, 0);
     }
 
     void Headbob()
@@ -149,9 +133,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         {
             headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
 
-            cameraTransform.transform.localPosition = new Vector3(cameraTransform.transform.localPosition.x, 
-                yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount), 
-                cameraTransform.transform.localPosition.z);
+            playerCamera.transform.localPosition = new Vector3(playerCamera.transform.localPosition.x,
+                yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount),
+                playerCamera.transform.localPosition.z);
         }
     }
 
@@ -205,7 +189,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         if (footstepTimer <= 0)
         {
-            if (Physics.Raycast(cameraTransform.transform.position, Vector3.down, out RaycastHit hit, 3))
+            if (Physics.Raycast(playerCamera.transform.position, Vector3.down, out RaycastHit hit, 3))
             {
                 switch (hit.collider.tag)
                 {
@@ -235,81 +219,5 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         }
 
         characterController.Move(movementDirection * Time.deltaTime);
-    }
-
-    IEnumerator SetupDelay()
-    {
-        while (VivoxPlayer.Instance.LoginState != LoginState.LoggedIn)
-        {
-            yield return null;
-        }
-
-        transform.position = spawnpoint;
-
-        yDefaultPosition = cameraTransform.transform.localPosition.y;
-
-        if (Instantiate(playerCamera, cameraTransform))
-        {
-            Debug.LogWarning("Kamera instantierad");
-        }
-        else
-        {
-            Debug.LogWarning("Kamera inte instantierad");
-        }
-
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        while(!VivoxPlayer.Instance.LocalChannelExists)
-        {
-            yield return null;
-        }
-        
-        VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
-        InvokeRepeating("GoUpdatePosition", 0, 0.1f);
-    }
-
-    void GoUpdatePosition()
-    {
-        if (!VivoxPlayer.Instance.LoginSession.GetChannelSession(VivoxPlayer.Instance.localChannel).IsTransmitting)
-            return;
-
-        Update3DPosition(transform, transform);
-    }
-
-    void Update3DPosition(Transform listener, Transform speaker)
-    {
-        try
-        {
-            VivoxPlayer.Instance.TransmittingSession.Set3DPosition(speaker.position, listener.position,
-            listener.forward, listener.up);
-        }
-        catch
-        {
-
-        }
-    }
-
-    void EnableRadio()
-    {
-        VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.globalChannel);
-    }
-
-    private void DisableRadio()
-    {
-        VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    public void PlayerDeathServerRpc()
-    {
-        PlayerDeathClientRpc();
-    }
-
-    [ClientRpc]
-    public void PlayerDeathClientRpc()
-    {
-        transform.position = new Vector3(0, 1, 0);
     }
 }
