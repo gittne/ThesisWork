@@ -31,6 +31,7 @@ public class MultiplayerOverlord : MonoBehaviour
 
         foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
+            Debug.Log("added a player");
             players.Add(player);
         }
     }
