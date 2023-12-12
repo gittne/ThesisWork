@@ -4,6 +4,8 @@ using UnityEngine;
 using Unity.Netcode;
 using VivoxUnity;
 using UnityEngine.Experimental.GlobalIllumination;
+using Unity.Netcode.Components;
+using Unity.Multiplayer.Samples.Utilities.ClientAuthority;
 
 [RequireComponent(typeof(CharacterController))]
 public class SCR_First_Person_Controller : NetworkBehaviour
@@ -311,6 +313,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     public void PlayerDeathClientRpc()
     {
         Debug.Log("im heading to spawn." + Random.Range(0, 10000));
+        ClientNetworkTransform tr = GetComponent<ClientNetworkTransform>();
+        tr.Teleport(new Vector3(0, 1, 0), Quaternion.identity, new Vector3(1, 1, 1));
         transform.position = new Vector3(0, 1, 0);
     }
 }
