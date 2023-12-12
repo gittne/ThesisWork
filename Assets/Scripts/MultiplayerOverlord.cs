@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using VivoxUnity;
 
@@ -38,8 +39,8 @@ public class MultiplayerOverlord : MonoBehaviour
 
 
 
-
-    public void PlayerDeath()
+    [ServerRpc]
+    public void PlayerDeathServerRpc()
     {
         foreach (GameObject player in players)
             player.transform.position = new Vector3(0, 1, 0);
