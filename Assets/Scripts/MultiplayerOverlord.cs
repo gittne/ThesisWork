@@ -24,7 +24,7 @@ public class MultiplayerOverlord : MonoBehaviour
 
     IEnumerator SetupDelay()
     {
-        while (VivoxPlayer.Instance.LoginState != LoginState.LoggedIn)
+        while (GameObject.FindGameObjectsWithTag("Player").Length < 2)
         {
             yield return null;
         }
