@@ -31,6 +31,9 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
     [Header("Inventory Variables")]
     [SerializeField] GameObject inventoryPrefab;
+    [SerializeField] GameObject backpackPrefab;
+    [SerializeField] Transform startPosition;
+    [SerializeField] Transform endPosition;
     public bool isInventoryActive { get; private set; } = false;
     bool isInventoryInstantiated = false;
 
@@ -79,7 +82,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        inventoryPrefab.SetActive(false);
+        backpackPrefab.SetActive(false);
     }
 
     void Update()
@@ -105,6 +108,15 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
             }
 
             HandleFootsteps();
+        }
+
+        if (isInventoryActive)
+        {
+            inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, endPosition.position, 3f * Time.deltaTime);
+        }
+        else
+        {
+            inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, startPosition.position, 5f * Time.deltaTime);
         }
     }
 
@@ -155,7 +167,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     {
         isInventoryInstantiated = true;
 
-        inventoryPrefab.SetActive(true);
+        backpackPrefab.SetActive(true);
 
         yield return null;
     }
@@ -164,9 +176,9 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     {
         isInventoryInstantiated = false;
 
-        inventoryPrefab.SetActive(false);
+        yield return new WaitForSeconds(1f);
 
-        yield return null;
+        backpackPrefab.SetActive(false);
     }
 
     void MouseLook()
