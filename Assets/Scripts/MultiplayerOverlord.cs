@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Multiplayer.Samples.Utilities.ClientAuthority;
 using Unity.Netcode;
 using UnityEngine;
 using VivoxUnity;
@@ -10,7 +11,7 @@ public class MultiplayerOverlord : MonoBehaviour
 
 
 
-
+    bool deathGrace;
 
     public static MultiplayerOverlord Instance { get; private set; }
     private void Awake() { Instance = this; }
@@ -24,25 +25,15 @@ public class MultiplayerOverlord : MonoBehaviour
 
     IEnumerator SetupDelay()
     {
-        while (VivoxPlayer.Instance.LoginState != LoginState.LoggedIn)
+        while (GameObject.FindGameObjectsWithTag("Player").Length < 2)
         {
             yield return null;
         }
 
         foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
+            Debug.Log("added a player");
             players.Add(player);
         }
-    }
-
-
-
-
-
-    [ServerRpc]
-    public void PlayerDeathServerRpc()
-    {
-        foreach (GameObject player in players)
-            player.transform.position = new Vector3(0, 1, 0);
     }
 }

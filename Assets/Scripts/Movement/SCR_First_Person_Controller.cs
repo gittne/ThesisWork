@@ -4,6 +4,8 @@ using UnityEngine;
 using Unity.Netcode;
 using VivoxUnity;
 using UnityEngine.Experimental.GlobalIllumination;
+using Unity.Netcode.Components;
+using Unity.Multiplayer.Samples.Utilities.ClientAuthority;
 
 [RequireComponent(typeof(CharacterController))]
 public class SCR_First_Person_Controller : NetworkBehaviour
@@ -299,17 +301,5 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     private void DisableRadio()
     {
         VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    public void PlayerDeathServerRpc()
-    {
-        PlayerDeathClientRpc();
-    }
-
-    [ClientRpc]
-    public void PlayerDeathClientRpc()
-    {
-        transform.position = new Vector3(0, 1, 0);
     }
 }
