@@ -21,13 +21,18 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [Header("Controls")]
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
-    [SerializeField] KeyCode radioKey = KeyCode.Q;
+    [SerializeField] KeyCode inventoryKey = KeyCode.E;
 
     [Header("Movement Variables")]
     [SerializeField] float walkingSpeed = 2f;
     [SerializeField] float runningSpeed = 5f;
     [SerializeField] float crouchSpeed = 1f;
     [SerializeField] float gravity = 30f;
+
+    [Header("Inventory Variables")]
+    [SerializeField] GameObject inventoryPrefab;
+    public bool isInventoryActive { get; private set; } = false;
+    bool isInventoryInstantiated = false;
 
     [Header("Mouse Look Variables")]
     [SerializeField, Range(1, 10)] float xLookSensitivity = 2f;
@@ -74,10 +79,13 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        inventoryPrefab.SetActive(false);
     }
 
     void Update()
     {
+        InventoryManagement();
+
         if (canMove)
         {
             MovementInput();
@@ -110,6 +118,55 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         movementDirection = (transform.TransformDirection(Vector3.forward) * currentInput.x) + (transform.TransformDirection(Vector3.right) * currentInput.y);
 
         movementDirection.y = movementDirectionY;
+    }
+
+    void InventoryManagement()
+{
+    if (Input.GetKeyDown(inventoryKey))
+    {
+        isInventoryActive = !isInventoryActive;
+
+        if (isInventoryActive)
+        {
+            canMove = false;
+
+            if (!isInventoryInstantiated)
+            {
+                StartCoroutine(SpawnBackpack());
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
+        else
+        {
+            canMove = true;
+
+            if (isInventoryInstantiated)
+            {
+                StartCoroutine(DespawnBackpack());
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+    }
+}
+
+    IEnumerator SpawnBackpack()
+    {
+        isInventoryInstantiated = true;
+
+        inventoryPrefab.SetActive(true);
+
+        yield return null;
+    }
+
+    IEnumerator DespawnBackpack()
+    {
+        isInventoryInstantiated = false;
+
+        inventoryPrefab.SetActive(false);
+
+        yield return null;
     }
 
     void MouseLook()

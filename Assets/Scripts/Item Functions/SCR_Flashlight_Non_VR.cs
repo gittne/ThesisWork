@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SCR_Flashlight_Non_VR : MonoBehaviour
 {
+    [SerializeField] SCR_First_Person_Controller_Singleplayer controllerScript;
+
     [Header("Light Sources")]
     [SerializeField] Light spotLight;
     [SerializeField] Light lightBulb;
@@ -21,9 +23,17 @@ public class SCR_Flashlight_Non_VR : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (!controllerScript.isInventoryActive)
         {
-            TurnOnOrOff();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                TurnOnOrOff();
+            }
+        }
+        else
+        {
+            spotLight.enabled = false;
+            lightBulb.enabled = false;
         }
     }
 
