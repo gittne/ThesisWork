@@ -47,9 +47,4 @@ public class SCR_Flashlight : MonoBehaviour
             audioSource.PlayOneShot(offSound);
         }
     }
-
-    void Flip()
-    {
-        
-    }
 }
