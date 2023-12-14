@@ -7,7 +7,7 @@ using VivoxUnity;
 
 public class MultiplayerOverlord : NetworkBehaviour
 {
-    List <GameObject> players = new List <GameObject> ();
+    [SerializeField] List <NetworkObject> players = new List <NetworkObject> ();
 
 
 
@@ -30,27 +30,21 @@ public class MultiplayerOverlord : NetworkBehaviour
             yield return null;
         }
 
-        foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        foreach(KeyValuePair<ulong, NetworkClient> player in NetworkManager.Singleton.ConnectedClients)
         {
             Debug.Log("added a player");
-            players.Add(player);
+            players.Add(player.Value.PlayerObject);
         }
     }
 
-    [ServerRpc(RequireOwnership = true)]
+    [ServerRpc(RequireOwnership = false)]
     public void DieDeathServerRpc()
     {
-        int numberofplayerskilled = 0;
-        foreach (GameObject player in players)
+        Debug.Log("playas " + players.Count);
+        foreach (NetworkObject player in players)
         {
-            ClientNetworkTransform cnt = player.GetComponent<ClientNetworkTransform>();
-            cnt.Interpolate = false;
-            cnt.Teleport(new Vector3(0, 1, 0), Quaternion.identity, transform.localScale);
-            cnt.Interpolate = true;
-
-            numberofplayerskilled++;
+            SCR_First_Person_Controller cntr = player.GetComponent<SCR_First_Person_Controller>();
+            cntr.PlayerDeathClientRpc();
         }
-
-        Debug.Log("I killed thjis many pklayers: " + numberofplayerskilled);
     }
 }
