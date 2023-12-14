@@ -17,7 +17,8 @@ public class EnemyKill : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-
+            //other.gameObject.GetComponent<SCR_First_Person_Controller>().PlayerDeathServerRpc();
+            MultiplayerOverlord.Instance.DieDeathServerRpc();
         }
     }
 }

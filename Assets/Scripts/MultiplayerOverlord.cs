@@ -5,7 +5,7 @@ using Unity.Netcode;
 using UnityEngine;
 using VivoxUnity;
 
-public class MultiplayerOverlord : MonoBehaviour
+public class MultiplayerOverlord : NetworkBehaviour
 {
     List <GameObject> players = new List <GameObject> ();
 
@@ -35,5 +35,22 @@ public class MultiplayerOverlord : MonoBehaviour
             Debug.Log("added a player");
             players.Add(player);
         }
+    }
+
+    [ServerRpc(RequireOwnership = true)]
+    public void DieDeathServerRpc()
+    {
+        int numberofplayerskilled = 0;
+        foreach (GameObject player in players)
+        {
+            ClientNetworkTransform cnt = player.GetComponent<ClientNetworkTransform>();
+            cnt.Interpolate = false;
+            cnt.Teleport(new Vector3(0, 1, 0), Quaternion.identity, transform.localScale);
+            cnt.Interpolate = true;
+
+            numberofplayerskilled++;
+        }
+
+        Debug.Log("I killed thjis many pklayers: " + numberofplayerskilled);
     }
 }
