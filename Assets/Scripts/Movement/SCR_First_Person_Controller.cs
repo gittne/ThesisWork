@@ -307,8 +307,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [ClientRpc()]
     public void PlayerDeathClientRpc() 
     {
-        //if (!IsOwner)
-        //    return;
+        if (!IsOwner)
+            return;
+
         ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
         cnt.Interpolate = false;
         cnt.Teleport(new Vector3(0, 1, 0), Quaternion.identity, transform.localScale);
