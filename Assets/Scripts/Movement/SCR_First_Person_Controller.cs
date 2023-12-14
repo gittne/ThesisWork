@@ -79,6 +79,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     float xRotation = 0;
 
+    bool deathGrace;
+
     void Start()
     {
         if (IsOwner)
@@ -307,11 +309,18 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [ClientRpc()]
     public void PlayerDeathClientRpc() 
     {
-        //if (!IsOwner)
-        //    return;
+        if (!IsOwner || deathGrace)
+            return;
+
         ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
-        cnt.Interpolate = false;
-        cnt.Teleport(new Vector3(0, 1, 0), Quaternion.identity, transform.localScale);
-        cnt.Interpolate = true;
+        cnt.Teleport(new Vector3(0, 1, 0), transform.rotation, transform.localScale);
+        StartCoroutine(DeathGrace());
+    }
+
+    IEnumerator DeathGrace()
+    {
+        deathGrace = true;
+        yield return new WaitForSeconds(3f);
+        deathGrace = false;
     }
 }
