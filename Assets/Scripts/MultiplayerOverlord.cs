@@ -37,14 +37,13 @@ public class MultiplayerOverlord : NetworkBehaviour
         }
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    public void DieDeathServerRpc()
+    public void KillAllPlayers()
     {
         Debug.Log("playas " + players.Count);
         foreach (NetworkObject player in players)
         {
-            SCR_First_Person_Controller cntr = player.GetComponent<SCR_First_Person_Controller>();
-            cntr.PlayerDeathClientRpc();
+            SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
+            cntr.PlayerDeath();
         }
     }
 }
