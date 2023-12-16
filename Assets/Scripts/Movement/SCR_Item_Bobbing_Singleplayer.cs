@@ -41,8 +41,6 @@ public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
         BobOffset();
         BobRotation();
         CompositePositionRotation();
-
-        Debug.Log(controller.height);
     }
 
     void BobRotation()
