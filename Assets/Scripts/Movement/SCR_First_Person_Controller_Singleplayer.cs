@@ -117,15 +117,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
             HandleFootsteps();
         }
-
-        if (isInventoryActive)
-        {
-            inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, endPosition.position, 3f * Time.deltaTime);
-        }
-        else
-        {
-            inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, startPosition.position, 5f * Time.deltaTime);
-        }
     }
 
     void MovementInput()
@@ -141,52 +132,44 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     }
 
     void InventoryManagement()
-{
-    if (Input.GetKeyDown(inventoryKey))
     {
-        isInventoryActive = !isInventoryActive;
-
-        if (isInventoryActive)
+        if (Input.GetKeyDown(inventoryKey))
         {
-            canMove = false;
+            isInventoryActive = !isInventoryActive;
 
-            if (!isInventoryInstantiated)
+            if (isInventoryActive)
             {
-                StartCoroutine(SpawnBackpack());
+                canMove = false;
+
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
-        }
-        else
-        {
-            canMove = true;
-
-            if (isInventoryInstantiated)
+            else
             {
-                StartCoroutine(DespawnBackpack());
+                canMove = true;
+
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
         }
-    }
-}
 
-    IEnumerator SpawnBackpack()
-    {
-        isInventoryInstantiated = true;
+        if (isInventoryActive)
+        {
+            inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, endPosition.position, 3f * Time.deltaTime);
+        }
+        else
+        {
+            inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, startPosition.position, 5f * Time.deltaTime);
+        }
 
-        backpackPrefab.SetActive(true);
-
-        yield return null;
-    }
-
-    IEnumerator DespawnBackpack()
-    {
-        isInventoryInstantiated = false;
-
-        yield return new WaitForSeconds(1f);
-
-        backpackPrefab.SetActive(false);
+        if (inventoryPrefab.transform.position.y <= startPosition.transform.position.y + 0.01f)
+        {
+            backpackPrefab.SetActive(false);
+        }
+        else
+        {
+            backpackPrefab.SetActive(true);
+        }
     }
 
     void MouseLook()
