@@ -7,11 +7,14 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     //SUMMARY: This script is responsible for character movement and looking
     //Base code provided by "Comp-3 Interactive": https://www.youtube.com/watch?v=Ew4l5RPltG8&list=PLfhbBaEcybmgidDH3RX_qzFM0mIxWJa21
 
+    //TODO: Implement headbob system based on slerp instead of moving the camera on Y axis
+
     public bool canMove { get; private set; } = true;
     public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
     public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKey(crouchKey);
 
     [SerializeField] Camera playerCamera;
+    [SerializeField] Transform cameraHolder;
     [SerializeField] CharacterController characterController;
     [Header("Functions")]
     [SerializeField] bool canSprintDebug = true;
@@ -59,6 +62,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] float runningBobAmount;
     [SerializeField] float crouchBobSpeed;
     [SerializeField] float crouchBobAmount;
+    [SerializeField] float yAxisMultiplier;
     float yDefaultPosition = 0;
     float headbobTimer;
 
@@ -191,7 +195,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * xLookSensitivity, 0);
     }
 
-    void Headbob()
+    void Headbob() 
     {
         if (!characterController.isGrounded)
         {
@@ -202,9 +206,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         {
             headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
 
-            playerCamera.transform.localPosition = new Vector3(playerCamera.transform.localPosition.x,
-                yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount),
-                playerCamera.transform.localPosition.z);
+            cameraHolder.transform.localRotation = Quaternion.Euler(yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount),
+                (yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount)) * yAxisMultiplier, cameraHolder.transform.localRotation.z);
         }
     }
 
