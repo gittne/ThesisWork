@@ -5,6 +5,7 @@ using UnityEngine;
 public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
+    [SerializeField] SCR_First_Person_Controller_Singleplayer controllerScript;
     [Header("Bobbing Values")]
     float curveSpeed;
     [SerializeField] Vector3 travelLimit = Vector3.one * 0.025f;
@@ -40,6 +41,8 @@ public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
         BobOffset();
         BobRotation();
         CompositePositionRotation();
+
+        Debug.Log(controller.height);
     }
 
     void BobRotation()
@@ -67,7 +70,16 @@ public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
 
     void CompositePositionRotation()
     {
-        transform.localPosition = Vector3.Lerp(transform.localPosition, bobPosition, (controller.velocity.magnitude > 0.1f ? controller.velocity.magnitude * Time.deltaTime : smoothing * Time.deltaTime)); //TODO: Fix lerp so arm follows camera correctly
+        if (controller.height < 2 && controller.height > 0.5f)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition, 1500f * Time.deltaTime);
+        }
+        else
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, bobPosition, (controller.velocity.magnitude > 0.1f ? controller.velocity.magnitude * Time.deltaTime : smoothing * Time.deltaTime));
+        }
+
+        //TODO: Fix a somewhat smoother transition when switching standing state
 
         transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(eulerRotation), (controller.velocity.magnitude > 0.1 ? controller.velocity.magnitude * Time.deltaTime : smoothingRotation * Time.deltaTime));
     }

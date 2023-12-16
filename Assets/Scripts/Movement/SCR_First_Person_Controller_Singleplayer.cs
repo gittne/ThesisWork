@@ -7,9 +7,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     //SUMMARY: This script is responsible for character movement and looking
     //Base code provided by "Comp-3 Interactive": https://www.youtube.com/watch?v=Ew4l5RPltG8&list=PLfhbBaEcybmgidDH3RX_qzFM0mIxWJa21
 
-    //TODO: Implement headbob system based on slerp instead of moving the camera on Y axis
-
     public bool canMove { get; private set; } = true;
+    public float crouchTimer { get; private set; }
     public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
     public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKey(crouchKey);
 
@@ -50,6 +49,11 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] float crouchHeight;
     [SerializeField] float standingHeight;
     [SerializeField] float timeToCrouch;
+    public float crouchTime 
+    {
+        get { return timeToCrouch; }
+        private set { timeToCrouch = value; }
+    }
     [SerializeField] Vector3 crouchCenter = new Vector3(0, 0.5f, 0);
     [SerializeField] Vector3 standingCenter = new Vector3(0, 0, 0);
     bool isCrouching;
@@ -240,6 +244,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
             timeElapsed += Time.deltaTime;
             yield return null;
         }
+
+        crouchTimer = timeElapsed;
 
         characterController.height = targetHeight;
 
