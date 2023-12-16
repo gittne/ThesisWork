@@ -16,6 +16,7 @@ public class SCR_Item_Sway_Singleplayer : MonoBehaviour
     [SerializeField] float swayMultiplier; //The multiplier for sway amount
     [SerializeField] float xMaxRotation; //The max rotation the object can rotate on the X axis
     [SerializeField] float yMaxRotation; //The max rotation the object can rotate on the Y axis
+    [SerializeField] Quaternion inventoryRotation;
     Quaternion targetRotation;
     [Header("Sway Movement Variables")]
     [SerializeField] float lerpSpeed; //The speed at which the item lerps when moving
@@ -72,10 +73,10 @@ public class SCR_Item_Sway_Singleplayer : MonoBehaviour
         else
         {
             //The code which rotates the item
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, transform.localRotation, swaySmoothing * Time.deltaTime);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, inventoryRotation, swaySmoothing * Time.deltaTime);
 
             // Apply damping to the movement
-            transform.localPosition = Vector3.Lerp(transform.localPosition, inventoryPosition, lerpSpeed * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, inventoryPosition, lerpSpeed * 2f * Time.deltaTime);
         }
     }
 }

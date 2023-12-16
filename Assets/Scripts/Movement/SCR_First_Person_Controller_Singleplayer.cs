@@ -37,7 +37,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] Transform startPosition;
     [SerializeField] Transform endPosition;
     public bool isInventoryActive { get; private set; } = false;
-    bool isInventoryInstantiated = false;
 
     [Header("Mouse Look Variables")]
     [SerializeField, Range(1, 10)] float xLookSensitivity = 2f;
