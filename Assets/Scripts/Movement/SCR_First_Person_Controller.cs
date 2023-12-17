@@ -303,15 +303,14 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
     }
-    
-    public void PlayerDeath() 
+
+    [ClientRpc]
+    public void PlayerDeathClientRpc() 
     {
         if (!IsOwner)
             return;
 
         ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
-        //cnt.Interpolate = false;
         cnt.Teleport(new Vector3(0, 1, 0), Quaternion.identity, transform.localScale);
-        //cnt.Interpolate = true;
     }
 }

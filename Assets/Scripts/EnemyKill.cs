@@ -17,7 +17,7 @@ public class EnemyKill : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            MultiplayerOverlord.Instance.KillAllPlayers();
+            MultiplayerOverlord.Instance.KillAllPlayersServerRpc();
         }
     }
 }
