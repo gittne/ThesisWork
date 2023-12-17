@@ -8,10 +8,12 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     //Base code provided by "Comp-3 Interactive": https://www.youtube.com/watch?v=Ew4l5RPltG8&list=PLfhbBaEcybmgidDH3RX_qzFM0mIxWJa21
 
     public bool canMove { get; private set; } = true;
+    public float crouchTimer { get; private set; }
     public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
     public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKey(crouchKey);
 
     [SerializeField] Camera playerCamera;
+    [SerializeField] Transform cameraHolder;
     [SerializeField] CharacterController characterController;
     [Header("Functions")]
     [SerializeField] bool canSprintDebug = true;
@@ -35,7 +37,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] Transform startPosition;
     [SerializeField] Transform endPosition;
     public bool isInventoryActive { get; private set; } = false;
-    bool isInventoryInstantiated = false;
 
     [Header("Mouse Look Variables")]
     [SerializeField, Range(1, 10)] float xLookSensitivity = 2f;
@@ -47,6 +48,11 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] float crouchHeight;
     [SerializeField] float standingHeight;
     [SerializeField] float timeToCrouch;
+    public float crouchTime 
+    {
+        get { return timeToCrouch; }
+        private set { timeToCrouch = value; }
+    }
     [SerializeField] Vector3 crouchCenter = new Vector3(0, 0.5f, 0);
     [SerializeField] Vector3 standingCenter = new Vector3(0, 0, 0);
     bool isCrouching;
@@ -59,6 +65,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] float runningBobAmount;
     [SerializeField] float crouchBobSpeed;
     [SerializeField] float crouchBobAmount;
+    [SerializeField] float yAxisMultiplier;
     float yDefaultPosition = 0;
     float headbobTimer;
 
@@ -109,15 +116,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
             HandleFootsteps();
         }
-
-        if (isInventoryActive)
-        {
-            inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, endPosition.position, 3f * Time.deltaTime);
-        }
-        else
-        {
-            inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, startPosition.position, 5f * Time.deltaTime);
-        }
     }
 
     void MovementInput()
@@ -133,52 +131,44 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     }
 
     void InventoryManagement()
-{
-    if (Input.GetKeyDown(inventoryKey))
     {
-        isInventoryActive = !isInventoryActive;
-
-        if (isInventoryActive)
+        if (Input.GetKeyDown(inventoryKey))
         {
-            canMove = false;
+            isInventoryActive = !isInventoryActive;
 
-            if (!isInventoryInstantiated)
+            if (isInventoryActive)
             {
-                StartCoroutine(SpawnBackpack());
+                canMove = false;
+
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
-        }
-        else
-        {
-            canMove = true;
-
-            if (isInventoryInstantiated)
+            else
             {
-                StartCoroutine(DespawnBackpack());
+                canMove = true;
+
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
         }
-    }
-}
 
-    IEnumerator SpawnBackpack()
-    {
-        isInventoryInstantiated = true;
+        if (isInventoryActive)
+        {
+            inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, endPosition.position, 3f * Time.deltaTime);
+        }
+        else
+        {
+            inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, startPosition.position, 5f * Time.deltaTime);
+        }
 
-        backpackPrefab.SetActive(true);
-
-        yield return null;
-    }
-
-    IEnumerator DespawnBackpack()
-    {
-        isInventoryInstantiated = false;
-
-        yield return new WaitForSeconds(1f);
-
-        backpackPrefab.SetActive(false);
+        if (inventoryPrefab.transform.position.y <= startPosition.transform.position.y + 0.01f)
+        {
+            backpackPrefab.SetActive(false);
+        }
+        else
+        {
+            backpackPrefab.SetActive(true);
+        }
     }
 
     void MouseLook()
@@ -191,7 +181,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * xLookSensitivity, 0);
     }
 
-    void Headbob()
+    void Headbob() 
     {
         if (!characterController.isGrounded)
         {
@@ -202,9 +192,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         {
             headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
 
-            playerCamera.transform.localPosition = new Vector3(playerCamera.transform.localPosition.x,
-                yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount),
-                playerCamera.transform.localPosition.z);
+            cameraHolder.transform.localRotation = Quaternion.Euler(yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount),
+                (yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount)) * yAxisMultiplier, cameraHolder.transform.localRotation.z);
         }
     }
 
@@ -237,6 +226,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
             timeElapsed += Time.deltaTime;
             yield return null;
         }
+
+        crouchTimer = timeElapsed;
 
         characterController.height = targetHeight;
 
