@@ -23,7 +23,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [Header("Controls")]
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
-    [SerializeField] KeyCode inventoryKey = KeyCode.E;
+    [SerializeField] KeyCode inventoryKey = KeyCode.Space;
+    [SerializeField] KeyCode pickUpItemKey = KeyCode.E;
 
     [Header("Movement Variables")]
     [SerializeField] float walkingSpeed = 2f;
@@ -95,6 +96,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     void Update()
     {
         InventoryManagement();
+
+        PickUpItem();
 
         if (canMove)
         {
@@ -168,6 +171,20 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         else
         {
             backpackPrefab.SetActive(true);
+        }
+    }
+
+    void PickUpItem()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1f) && hit.transform.TryGetComponent<SCR_Inventory_Pickup_Singeplayer>(out SCR_Inventory_Pickup_Singeplayer item))
+        {
+            Debug.Log("Kan plocka upp item");
+            if (Input.GetKeyDown(pickUpItemKey))
+            {
+                item.OnHandlePickupItem();
+            }
         }
     }
 
