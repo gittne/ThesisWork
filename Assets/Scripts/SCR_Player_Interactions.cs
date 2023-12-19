@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SCR_Player_Interactions : MonoBehaviour
 {
-    KeyCode interactionKey = KeyCode.E;
-    LayerMask mask;
+    [SerializeField] KeyCode interactionKey = KeyCode.E;
+    [SerializeField] LayerMask mask;
     Vector3 playerLookOrigin;
+    [SerializeField] Camera playerCamera;
+    [SerializeField] float interactionMaxLength;
 
     void Update()
     {
@@ -26,7 +28,7 @@ public class SCR_Player_Interactions : MonoBehaviour
 
         RaycastHit hit;
 
-        if(Physics.Raycast(playerLookOrigin, Vector3.forward, out hit, 1, mask)) 
+        if(Physics.Raycast(playerLookOrigin, playerCamera.transform.forward, out hit, interactionMaxLength, mask)) 
         {
             GameObject obj = hit.collider.gameObject;
 

@@ -30,7 +30,7 @@ public class SCR_Inventory_System_Singleplayer : MonoBehaviour
 {
     public static SCR_Inventory_System_Singleplayer current;
     Dictionary<SCR_Inventory_Item_Data, Inventory_Item> itemDictionary;
-    public List<Inventory_Item> inventory { get; private set; }
+    public List<Inventory_Item> inventory; //{ get; private set; }
 
     private void Awake()
     {
