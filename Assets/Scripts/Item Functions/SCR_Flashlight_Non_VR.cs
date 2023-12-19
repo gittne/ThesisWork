@@ -15,10 +15,16 @@ public class SCR_Flashlight_Non_VR : MonoBehaviour
     [SerializeField] AudioClip offSound;
     [SerializeField] AudioSource audioSource;
 
+    [Header("Battery Variables")]
+    [SerializeField] float batterySeconds;
+    [SerializeField] float minimumLightStrength;
+    float maxBattery;
+
     void Start()
     {
         spotLight.enabled = false;
         lightBulb.enabled = false;
+        maxBattery = batterySeconds;
     }
 
     void Update()
@@ -35,6 +41,8 @@ public class SCR_Flashlight_Non_VR : MonoBehaviour
             spotLight.enabled = false;
             lightBulb.enabled = false;
         }
+
+        BatteryStrength();
     }
 
     void TurnOnOrOff()
@@ -51,5 +59,16 @@ public class SCR_Flashlight_Non_VR : MonoBehaviour
         {
             audioSource.PlayOneShot(offSound);
         }
+    }
+
+    void BatteryStrength()
+    {
+        if (spotLight.enabled && batterySeconds >= 0)
+        {
+            batterySeconds -= Time.deltaTime;
+        }
+
+        spotLight.intensity = (batterySeconds / maxBattery) + minimumLightStrength;
+        lightBulb.intensity = (batterySeconds / maxBattery) + minimumLightStrength;
     }
 }

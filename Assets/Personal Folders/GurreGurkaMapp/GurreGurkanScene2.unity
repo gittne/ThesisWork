@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18086049, g: 0.22199574, b: 0.28171623, a: 1}
+  m_IndirectSpecularColor: {r: 0.006327484, g: 0.0059115347, b: 0.0038603111, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -469,7 +469,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -527,13 +527,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546858033}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.95510006, y: 0.04266688, z: -0.25527835, w: -0.14420962}
+  m_LocalRotation: {x: -0.9593455, y: -0.026106797, z: -0.25749937, w: 0.112555556}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -197.293, y: -29.856018, z: 0.4730072}
+  m_LocalEulerAnglesHint: {x: -166.738, y: -30.102997, z: 0.46400452}
 --- !u!114 &546858036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,6 +1490,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PRE_First_Person_Controller_Singleplayer_2
       objectReference: {fileID: 0}
+    - target: {fileID: 3415905885498255051, guid: 6343a9e8b5691724e805e813ef99748a,
+        type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4660110375045123522, guid: 6343a9e8b5691724e805e813ef99748a,
         type: 3}
       propertyPath: inventoryRotation.w
@@ -1499,6 +1504,16 @@ PrefabInstance:
         type: 3}
       propertyPath: inventoryRotation.y
       value: 0.008726535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364114561073838076, guid: 6343a9e8b5691724e805e813ef99748a,
+        type: 3}
+      propertyPath: batterySeconds
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364114561073838076, guid: 6343a9e8b5691724e805e813ef99748a,
+        type: 3}
+      propertyPath: minimumLightStrength
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8134604692669969195, guid: 6343a9e8b5691724e805e813ef99748a,
         type: 3}
