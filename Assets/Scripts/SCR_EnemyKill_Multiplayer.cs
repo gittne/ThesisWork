@@ -4,20 +4,20 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyKill : MonoBehaviour
+public class SCR_EnemyKill_Multiplayer : MonoBehaviour
 {
-    EnemyBrain brain;
+    SCR_EnemyBrain brain;
 
     private void Start()
     {
-        brain = GetComponentInParent<EnemyBrain>();
+        brain = GetComponentInParent<SCR_EnemyBrain>();
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            MultiplayerOverlord.Instance.KillAllPlayersServerRpc();
+            SCR_MultiplayerOverlord.Instance.KillAllPlayersServerRpc();
         }
     }
 }

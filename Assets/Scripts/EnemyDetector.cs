@@ -7,12 +7,12 @@ public class EnemyDetector : MonoBehaviour
     [SerializeField] private List<GameObject> nuisancesList;
     public List<GameObject> NuisancesList { get { return nuisancesList; } }
 
-    EnemyBrain brain;
+    SCR_EnemyBrain brain;
 
     private void Start()
     {
         InvokeRepeating("RageTick", 0, 1);
-        brain = GetComponentInParent<EnemyBrain>();
+        brain = GetComponentInParent<SCR_EnemyBrain>();
     }
 
     private void OnTriggerEnter(Collider other)

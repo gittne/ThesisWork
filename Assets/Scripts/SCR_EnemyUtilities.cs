@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 //Holds a bunch of the methods to make the enemy movement script cleaner.
 
-public class EnemyUtilities : MonoBehaviour
+public class SCR_EnemyUtilities : MonoBehaviour
 {
     public enum EnemyState { ROAM, FOLLOW, HUNT }
 
@@ -26,12 +26,12 @@ public class EnemyUtilities : MonoBehaviour
     }
 
     //Checks if it is close enough to its roam destination to find a new one.
-    public bool DestinationReach(Vector3 origin, Vector3 target)
+    public bool DestinationReach(Vector3 origin, Vector3 target, float range)
     {
         Vector3 originFoot = origin -= new Vector3(0, 1, 0);
 
 
-        if (Vector3.Distance(originFoot, target) < 1f)
+        if (Vector3.Distance(originFoot, target) < range + 0.5f)
         {
             return false;
         }

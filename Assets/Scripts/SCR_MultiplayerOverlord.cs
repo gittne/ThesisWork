@@ -5,7 +5,7 @@ using Unity.Netcode;
 using UnityEngine;
 using VivoxUnity;
 
-public class MultiplayerOverlord : NetworkBehaviour
+public class SCR_MultiplayerOverlord : NetworkBehaviour
 {
     [SerializeField] List <NetworkObject> players = new List <NetworkObject> ();
 
@@ -13,7 +13,7 @@ public class MultiplayerOverlord : NetworkBehaviour
 
     bool deathGrace;
 
-    public static MultiplayerOverlord Instance { get; private set; }
+    public static SCR_MultiplayerOverlord Instance { get; private set; }
     private void Awake() { Instance = this; }
 
 

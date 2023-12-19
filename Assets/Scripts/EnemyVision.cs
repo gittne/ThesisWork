@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyVision : MonoBehaviour
 {
-    EnemyBrain brain;
+    SCR_EnemyBrain brain;
     RaycastHit hit;
     [SerializeField] LayerMask mask;
     bool hasVisionOfPlayer;
@@ -16,7 +16,7 @@ public class EnemyVision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        brain = GetComponentInParent<EnemyBrain>();
+        brain = GetComponentInParent<SCR_EnemyBrain>();
         InvokeRepeating("RageTick", 0, 1);
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBrain : EnemyUtilities
+public class SCR_EnemyBrain : SCR_EnemyUtilities
 {
     int roamRange = 50;
 
@@ -20,6 +20,11 @@ public class EnemyBrain : EnemyUtilities
     [SerializeField] float rageDuration;
     bool rageLock;
 
+    float destinationReachScaleMeasure;
+
+    Coroutine NewPosition;
+    bool repositionCooldown;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -29,17 +34,14 @@ public class EnemyBrain : EnemyUtilities
         {
             player = GameObject.FindWithTag("Player");
         }
+
+        destinationReachScaleMeasure = transform.localScale.y;
     }
 
     private void Update()
     {
         rageMeter = Mathf.Clamp(rageMeter, 0, 100);
-
-        if (enemyState == EnemyState.ROAM) Roam();
-        else Follow();
-
         StatusUpdate();
-        Debug.DrawLine(transform.position, agent.destination, Color.blue, 0.1f);
 
         if (enemyState == EnemyState.HUNT)
         {
@@ -52,6 +54,11 @@ public class EnemyBrain : EnemyUtilities
             if (rageDuration <= 0)
                 enemyState = EnemyState.FOLLOW;
         }
+
+        if (enemyState == EnemyState.ROAM && !repositionCooldown) Roam();
+        else Follow();
+
+        Debug.DrawLine(transform.position, agent.destination, Color.blue, 0.1f);
     }
 
     void Roam()
@@ -70,7 +77,11 @@ public class EnemyBrain : EnemyUtilities
 
     void StatusUpdate()
     {
-        hasDestination = DestinationReach(transform.position, agent.destination);
+        if (repositionCooldown)
+            return;
+
+        if (DestinationReach(transform.position, agent.destination, destinationReachScaleMeasure))
+            StartCoroutine(RepositionDelay());
     }
 
     public void AlterRage(int val)
@@ -99,5 +110,14 @@ public class EnemyBrain : EnemyUtilities
         rageMeter = 0;
         rageDuration = 0;
         enemyState = EnemyState.ROAM;
+    }
+
+    IEnumerator RepositionDelay()
+    {
+        repositionCooldown = true;
+        yield return new WaitForSeconds(Random.Range(2, 5));
+
+        repositionCooldown = false;
+        hasDestination = false;
     }
 }
