@@ -42,7 +42,7 @@ public class SCR_Player_Interactions : MonoBehaviour
 
             if(obj.TryGetComponent(out SCR_Switch_Interactable inter))
             {
-                if(inter.IsEnabled)
+                if(!inter.IsEnabled)
                 {
                     inter.Interact();
                 }
