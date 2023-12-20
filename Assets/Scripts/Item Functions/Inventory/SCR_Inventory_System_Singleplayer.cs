@@ -6,8 +6,8 @@ using UnityEngine;
 [Serializable]
 public class Inventory_Item
 {
-    public SCR_Inventory_Item_Data itemData { get; private set; }
-    public int stackSize { get; private set; }
+    public SCR_Inventory_Item_Data itemData;
+    public int stackSize;
 
     public Inventory_Item(SCR_Inventory_Item_Data sourceData)
     {
@@ -30,13 +30,22 @@ public class SCR_Inventory_System_Singleplayer : MonoBehaviour
 {
     public static SCR_Inventory_System_Singleplayer current;
     Dictionary<SCR_Inventory_Item_Data, Inventory_Item> itemDictionary;
-    public List<Inventory_Item> inventory; //{ get; private set; }
+    public List<Inventory_Item> inventory;
+    public event Action inventoryChangedEvent;
 
     private void Awake()
     {
         current = this;
         inventory = new List<Inventory_Item>();
         itemDictionary = new Dictionary<SCR_Inventory_Item_Data, Inventory_Item>();
+    }
+
+    public void InventoryChanged()
+    {
+        if (inventoryChangedEvent != null)
+        {
+            inventoryChangedEvent();
+        }
     }
 
     public Inventory_Item Get(SCR_Inventory_Item_Data itemReferenceData)

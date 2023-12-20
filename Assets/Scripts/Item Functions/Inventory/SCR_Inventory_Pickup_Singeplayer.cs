@@ -9,6 +9,6 @@ public class SCR_Inventory_Pickup_Singeplayer : MonoBehaviour
     public void OnHandlePickupItem()
     {
         SCR_Inventory_System_Singleplayer.current.AddItem(referenceItem);
-        Debug.Log("Plockade upp föremål");
+        Destroy(gameObject);
     }
 }

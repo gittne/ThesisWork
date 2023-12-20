@@ -15,7 +15,7 @@ public class SCR_Player_Interactions : MonoBehaviour
         if (Input.GetKeyDown(interactionKey))
             Interact();
 
-        playerLookOrigin = transform.position + new Vector3(0, 1, 0);
+        playerLookOrigin = playerCamera.transform.position;
     }
 
     void Interact()
@@ -50,6 +50,5 @@ public class SCR_Player_Interactions : MonoBehaviour
                 }
             }
         }
-
     }
 }
