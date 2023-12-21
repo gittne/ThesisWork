@@ -40,19 +40,6 @@ public class EnemyVision : MonoBehaviour
                 }
             }
 
-            //if (Physics.Raycast(transform.position, dir, out hit, 10f, mask))
-            //{
-            //    if (hit.transform.CompareTag("Player"))
-            //    {
-            //        Debug.DrawRay(transform.position, 10 * dir, UnityEngine.Color.red, 2);
-
-            //        hasVisionOfPlayer = true;
-            //        distanceToPlayer = Vector3.Distance(transform.position, hit.point);
-            //        brain.SetTargetPlayer(other.gameObject);
-            //        return;
-            //    }
-            //}
-
             hasVisionOfPlayer = false;
         }
     }
@@ -71,7 +58,7 @@ public class EnemyVision : MonoBehaviour
             return;
 
         if (distanceToPlayer > 10) distanceToPlayer = 10;
-        int val = 10 - (int)Mathf.Round(distanceToPlayer);
+        int val = 15 - (int)Mathf.Round(distanceToPlayer);
 
         brain.AlterRage(val);
     }

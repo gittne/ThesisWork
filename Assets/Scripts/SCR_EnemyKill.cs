@@ -17,7 +17,21 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            KillPlayers(other.gameObject);
+        }
+    }
+
+    void KillPlayers(GameObject player)
+    {
+        if (SCR_MultiplayerOverlord.Instance != null)
+        {
+            Debug.Log("multiplayer kill.");
             SCR_MultiplayerOverlord.Instance.KillAllPlayersServerRpc();
+        }
+        else
+        {
+            Debug.Log("singleplayer kill.");
+            //player.transform.position = new Vector3(0, 0, 0);
         }
     }
 }

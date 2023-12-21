@@ -7,7 +7,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 {
     int roamRange = 50;
 
-    EnemyState enemyState;
+    public EnemyState enemyState;
 
     GameObject player;
 
@@ -36,6 +36,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         }
 
         destinationReachScaleMeasure = transform.localScale.y;
+
+        InvokeRepeating("RageTick", 0, 1);
     }
 
     private void Update()
@@ -52,7 +54,10 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
             }
 
             if (rageDuration <= 0)
+            {
                 enemyState = EnemyState.FOLLOW;
+                agent.speed = 3;
+            }
         }
 
         if (enemyState == EnemyState.ROAM && !repositionCooldown) Roam();
@@ -95,8 +100,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         if (rageMeter > 80) {
             enemyState = EnemyState.HUNT;
+            agent.speed = 6;
         }
-        
     }
 
     public void SetTargetPlayer(GameObject target)

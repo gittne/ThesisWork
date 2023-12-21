@@ -1252,6 +1252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8369842467488884775}
   - component: {fileID: 6729361719127615235}
+  - component: {fileID: 2523508164782079156}
   m_Layer: 0
   m_Name: KillZone
   m_TagString: Untagged
@@ -1269,7 +1270,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9149216558823198207}
@@ -1289,12 +1290,24 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0.75}
+  m_Size: {x: 2, y: 2, z: 1.75}
+  m_Center: {x: 0, y: 0, z: 0.25}
+--- !u!114 &2523508164782079156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631968545397517136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30f319b79338864590558c974a4745a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &720034016142978920
 GameObject:
   m_ObjectHideFlags: 0
@@ -12217,9 +12230,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9149216558823198207}
   - component: {fileID: 6290067348011554427}
+  - component: {fileID: 3930629791980616807}
   - component: {fileID: 8763673494821916901}
   - component: {fileID: 1396496202900092220}
-  - component: {fileID: 5120474663573106287}
   - component: {fileID: 2494544006896194740}
   - component: {fileID: 337810516319414512}
   - component: {fileID: 2587188499511361479}
@@ -12272,6 +12285,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3930629791980616807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6096257785713299312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b832fe0756a9943bc3f2746d228cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rageMeter: 0
+  rageDuration: 0
 --- !u!195 &8763673494821916901
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12306,20 +12333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee34ec731528e2546a97c5f8f75396d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5120474663573106287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6096257785713299312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a508594e2563c747b71c6463ccee306, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rageMeter: 0
-  rageDuration: 0
 --- !u!136 &2494544006896194740
 CapsuleCollider:
   m_ObjectHideFlags: 0

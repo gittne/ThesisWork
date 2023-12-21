@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class SCR_EnemyAnimator : MonoBehaviour
 {
+    SCR_EnemyBrain brain;
     Animator animator;
     NavMeshAgent agent;
     float speed;
@@ -14,11 +15,13 @@ public class SCR_EnemyAnimator : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        brain = GetComponent<SCR_EnemyBrain>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("isHunting", brain.enemyState == SCR_EnemyUtilities.EnemyState.HUNT ?  true : false);
         speed = agent.velocity.magnitude;
 
         animator.SetFloat("speed", speed);
