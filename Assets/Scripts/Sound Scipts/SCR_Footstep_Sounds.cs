@@ -13,6 +13,7 @@ public class SCR_Footstep_Sounds : MonoBehaviour
     [SerializeField] AudioClip[] monsterSteps = default;
     [SerializeField] float footstepTimer;
     float timerActivationFloat;
+    float footStepThreshold;
     [SerializeField] CharacterController characterObject;
 
     // Start is called before the first frame update
@@ -24,7 +25,11 @@ public class SCR_Footstep_Sounds : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayFootsteps();
+        footStepThreshold = new Vector2(characterObject.velocity.x, characterObject.velocity.z).magnitude;
+        if (footStepThreshold > 0)
+        {
+            PlayFootsteps();
+        }
         Debug.Log(footstepTimer);
     }
 
@@ -34,8 +39,6 @@ public class SCR_Footstep_Sounds : MonoBehaviour
         {
             return;
         }
-
-        float footStepThreshold = new Vector2(characterObject.velocity.x, characterObject.velocity.z).magnitude;
 
         if (footStepThreshold > 0)
         {

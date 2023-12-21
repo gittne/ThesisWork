@@ -114,7 +114,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
                 Headbob();
             }
 
-            //HandleFootsteps();
+            HandleFootsteps();
         }
     }
 
