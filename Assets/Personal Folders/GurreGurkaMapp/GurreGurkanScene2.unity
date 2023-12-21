@@ -6314,6 +6314,7 @@ GameObject:
   - component: {fileID: 31419687070571541}
   - component: {fileID: 7859764450095170810}
   - component: {fileID: 5466209230902195297}
+  - component: {fileID: 8917057395825209050}
   m_Layer: 0
   m_Name: PRE_First_Person_Controller_Singleplayer_2
   m_TagString: Player
@@ -6321,6 +6322,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8917057395825209050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8917057395825209049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2fbcb33b3487834bbe71d27f85a0cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepSpeed: 1.125
+  audioSource: {fileID: 7859764450095170810}
+  carpetClips:
+  - {fileID: 8300000, guid: 9a3342473bf768244bed940934decd73, type: 3}
+  - {fileID: 8300000, guid: b50c5ed0acda7fd49b4d1419d3488086, type: 3}
+  - {fileID: 8300000, guid: bbf190835e7ca0c45ab9f217aa1a4074, type: 3}
+  woodClips:
+  - {fileID: 8300000, guid: 603b77793c6c57948b2ebafc1cdf0a68, type: 3}
+  - {fileID: 8300000, guid: 0a68ff744995dff458993edf59248dac, type: 3}
+  - {fileID: 8300000, guid: 2bddc4f1bf888aa4f81e54351d15e4bc, type: 3}
+  stoneClips:
+  - {fileID: 8300000, guid: b034d78ffc9712b4b95e5f18a4b91db8, type: 3}
+  - {fileID: 8300000, guid: 94babc64002c6e44684a56f3440ea568, type: 3}
+  - {fileID: 8300000, guid: 152370bb4e6083b478f0843171982540, type: 3}
+  - {fileID: 8300000, guid: 8904fdfcbd791c14b932a5ce13802cb9, type: 3}
+  monsterSteps:
+  - {fileID: 8300000, guid: 603b77793c6c57948b2ebafc1cdf0a68, type: 3}
+  footstepTimer: 0
+  characterObject: {fileID: 31419687070571541}
 --- !u!20 &8937913239013821648
 Camera:
   m_ObjectHideFlags: 0

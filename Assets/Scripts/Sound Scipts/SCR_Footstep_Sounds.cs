@@ -11,22 +11,20 @@ public class SCR_Footstep_Sounds : MonoBehaviour
     [SerializeField] AudioClip[] woodClips = default;
     [SerializeField] AudioClip[] stoneClips = default;
     [SerializeField] AudioClip[] monsterSteps = default;
-    float footStepThreshold;
     [SerializeField] float footstepTimer;
-    GameObject characterObject;
+    float timerActivationFloat;
+    [SerializeField] CharacterController characterObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        characterObject = gameObject;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayFootsteps();
-        footstepTimer -= Time.deltaTime;
-        //Debug.Log(footStepThreshold);
         Debug.Log(footstepTimer);
     }
 
@@ -34,59 +32,42 @@ public class SCR_Footstep_Sounds : MonoBehaviour
     {
         if (characterObject == null)
         {
-            Debug.LogError("No valid component found");
             return;
         }
 
-        if (characterObject.TryGetComponent(out Rigidbody rigidbody))
+        float footStepThreshold = new Vector2(characterObject.velocity.x, characterObject.velocity.z).magnitude;
+
+        if (footStepThreshold > 0)
         {
-            footStepThreshold = stepSpeed / new Vector2(rigidbody.velocity.x, rigidbody.velocity.z).magnitude;
-
-            //footstepTimer -= Time.deltaTime;
-
-            if (footstepTimer <= 0)
-            {
-                if (rigidbody.velocity != new Vector3(0, 0, 0)
-                && Physics.Raycast(rigidbody.transform.position, Vector3.down, out RaycastHit hit, 3f))
-                {
-                    switch (hit.collider.tag)
-                    {
-                        default:
-                            audioSource.PlayOneShot(carpetClips[Random.Range(0, monsterSteps.Length - 1)]);
-                            break;
-                    }
-                }
-            }
-
-            footstepTimer = footStepThreshold;
+            footstepTimer -= Time.deltaTime;
         }
-        else if(characterObject.TryGetComponent(out CharacterController controller))
+
+        if (footStepThreshold > 0.001f && characterObject.velocity.y == 0)
         {
-            footStepThreshold = stepSpeed / Mathf.Abs(new Vector2(controller.velocity.x, controller.velocity.z).magnitude);
+            timerActivationFloat = stepSpeed / footStepThreshold;
+        }
 
-            //footstepTimer -= Time.deltaTime;
-
-            if (footstepTimer <= 0)
+        if (footstepTimer <= 0)
+        {
+            if (Physics.Raycast(characterObject.transform.position, Vector3.down, out RaycastHit hit, 3))
             {
-                if (Physics.Raycast(controller.transform.position, Vector3.down, out RaycastHit hit, 3f))
+                switch (hit.collider.tag)
                 {
-                    switch (hit.collider.tag)
-                    {
-                        case "Material/Fabric":
-                            audioSource.PlayOneShot(carpetClips[Random.Range(0, carpetClips.Length - 1)]);
-                            break;
-                        case "Material/Wood":
-                            audioSource.PlayOneShot(woodClips[Random.Range(0, woodClips.Length - 1)]);
-                            break;
-                        case "Material/Stone":
-                            audioSource.PlayOneShot(stoneClips[Random.Range(0, stoneClips.Length - 1)]);
-                            break;
-                        default:
-                            break;
-                    }
+                    case "Material/Fabric":
+                        audioSource.PlayOneShot(carpetClips[Random.Range(0, carpetClips.Length - 1)]);
+                        break;
+                    case "Material/Wood":
+                        audioSource.PlayOneShot(woodClips[Random.Range(0, woodClips.Length - 1)]);
+                        break;
+                    case "Material/Stone":
+                        audioSource.PlayOneShot(stoneClips[Random.Range(0, stoneClips.Length - 1)]);
+                        break;
+                    default:
+                        break;
                 }
-                footstepTimer = footStepThreshold * 0.1f;
             }
+
+            footstepTimer = timerActivationFloat;
         }
     }
 }
