@@ -6,7 +6,7 @@ using TMPro;
 
 public class SCR_Digital_Clock : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI clockText;
+    [SerializeField] TextMeshPro clockText;
     [SerializeField] int hours;
     [SerializeField] int minutes;
     [SerializeField] float secondsElapsed;

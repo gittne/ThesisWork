@@ -10,8 +10,7 @@ public class SCR_Footstep_Sounds : MonoBehaviour
     [SerializeField] AudioClip[] carpetClips = default;
     [SerializeField] AudioClip[] woodClips = default;
     [SerializeField] AudioClip[] stoneClips = default;
-    [SerializeField] AudioClip[] monsterSteps = default;
-    [SerializeField] float footstepTimer;
+    float footstepTimer;
     float timerActivationFloat;
     float footStepThreshold;
     [SerializeField] CharacterController characterObject;
@@ -40,7 +39,7 @@ public class SCR_Footstep_Sounds : MonoBehaviour
             return;
         }
 
-        if (footStepThreshold > 0)
+        if (footStepThreshold > 1f)
         {
             footstepTimer -= Time.deltaTime;
         }
