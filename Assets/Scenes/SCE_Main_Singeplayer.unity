@@ -18165,6 +18165,8 @@ MonoBehaviour:
   onSound: {fileID: 8300000, guid: 522e7b30b761a62499ec3852d200646a, type: 3}
   offSound: {fileID: 8300000, guid: b8f2354c44cfc9f4fbf024b71cbeaac0, type: 3}
   audioSource: {fileID: 512991859}
+  batterySeconds: 0
+  minimumLightStrength: 0
 --- !u!82 &512991859
 AudioSource:
   m_ObjectHideFlags: 0
@@ -33875,8 +33877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a508594e2563c747b71c6463ccee306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rageMeter: 0
-  rageDuration: 0
 --- !u!114 &870595165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85518,6 +85518,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7472162487179387426
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2399053917884968731, guid: 0e7829e42431fe940899536b14e41c46,
+        type: 3}
+      propertyPath: m_Name
+      value: Alarm_Clock_Unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026689976092505505, guid: 0e7829e42431fe940899536b14e41c46,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.444672
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026689976092505505, guid: 0e7829e42431fe940899536b14e41c46,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026689976092505505, guid: 0e7829e42431fe940899536b14e41c46,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21.655247
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026689976092505505, guid: 0e7829e42431fe940899536b14e41c46,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7132505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026689976092505505, guid: 0e7829e42431fe940899536b14e41c46,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026689976092505505, guid: 0e7829e42431fe940899536b14e41c46,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026689976092505505, guid: 0e7829e42431fe940899536b14e41c46,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.70090926
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026689976092505505, guid: 0e7829e42431fe940899536b14e41c46,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026689976092505505, guid: 0e7829e42431fe940899536b14e41c46,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026689976092505505, guid: 0e7829e42431fe940899536b14e41c46,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -89
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0e7829e42431fe940899536b14e41c46, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -85537,3 +85605,4 @@ SceneRoots:
   - {fileID: 1740299515}
   - {fileID: 1739645035}
   - {fileID: 772642102}
+  - {fileID: 7472162487179387426}
