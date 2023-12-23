@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyVision : MonoBehaviour
+public class SCR_EnemyVision : MonoBehaviour
 {
     SCR_EnemyBrain brain;
     RaycastHit hit;

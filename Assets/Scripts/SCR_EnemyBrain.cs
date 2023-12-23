@@ -14,7 +14,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     NavMeshAgent agent;
     bool hasDestination;
 
-    EnemyVision vision;
+    SCR_EnemyVision vision;
 
     [SerializeField] int rageMeter;
     [SerializeField] float rageDuration;
@@ -28,7 +28,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        vision = GetComponentInChildren<EnemyVision>();
+        vision = GetComponentInChildren<SCR_EnemyVision>();
         enemyState = EnemyState.ROAM;
         if (GameObject.FindWithTag("Player") != null)
         {
@@ -61,7 +61,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         }
 
         if (enemyState == EnemyState.ROAM && !repositionCooldown) Roam();
-        else Follow();
+        else if(enemyState == EnemyState.FOLLOW) Follow();
 
         Debug.DrawLine(transform.position, agent.destination, Color.blue, 0.1f);
     }
@@ -71,13 +71,14 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         if (hasDestination)
             return;
 
+        Debug.Log("IM ROAMING");
         agent.destination = RandomNavmeshPosition(roamRange);
         hasDestination = true;
     }
 
     void Follow()
     {
-
+        Debug.Log("im following");
     }
 
     void StatusUpdate()
