@@ -2,92 +2,109 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class SCR_EnemyBrain : SCR_EnemyUtilities
 {
+    [SerializeField] TextMeshProUGUI enemyStateText;
+
+
+    SCR_EnemyVision vision;
+
     int roamRange = 50;
-
     public EnemyState enemyState;
-
-    GameObject player;
 
     NavMeshAgent agent;
     bool hasDestination;
 
-    SCR_EnemyVision vision;
 
     [SerializeField] int rageMeter;
     [SerializeField] float rageDuration;
     bool rageLock;
+    bool repositionCooldown;
+
+    GameObject currentTargetPlayer;
 
     float destinationReachScaleMeasure;
-
-    Coroutine NewPosition;
-    bool repositionCooldown;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         vision = GetComponentInChildren<SCR_EnemyVision>();
         enemyState = EnemyState.ROAM;
-        if (GameObject.FindWithTag("Player") != null)
-        {
-            player = GameObject.FindWithTag("Player");
-        }
 
         destinationReachScaleMeasure = transform.localScale.y;
-
         InvokeRepeating("RageTick", 0, 1);
     }
 
     private void Update()
     {
-        rageMeter = Mathf.Clamp(rageMeter, 0, 100);
-        StatusUpdate();
-
-        if (enemyState == EnemyState.HUNT)
+        if (enemyState == EnemyState.ROAM)
         {
-            rageDuration -= Time.deltaTime;
-            if (vision.HasVisionOfPlayer)
-            {
-                rageDuration = 10;
-            }
+            enemyStateText.text = "ROAMING";
+            enemyStateText.color = Color.blue;
 
-            if (rageDuration <= 0)
-            {
-                enemyState = EnemyState.FOLLOW;
-                agent.speed = 3;
-            }
+            Roam();
+        }
+        else if (enemyState == EnemyState.FOLLOW)
+        {
+            enemyStateText.text = "FOLLLOWING";
+            enemyStateText.color = Color.yellow;
+
+            Follow();
+        }
+        else if (enemyState != EnemyState.HUNT)
+        {
+            enemyStateText.text = "HUNTING";
+            enemyStateText.color = Color.red;
+
+            Hunt();
         }
 
-        if (enemyState == EnemyState.ROAM && !repositionCooldown) Roam();
-        else if(enemyState == EnemyState.FOLLOW) Follow();
-
-        Debug.DrawLine(transform.position, agent.destination, Color.blue, 0.1f);
+        StatusUpdate();
     }
 
     void Roam()
     {
-        if (hasDestination)
+        if (repositionCooldown || hasDestination)
             return;
 
-        Debug.Log("IM ROAMING");
         agent.destination = RandomNavmeshPosition(roamRange);
         hasDestination = true;
     }
 
     void Follow()
     {
-        Debug.Log("im following");
+        agent.destination = currentTargetPlayer.transform.position;
     }
 
-    void StatusUpdate()
+    void Hunt()
     {
-        if (repositionCooldown)
+        agent.destination = currentTargetPlayer.transform.position;
+    }
+
+    public void CommenceRoam()
+    {
+        currentTargetPlayer = null;
+
+        enemyState = EnemyState.ROAM;
+    }
+
+    public void CommenceFollow(GameObject target)
+    {
+        hasDestination = false;
+
+        currentTargetPlayer = target;
+        enemyState = EnemyState.FOLLOW;
+    }
+
+    public void CommenceHunt()
+    {
+        if (enemyState == EnemyState.HUNT)
             return;
 
-        if (DestinationReach(transform.position, agent.destination, destinationReachScaleMeasure))
-            StartCoroutine(RepositionDelay());
+        agent.speed = 5;
+        enemyState = EnemyState.HUNT;
     }
 
     public void AlterRage(int val)
@@ -99,23 +116,19 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     {
         if (enemyState != EnemyState.HUNT) rageMeter--;
 
-        if (rageMeter > 80) {
+        if (rageMeter > 80)
+        {
             enemyState = EnemyState.HUNT;
-            agent.speed = 6;
         }
     }
 
-    public void SetTargetPlayer(GameObject target)
+    void StatusUpdate()
     {
-        agent.destination = target.transform.position;
-    }
+        if (repositionCooldown)
+            return;
 
-    public void KilledPlayer()
-    {
-        hasDestination = false;
-        rageMeter = 0;
-        rageDuration = 0;
-        enemyState = EnemyState.ROAM;
+        if (DestinationReach(transform.position, agent.destination, destinationReachScaleMeasure))
+            StartCoroutine(RepositionDelay());
     }
 
     IEnumerator RepositionDelay()

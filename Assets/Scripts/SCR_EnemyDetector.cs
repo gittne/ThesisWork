@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDetector : MonoBehaviour
+public class SCR_EnemyDetector : MonoBehaviour
 {
     [SerializeField] private List<GameObject> nuisancesList;
     public List<GameObject> NuisancesList { get { return nuisancesList; } }
