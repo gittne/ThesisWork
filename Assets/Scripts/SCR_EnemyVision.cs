@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyVision : MonoBehaviour
+public class SCR_EnemyVision : MonoBehaviour
 {
     SCR_EnemyBrain brain;
     RaycastHit hit;
@@ -35,7 +35,7 @@ public class EnemyVision : MonoBehaviour
 
                     hasVisionOfPlayer = true;
                     distanceToPlayer = Vector3.Distance(transform.position, hit.point);
-                    brain.SetTargetPlayer(other.gameObject);
+                    brain.CommenceFollow(other.gameObject);
                     return;
                 }
             }
@@ -49,6 +49,9 @@ public class EnemyVision : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             hasVisionOfPlayer = false;
+
+            //if(brain.enemyState != SCR_EnemyUtilities.EnemyState.HUNT || brain.enemyState != SCR_EnemyUtilities.EnemyState.FOLLOW)
+                //brain.CommenceRoam();
         }
     }
 
