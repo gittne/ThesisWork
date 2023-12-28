@@ -2331,7 +2331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7757923dc4062e44a99fa3be43be8823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Press_Canvas: {fileID: 0}
+  Press_Canvas: {fileID: 1808016132}
 --- !u!1 &1732189372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,21 +2966,21 @@ MonoBehaviour:
       m_Calls: []
   m_text: E
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278437888
-  m_fontColor: {r: 0, g: 0.7830189, b: 0.01121835, a: 1}
+    rgba: 4278241279
+  m_fontColor: {r: 1, g: 0.7819159, b: 0, a: 1}
   m_enableVertexGradient: 0
-  m_colorMode: 3
+  m_colorMode: 1
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topLeft: {r: 1, g: 0.38437617, b: 0, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 0.38437617, b: 0, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
@@ -3547,6 +3547,11 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: -0.034800768
       objectReference: {fileID: 0}
+    - target: {fileID: 6775775890734734056, guid: df41a4b4f834a9a48b148d263852df84,
+        type: 3}
+      propertyPath: Press_canvas
+      value: 
+      objectReference: {fileID: 1808016132}
     - target: {fileID: 6775775890734734056, guid: df41a4b4f834a9a48b148d263852df84,
         type: 3}
       propertyPath: referenceItem

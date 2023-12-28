@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class SCR_FuseBox : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] KeyCode interactionKey = KeyCode.E;
+    GameObject obj;
+
+    void OnTriggerEnter(Collider other)
     {
-        
+        takeFuse();
     }
+    void takeFuse()
+    {
+        if (obj.TryGetComponent(out SCR_Switch_Interactable inter))
+        {
+            if (!inter.IsEnabled)
+            {
+                inter.Interact();
+            }
+        }
+    }
+  
 }

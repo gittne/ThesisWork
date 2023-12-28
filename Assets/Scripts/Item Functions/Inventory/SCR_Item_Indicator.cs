@@ -6,6 +6,7 @@ public class SCR_Item_Indicator : MonoBehaviour
 {
     public GameObject Press_Canvas ;
    
+
     void OnTriggerEnter(Collider other)
     {
         Press_Canvas.SetActive(true);
@@ -14,8 +15,4 @@ public class SCR_Item_Indicator : MonoBehaviour
     {
         Press_Canvas.SetActive(false);
     }
- //   if (true)
-	//{
-
-	//}
 }
