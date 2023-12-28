@@ -1748,6 +1748,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 672593965058884750, guid: 2a6fc956c5a7dac48b98bc7ed2e879dd,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5558541851538676853, guid: 2a6fc956c5a7dac48b98bc7ed2e879dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1806,7 +1811,17 @@ PrefabInstance:
     - target: {fileID: 8935678058929639587, guid: 2a6fc956c5a7dac48b98bc7ed2e879dd,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935678058929639587, guid: 2a6fc956c5a7dac48b98bc7ed2e879dd,
+        type: 3}
+      propertyPath: stepSpeed
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935678058929639587, guid: 2a6fc956c5a7dac48b98bc7ed2e879dd,
+        type: 3}
+      propertyPath: footstepTimer
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
