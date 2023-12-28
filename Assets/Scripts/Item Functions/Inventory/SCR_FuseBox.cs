@@ -12,15 +12,13 @@ public class SCR_FuseBox : MonoBehaviour
     {
         takeFuse();
     }
+
     void takeFuse()
     {
-        if (obj.TryGetComponent(out SCR_Switch_Interactable inter))
-        {
-            if (!inter.IsEnabled)
-            {
-                inter.Interact();
-            }
-        }
+        //if (obj.TryGetComponent(out SCR_Inventory_System_Singleplayer inv))
+        //{
+        //    inv.SubtractItem();
+        //}
     }
   
 }
