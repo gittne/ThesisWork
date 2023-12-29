@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6254195753429824862}
   - component: {fileID: 514917442042342591}
   - component: {fileID: 8736538553370881018}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lock.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,10 @@ GameObject:
   - component: {fileID: 5828539194410746085}
   - component: {fileID: 6085015294356420333}
   - component: {fileID: 7837908350289076143}
-  m_Layer: 0
+  - component: {fileID: 8780527737859255853}
+  - component: {fileID: 7289088003824139006}
+  - component: {fileID: 4076595586967919343}
+  m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,6 +193,60 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.010630633, y: 0.0011233632, z: 0.02128489}
   m_Center: {x: 0.0051889815, y: -0.00042879288, z: 0.008266771}
+--- !u!65 &8780527737859255853
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279069584212119884}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.010630633, y: 0.0011233632, z: 0.02128489}
+  m_Center: {x: 0.0051889853, y: -0.0004288562, z: 0.00826677}
+--- !u!95 &7289088003824139006
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279069584212119884}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d6771b179dede241b87279d197f58fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4076595586967919343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279069584212119884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6276160489273603122
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +256,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7331723340642059716}
+  - component: {fileID: 2172308829712446096}
+  - component: {fileID: 7352707504179468858}
   m_Layer: 0
   m_Name: PRE_DoorWood_V1
   m_TagString: Untagged
@@ -222,6 +281,40 @@ Transform:
   - {fileID: 7686933308157724329}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
+--- !u!114 &2172308829712446096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6276160489273603122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7757923dc4062e44a99fa3be43be8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Press_Canvas: {fileID: 0}
+--- !u!65 &7352707504179468858
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6276160489273603122}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.01944529, y: 0.0065714377, z: 0.02290447}
+  m_Center: {x: 0.0001109475, y: -0.00014376447, z: 0.01131037}
 --- !u!1 &7086959826484791092
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +410,7 @@ GameObject:
   - component: {fileID: 5139126000719697991}
   - component: {fileID: 4133466139801943370}
   - component: {fileID: 1214052755407901168}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Handle.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}

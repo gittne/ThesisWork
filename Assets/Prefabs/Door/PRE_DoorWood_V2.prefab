@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5421605617115640144}
   - component: {fileID: 5545491663986658188}
   - component: {fileID: 5133791497166148618}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lock.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 6522749494897794694}
   - component: {fileID: 7744254197145678689}
   - component: {fileID: 675227530521346643}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Textblock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 4472472157040319573}
   - component: {fileID: 5868429430879760414}
   - component: {fileID: 1468394708732230616}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorText (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 1370932540576052412}
   - component: {fileID: 3301292991788717061}
   - component: {fileID: 2121128505776797249}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Handle.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +549,11 @@ GameObject:
   - component: {fileID: 5232408018487805413}
   - component: {fileID: 2308002651035111}
   - component: {fileID: 2264518067408788523}
-  m_Layer: 0
+  - component: {fileID: 8988983721426214543}
+  - component: {fileID: 3875158925005194209}
+  - component: {fileID: 4859293369330472918}
+  - component: {fileID: 7905695704289782663}
+  m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,3 +649,70 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.010630633, y: 0.0011233632, z: 0.02128489}
   m_Center: {x: 0.0051889853, y: -0.00042879288, z: 0.008266771}
+--- !u!114 &8988983721426214543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8222692703534647192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &3875158925005194209
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8222692703534647192}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d6771b179dede241b87279d197f58fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4859293369330472918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8222692703534647192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7757923dc4062e44a99fa3be43be8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Press_Canvas: {fileID: 0}
+--- !u!65 &7905695704289782663
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8222692703534647192}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.010630633, y: 0.02, z: 0.02128489}
+  m_Center: {x: 0.005188987, y: -0.0004288562, z: 0.008266771}
