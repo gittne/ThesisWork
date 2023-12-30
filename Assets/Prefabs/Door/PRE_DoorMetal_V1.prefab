@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 2884080926515325810}
   - component: {fileID: 9041009795346260799}
   - component: {fileID: 8425876891176986871}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Handle.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 4488839634601003443}
   - component: {fileID: 1113626359335959373}
   - component: {fileID: 7668619577775357903}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lock.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,8 @@ GameObject:
   - component: {fileID: 5424652480932090194}
   - component: {fileID: 218620684916412228}
   - component: {fileID: 4781071657143775951}
-  m_Layer: 0
+  - component: {fileID: 7513274753051363248}
+  m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,3 +439,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &7513274753051363248
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7806512012686491739}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.010630633, y: 0.023363, z: 0.02128489}
+  m_Center: {x: 0.005188989, y: -0.0004288562, z: 0.008266771}
