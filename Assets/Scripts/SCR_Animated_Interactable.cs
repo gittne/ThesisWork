@@ -10,10 +10,13 @@ public class SCR_Animated_Interactable : MonoBehaviour
     bool isOpen;
     float openSpeed;
     bool canInteract;
+    AudioSource SoundSource;
+    [SerializeField] AudioClip SoundFX;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        SoundSource = GetComponent<AudioSource>();
         openSpeed = animator.speed;
         canInteract = true;
     }
@@ -28,6 +31,7 @@ public class SCR_Animated_Interactable : MonoBehaviour
     {
         animator.SetBool("Open", isOpen);
         canInteract = false;
+        SoundSource.PlayOneShot(SoundFX);
         yield return new WaitForSeconds(openSpeed);
 
         isOpen = !isOpen;
