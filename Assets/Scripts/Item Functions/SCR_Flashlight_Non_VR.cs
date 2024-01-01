@@ -16,7 +16,7 @@ public class SCR_Flashlight_Non_VR : MonoBehaviour
     [SerializeField] AudioSource audioSource;
 
     [Header("Battery Variables")]
-    [SerializeField] float batterySeconds;
+    [SerializeField] float batteryLife;
     [SerializeField] float minimumLightStrength;
     float maxBattery;
 
@@ -24,7 +24,7 @@ public class SCR_Flashlight_Non_VR : MonoBehaviour
     {
         spotLight.enabled = false;
         lightBulb.enabled = false;
-        maxBattery = batterySeconds;
+        maxBattery = batteryLife;
     }
 
     void Update()
@@ -63,12 +63,17 @@ public class SCR_Flashlight_Non_VR : MonoBehaviour
 
     void BatteryStrength()
     {
-        if (spotLight.enabled && batterySeconds >= 0)
+        if (spotLight.enabled && batteryLife >= 0)
         {
-            batterySeconds -= Time.deltaTime;
+            batteryLife -= Time.deltaTime;
         }
 
-        spotLight.intensity = (batterySeconds / maxBattery) + minimumLightStrength;
-        lightBulb.intensity = (batterySeconds / maxBattery) + minimumLightStrength;
+        spotLight.intensity = (batteryLife / maxBattery) + minimumLightStrength;
+        lightBulb.intensity = (batteryLife / maxBattery) + minimumLightStrength;
+    }
+
+    public void RefillBatteries()
+    {
+        batteryLife = maxBattery;
     }
 }

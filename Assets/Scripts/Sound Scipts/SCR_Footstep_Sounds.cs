@@ -13,23 +13,37 @@ public class SCR_Footstep_Sounds : MonoBehaviour
     [SerializeField] float footstepTimer;
     float timerActivationFloat;
     float footStepThreshold;
-    [SerializeField] CharacterController characterObject;
+    GameObject characterObject;
+    CharacterController playerController;
+    Rigidbody monsterRigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        characterObject = gameObject;
+
+        playerController = characterObject.GetComponent<CharacterController>();
+
+        monsterRigidbody = characterObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        footStepThreshold = new Vector2(characterObject.velocity.x, characterObject.velocity.z).magnitude;
+        if (playerController != null)
+        {
+            footStepThreshold = new Vector2(playerController.velocity.x, playerController.velocity.z).magnitude;
+        }
+
+        if (monsterRigidbody != null)
+        {
+            footStepThreshold = new Vector2(monsterRigidbody.velocity.x, monsterRigidbody.velocity.z).magnitude;
+        }
+
         if (footStepThreshold > 0)
         {
             PlayFootsteps();
         }
-        Debug.Log(footstepTimer);
     }
 
     void PlayFootsteps()
@@ -38,13 +52,13 @@ public class SCR_Footstep_Sounds : MonoBehaviour
         {
             return;
         }
-
+        
         if (footStepThreshold > 1f)
         {
             footstepTimer -= Time.deltaTime;
         }
 
-        if (footStepThreshold > 0.001f && characterObject.velocity.y == 0)
+        if (footStepThreshold > 0.001f)
         {
             timerActivationFloat = stepSpeed / footStepThreshold;
         }
