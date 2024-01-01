@@ -9,11 +9,11 @@ public class SCR_Player_Interactions : MonoBehaviour
     Vector3 playerLookOrigin;
     [SerializeField] Camera playerCamera;
     [SerializeField] float interactionMaxLength;
+    [SerializeField] GameObject interactTextCanvas;
 
     void Update()
     {
-        if (Input.GetKeyDown(interactionKey))
-            Interact();
+        Interact();
 
         playerLookOrigin = playerCamera.transform.position;
     }
@@ -30,25 +30,34 @@ public class SCR_Player_Interactions : MonoBehaviour
 
         if(Physics.Raycast(playerLookOrigin, playerCamera.transform.forward, out hit, interactionMaxLength, mask)) 
         {
-            GameObject obj = hit.collider.gameObject;
+            interactTextCanvas.SetActive(true);
 
-            if(obj.TryGetComponent(out SCR_Inventory_Pickup_Singeplayer pickup))
+            if (Input.GetKeyDown(interactionKey))
             {
-                pickup.OnHandlePickupItem();
-            }
+                GameObject obj = hit.collider.gameObject;
 
-            if(obj.TryGetComponent(out SCR_Animated_Interactable anim))
-            {
-                anim.SwitchAnimationState();
-            }
-
-            if(obj.TryGetComponent(out SCR_Switch_Interactable inter))
-            {
-                if(!inter.IsEnabled)
+                if (obj.TryGetComponent(out SCR_Inventory_Pickup_Singeplayer pickup))
                 {
-                    inter.Interact();
+                    pickup.OnHandlePickupItem();
+                }
+
+                if (obj.TryGetComponent(out SCR_Animated_Interactable anim))
+                {
+                    anim.SwitchAnimationState();
+                }
+
+                if (obj.TryGetComponent(out SCR_Switch_Interactable inter))
+                {
+                    if (!inter.IsEnabled)
+                    {
+                        inter.Interact();
+                    }
                 }
             }
+        }
+        else
+        {
+            interactTextCanvas.SetActive(false);
         }
     }
 }
