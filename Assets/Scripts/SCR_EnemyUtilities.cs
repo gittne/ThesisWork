@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -37,5 +38,24 @@ public class SCR_EnemyUtilities : MonoBehaviour
         }
   
         return true;
+    }
+
+    public GameObject FindNearestPlayer()
+    {
+        List<GameObject> players = new List<GameObject>();
+        List<float> distances = new List<float>();  
+
+        foreach(GameObject p in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            players.Add(p);
+            distances.Add(Vector3.Distance(transform.position, p.transform.position));
+        }
+
+        Debug.Log("In my hunt, i found this many players: " + players.Count);
+
+        if(players.Count == 1) return players[0];
+
+        if (distances[0] < distances[1]) return players[0];
+        else return players[1];
     }
 }

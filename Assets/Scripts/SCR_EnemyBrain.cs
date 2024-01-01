@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using UnityEngine.Rendering;
 
 public class SCR_EnemyBrain : SCR_EnemyUtilities
 {
@@ -21,11 +22,12 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     [SerializeField] int rageMeter;
     [SerializeField] float rageDuration;
     bool rageLock;
-    bool repositionCooldown;
 
     GameObject currentTargetPlayer;
 
     float destinationReachScaleMeasure;
+
+    Coroutine repositionCoroutine;
 
     private void Start()
     {
@@ -39,6 +41,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     private void Update()
     {
+        rageMeter = Mathf.Clamp(rageMeter, 0, 100);
+
         if (enemyState == EnemyState.ROAM)
         {
             enemyStateText.text = "ROAMING";
@@ -61,21 +65,22 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
             Hunt();
         }
 
-        StatusUpdate();
+        if (enemyState == EnemyState.HUNT) HuntFumes();
     }
 
     void Roam()
     {
-        if (repositionCooldown || hasDestination)
+        if (hasDestination)
             return;
 
-        agent.destination = RandomNavmeshPosition(roamRange);
-        hasDestination = true;
+        if(repositionCoroutine != null) StopCoroutine(repositionCoroutine);
+        repositionCoroutine = StartCoroutine(RepositionDelay());
     }
 
     void Follow()
     {
         agent.destination = currentTargetPlayer.transform.position;
+        Debug.DrawLine(transform.position, currentTargetPlayer.transform.position, Color.black, 0.1f);
     }
 
     void Hunt()
@@ -87,6 +92,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     {
         currentTargetPlayer = null;
 
+        agent.speed = 3;
         enemyState = EnemyState.ROAM;
     }
 
@@ -98,12 +104,17 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         enemyState = EnemyState.FOLLOW;
     }
 
+    [ContextMenu("Hunt")]
     public void CommenceHunt()
     {
         if (enemyState == EnemyState.HUNT)
             return;
 
-        agent.speed = 5;
+
+        currentTargetPlayer = FindNearestPlayer();
+        Debug.DrawLine(transform.position, currentTargetPlayer.transform.position, Color.white, 10);
+        agent.speed = 100;
+        rageDuration = 10;
         enemyState = EnemyState.HUNT;
     }
 
@@ -118,25 +129,37 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         if (rageMeter > 80)
         {
-            enemyState = EnemyState.HUNT;
+            CommenceHunt();
         }
-    }
-
-    void StatusUpdate()
-    {
-        if (repositionCooldown)
-            return;
-
-        if (DestinationReach(transform.position, agent.destination, destinationReachScaleMeasure))
-            StartCoroutine(RepositionDelay());
     }
 
     IEnumerator RepositionDelay()
     {
-        repositionCooldown = true;
-        yield return new WaitForSeconds(Random.Range(2, 5));
+        agent.destination = RandomNavmeshPosition(roamRange);
+        hasDestination = true;
 
-        repositionCooldown = false;
+        while (DestinationReach(transform.position, agent.destination, destinationReachScaleMeasure))
+            yield return null;
+
+        Debug.Log("I hav e reached my position, time to rest.");
+        yield return new WaitForSeconds(Random.Range(1f, 3f));
+
+        Debug.Log("I dont have a destination");
         hasDestination = false;
+    }
+
+    void HuntFumes()
+    {
+        rageDuration -= Time.deltaTime;
+        if (vision.HasVisionOfPlayer)
+        {
+            rageDuration = 10;
+        }
+
+        if (rageDuration <= 0)
+        {
+            rageMeter = 0;
+            CommenceRoam();
+        }
     }
 }
