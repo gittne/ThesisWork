@@ -94,6 +94,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         agent.speed = 3;
         enemyState = EnemyState.ROAM;
+        StopCoroutine(repositionCoroutine);
     }
 
     public void CommenceFollow(GameObject target)
@@ -102,6 +103,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         currentTargetPlayer = target;
         enemyState = EnemyState.FOLLOW;
+        StopCoroutine(repositionCoroutine);
     }
 
     [ContextMenu("Hunt")]
