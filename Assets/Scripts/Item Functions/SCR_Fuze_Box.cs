@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SCR_FuseBox : MonoBehaviour
+public class SCR_Fuze_Box : MonoBehaviour
 {
-    int fusesInserted;
-    public bool canInsertFuse { get; private set; }
+    int fuzesInserted;
+    public bool canInsertFuze { get; private set; }
     BoxCollider insertZone;
-    [SerializeField] int fusesLeftToInsert;
+    [SerializeField] int fuzesLeftToInsert;
     [SerializeField] Light lightIndicator;
 
     // Start is called before the first frame update
@@ -19,14 +19,14 @@ public class SCR_FuseBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(canInsertFuse);
+        Debug.Log(canInsertFuze);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            canInsertFuse = true;
+            canInsertFuze = true;
         }
     }
 
@@ -34,15 +34,15 @@ public class SCR_FuseBox : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            canInsertFuse = false;
+            canInsertFuze = false;
         }
     }
 
-    public void FillFusebox()
+    public void FillFuzebox()
     {
-        fusesInserted++;
+        fuzesInserted++;
 
-        if (fusesInserted == fusesLeftToInsert)
+        if (fuzesInserted == fuzesLeftToInsert)
         {
             lightIndicator.color = Color.green;
 

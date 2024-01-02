@@ -10,7 +10,7 @@ public class SCR_Footstep_Sounds : MonoBehaviour
     [SerializeField] AudioClip[] carpetClips = default;
     [SerializeField] AudioClip[] woodClips = default;
     [SerializeField] AudioClip[] stoneClips = default;
-    [SerializeField] float footstepTimer;
+    float footstepTimer = 0.2f;
     float timerActivationFloat;
     float footStepThreshold;
     GameObject characterObject;
