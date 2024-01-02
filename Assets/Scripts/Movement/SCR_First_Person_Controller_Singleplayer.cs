@@ -10,7 +10,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     public bool canMove { get; private set; } = true;
     public float crouchTimer { get; private set; }
     public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
-    public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKey(crouchKey);
+    public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKeyDown(crouchKey);
 
     [SerializeField] Camera playerCamera;
     [SerializeField] Transform cameraHolder;
