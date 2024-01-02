@@ -5,6 +5,7 @@ using UnityEngine;
 public class SCR_Inventory_Use_Item : MonoBehaviour
 {
     SCR_Inventory_System_Singleplayer inventory;
+    [SerializeField] SCR_Flashlight_Non_VR flashlight;
     [SerializeField] string[] itemID;
 
     // Start is called before the first frame update
@@ -26,7 +27,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
             if (itemID[0] == item.itemData.itemID && item.stackSize > 0)
             {
                 Debug.Log("Batteries used");
-                
+                flashlight.RefillBatteries();
                 inventory.SubtractItem(item.itemData);
             }
         }

@@ -13,6 +13,7 @@ public class SCR_Flashlight_Non_VR : MonoBehaviour
     [Header("Audio")]
     [SerializeField] AudioClip onSound;
     [SerializeField] AudioClip offSound;
+    [SerializeField] AudioClip reloadSound;
     [SerializeField] AudioSource audioSource;
 
     [Header("Battery Variables")]
@@ -35,11 +36,6 @@ public class SCR_Flashlight_Non_VR : MonoBehaviour
             {
                 TurnOnOrOff();
             }
-        }
-        else
-        {
-            spotLight.enabled = false;
-            lightBulb.enabled = false;
         }
 
         BatteryStrength();
@@ -75,5 +71,6 @@ public class SCR_Flashlight_Non_VR : MonoBehaviour
     public void RefillBatteries()
     {
         batteryLife = maxBattery;
+        audioSource.PlayOneShot(reloadSound);
     }
 }

@@ -69,17 +69,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     float yDefaultPosition = 0;
     float headbobTimer;
 
-    [Header("Footstep Variables")]
-    [SerializeField] float baseStepSpeed;
-    [SerializeField] float crouchStepMultiplier;
-    [SerializeField] float runStepMultiplier;
-    [SerializeField] AudioSource audioSource = default;
-    [SerializeField] AudioClip[] carpetClips = default;
-    [SerializeField] AudioClip[] woodClips = default;
-    [SerializeField] AudioClip[] stoneClips = default;
-    float footstepTimer;
-    float getCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : isRunning ? baseStepSpeed * runStepMultiplier : baseStepSpeed;
-
     Vector3 movementDirection;
     Vector2 currentInput;
 
@@ -113,8 +102,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
             {
                 Headbob();
             }
-
-            //HandleFootsteps();
         }
     }
 
@@ -236,39 +223,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         isCrouching = !isCrouching;
 
         duringCrouchAnimation = false;
-    }
-
-    void HandleFootsteps()
-    {
-        if (!characterController.isGrounded || currentInput == Vector2.zero)
-        {
-            return;
-        }
-
-        footstepTimer -= Time.deltaTime;
-
-        if (footstepTimer <= 0)
-        {
-            if (Physics.Raycast(playerCamera.transform.position, Vector3.down, out RaycastHit hit, 3))
-            {
-                switch (hit.collider.tag)
-                {
-                    case "Material/Fabric":
-                        audioSource.PlayOneShot(carpetClips[Random.Range(0, carpetClips.Length - 1)]);
-                        break;
-                    case "Material/Wood":
-                        audioSource.PlayOneShot(woodClips[Random.Range(0, woodClips.Length - 1)]);
-                        break;
-                    case "Material/Stone":
-                        audioSource.PlayOneShot(stoneClips[Random.Range(0, stoneClips.Length - 1)]);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            footstepTimer = getCurrentOffset;
-        }
     }
 
     void ApplyMovement()
