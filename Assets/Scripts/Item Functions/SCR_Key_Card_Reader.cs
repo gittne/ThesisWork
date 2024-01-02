@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SCR_FuseBox : MonoBehaviour
+public class SCR_Key_Card_Reader : MonoBehaviour
 {
-    int fusesInserted;
-    public bool canInsertFuse { get; private set; }
-    [SerializeField] int fusesLeftToInsert;
+    bool isActivated;
+    public bool canReadCard { get; private set; }
+    public string keycardItemID;
     [SerializeField] Light lightIndicator;
 
     // Start is called before the first frame update
     void Start()
     {
         lightIndicator.color = Color.red;
+        isActivated = false;
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class SCR_FuseBox : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            canInsertFuse = true;
+            canReadCard = true;
         }
     }
 
@@ -33,19 +34,17 @@ public class SCR_FuseBox : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            canInsertFuse = false;
+            canReadCard = false;
         }
     }
 
-    public void FillFusebox()
+    public void ReadCard()
     {
-        fusesInserted++;
-
-        if (fusesInserted == fusesLeftToInsert)
+        if (!isActivated)
         {
             lightIndicator.color = Color.green;
-
-            //Code that does something
+            isActivated = true;
+            Debug.Log("Used card");
         }
     }
 }
