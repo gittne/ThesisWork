@@ -1275,6 +1275,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &767029692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7397281594201868822, guid: 5fd070fbf69cb764588ca772eb589ebd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1731107919861864426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &805781391
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,6 +1769,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1280592296 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6478557946208179765, guid: 5fd070fbf69cb764588ca772eb589ebd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1731107919861864426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1401965717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,6 +1893,35 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1404964214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3660470520814762650, guid: 5fd070fbf69cb764588ca772eb589ebd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1731107919861864426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1404964220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404964214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b9a3d22d400c247b8e0e9bcc987f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryKey: 32
+  inventoryPrefab: {fileID: 109694905}
+  backpackPrefab: {fileID: 767029692}
+  startPosition: {fileID: 1413974858}
+  endPosition: {fileID: 1280592296}
+--- !u!4 &1413974858 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 676393212912154407, guid: 5fd070fbf69cb764588ca772eb589ebd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1731107919861864426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1429394958
 GameObject:
   m_ObjectHideFlags: 0
@@ -2542,6 +2583,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2144122708690950571, guid: 5fd070fbf69cb764588ca772eb589ebd,
         type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1404964220}
+    - target: {fileID: 2144122708690950571, guid: 5fd070fbf69cb764588ca772eb589ebd,
+        type: 3}
       propertyPath: inventoryRotation.w
       value: 0.9238795
       objectReference: {fileID: 0}
@@ -2620,6 +2666,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4194976945927213162, guid: 5fd070fbf69cb764588ca772eb589ebd,
+        type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1404964220}
     - target: {fileID: 4194976945927213162, guid: 5fd070fbf69cb764588ca772eb589ebd,
         type: 3}
       propertyPath: batteryLife
@@ -2785,6 +2836,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6018688124123177785, guid: 5fd070fbf69cb764588ca772eb589ebd,
+        type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1404964220}
     - target: {fileID: 6067209851678638595, guid: 5fd070fbf69cb764588ca772eb589ebd,
         type: 3}
       propertyPath: m_Layer
@@ -2844,6 +2900,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3660470520814762650, guid: 5fd070fbf69cb764588ca772eb589ebd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1404964220}
     - targetCorrespondingSourceObject: {fileID: 7147990460950853879, guid: 5fd070fbf69cb764588ca772eb589ebd,
         type: 3}
       insertIndex: -1
