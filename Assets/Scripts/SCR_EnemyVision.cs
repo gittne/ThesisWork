@@ -11,13 +11,32 @@ public class SCR_EnemyVision : MonoBehaviour
 
     public bool HasVisionOfPlayer { get { return hasVisionOfPlayer; } }
 
+    [SerializeField] float visionLossDelay;
     float distanceToPlayer;
+
+    GameObject visiblePlayer;
 
     // Start is called before the first frame update
     void Start()
     {
         brain = GetComponentInParent<SCR_EnemyBrain>();
         InvokeRepeating("RageTick", 0, 1);
+    }
+
+    private void Update()
+    {
+        visionLossDelay -= Time.deltaTime;
+        visionLossDelay = Mathf.Clamp(visionLossDelay, 0, 3);
+
+        if (visionLossDelay > 0)
+            SendVisionInformation();
+        else
+        {
+            hasVisionOfPlayer = false;
+
+            if(brain.enemyState != SCR_EnemyUtilities.EnemyState.HUNT)
+                brain.ReceiveVisionInformation(null);
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -33,9 +52,9 @@ public class SCR_EnemyVision : MonoBehaviour
                 {
                     Debug.DrawRay(transform.position, 10 * dir, UnityEngine.Color.red, 2);
 
-                    hasVisionOfPlayer = true;
-                    distanceToPlayer = Vector3.Distance(transform.position, hit.point);
-                    brain.CommenceFollow(other.gameObject);
+                    visiblePlayer = other.gameObject;
+                    visionLossDelay = 2;
+                    SendVisionInformation();
                     return;
                 }
             }
@@ -49,9 +68,6 @@ public class SCR_EnemyVision : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             hasVisionOfPlayer = false;
-
-            //if(brain.enemyState != SCR_EnemyUtilities.EnemyState.HUNT || brain.enemyState != SCR_EnemyUtilities.EnemyState.FOLLOW)
-                //brain.CommenceRoam();
         }
     }
 
@@ -64,5 +80,12 @@ public class SCR_EnemyVision : MonoBehaviour
         int val = 15 - (int)Mathf.Round(distanceToPlayer);
 
         brain.AlterRage(val);
+    }
+
+    private void SendVisionInformation()
+    {
+        hasVisionOfPlayer = true;
+        distanceToPlayer = Vector3.Distance(transform.position, hit.point);
+        brain.ReceiveVisionInformation(visiblePlayer);
     }
 }

@@ -50,8 +50,8 @@ public class VoiceManager : MonoBehaviour
     public void Login(string displayName = null)
     {
         var account = new Account(displayName);
-        bool connectAudio = true;
-        bool connectText = true;
+        //bool connectAudio = true;
+        //bool connectText = true;
 
         LoginSession = VivoxService.Instance.Client.GetLoginSession(account);
         LoginSession.PropertyChanged += LoginSession_PropertyChanged;
