@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SCR_Key_Card_Reader : MonoBehaviour
 {
-    bool isActivated;
+    public bool isActivated { get; private set; }
     public bool canReadCard { get; private set; }
     public string keycardItemID;
     [SerializeField] Light lightIndicator;
@@ -44,7 +44,6 @@ public class SCR_Key_Card_Reader : MonoBehaviour
         {
             lightIndicator.color = Color.green;
             isActivated = true;
-            Debug.Log("Used card");
         }
     }
 }

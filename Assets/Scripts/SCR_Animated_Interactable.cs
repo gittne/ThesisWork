@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SCR_Animated_Interactable : MonoBehaviour
 {
+    enum LockState { Locked, Unlocked}
+    [SerializeField] LockState lockState;
     Animator animator;
 
     bool isOpen;
@@ -12,6 +14,7 @@ public class SCR_Animated_Interactable : MonoBehaviour
     bool canInteract;
     AudioSource SoundSource;
     [SerializeField] AudioClip SoundFX;
+    [SerializeField] SCR_Key_Card_Reader keyReader;
 
     private void Start()
     {
@@ -19,11 +22,24 @@ public class SCR_Animated_Interactable : MonoBehaviour
         SoundSource = GetComponent<AudioSource>();
         openSpeed = animator.speed;
         canInteract = true;
+        if (keyReader == null)
+        {
+            return;
+        }
     }
 
     public void SwitchAnimationState()
     {
-        if(canInteract)
+        if (keyReader.isActivated)
+        {
+            lockState = LockState.Unlocked;
+        }
+        else
+        {
+            lockState = LockState.Locked;
+        }
+
+        if(canInteract && lockState == LockState.Unlocked)
             StartCoroutine(ChangeState());
     }
 
