@@ -23,7 +23,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [Header("Controls")]
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
-    [SerializeField] KeyCode inventoryKey = KeyCode.Space;
 
     [Header("Movement Variables")]
     [SerializeField] float walkingSpeed = 2f;
@@ -32,11 +31,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] float gravity = 30f;
 
     [Header("Inventory Variables")]
-    [SerializeField] GameObject inventoryPrefab;
-    [SerializeField] GameObject backpackPrefab;
-    [SerializeField] Transform startPosition;
-    [SerializeField] Transform endPosition;
-    public bool isInventoryActive { get; private set; } = false;
+    SCR_Inventory_Visual inventory;
 
     [Header("Mouse Look Variables")]
     [SerializeField, Range(1, 10)] float xLookSensitivity = 2f;
@@ -78,14 +73,14 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        backpackPrefab.SetActive(false);
+        inventory = GetComponent<SCR_Inventory_Visual>();
     }
 
     void Update()
     {
-        InventoryManagement();
+        inventory.InventoryManagement();
 
-        if (canMove)
+        if (canMove && inventory.isInventoryActive == false)
         {
             MovementInput();
 
@@ -115,47 +110,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         movementDirection = (transform.TransformDirection(Vector3.forward) * currentInput.x) + (transform.TransformDirection(Vector3.right) * currentInput.y);
 
         movementDirection.y = movementDirectionY;
-    }
-
-    void InventoryManagement()
-    {
-        if (Input.GetKeyDown(inventoryKey))
-        {
-            isInventoryActive = !isInventoryActive;
-
-            if (isInventoryActive)
-            {
-                canMove = false;
-
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                canMove = true;
-
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-        }
-
-        if (isInventoryActive)
-        {
-            inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, endPosition.position, 3f * Time.deltaTime);
-        }
-        else
-        {
-            inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, startPosition.position, 5f * Time.deltaTime);
-        }
-
-        if (inventoryPrefab.transform.position.y <= startPosition.transform.position.y + 0.01f)
-        {
-            backpackPrefab.SetActive(false);
-        }
-        else
-        {
-            backpackPrefab.SetActive(true);
-        }
     }
 
     void MouseLook()

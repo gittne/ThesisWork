@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SCR_Flashlight_Non_VR : MonoBehaviour
 {
-    [SerializeField] SCR_First_Person_Controller_Singleplayer controllerScript;
+    [SerializeField] SCR_Inventory_Visual inventory;
 
     [Header("Light Sources")]
     [SerializeField] Light spotLight;
@@ -30,7 +30,7 @@ public class SCR_Flashlight_Non_VR : MonoBehaviour
 
     void Update()
     {
-        if (!controllerScript.isInventoryActive)
+        if (!inventory.isInventoryActive)
         {
             if (Input.GetButtonDown("Fire1"))
             {
