@@ -8,7 +8,7 @@ public class SCR_Item_Sway_Singleplayer : MonoBehaviour
     //holding them in hand in the game.
     //Base code provided by "Plai": https://www.youtube.com/watch?v=QIVN-T-1QBE
 
-    [SerializeField] SCR_First_Person_Controller_Singleplayer controllerScript;
+    [SerializeField] SCR_Inventory_Visual inventory;
     float mouseX;
     float mouseY;
     [Header("Sway Rotation Variables")]
@@ -41,7 +41,7 @@ public class SCR_Item_Sway_Singleplayer : MonoBehaviour
     //The method which is responsible for the rotation and movement of the arm when moving the mouse
     void Sway()
     {
-        if (!controllerScript.isInventoryActive)
+        if (!inventory.isInventoryActive)
         {
             //The calculations for the target rotation on the X and Y axis
             Quaternion xRotation = Quaternion.AngleAxis(-mouseY * swayMultiplier, Vector3.right);

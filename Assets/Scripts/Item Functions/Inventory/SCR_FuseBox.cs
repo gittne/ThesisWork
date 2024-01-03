@@ -6,7 +6,6 @@ public class SCR_FuseBox : MonoBehaviour
 {
     int fusesInserted;
     public bool canInsertFuse { get; private set; }
-    BoxCollider insertZone;
     [SerializeField] int fusesLeftToInsert;
     [SerializeField] Light lightIndicator;
 
@@ -19,7 +18,7 @@ public class SCR_FuseBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(canInsertFuse);
+        
     }
 
     private void OnTriggerEnter(Collider other)

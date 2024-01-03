@@ -8,6 +8,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     [Header("Related Equipment")]
     [SerializeField] SCR_Flashlight_Non_VR flashlight;
     [SerializeField] SCR_FuseBox fuseBox;
+    [SerializeField] SCR_Key_Card_Reader cardReader;
     [Header("Item IDs")]
     [SerializeField] string[] itemID;
 
@@ -51,10 +52,9 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     {
         foreach (Inventory_Item item in inventory.inventory)
         {
-            if (itemID[2] == item.itemData.itemID && item.stackSize > 0)
+            if (itemID[2] == item.itemData.itemID && item.stackSize > 0 && cardReader.canReadCard == true && itemID[2] == cardReader.keycardItemID)
             {
-                Debug.Log("Keycard used");
-                inventory.SubtractItem(item.itemData);
+                cardReader.ReadCard();
             }
         }
     }

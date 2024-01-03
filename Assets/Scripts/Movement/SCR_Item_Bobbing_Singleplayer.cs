@@ -68,7 +68,7 @@ public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
 
     void CompositePositionRotation()
     {
-        if (controller.height < 2 && controller.height > 0.5f)
+        if (controller.height < 2 && controller.height > 0.5f || controller.velocity.y != 0)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition, 1500f * Time.deltaTime);
         }
@@ -76,8 +76,6 @@ public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, bobPosition, (controller.velocity.magnitude > 0.1f ? controller.velocity.magnitude * Time.deltaTime : smoothing * Time.deltaTime));
         }
-
-        //TODO: Fix a somewhat smoother transition when switching standing state
 
         transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(eulerRotation), (controller.velocity.magnitude > 0.1 ? controller.velocity.magnitude * Time.deltaTime : smoothingRotation * Time.deltaTime));
     }
