@@ -5,7 +5,7 @@ using UnityEngine;
 public class SCR_Inventory_Visual : MonoBehaviour
 {
     [Header("Inventory Variables")]
-    [SerializeField] KeyCode inventoryKey = KeyCode.Space;
+    [SerializeField] KeyCode inventoryKey = KeyCode.Q;
     [SerializeField] GameObject inventoryPrefab;
     [SerializeField] GameObject backpackPrefab;
     [SerializeField] Transform startPosition;
