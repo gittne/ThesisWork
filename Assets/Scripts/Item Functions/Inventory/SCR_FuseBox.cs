@@ -6,6 +6,7 @@ public class SCR_FuseBox : MonoBehaviour
 {
     int fusesInserted;
     public bool canInsertFuse { get; private set; }
+    public bool isActivated { get; private set; }
     [SerializeField] int fusesLeftToInsert;
     [SerializeField] Light lightIndicator;
 
@@ -13,6 +14,7 @@ public class SCR_FuseBox : MonoBehaviour
     void Start()
     {
         lightIndicator.color = Color.red;
+        isActivated = false;
     }
 
     // Update is called once per frame
@@ -45,7 +47,7 @@ public class SCR_FuseBox : MonoBehaviour
         {
             lightIndicator.color = Color.green;
 
-            //Code that does something
+            isActivated = true;
         }
     }
 }
