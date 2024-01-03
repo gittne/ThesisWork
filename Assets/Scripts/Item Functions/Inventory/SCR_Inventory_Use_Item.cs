@@ -7,8 +7,8 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     SCR_Inventory_System_Singleplayer inventory;
     [Header("Related Equipment")]
     [SerializeField] SCR_Flashlight_Non_VR flashlight;
-    [SerializeField] SCR_FuseBox fuseBox;
-    [SerializeField] SCR_Key_Card_Reader[] cardReader;
+    [SerializeField] SCR_FuseBox[] fuseBoxes;
+    [SerializeField] SCR_Key_Card_Reader[] keyReaders;
     [Header("Item IDs")]
     [SerializeField] string[] itemID;
 
@@ -40,10 +40,16 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     {
         foreach (Inventory_Item item in inventory.inventory)
         {
-            if (itemID[1] == item.itemData.itemID && item.stackSize > 0 && fuseBox.canInsertFuse == true)
+            foreach (SCR_FuseBox fuseBox in fuseBoxes)
             {
-                fuseBox.FillFusebox();
-                inventory.SubtractItem(item.itemData);
+                if (fuseBox.canInsertFuse)
+                {
+                    if (itemID[1] == item.itemData.itemID && item.stackSize > 0 && fuseBox.canInsertFuse == true && fuseBox.isActivated == false)
+                    {
+                        fuseBox.FillFusebox();
+                        inventory.SubtractItem(item.itemData);
+                    }
+                }
             }
         }
     }
@@ -52,7 +58,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     {
         foreach (Inventory_Item item in inventory.inventory)
         {
-            foreach (SCR_Key_Card_Reader locks in cardReader)
+            foreach (SCR_Key_Card_Reader locks in keyReaders)
             {
                 if (locks.canReadCard)
                 {
