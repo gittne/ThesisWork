@@ -51,8 +51,6 @@ public class SCR_EnemyUtilities : MonoBehaviour
             distances.Add(Vector3.Distance(transform.position, p.transform.position));
         }
 
-        Debug.Log("In my hunt, i found this many players: " + players.Count);
-
         if(players.Count == 1) return players[0];
 
         if (distances[0] < distances[1]) return players[0];

@@ -19,7 +19,6 @@ public class SCR_EnemyDetector : MonoBehaviour
     {
         if (other.GetComponent<NuisanceEmitter>() != null && !nuisancesList.Contains(other.gameObject))
         {
-            Debug.Log("found a nuisance in my vicinity.");
             nuisancesList.Add(other.gameObject);
         }
     }
@@ -28,7 +27,6 @@ public class SCR_EnemyDetector : MonoBehaviour
     {
         if (other.GetComponent<NuisanceEmitter>() != null && nuisancesList.Contains(other.gameObject))
         {
-            Debug.Log("nuisance left.");
             nuisancesList.Remove(other.gameObject);
         }
     }
@@ -44,8 +42,6 @@ public class SCR_EnemyDetector : MonoBehaviour
         {
             totalNuisanceValue += item.GetComponent<NuisanceEmitter>().NuisanceStrength;
         }
-
-        Debug.Log("I'm adding this much rage grr: " + totalNuisanceValue + " from this many sources: " + nuisancesList.Count);
 
         brain.AlterRage(totalNuisanceValue);
     }
