@@ -138,6 +138,9 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     public void RageTick()
     {
+        if (enemyState == EnemyState.TELEPORTING) return;
+
+
         if (enemyState != EnemyState.HUNT) rageMeter--;
 
         if (rageMeter > 80) CommenceHunt();
@@ -180,5 +183,24 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         if (currentTargetPlayer != null)
             if(rageMeter < 80) enemyState = EnemyState.FOLLOW;
         else enemyState = EnemyState.ROAM;
+    }
+
+    public Vector3 RequestTeleport()
+    {
+        return agent.destination;
+    }
+
+    [ContextMenu("Teleport")]
+    void GoMirror()
+    {
+        enemyState = EnemyState.TELEPORTING;
+        SCR_MirrorManager mirrorManager = FindObjectOfType< SCR_MirrorManager>();
+        agent.destination = mirrorManager.FindClosestEntrance(transform.position);
+        
+    }
+
+    public void GoGoTeleport(Vector3 dest)
+    {
+        agent.Warp(dest);
     }
 }
