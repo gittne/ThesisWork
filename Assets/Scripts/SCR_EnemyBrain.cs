@@ -7,9 +7,6 @@ using UnityEngine.Rendering;
 
 public class SCR_EnemyBrain : SCR_EnemyUtilities
 {
-    [SerializeField] TextMeshProUGUI enemyStateText;
-
-
     SCR_EnemyVision vision;
     SCR_EnemyAnimator animator;
 
@@ -49,23 +46,14 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         if (enemyState == EnemyState.ROAM)
         {
-            enemyStateText.text = "ROAMING";
-            enemyStateText.color = Color.blue;
-
             Roam();
         }
         else if (enemyState == EnemyState.FOLLOW)
         {
-            enemyStateText.text = "FOLLLOWING";
-            enemyStateText.color = Color.yellow;
-
             Follow();
         }
         else if (enemyState == EnemyState.HUNT)
         {
-            enemyStateText.text = "HUNTING";
-            enemyStateText.color = Color.red;
-
             Hunt();
             HuntFumes();
         }
@@ -94,10 +82,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         if (Vector3.Distance(transform.position, currentTargetPlayer.transform.position) < 1) 
         { 
             FindNearestPlayer(); 
-            Debug.Log("GET THE PLAYER NOW"); 
         }
-        //else 
-            //Debug.Log("distance: " + Vector3.Distance(transform.position, currentTargetPlayer.transform.position));
     }
 
     public void CommenceRoam()
@@ -154,7 +139,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         int mirrorChance = Random.Range(0, 10);
         if (mirrorChance >= 7) 
         { 
-            GoMirror();
+            GoFindMirror();
             yield break;
         }
 
@@ -188,6 +173,9 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     public void ReceiveVisionInformation(GameObject playa)
     {
+        if (enemyState == EnemyState.KILLING)
+            return;
+
         currentTargetPlayer = playa;
 
         if (currentTargetPlayer != null)
@@ -196,7 +184,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     }
 
     [ContextMenu("Teleport")]
-    void GoMirror()
+    void GoFindMirror()
     {
         agent.speed = 4.5f;
 
@@ -207,7 +195,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         Debug.Log("heading for mirror");
     }
 
-    public void GoGoTeleport(Vector3 dest)
+    public void PerformMirrorWarp(Vector3 dest)
     {
         if (!wantsToTeleport)
         {
