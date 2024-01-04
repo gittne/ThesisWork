@@ -7,12 +7,10 @@ public class SCR_Key_Card_Reader : MonoBehaviour
     public bool isActivated { get; private set; }
     public bool canReadCard { get; private set; }
     public string keycardItemID;
-    [SerializeField] Light lightIndicator;
 
     // Start is called before the first frame update
     void Start()
     {
-        lightIndicator.color = Color.red;
         isActivated = false;
     }
 
@@ -42,7 +40,6 @@ public class SCR_Key_Card_Reader : MonoBehaviour
     {
         if (!isActivated)
         {
-            lightIndicator.color = Color.green;
             isActivated = true;
         }
     }
