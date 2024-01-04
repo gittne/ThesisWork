@@ -8,12 +8,10 @@ public class SCR_FuseBox : MonoBehaviour
     public bool canInsertFuse { get; private set; }
     public bool isActivated { get; private set; }
     [SerializeField] int fusesLeftToInsert;
-    [SerializeField] Light lightIndicator;
 
     // Start is called before the first frame update
     void Start()
     {
-        lightIndicator.color = Color.red;
         isActivated = false;
     }
 
@@ -45,8 +43,6 @@ public class SCR_FuseBox : MonoBehaviour
 
         if (fusesInserted == fusesLeftToInsert)
         {
-            lightIndicator.color = Color.green;
-
             isActivated = true;
         }
     }
