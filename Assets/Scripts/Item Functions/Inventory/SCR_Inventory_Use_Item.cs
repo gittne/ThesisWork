@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class SCR_Inventory_Use_Item : MonoBehaviour
 {
@@ -11,7 +14,10 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     [SerializeField] SCR_Key_Card_Reader[] keyReaders;
     [Header("Item IDs")]
     [SerializeField] string[] itemID;
-
+    [Header("Item Amount Text")]
+    [SerializeField] TextMeshProUGUI[] amountIndicators;
+    [Header("Icons")]
+    [SerializeField] Image[] itemIcons;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,24 +27,65 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ShowItemAmountLeft();
+        ShowItemIcons();
+    }
+
+    void ShowItemAmountLeft()
+    {
+        List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
+
+        foreach (Inventory_Item item in inventoryCopy)
+        {
+            if (itemID[0] == item.itemData.itemID && item.stackSize >= 0)
+            {
+                amountIndicators[0].text = item.stackSize.ToString();
+            }
+
+            if (itemID[1] == item.itemData.itemID && item.stackSize >= 0)
+            {
+                amountIndicators[1].text = item.stackSize.ToString();
+            }
+
+            if (itemID[2] == item.itemData.itemID && item.stackSize >= 0)
+            {
+                amountIndicators[2].text = item.stackSize.ToString();
+            }
+        }
+    }
+
+    void ShowItemIcons()
+    {
+        List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
+
+        Color alphaColor;
+
+        foreach (Inventory_Item item in inventoryCopy)
+        {
+            
+        }
     }
 
     public void UseBatteries()
     {
-        foreach (Inventory_Item item in inventory.inventory)
+        List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
+
+        foreach (Inventory_Item item in inventoryCopy)
         {
             if (itemID[0] == item.itemData.itemID && item.stackSize > 0)
             {
                 flashlight.RefillBatteries();
                 inventory.SubtractItem(item.itemData);
+                amountIndicators[0].text = item.stackSize.ToString();
             }
         }
     }
 
     public void UseFuzes()
     {
-        foreach (Inventory_Item item in inventory.inventory)
+        List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
+
+        foreach (Inventory_Item item in inventoryCopy)
         {
             foreach (SCR_FuseBox fuseBox in fuseBoxes)
             {
@@ -48,6 +95,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                     {
                         fuseBox.FillFusebox();
                         inventory.SubtractItem(item.itemData);
+                        amountIndicators[1].text = item.stackSize.ToString();
                     }
                 }
             }
@@ -56,7 +104,9 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
 
     public void UseKeycard()
     {
-        foreach (Inventory_Item item in inventory.inventory)
+        List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
+
+        foreach (Inventory_Item item in inventoryCopy)
         {
             foreach (SCR_Key_Card_Reader locks in keyReaders)
             {
