@@ -26,4 +26,16 @@ public class SCR_EnemyAnimator : MonoBehaviour
 
         animator.SetFloat("speed", speed);
     }
+
+    public void PlayKillAnimation()
+    {
+        StartCoroutine(KillAnimationCoroutine());
+    }
+
+    IEnumerator KillAnimationCoroutine()
+    {
+        animator.SetBool("kill", true);
+        yield return new WaitForSeconds(4);
+        animator.SetBool("kill", false);
+    }
 }

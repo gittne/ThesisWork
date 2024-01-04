@@ -50,8 +50,6 @@ public class SCR_EnemyVision : MonoBehaviour
             {
                 if (hit.transform.CompareTag("Player"))
                 {
-                    Debug.DrawRay(transform.position, 10 * dir, UnityEngine.Color.red, 2);
-
                     visiblePlayer = other.gameObject;
                     visionLossDelay = 2;
                     SendVisionInformation();

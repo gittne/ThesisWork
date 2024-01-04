@@ -67,9 +67,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
             enemyStateText.color = Color.red;
 
             Hunt();
+            HuntFumes();
         }
-
-        if (enemyState == EnemyState.HUNT) HuntFumes();
     }
 
     void Roam()
@@ -142,7 +141,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     public void RageTick()
     {
-        if (enemyState == EnemyState.TELEPORTING) return;
+        if (enemyState == EnemyState.TELEPORTING || enemyState == EnemyState.KILLING) return;
 
 
         if (enemyState != EnemyState.HUNT) rageMeter--;
@@ -219,5 +218,12 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         agent.Warp(dest);
         wantsToTeleport = false;
         CommenceRoam();
+    }
+
+    public void EnterKillingState()
+    {
+        enemyState = EnemyState.KILLING;
+        if(repositionCoroutine != null) StopCoroutine(repositionCoroutine);
+        agent.destination = transform.position;
     }
 }

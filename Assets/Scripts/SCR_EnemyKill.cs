@@ -7,15 +7,19 @@ using UnityEngine.UI;
 public class SCR_EnemyKill_Multiplayer : MonoBehaviour
 {
     SCR_EnemyBrain brain;
+    SCR_EnemyAnimator animator;
+    SCR_EnemyVision vision;
 
     private void Start()
     {
         brain = GetComponentInParent<SCR_EnemyBrain>();
+        animator = GetComponentInParent<SCR_EnemyAnimator>();
+
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             KillPlayers(other.gameObject);
         }
@@ -31,7 +35,16 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
         else
         {
             Debug.Log("singleplayer kill.");
+            StartCoroutine(KillPlayerCutScene());
             //player.transform.position = new Vector3(0, 0, 0);
         }
+    }
+
+    IEnumerator KillPlayerCutScene()
+    {
+        animator.PlayKillAnimation();
+        brain.EnterKillingState();
+        Debug.Log("KILL THEM");
+        yield return new WaitForSeconds(3);
     }
 }
