@@ -11,8 +11,9 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
 
     SCR_EnemyVision vision;
+    SCR_EnemyAnimator animator;
 
-    int roamRange = 30;
+    int roamRange = 20;
     public EnemyState enemyState;
 
     NavMeshAgent agent;
@@ -29,9 +30,12 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     Coroutine repositionCoroutine;
 
+    bool wantsToTeleport;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<SCR_EnemyAnimator>();
         vision = GetComponentInChildren<SCR_EnemyVision>();
         enemyState = EnemyState.ROAM;
 
@@ -148,6 +152,13 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     IEnumerator RepositionDelay()
     {
+        int mirrorChance = Random.Range(0, 10);
+        if (mirrorChance >= 7) 
+        { 
+            GoMirror();
+            yield break;
+        }
+
         agent.destination = RandomNavmeshPosition(roamRange);
 
         hasDestination = true;
@@ -185,22 +196,28 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         else enemyState = EnemyState.ROAM;
     }
 
-    public Vector3 RequestTeleport()
-    {
-        return agent.destination;
-    }
-
     [ContextMenu("Teleport")]
     void GoMirror()
     {
+        agent.speed = 4.5f;
+
+        wantsToTeleport = true;
         enemyState = EnemyState.TELEPORTING;
-        SCR_MirrorManager mirrorManager = FindObjectOfType< SCR_MirrorManager>();
+        SCR_MirrorManager mirrorManager = FindObjectOfType<SCR_MirrorManager>();
         agent.destination = mirrorManager.FindClosestEntrance(transform.position);
-        
+        Debug.Log("heading for mirror");
     }
 
     public void GoGoTeleport(Vector3 dest)
     {
+        if (!wantsToTeleport)
+        {
+            if (enemyState != EnemyState.FOLLOW || enemyState != EnemyState.HUNT) CommenceRoam();
+            return;
+        }
+
         agent.Warp(dest);
+        wantsToTeleport = false;
+        CommenceRoam();
     }
 }

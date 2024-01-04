@@ -6,14 +6,21 @@ using UnityEngine;
 public class SCR_MirrorManager : MonoBehaviour
 {
     List<GameObject> mirrors = new List<GameObject>();
+    List<GameObject> players = new List<GameObject>();
 
     public List<GameObject> Mirrors { get { return mirrors; } }
+    public List<GameObject> Players { get {  return players; } }
 
     void Start()
     {
         foreach(GameObject mirror in GameObject.FindGameObjectsWithTag("Mirror"))
         {
             mirrors.Add(mirror);
+        }
+
+        foreach (GameObject p in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            players.Add(p);
         }
     }
 
@@ -32,6 +39,8 @@ public class SCR_MirrorManager : MonoBehaviour
                 chosenIndex = i;
             }
         }
+
+        Debug.DrawLine(origin, mirrors[chosenIndex].transform.position, Color.white, 10);
 
         return mirrors[chosenIndex].transform.position;
     }

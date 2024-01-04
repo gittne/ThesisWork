@@ -17,19 +17,21 @@ public class SCR_MirrorLink : MonoBehaviour
         {
             Debug.Log("enemy entered my mirror");
             SCR_EnemyBrain brain = other.gameObject.GetComponent<SCR_EnemyBrain>();
-            FindClosestExitToTarget(brain.RequestTeleport(), other.gameObject);
+            FindClosestExitToTarget(other.gameObject);
         }
            
     }
 
-    public void FindClosestExitToTarget(Vector3 desiredDestination, GameObject enemy)
+    public void FindClosestExitToTarget(GameObject enemy)
     {
         float lowestDistance = 9999;
         int chosenIndex = 0;
 
+        Vector3 randomPlayerLocation = mirrorManager.Players[Random.Range(0, mirrorManager.Players.Count - 1)].transform.position;
+
         for (int i = 1; i < mirrorManager.Mirrors.Count; i++)
         {
-            float currentMirrorDistance = Vector3.Distance(mirrorManager.Mirrors[i].transform.position, desiredDestination);
+            float currentMirrorDistance = Vector3.Distance(mirrorManager.Mirrors[i].transform.position, randomPlayerLocation);
 
             if(currentMirrorDistance < 10)
             {
