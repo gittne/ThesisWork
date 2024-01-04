@@ -17,6 +17,8 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
     private void Awake() { Instance = this; }
 
 
+    private SCR_EnemyBrain monsterBrain;
+    public SCR_EnemyBrain MonsterBrain { get { return monsterBrain; } set {  monsterBrain = value; } }
 
     private void Start()
     {
@@ -30,7 +32,9 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
             yield return null;
         }
 
-        foreach(KeyValuePair<ulong, NetworkClient> player in NetworkManager.Singleton.ConnectedClients)
+        monsterBrain = GameObject.FindWithTag("Enemy").GetComponent<SCR_EnemyBrain>();
+
+        foreach (KeyValuePair<ulong, NetworkClient> player in NetworkManager.Singleton.ConnectedClients)
         {
             Debug.Log("added a player");
             players.Add(player.Value.PlayerObject);

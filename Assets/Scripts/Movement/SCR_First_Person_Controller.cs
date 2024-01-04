@@ -79,6 +79,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     float xRotation = 0;
 
+    SCR_MultiplayerOverlord overlord;
+
     void Start()
     {
         if (IsOwner)
@@ -115,8 +117,18 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             HandleFootsteps();
         }
 
-        if (Input.GetKeyDown(radioKey)) EnableRadio();
-        if (Input.GetKeyUp(radioKey)) DisableRadio();
+
+
+        if (overlord.MonsterBrain.enemyState != SCR_EnemyUtilities.EnemyState.HUNT && 
+            overlord.MonsterBrain.enemyState != SCR_EnemyUtilities.EnemyState.KILLING)
+        {
+            if (Input.GetKeyDown(radioKey)) EnableRadio();
+        }
+
+        if (Input.GetKeyUp(radioKey) || 
+            overlord.MonsterBrain.enemyState == SCR_EnemyUtilities.EnemyState.HUNT || 
+            overlord.MonsterBrain.enemyState == SCR_EnemyUtilities.EnemyState.KILLING) 
+                DisableRadio();
     }
 
     void MovementInput()
@@ -271,6 +283,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         
         VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
         InvokeRepeating("GoUpdatePosition", 0, 0.1f);
+        overlord = SCR_MultiplayerOverlord.Instance;
     }
 
     void GoUpdatePosition()

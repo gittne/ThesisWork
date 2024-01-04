@@ -47,6 +47,6 @@ public class SCR_MirrorLink : MonoBehaviour
         }
 
         //enemy.transform.position = mirrorManager.Mirrors[chosenIndex].transform.position;
-        enemy.GetComponent<SCR_EnemyBrain>().GoGoTeleport(mirrorManager.Mirrors[chosenIndex].transform.position);
+        enemy.GetComponent<SCR_EnemyBrain>().PerformMirrorWarp(mirrorManager.Mirrors[chosenIndex].transform.position);
     }
 }
