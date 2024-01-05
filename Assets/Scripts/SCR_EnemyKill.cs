@@ -33,6 +33,7 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
             //SCR_MultiplayerOverlord.Instance.KillAllPlayersServerRpc();
 
             player.GetComponent<SCR_First_Person_Controller>().PlayerDie();
+            brain.CommenceMultiplayerFinish();
         }
         else
         {

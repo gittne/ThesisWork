@@ -57,6 +57,10 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
             Hunt();
             HuntFumes();
         }
+        else if (enemyState == EnemyState.FINISHING)
+        {
+            Finishing();
+        }
     }
 
     void Roam()
@@ -173,7 +177,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     public void ReceiveVisionInformation(GameObject playa)
     {
-        if (enemyState == EnemyState.KILLING)
+        if (enemyState == EnemyState.KILLING || enemyState == EnemyState.FINISHING)
             return;
 
         currentTargetPlayer = playa;
@@ -213,5 +217,39 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         enemyState = EnemyState.KILLING;
         if(repositionCoroutine != null) StopCoroutine(repositionCoroutine);
         agent.destination = transform.position;
+    }
+
+    [ContextMenu("Finish")]
+    public void CommenceMultiplayerFinish()
+    {
+        enemyState = EnemyState.KILLING;
+
+        if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
+        agent.destination = transform.position;
+
+        agent.speed = 50;
+        agent.angularSpeed = 1000;
+        agent.velocity = agent.desiredVelocity;
+        agent.acceleration = 500;
+
+        GameObject[] players = new GameObject[2];
+        players[0] = SCR_MultiplayerOverlord.Instance.Players[0].gameObject;
+        players[1] = SCR_MultiplayerOverlord.Instance.Players[0].gameObject;
+
+        if(Vector3.Distance(transform.position, players[0].transform.position) < Vector3.Distance(transform.position, players[1].transform.position))
+        {
+            currentTargetPlayer = players[1];
+        }
+        else
+        {
+            currentTargetPlayer = players[0];
+        }
+
+        enemyState = EnemyState.FINISHING;
+    }
+
+    void Finishing()
+    {
+        agent.destination = currentTargetPlayer.transform.position;
     }
 }
