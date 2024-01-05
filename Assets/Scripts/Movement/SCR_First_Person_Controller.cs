@@ -118,17 +118,19 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         }
 
 
-
-        if (overlord.MonsterBrain.enemyState != SCR_EnemyUtilities.EnemyState.HUNT && 
-            overlord.MonsterBrain.enemyState != SCR_EnemyUtilities.EnemyState.KILLING)
+        if(overlord.MonsterBrain != null)
         {
-            if (Input.GetKeyDown(radioKey)) EnableRadio();
-        }
+            if (overlord.MonsterBrain.enemyState != SCR_EnemyUtilities.EnemyState.HUNT &&
+            overlord.MonsterBrain.enemyState != SCR_EnemyUtilities.EnemyState.KILLING)
+            {
+                if (Input.GetKeyDown(radioKey)) EnableRadio();
+            }
 
-        if (Input.GetKeyUp(radioKey) || 
-            overlord.MonsterBrain.enemyState == SCR_EnemyUtilities.EnemyState.HUNT || 
-            overlord.MonsterBrain.enemyState == SCR_EnemyUtilities.EnemyState.KILLING) 
-                DisableRadio();
+            if (Input.GetKeyUp(radioKey) ||
+                overlord.MonsterBrain.enemyState == SCR_EnemyUtilities.EnemyState.HUNT ||
+                overlord.MonsterBrain.enemyState == SCR_EnemyUtilities.EnemyState.KILLING)
+                    DisableRadio();
+        }
     }
 
     void MovementInput()
