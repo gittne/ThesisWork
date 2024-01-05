@@ -326,4 +326,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
         cnt.Teleport(new Vector3(0, 1, 0), Quaternion.identity, transform.localScale);
     }
+
+    public void PlayerDie()
+    {
+        canMove = false;
+    }
 }

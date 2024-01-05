@@ -187,4 +187,10 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
         characterController.Move(movementDirection * Time.deltaTime);
     }
+
+    public void PlayerDie()
+    {
+        canMove = false;
+        transform.position += new Vector3(0, 0.5f, 0);
+    }
 }
