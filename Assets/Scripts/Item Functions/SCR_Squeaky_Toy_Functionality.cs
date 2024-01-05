@@ -8,11 +8,13 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
     [SerializeField] Transform spawnPoint;
     [SerializeField] GameObject toyVisualObject;
     [SerializeField] GameObject itemHolder;
+    [SerializeField] CharacterController controller;
     public bool isHolding { get; private set; }
     [Header("Throwing Variables")]
     [SerializeField] float timeToWindUpThrow;
     [SerializeField] float initialVelocity;
     [SerializeField] float initialRotationVelocity;
+    float forwardSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,10 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
             toyVisualObject.SetActive(false);
             itemHolder.transform.localPosition = Vector3.Lerp(itemHolder.transform.localPosition, new Vector3(0f, 0f, 0.3f), 3f * Time.deltaTime);
         }
+
+        forwardSpeed = controller.transform.InverseTransformDirection(controller.velocity).z;
+
+        Debug.Log("Speed of character is: " + forwardSpeed);
     }
 
     public void BringUpToy()
@@ -59,7 +65,7 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
 
             Vector3 randomRotation = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
 
-            rigidbody.AddForce(spawnPoint.forward * initialVelocity, ForceMode.Impulse);
+            rigidbody.AddForce(spawnPoint.forward * initialVelocity + new Vector3(0, 0, forwardSpeed), ForceMode.Impulse);
             rigidbody.angularVelocity = randomRotation * initialRotationVelocity;
 
             isHolding = false;
