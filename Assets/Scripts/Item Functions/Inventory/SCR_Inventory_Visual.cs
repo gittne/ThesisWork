@@ -5,23 +5,19 @@ using UnityEngine;
 public class SCR_Inventory_Visual : MonoBehaviour
 {
     [Header("Inventory Variables")]
-    [SerializeField] KeyCode inventoryKey = KeyCode.Q;
+    [SerializeField] KeyCode inventoryKey = KeyCode.Tab;
     [SerializeField] GameObject inventoryPrefab;
     [SerializeField] GameObject backpackPrefab;
     [SerializeField] Transform startPosition;
     [SerializeField] Transform endPosition;
     public bool isInventoryActive { get; private set; } = false;
 
-    // Start is called before the first frame update
-    void Start()
+    public void ChangeInventoryState()
     {
-        
-    }
+        isInventoryActive = !isInventoryActive;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void InventoryManagement()

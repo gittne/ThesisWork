@@ -8,10 +8,12 @@ using TMPro;
 public class SCR_Inventory_Use_Item : MonoBehaviour
 {
     SCR_Inventory_System_Singleplayer inventory;
+    SCR_Inventory_Visual visualInventory;
     [Header("Related Equipment")]
     [SerializeField] SCR_Flashlight_Non_VR flashlight;
     [SerializeField] SCR_FuseBox[] fuseBoxes;
     [SerializeField] SCR_Key_Card_Reader[] keyReaders;
+    [SerializeField] SCR_Squeaky_Toy_Functionality squeakyToy;
     [Header("Item IDs")]
     [SerializeField] string[] itemID;
     [Header("Item Amount Text")]
@@ -22,13 +24,14 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     void Start()
     {
         inventory = GetComponent<SCR_Inventory_System_Singleplayer>();
+        visualInventory = GetComponent<SCR_Inventory_Visual>();
     }
 
     // Update is called once per frame
     void Update()
     {
         ShowItemAmountLeft();
-        ShowItemIcons();
+        //ShowItemIcons();
     }
 
     void ShowItemAmountLeft()
@@ -50,6 +53,11 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
             if (itemID[2] == item.itemData.itemID && item.stackSize >= 0)
             {
                 amountIndicators[2].text = item.stackSize.ToString();
+            }
+
+            if (itemID[3] == item.itemData.itemID && item.stackSize >= 0)
+            {
+                amountIndicators[3].text = item.stackSize.ToString();
             }
         }
     }
@@ -117,6 +125,22 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                         locks.ReadCard();
                     }
                 }
+            }
+        }
+    }
+
+    public void UseMrWhiskars()
+    {
+        List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
+
+        foreach (Inventory_Item item in inventoryCopy)
+        {
+            if (itemID[3] == item.itemData.itemID && item.stackSize > 0)
+            {
+                squeakyToy.BringUpToy();
+                inventory.SubtractItem(item.itemData);
+                amountIndicators[3].text = item.stackSize.ToString();
+                visualInventory.ChangeInventoryState();
             }
         }
     }

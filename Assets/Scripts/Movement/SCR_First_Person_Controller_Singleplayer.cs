@@ -31,7 +31,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] float gravity = 30f;
 
     [Header("Inventory Variables")]
-    SCR_Inventory_Visual inventory;
+    [SerializeField] SCR_Inventory_Visual visualInventory;
 
     [Header("Mouse Look Variables")]
     [SerializeField, Range(1, 10)] float xLookSensitivity = 2f;
@@ -73,14 +73,13 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        inventory = GetComponent<SCR_Inventory_Visual>();
     }
 
     void Update()
     {
-        inventory.InventoryManagement();
+        visualInventory.InventoryManagement();
 
-        if (canMove && inventory.isInventoryActive == false)
+        if (canMove && visualInventory.isInventoryActive == false)
         {
             MovementInput();
 

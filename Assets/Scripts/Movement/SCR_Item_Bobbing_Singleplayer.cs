@@ -6,6 +6,8 @@ public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
     [SerializeField] SCR_First_Person_Controller_Singleplayer controllerScript;
+    [Header("Which hand is holding")]
+    [SerializeField] bool isInLeftHand;
     [Header("Bobbing Values")]
     float curveSpeed;
     [SerializeField] Vector3 travelLimit = Vector3.one * 0.025f;
@@ -32,7 +34,15 @@ public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        if (!isInLeftHand)
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            horizontalInput = -Input.GetAxis("Horizontal");
+        }
+        
         verticalInput = Input.GetAxis("Vertical");
 
         horizontalVerticalInput.x = horizontalInput;

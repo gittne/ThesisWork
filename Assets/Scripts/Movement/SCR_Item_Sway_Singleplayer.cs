@@ -9,6 +9,8 @@ public class SCR_Item_Sway_Singleplayer : MonoBehaviour
     //Base code provided by "Plai": https://www.youtube.com/watch?v=QIVN-T-1QBE
 
     [SerializeField] SCR_Inventory_Visual inventory;
+    [Header("Which hand is holding")]
+    [SerializeField] bool isInLeftHand;
     float mouseX;
     float mouseY;
     [Header("Sway Rotation Variables")]
@@ -32,7 +34,15 @@ public class SCR_Item_Sway_Singleplayer : MonoBehaviour
     void Update()
     {
         //These floats take the input from the mouse when moving it
-        mouseX = Input.GetAxisRaw("Mouse X");
+        if (!isInLeftHand)
+        {
+            mouseX = Input.GetAxisRaw("Mouse X");
+        }
+        else
+        {
+            mouseX = -Input.GetAxisRaw("Mouse X");
+        }
+        
         mouseY = Input.GetAxisRaw("Mouse Y");
 
         Sway();
@@ -76,7 +86,7 @@ public class SCR_Item_Sway_Singleplayer : MonoBehaviour
             transform.localRotation = Quaternion.Slerp(transform.localRotation, inventoryRotation, swaySmoothing * Time.deltaTime);
 
             // Apply damping to the movement
-            transform.localPosition = Vector3.Lerp(transform.localPosition, inventoryPosition, lerpSpeed * 2f * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, inventoryPosition, 2f * Time.deltaTime);
         }
     }
 }
