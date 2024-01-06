@@ -2646,6 +2646,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 543727430645089839}
   toyVisualObject: {fileID: 1587999620}
   itemHolder: {fileID: 804747298}
+  controller: {fileID: 1396549417782461583}
   timeToWindUpThrow: 0.1
   initialVelocity: 100
   initialRotationVelocity: 0.02
@@ -7263,6 +7264,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4441646076315739872, guid: d9bc31ba1fe4ebf4f903f523bc260ac1,
+        type: 3}
+      propertyPath: animationName
+      value: Squeakytoy
+      objectReference: {fileID: 0}
     - target: {fileID: 6219985547268321921, guid: d9bc31ba1fe4ebf4f903f523bc260ac1,
         type: 3}
       propertyPath: m_LocalPosition.x

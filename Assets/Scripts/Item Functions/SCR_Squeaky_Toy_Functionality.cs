@@ -41,14 +41,11 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
         }
 
         forwardSpeed = controller.transform.InverseTransformDirection(controller.velocity).z;
-
-        Debug.Log("Speed of character is: " + forwardSpeed);
     }
 
     public void BringUpToy()
     {
         isHolding = true;
-        Debug.Log("Bringing up toy");
     }
 
     IEnumerator ThrowingToy()
@@ -65,7 +62,7 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
 
             Vector3 randomRotation = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
 
-            rigidbody.AddForce(spawnPoint.forward * initialVelocity + new Vector3(0, 0, forwardSpeed), ForceMode.Impulse);
+            rigidbody.AddForce(spawnPoint.forward * initialVelocity + new Vector3(0, 0, forwardSpeed * 7.5f), ForceMode.Impulse);
             rigidbody.angularVelocity = randomRotation * initialRotationVelocity;
 
             isHolding = false;
