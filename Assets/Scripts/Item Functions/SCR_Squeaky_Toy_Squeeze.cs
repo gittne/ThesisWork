@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class SCR_Squeaky_Toy_Squeeze : MonoBehaviour
 {
-    Animator animator;
     Rigidbody objectRigidbody;
-    [SerializeField] float rayDistance;
+    [Header("Sound Varaibles")]
+    AudioSource soundSource;
+    [SerializeField] AudioClip squeezeSound;
+    [Header("Velocity Varaibles")]
     [SerializeField] float minimumActivationVelocity;
+    [Header("Animation Varaibles")]
+    [SerializeField] Animator animator;
+    [SerializeField] float animationSpeed;
     [SerializeField] string animationName;
+    [Header("Ray Varaibles")]
+    [SerializeField] float rayDistance;
     [SerializeField] Transform rayTransform;
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
         objectRigidbody = GetComponent<Rigidbody>();
 
+        soundSource = GetComponent<AudioSource>();
+
         animator.enabled = true;
+
+        animator.speed = animationSpeed;
     }
 
     // Update is called once per frame
@@ -26,8 +36,6 @@ public class SCR_Squeaky_Toy_Squeeze : MonoBehaviour
         if (IsGrounded() && objectRigidbody.velocity.magnitude > minimumActivationVelocity)
         {
             animator.SetTrigger(animationName);
-
-            Debug.Log("Has touched the ground");
         }
 
         Debug.DrawRay(rayTransform.position, transform.forward * rayDistance, Color.red);
