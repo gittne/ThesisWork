@@ -64,8 +64,8 @@ public class SCR_Flashlight_Non_VR : MonoBehaviour
             batteryLife -= Time.deltaTime;
         }
 
-        spotLight.intensity = (batteryLife / maxBattery) + minimumLightStrength;
-        lightBulb.intensity = (batteryLife / maxBattery) + minimumLightStrength;
+        spotLight.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
+        lightBulb.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
     }
 
     public void RefillBatteries()
