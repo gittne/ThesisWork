@@ -10,7 +10,6 @@ public class SCR_Squeaky_Toy_Squeeze : MonoBehaviour
     [SerializeField] float minimumActivationVelocity;
     [SerializeField] string animationName;
     [SerializeField] Transform rayTransform;
-    bool hasTouchedGround;
 
     // Start is called before the first frame update
     void Start()
@@ -18,27 +17,17 @@ public class SCR_Squeaky_Toy_Squeeze : MonoBehaviour
         animator = GetComponent<Animator>();
         objectRigidbody = GetComponent<Rigidbody>();
 
-        animator.enabled = false;
+        animator.enabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!hasTouchedGround && IsGrounded() && objectRigidbody.velocity.magnitude > minimumActivationVelocity)
+        if (IsGrounded() && objectRigidbody.velocity.magnitude > minimumActivationVelocity)
         {
-            hasTouchedGround = true;
-
-            animator.enabled = true;
-
-            animator.Play(animationName);
+            animator.SetTrigger(animationName);
 
             Debug.Log("Has touched the ground");
-        }
-        else
-        {
-            hasTouchedGround = false;
-
-            animator.enabled = false;
         }
 
         Debug.DrawRay(rayTransform.position, transform.forward * rayDistance, Color.red);
