@@ -16,40 +16,48 @@ public class SCR_Animated_Interactable : MonoBehaviour
     [SerializeField] AudioClip SoundFX;
     [SerializeField] SCR_Key_Card_Reader keyReader;
 
+    bool nokeyCard;
     private void Start()
     {
         animator = GetComponent<Animator>();
         SoundSource = GetComponent<AudioSource>();
         openSpeed = animator.speed;
         canInteract = true;
-        if (keyReader == null)
-        {
-            return;
-        }
+        
+        
     }
 
     public void SwitchAnimationState()
     {
-        if (keyReader.isActivated)
+        if(keyReader != null)
         {
-            lockState = LockState.Unlocked;
+            if (keyReader.isActivated)
+            {
+                lockState = LockState.Unlocked;
+            }
+            else
+            {
+                lockState = LockState.Locked;
+            }
         }
-        else
-        {
-            lockState = LockState.Locked;
-        }
-
+        
         if(canInteract && lockState == LockState.Unlocked)
+        {
+            
             StartCoroutine(ChangeState());
+        }
+            
     }
 
     IEnumerator ChangeState()
     {
+
+        Debug.Log("Animation playing");
         animator.SetBool("Open", isOpen);
         canInteract = false;
         SoundSource.PlayOneShot(SoundFX);
         yield return new WaitForSeconds(openSpeed);
-
+        
         isOpen = !isOpen;
         canInteract = true;
     }
