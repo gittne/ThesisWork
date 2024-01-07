@@ -7,7 +7,7 @@ public class SCR_Animated_Interactable : MonoBehaviour
 {
     enum LockState { Locked, Unlocked}
     [SerializeField] LockState lockState;
-    Animator animator;
+    [SerializeField] Animator animator;
 
     
     float openSpeed;
@@ -16,10 +16,12 @@ public class SCR_Animated_Interactable : MonoBehaviour
     [SerializeField] AudioClip SoundFX;
     [SerializeField] SCR_Key_Card_Reader keyReader;
 
-    bool nokeyCard;
+    
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        if (animator == null)
+            animator = GetComponent<Animator>();
+        
         SoundSource = GetComponent<AudioSource>();
         openSpeed = animator.speed;
         canInteract = true;
