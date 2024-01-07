@@ -135,7 +135,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
 
         foreach (Inventory_Item item in inventoryCopy)
         {
-            if (itemID[3] == item.itemData.itemID && item.stackSize > 0)
+            if (itemID[3] == item.itemData.itemID && item.stackSize > 0 && !squeakyToy.isHolding)
             {
                 squeakyToy.BringUpToy();
                 inventory.SubtractItem(item.itemData);
