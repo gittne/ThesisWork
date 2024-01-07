@@ -9,7 +9,7 @@ public class SCR_Animated_Interactable : MonoBehaviour
     [SerializeField] LockState lockState;
     Animator animator;
 
-    bool isOpen;
+    
     float openSpeed;
     bool canInteract;
     AudioSource SoundSource;
@@ -29,6 +29,7 @@ public class SCR_Animated_Interactable : MonoBehaviour
 
     public void SwitchAnimationState()
     {
+        
         if(keyReader != null)
         {
             if (keyReader.isActivated)
@@ -53,12 +54,13 @@ public class SCR_Animated_Interactable : MonoBehaviour
     {
 
         Debug.Log("Animation playing");
-        animator.SetBool("Open", isOpen);
+        animator.SetTrigger("playAnim");
+        
         canInteract = false;
         SoundSource.PlayOneShot(SoundFX);
         yield return new WaitForSeconds(openSpeed);
         
-        isOpen = !isOpen;
+        
         canInteract = true;
     }
 }
