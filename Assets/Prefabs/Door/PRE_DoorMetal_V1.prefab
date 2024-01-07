@@ -431,7 +431,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.010630633, y: 0.023363, z: 0.02128489}
   m_Center: {x: 0.005188989, y: -0.0004288562, z: 0.008266771}
@@ -543,4 +543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoundFX: {fileID: 0}
+  lockState: 1
+  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
+  keyReader: {fileID: 0}
