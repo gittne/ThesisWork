@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SCR_Light_Indicator))]
 public class SCR_FuseBox : MonoBehaviour
 {
-    int fusesInserted;
+    public int fusesInserted { get; private set; }
     public bool canInsertFuse { get; private set; }
     public bool isActivated { get; private set; }
-    [SerializeField] int fusesLeftToInsert;
+    [Range(1, 3)] [SerializeField] int fusesLeftToInsert;
+    [SerializeField] GameObject[] fuseObjects;
 
-    // Start is called before the first frame update
     void Start()
     {
         isActivated = false;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        for (int i = 0; i < fusesLeftToInsert; i++)
+        {
+            fuseObjects[i].SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,6 +40,11 @@ public class SCR_FuseBox : MonoBehaviour
     public void FillFusebox()
     {
         fusesInserted++;
+
+        for (int i = 0; i < fusesInserted; i++)
+        {
+            fuseObjects[i].SetActive(true);
+        }
 
         if (fusesInserted == fusesLeftToInsert)
         {
