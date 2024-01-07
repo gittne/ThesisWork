@@ -26,17 +26,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b5a4a75839299ef4c889ab9fe0766239,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36.470547
+      value: 6.7098093
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5a4a75839299ef4c889ab9fe0766239,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.062214
+      value: 0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5a4a75839299ef4c889ab9fe0766239,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.5677476
+      value: 14.32923
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5a4a75839299ef4c889ab9fe0766239,
         type: 3}
@@ -218,7 +218,7 @@ Animator:
   m_GameObject: {fileID: 2403376468490878434}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: da90c52bbf5b1e048b4a13e451ac2668, type: 2}
+  m_Controller: {fileID: 9100000, guid: 36baa3c1e1ad9584894d4a456018fa52, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -338,6 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockState: 1
+  animator: {fileID: 0}
   SoundFX: {fileID: 8300000, guid: 2e24e8b5b8e2f4945acb4dadc03a5082, type: 3}
   keyReader: {fileID: 0}
 --- !u!1 &3813980975470062864 stripped
@@ -377,7 +378,7 @@ Animator:
   m_GameObject: {fileID: 3813980975470062864}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 36fe9675b0c5a6f4884f485c21bd900b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 53c5c706158ce6d4aaa36f1ebd7f2e13, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -497,5 +498,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockState: 1
+  animator: {fileID: 0}
   SoundFX: {fileID: 8300000, guid: 2e24e8b5b8e2f4945acb4dadc03a5082, type: 3}
   keyReader: {fileID: 0}
