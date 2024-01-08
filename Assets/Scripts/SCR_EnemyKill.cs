@@ -19,9 +19,15 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Player"))
         {
             KillPlayers(other.gameObject);
+
+            if (brain.enemyState == SCR_EnemyUtilities.EnemyState.FINISHING)
+            {
+                SCR_MultiplayerOverlord.Instance.RespawnPlayers();
+            }
         }
     }
 
@@ -35,24 +41,27 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
             Debug.Log("multiplayer kill.");
             //SCR_MultiplayerOverlord.Instance.KillAllPlayersServerRpc();
 
-            player.GetComponent<SCR_First_Person_Controller>().PlayerDie();
-            brain.CommenceMultiplayerFinish();
+            player.GetComponent<SCR_First_Person_Controller>().CommencePlayerDeath(player);
+            StartCoroutine(KillPlayerCutScene(true));
         }
         else
         {
             Debug.Log("singleplayer kill.");
-            player.GetComponent<SCR_First_Person_Controller_Singleplayer>().PlayerDie(player);
-            StartCoroutine(KillPlayerCutScene());
-            //player.transform.position = new Vector3(0, 0, 0);
+            player.GetComponent<SCR_First_Person_Controller_Singleplayer>().CommencePlayerDeath(player);
+            StartCoroutine(KillPlayerCutScene(false));
         }
     }
 
-    IEnumerator KillPlayerCutScene()
+    IEnumerator KillPlayerCutScene(bool isMultiplayer)
     {
         animator.PlayKillAnimation();
         brain.EnterKillingState();
         Debug.Log("KILL THEM");
         yield return new WaitForSeconds(5);
-        brain.CommenceRoam();
+
+        if(isMultiplayer)
+            brain.CommenceMultiplayerFinish();
+        else
+            brain.CommenceRoam();
     }
 }

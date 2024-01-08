@@ -51,4 +51,12 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
             cntr.PlayerDeathClientRpc();
         }
     }
+
+    public void RespawnPlayers()
+    {
+        foreach(NetworkObject player in players)
+        {
+            player.gameObject.GetComponent<SCR_First_Person_Controller>().GoRespawn();
+        }
+    }
 }
