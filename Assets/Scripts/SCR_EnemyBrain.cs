@@ -252,4 +252,11 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     {
         agent.destination = currentTargetPlayer.transform.position;
     }
+
+    public void ResetMonster()
+    {
+        transform.position = new Vector3(0, 0, 0);
+        enemyState = EnemyState.ROAM;
+        rageMeter = 0;
+    }
 }
