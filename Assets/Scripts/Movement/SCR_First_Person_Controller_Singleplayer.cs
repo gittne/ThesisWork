@@ -40,8 +40,18 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField, Range(1, 100)] float lowerLookLimit = 80f;
 
     [Header("Crouching Variables")]
-    [SerializeField] float crouchHeight;
+    [SerializeField] float crouchingHeight;
+    public float crouchHeight
+    {
+        get { return crouchingHeight; }
+        private set { crouchingHeight = value; }
+    }
     [SerializeField] float standingHeight;
+    public float standHeight
+    {
+        get { return standingHeight; }
+        private set { standingHeight = value; }
+    }
     [SerializeField] float timeToCrouch;
     public float crouchTime 
     {
@@ -151,7 +161,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
         float timeElapsed = 0;
 
-        float targetHeight = isCrouching ? standingHeight : crouchHeight;
+        float targetHeight = isCrouching ? standingHeight : crouchingHeight;
 
         float currentHeight = characterController.height;
 

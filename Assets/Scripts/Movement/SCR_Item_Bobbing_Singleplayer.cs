@@ -78,7 +78,7 @@ public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
 
     void CompositePositionRotation()
     {
-        if (controller.height < 2 && controller.height > 0.5f || controller.velocity.y != 0)
+        if (controller.height < controllerScript.standHeight && controller.height > controllerScript.crouchHeight || controller.velocity.y != 0)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition, 1500f * Time.deltaTime);
         }

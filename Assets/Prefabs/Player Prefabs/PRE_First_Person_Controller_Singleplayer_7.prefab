@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 71026604282183501}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.45, z: 0}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4284,7 +4284,7 @@ Transform:
   m_GameObject: {fileID: 5770800773536432383}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.925, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4312,7 +4312,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 1.85
   m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -4444,8 +4444,8 @@ MonoBehaviour:
   yLookSensitivity: 2
   upperLookLimit: 80
   lowerLookLimit: 80
-  crouchHeight: 0.75
-  standingHeight: 2
+  crouchingHeight: 0.75
+  standingHeight: 1.85
   timeToCrouch: 0.35
   crouchCenter: {x: 0, y: 0.2, z: 0}
   standingCenter: {x: 0, y: 0, z: 0}
