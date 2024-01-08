@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 5918557750194434245}
   - component: {fileID: 1785045228797753178}
   - component: {fileID: 6277701633100008737}
+  - component: {fileID: 1034000341358242192}
   m_Layer: 7
   m_Name: PRE_Fuse_Collectable
   m_TagString: Untagged
@@ -265,3 +266,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1034000341358242192
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706674644872591746}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.25, y: 1.25, z: 1.25}
+  m_Center: {x: 0, y: 0.3, z: 0}
