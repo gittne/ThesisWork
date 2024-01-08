@@ -87,12 +87,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688338927844307699}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0782, z: -0.0045}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6623768517913329407}
+  m_Father: {fileID: 7241869200811962181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2455921916345274222
 GameObject:
@@ -371,6 +371,7 @@ Transform:
   - {fileID: 6261795464806522345}
   - {fileID: 2485197310057039166}
   - {fileID: 8253448596436955249}
+  - {fileID: 6374406667158084129}
   m_Father: {fileID: 6623768517913329407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1408870900733836355
@@ -591,6 +592,7 @@ GameObject:
   - component: {fileID: 3512992027207738618}
   - component: {fileID: 7322561167753855765}
   - component: {fileID: 388557389514651547}
+  - component: {fileID: 8696720191265456170}
   m_Layer: 7
   m_Name: Pre_Squeaky_Toy_Cat
   m_TagString: Untagged
@@ -612,7 +614,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7241869200811962181}
-  - {fileID: 6374406667158084129}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -20.16, y: 180, z: 0}
 --- !u!114 &3803949914504342621
@@ -636,7 +637,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8306587584287216110}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 7.5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -759,12 +760,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d28b168e80f83c45b3a8dec6c13c531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hittableMask:
+    serializedVersion: 2
+    m_Bits: 16
   squeezeSound: {fileID: 8300000, guid: c2f6d9dea73f4244ab95ad131ff57b1d, type: 3}
-  minimumActivationVelocity: 1
+  resetTimer: 0.085
+  minimumActivationVelocity: 0.75
   animator: {fileID: 1408870900733836355}
   animationSpeed: 7.5
   animationName: SqueezeTrigger
-  rayDistance: 0.046
+  xRayDistance: 0.11
+  yRayDistance: 0.2
+  zRayDistance: 0.1
   rayTransform: {fileID: 6374406667158084129}
 --- !u!82 &388557389514651547
 AudioSource:
@@ -862,6 +869,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &8696720191265456170
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8306587584287216110}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.25, y: 0.3, z: 0.25}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &8654229418277161799
 GameObject:
   m_ObjectHideFlags: 0

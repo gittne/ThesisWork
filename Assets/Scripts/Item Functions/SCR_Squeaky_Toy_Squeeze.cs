@@ -5,9 +5,12 @@ using UnityEngine;
 public class SCR_Squeaky_Toy_Squeeze : MonoBehaviour
 {
     Rigidbody objectRigidbody;
+    [SerializeField] LayerMask hittableMask;
     [Header("Sound Varaibles")]
     AudioSource soundSource;
     [SerializeField] AudioClip squeezeSound;
+    [SerializeField] float resetTimer;
+    bool canMakeSound;
     [Header("Velocity Varaibles")]
     [SerializeField] float minimumActivationVelocity;
     [Header("Animation Varaibles")]
@@ -15,11 +18,13 @@ public class SCR_Squeaky_Toy_Squeeze : MonoBehaviour
     [SerializeField] float animationSpeed;
     [SerializeField] string animationName;
     [Header("Ray Varaibles")]
-    [SerializeField] float rayDistance;
+    [SerializeField] float xRayDistance;
+    [SerializeField] float yRayDistance;
+    [SerializeField] float zRayDistance;
     [SerializeField] Transform rayTransform;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         objectRigidbody = GetComponent<Rigidbody>();
 
@@ -28,6 +33,8 @@ public class SCR_Squeaky_Toy_Squeeze : MonoBehaviour
         animator.enabled = true;
 
         animator.speed = animationSpeed;
+
+        canMakeSound = true;
     }
 
     // Update is called once per frame
@@ -36,21 +43,40 @@ public class SCR_Squeaky_Toy_Squeeze : MonoBehaviour
         if (IsGrounded() && objectRigidbody.velocity.magnitude > minimumActivationVelocity)
         {
             animator.SetTrigger(animationName);
+
+            Debug.Log("Hitting ground");
+
+            if (canMakeSound)
+            {
+                StartCoroutine(PlaySound());
+            }
         }
 
-        Debug.DrawRay(rayTransform.position, transform.forward * rayDistance, Color.red);
-        Debug.DrawRay(rayTransform.position, -transform.forward * rayDistance, Color.red);
-        Debug.DrawRay(rayTransform.position, transform.right * rayDistance, Color.red);
-        Debug.DrawRay(rayTransform.position, -transform.right * rayDistance, Color.red);
+        Debug.DrawRay(rayTransform.position, transform.forward * zRayDistance, Color.red);
+        Debug.DrawRay(rayTransform.position, -transform.forward * zRayDistance, Color.red);
+        Debug.DrawRay(rayTransform.position, transform.right * xRayDistance, Color.red);
+        Debug.DrawRay(rayTransform.position, -transform.right * xRayDistance, Color.red);
+        Debug.DrawRay(rayTransform.position, transform.up * yRayDistance, Color.red);
+        Debug.DrawRay(rayTransform.position, -transform.up * yRayDistance, Color.red);
     }
 
     private bool IsGrounded()
     {
         RaycastHit hit;
 
-        return Physics.Raycast(rayTransform.position, -transform.forward, out hit, rayDistance)
-            || Physics.Raycast(rayTransform.position, transform.forward, out hit, rayDistance) 
-            || Physics.Raycast(rayTransform.position, transform.right, out hit, rayDistance)
-            || Physics.Raycast(rayTransform.position, -transform.right, out hit, rayDistance);
+        return Physics.Raycast(rayTransform.position, -transform.forward, out hit, zRayDistance, hittableMask)
+            || Physics.Raycast(rayTransform.position, transform.forward, out hit, zRayDistance, hittableMask) 
+            || Physics.Raycast(rayTransform.position, transform.right, out hit, xRayDistance, hittableMask)
+            || Physics.Raycast(rayTransform.position, -transform.right, out hit, xRayDistance, hittableMask)
+            || Physics.Raycast(rayTransform.position, transform.up, out hit, yRayDistance, hittableMask)
+            || Physics.Raycast(rayTransform.position, -transform.up, out hit, yRayDistance, hittableMask);
+    }
+
+    IEnumerator PlaySound()
+    {
+        soundSource.PlayOneShot(squeezeSound);
+        canMakeSound = false;
+        yield return new WaitForSeconds(resetTimer);
+        canMakeSound = true;
     }
 }
