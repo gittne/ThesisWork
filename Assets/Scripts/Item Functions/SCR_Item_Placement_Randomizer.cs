@@ -19,7 +19,9 @@ public class SCR_Item_Placement_Randomizer : MonoBehaviour
         {
             int randomNumber = Random.Range(0, prefabs.Length);
 
-            Instantiate(prefabs[randomNumber], spawnpoints);
+            float randomRotation = Random.Range(0f, 360f);
+
+            Instantiate(prefabs[randomNumber], spawnpoints.position, new Quaternion(0, randomRotation, 0, 0));
         }
     }
 }

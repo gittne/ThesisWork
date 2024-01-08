@@ -22,6 +22,7 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
     void Start()
     {
         animator.enabled = false;
+        toyVisualObject.SetActive(false);
     }
 
     // Update is called once per frame

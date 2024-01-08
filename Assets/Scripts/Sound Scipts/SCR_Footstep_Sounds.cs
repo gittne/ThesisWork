@@ -5,14 +5,14 @@ using UnityEngine;
 public class SCR_Footstep_Sounds : MonoBehaviour
 {
     [Header("Footstep Variables")]
-    [SerializeField] float stepSpeed;
+    [SerializeField] float stepThreshold;
     [SerializeField] AudioSource audioSource = default;
     [SerializeField] AudioClip[] carpetClips = default;
     [SerializeField] AudioClip[] woodClips = default;
     [SerializeField] AudioClip[] stoneClips = default;
     float footstepTimer = 0.2f;
     float timerActivationFloat;
-    float footStepThreshold;
+    float characterSpeed;
     GameObject characterObject;
     CharacterController playerController;
     Rigidbody monsterRigidbody;
@@ -32,15 +32,20 @@ public class SCR_Footstep_Sounds : MonoBehaviour
     {
         if (playerController != null)
         {
-            footStepThreshold = new Vector2(playerController.velocity.x, playerController.velocity.z).magnitude;
+            characterSpeed = new Vector2(playerController.velocity.x, playerController.velocity.z).magnitude;
+
+            if (characterSpeed > 5f)
+            {
+                characterSpeed = new Vector2(playerController.velocity.x, playerController.velocity.z).magnitude / 1.3f;
+            }
         }
 
         if (monsterRigidbody != null)
         {
-            footStepThreshold = new Vector2(monsterRigidbody.velocity.x, monsterRigidbody.velocity.z).magnitude;
+            characterSpeed = new Vector2(monsterRigidbody.velocity.x, monsterRigidbody.velocity.z).magnitude;
         }
 
-        if (footStepThreshold > 0)
+        if (characterSpeed > 0)
         {
             PlayFootsteps();
         }
@@ -53,15 +58,12 @@ public class SCR_Footstep_Sounds : MonoBehaviour
             return;
         }
         
-        if (footStepThreshold > 1f)
+        if (characterSpeed > 0.5f)
         {
             footstepTimer -= Time.deltaTime;
         }
 
-        if (footStepThreshold > 0.001f)
-        {
-            timerActivationFloat = stepSpeed / footStepThreshold;
-        }
+        timerActivationFloat = stepThreshold / characterSpeed;
 
         if (footstepTimer <= 0)
         {
