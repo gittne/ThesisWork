@@ -198,9 +198,23 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         characterController.Move(movementDirection * Time.deltaTime);
     }
 
-    public void PlayerDie()
+    public void PlayerDie(GameObject monster)
     {
         canMove = false;
-        transform.position += new Vector3(0, 0.5f, 0);
+        transform.position += new Vector3(0, 0.35f, 0);
+        StartCoroutine(Fall(monster));
+    }
+
+    IEnumerator Fall(GameObject monster)
+    {
+        yield return new WaitForSeconds(2);
+        while(cameraHolder.transform.position.y > 0.15f)
+        {
+
+            cameraHolder.LookAt(monster.transform.position + new Vector3(0, 1.5f, 0));
+            cameraHolder.transform.position -= new Vector3(0, 0.01f, 0);
+            yield return new WaitForSeconds(0.000000001f);
+            Debug.Log("FALL");
+        }
     }
 }

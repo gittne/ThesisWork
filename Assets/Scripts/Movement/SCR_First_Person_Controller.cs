@@ -332,5 +332,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     public void PlayerDie()
     {
         canMove = false;
+        transform.position += new Vector3(0, 0.5f, 0);
     }
 }
