@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4077170917986973807}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm.bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6987377770971344459}
   - component: {fileID: 943410694417147264}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Glove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 6652672445346971932}
   - component: {fileID: 1316629470245352235}
   - component: {fileID: 5083790572953652795}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PRE_Flashlight_Flatscreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7349114288621058732}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RingF.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 439647426592323925}
   - component: {fileID: 837471210669477271}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CatCravat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +561,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9050111014829399186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Item Holder Parent Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5988073381928811266}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,7 +625,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3614999256716880116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RingF.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 4550676000410504738}
   - component: {fileID: 2698810259051514509}
   - component: {fileID: 3471793084056366419}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VHSFilter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +910,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2750496417402616095}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MiddleF01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -942,7 +942,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5233152020806024297}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CatRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -978,7 +978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6330148771877729898}
   - component: {fileID: 282758753860390759}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CatNose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1067,7 +1067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8693991531554083057}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexF.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1099,7 +1099,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7633919125675964726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MiddleF03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1131,7 +1131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1129777729925218019}
   - component: {fileID: 2456056105351544763}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Glove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1190,7 +1190,7 @@ GameObject:
   - component: {fileID: 2348871662931963698}
   - component: {fileID: 3049963935747105727}
   - component: {fileID: 2412090341822689152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1210,6 +1210,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6825969413371310636}
   - {fileID: 7423527658316454301}
   - {fileID: 9050111014829399186}
   - {fileID: 1310934694057017984}
@@ -1257,7 +1258,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 247
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1293,7 +1294,8 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras: []
+  m_Cameras:
+  - {fileID: 5865172760943410805}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -1349,7 +1351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4351667764017435877}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexF.00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1382,7 +1384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5811789070924993839}
   - component: {fileID: 9054395747870687831}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1490,7 +1492,7 @@ GameObject:
   - component: {fileID: 2371311321584706892}
   - component: {fileID: 4654291141392161573}
   - component: {fileID: 6294117422665280656}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1594,7 +1596,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8915504800345784067}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PinkieF.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1625,7 +1627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2695939446581926566}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1657,7 +1659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 40439471462991733}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RingF.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1689,7 +1691,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3230449570258356200}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RingF.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1720,7 +1722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 486175595995499358}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1751,7 +1753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2412955259378981055}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexF.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1783,7 +1785,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5264887435063569096}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PinkieF.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1815,7 +1817,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5943936432439038470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GloveRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1847,7 +1849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1302757075993336996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RingF.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1881,7 +1883,7 @@ GameObject:
   - component: {fileID: 966714650685352772}
   - component: {fileID: 3360925598845457246}
   - component: {fileID: 3290227350717807789}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2082,7 +2084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016010934398972384}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: SqueakyToyCat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2118,7 +2120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5635576567407056301}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PinkieF.00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2151,7 +2153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2279440786810107970}
   - component: {fileID: 5995594295406039562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Post Processing Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2199,7 +2201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3170714885739083922}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MiddleF01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2231,7 +2233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7257059537193978845}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2263,7 +2265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 568551627776612490}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RingF.00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2296,7 +2298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2506730382703907794}
   - component: {fileID: 2423099898077405131}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2430,7 +2432,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -2474,7 +2476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 50469876183303470}
   - component: {fileID: 7289402548527661610}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Glove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2579,7 +2581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7171087860408276217}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GloveRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2611,7 +2613,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7435253473647215320}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MiddleF02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2643,7 +2645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 517267742674191344}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CatRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2675,7 +2677,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7571412324835720778}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PinkieF.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2711,7 +2713,7 @@ GameObject:
   - component: {fileID: 673333924653726595}
   - component: {fileID: 1121902064055384673}
   - component: {fileID: 8687805327271844888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PRE_First_Person_Controller_Singleplayer_6
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2756,7 +2758,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.4
+  m_Radius: 0.1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -2887,7 +2889,7 @@ MonoBehaviour:
   yLookSensitivity: 2
   upperLookLimit: 80
   lowerLookLimit: 80
-  crouchHeight: 0.5
+  crouchingHeight: 0
   standingHeight: 2
   timeToCrouch: 0.25
   crouchCenter: {x: 0, y: 0.5, z: 0}
@@ -2911,7 +2913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fbcb33b3487834bbe71d27f85a0cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepSpeed: 1.15
+  stepThreshold: 0
   audioSource: {fileID: 673333924653726595}
   carpetClips:
   - {fileID: 8300000, guid: 9a3342473bf768244bed940934decd73, type: 3}
@@ -2936,7 +2938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 704107502753078575}
   - component: {fileID: 4449342041159184286}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3041,7 +3043,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9021452521404922719}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Squeaky Toys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3073,7 +3075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1744411276193079236}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexF.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3104,7 +3106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2789516514983965095}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3135,7 +3137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9133755496541602942}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CatHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3432,7 +3434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8014596779652307994}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexF.00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3852,7 +3854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9221193291109337335}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PinkieF.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4138,7 +4140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5438567580466093171}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MiddleF02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4170,7 +4172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7597486061711300728}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4202,7 +4204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7624949389932316166}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Inventory Starting Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4354,7 +4356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2261043206094932632}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CatSqueeze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4520,7 +4522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8361449297776119926}
   - component: {fileID: 9086545557158141981}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CatEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4609,7 +4611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8120522590591895981}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4750,7 +4752,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8879235103430142667}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PinkieF.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4782,7 +4784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8311779205629449682}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexF.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4947,7 +4949,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2363813898888599012}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CatLeg.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4978,7 +4980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6145656868960183820}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PRE_Glove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5010,7 +5012,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1552388687644931828}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5176,7 +5178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3188752712453605553}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MiddleF.00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5208,7 +5210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7423527658316454301}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Item Holder Parent Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5460,7 +5462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 473153501964174135}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PinkieF.00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5493,7 +5495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8535244957600998558}
   - component: {fileID: 7791504337239277938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Glove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5598,7 +5600,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9053142080575830615}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PinkieF.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5898,7 +5900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7694856002172202176}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MiddleF03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5929,7 +5931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6567254785202568822}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5964,7 +5966,7 @@ GameObject:
   - component: {fileID: 7124555616486877506}
   - component: {fileID: 5761361742466377007}
   - component: {fileID: 5545626401741380081}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Interact Text Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6064,7 +6066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 199555395825381210}
   - component: {fileID: 844195594604899427}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CatBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6153,7 +6155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 141214661838231718}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RingF.00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6185,7 +6187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1059534529982693581}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CatLeg.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6216,7 +6218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4124828422313064922}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm.bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6252,7 +6254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4972203851215408829}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PRE_Glove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6286,7 +6288,7 @@ GameObject:
   - component: {fileID: 1907132598097050525}
   - component: {fileID: 2110849499960571100}
   - component: {fileID: 1897402762133931398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6403,7 +6405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6600362958320855164}
   - component: {fileID: 4862726619056259155}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Item Holder Bobbing Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6456,7 +6458,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8937257078324142753}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexF.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6487,7 +6489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8506012430668041863}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MiddleF.00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6521,7 +6523,7 @@ GameObject:
   - component: {fileID: 706665288796707215}
   - component: {fileID: 6506579225120143648}
   - component: {fileID: 372020124609364126}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Interaction Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6537,7 +6539,7 @@ RectTransform:
   m_GameObject: {fileID: 8679957340422334346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6390354706331195874}
@@ -6577,15 +6579,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: E
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 450933879c75ac646a46a60d129ad58c, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 450933879c75ac646a46a60d129ad58c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291940817
+  m_fontColor: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6653,7 +6655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5994726915981569864}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Inventory Finishing Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6675,6 +6677,163 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4784318395099945815}
   m_LocalEulerAnglesHint: {x: 0, y: -32.818, z: 0}
+--- !u!1 &8874120593511590357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6825969413371310636}
+  - component: {fileID: 5865172760943410805}
+  - component: {fileID: 1863832380886701161}
+  - component: {fileID: 2070879814698998860}
+  - component: {fileID: 6578985945476656064}
+  m_Layer: 8
+  m_Name: CameraTopLayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6825969413371310636
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874120593511590357}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4784318395099945815}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &5865172760943410805
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874120593511590357}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 20.78461
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.1
+  far clip plane: 1000
+  field of view: 60.000004
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &1863832380886701161
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874120593511590357}
+  m_Enabled: 1
+--- !u!114 &2070879814698998860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874120593511590357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 1
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
+--- !u!114 &6578985945476656064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874120593511590357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3baddd7088dca7b40ad88d9abbf793a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionKey: 101
+  mask:
+    serializedVersion: 2
+    m_Bits: 128
+  playerCamera: {fileID: 5865172760943410805}
+  interactionMaxLength: 2
+  interactTextCanvas: {fileID: 7908195056654512156}
 --- !u!1 &8913894291481575929
 GameObject:
   m_ObjectHideFlags: 0
@@ -6684,7 +6843,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2006449576678572624}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexF.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6716,7 +6875,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8172689818196107449}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RingF.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6749,7 +6908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 850524085403030465}
   - component: {fileID: 1238498583999576358}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Item Holder Bobbing Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
