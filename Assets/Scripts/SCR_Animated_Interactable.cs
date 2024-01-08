@@ -30,14 +30,11 @@ public class SCR_Animated_Interactable : MonoBehaviour
         SoundSource = GetComponent<AudioSource>();
         openSpeed = animator.speed;
         canInteract = true;
-        
-        
     }
 
-    public void SwitchAnimationState()
+    private void Update()
     {
-        
-        if(keyReader != null)
+        if (keyReader != null)
         {
             if (keyReader.isActivated)
             {
@@ -48,19 +45,18 @@ public class SCR_Animated_Interactable : MonoBehaviour
                 lockState = LockState.Locked;
             }
         }
-        
+    }
+
+    public void SwitchAnimationState()
+    {
         if(canInteract && lockState == LockState.Unlocked)
         {
-            
             StartCoroutine(ChangeState());
         }
-            
     }
 
     IEnumerator ChangeState()
     {
-
-        Debug.Log("Animation playing");
         animator.SetTrigger("playAnim");
         
         canInteract = false;
