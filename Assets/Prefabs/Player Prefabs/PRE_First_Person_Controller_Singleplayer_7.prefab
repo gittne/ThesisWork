@@ -547,7 +547,6 @@ GameObject:
   - component: {fileID: 6013691217612381441}
   - component: {fileID: 3542189724422854202}
   - component: {fileID: 1090367618812711778}
-  - component: {fileID: 8297767672476921188}
   m_Layer: 8
   m_Name: CameraTopLayer
   m_TagString: Untagged
@@ -673,25 +672,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &8297767672476921188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511416859704452653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3baddd7088dca7b40ad88d9abbf793a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionKey: 101
-  mask:
-    serializedVersion: 2
-    m_Bits: 128
-  playerCamera: {fileID: 6013691217612381441}
-  interactionMaxLength: 2
-  interactTextCanvas: {fileID: 6882051871632368894}
 --- !u!1 &527885258299754183
 GameObject:
   m_ObjectHideFlags: 0
@@ -4313,8 +4293,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: E
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 450933879c75ac646a46a60d129ad58c, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 450933879c75ac646a46a60d129ad58c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
