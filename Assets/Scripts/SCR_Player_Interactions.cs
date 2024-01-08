@@ -10,6 +10,7 @@ public class SCR_Player_Interactions : MonoBehaviour
     [SerializeField] Camera playerCamera;
     [SerializeField] float interactionMaxLength;
     [SerializeField] GameObject interactTextCanvas;
+    [SerializeField] GameObject keyLockTextCanvas;
 
     void Update()
     {
@@ -30,33 +31,52 @@ public class SCR_Player_Interactions : MonoBehaviour
 
         if(Physics.Raycast(playerLookOrigin, playerCamera.transform.forward, out hit, interactionMaxLength, mask)) 
         {
-            interactTextCanvas.SetActive(true);
+            GameObject obj = hit.collider.gameObject;
 
-            if (Input.GetKeyDown(interactionKey))
+            if (obj.TryGetComponent(out SCR_Inventory_Pickup_Singeplayer pickup))
             {
-                GameObject obj = hit.collider.gameObject;
+                interactTextCanvas.SetActive(true);
 
-                if (obj.TryGetComponent(out SCR_Inventory_Pickup_Singeplayer pickup))
+                if (Input.GetKeyDown(interactionKey))
                 {
                     pickup.OnHandlePickupItem();
                 }
+            }
 
-                if (obj.TryGetComponent(out SCR_Animated_Interactable anim))
+            if (obj.TryGetComponent(out SCR_Animated_Interactable anim))
+            {
+                if (anim.lockStatus == SCR_Animated_Interactable.LockState.Locked)
+                {
+                    keyLockTextCanvas.SetActive(true);
+                }
+                else
+                {
+                    interactTextCanvas.SetActive(true);
+                }
+
+                if (Input.GetKeyDown(interactionKey))
                 {
                     anim.SwitchAnimationState();
                 }
+            }
 
-                if (obj.TryGetComponent(out SCR_Switch_Interactable inter))
+            if (obj.TryGetComponent(out SCR_Switch_Interactable inter))
+            {
+                if (!inter.IsEnabled)
                 {
-                    if (!inter.IsEnabled)
-                    {
-                        inter.Interact();
-                    }
+                    interactTextCanvas.SetActive(true);
+                    
+                }
+
+                if (Input.GetKeyDown(interactionKey))
+                {
+                    anim.SwitchAnimationState();
                 }
             }
         }
         else
         {
+            keyLockTextCanvas.SetActive(false);
             interactTextCanvas.SetActive(false);
         }
     }

@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class SCR_Animated_Interactable : MonoBehaviour
 {
-    enum LockState { Locked, Unlocked}
+    public enum LockState { Locked, Unlocked}
     [SerializeField] LockState lockState;
+    public LockState lockStatus
+    {
+        get { return lockState; }
+        private set { lockState = value; }
+    }
     [SerializeField] Animator animator;
 
     
