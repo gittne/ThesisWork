@@ -73,8 +73,8 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void RespawnPlayersServerRpc()
     {
-        if (!IsHost) return;
         Debug.Log("RESPAWN WORK");
+        monsterBrain.ResetMonster();
 
         foreach(NetworkObject player in players)
         {
