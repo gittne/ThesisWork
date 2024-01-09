@@ -191,6 +191,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     void GoFindMirror()
     {
         SCR_MirrorManager mirrorManager = FindObjectOfType<SCR_MirrorManager>();
+        if (mirrorManager == null) return;
 
         if (mirrorManager.Mirrors.Count == 0) return;
 
