@@ -340,6 +340,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     public void CommencePlayerDeath(GameObject monster)
     {
+        isDead = true;
+
         if (!IsOwner)
             return;
 
@@ -348,7 +350,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     IEnumerator DieAndGoToSpawn(GameObject monster)
     {
-        isDead = true;
         canMove = false;
         transform.position += new Vector3(0, 0.35f, 0);
 
@@ -397,5 +398,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         }
 
         canMove = true;
+        isDead = false;
     }
 }
