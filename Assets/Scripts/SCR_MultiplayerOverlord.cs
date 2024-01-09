@@ -70,6 +70,7 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
             BackToMenuClientRpc();
     }
 
+    [ClientRpc]
     public void BackToMenuClientRpc()
     {
         SceneManager.LoadScene(0);

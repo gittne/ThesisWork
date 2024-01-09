@@ -78,4 +78,17 @@ public class RelayMaker : MonoBehaviour
             Debug.Log(e);
         }
     }
+
+    public void LeaveRelay()
+    {
+        try
+        {
+            NetworkManager.Singleton.Shutdown();
+            VivoxPlayer.Instance.Logout();
+        }
+        catch(RelayServiceException e)
+        {
+
+        }
+    }
 }
