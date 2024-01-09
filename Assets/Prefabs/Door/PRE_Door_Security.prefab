@@ -127,6 +127,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b92368b25b321694caeb045adc2f20e8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5791410869872536326}
     - targetCorrespondingSourceObject: {fileID: -8068073526183931155, guid: b92368b25b321694caeb045adc2f20e8,
         type: 3}
       insertIndex: -1
@@ -147,6 +151,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1800666425940795394}
+    - targetCorrespondingSourceObject: {fileID: -8068073526183931155, guid: b92368b25b321694caeb045adc2f20e8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 699860704182484026}
   m_SourcePrefab: {fileID: 100100000, guid: b92368b25b321694caeb045adc2f20e8, type: 3}
 --- !u!1 &626749446564801217 stripped
 GameObject:
@@ -188,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockState: 1
+  animator: {fileID: 0}
   SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
   keyReader: {fileID: 0}
 --- !u!95 &6729138446186747940
@@ -328,3 +337,57 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &699860704182484026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626749446564801217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -1964682195
+    DestinationState: 1217618454
+    TransitionDuration: 0.14187175
+    TriggerNameHash: 1423123024
+    TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1217618454
+    DestinationState: -1964682195
+    TransitionDuration: 0.35456574
+    TriggerNameHash: 1423123024
+    TransitionIndex: 0
+  m_Animator: {fileID: 6729138446186747940}
+--- !u!1 &1475968205082396029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b92368b25b321694caeb045adc2f20e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1781974727774451756}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-5791410869872536326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475968205082396029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
