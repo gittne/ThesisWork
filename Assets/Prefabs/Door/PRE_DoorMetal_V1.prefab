@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6566783701460312819}
-  - component: {fileID: -2407842629989220533}
-  - component: {fileID: 5158562855309485127}
   - component: {fileID: 1445873730943078302}
   m_Layer: 0
   m_Name: PRE_DoorMetal_V1
@@ -35,41 +33,6 @@ Transform:
   - {fileID: 3076163601055584160}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
---- !u!95 &-2407842629989220533
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1158849502084887741}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5158562855309485127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1158849502084887741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TransitionStateInfoList: []
-  m_Animator: {fileID: -2407842629989220533}
 --- !u!114 &1445873730943078302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +65,7 @@ GameObject:
   - component: {fileID: 2833977673412734750}
   - component: {fileID: 7127887074345766645}
   m_Layer: 0
-  m_Name: Dooerframe
+  m_Name: Doorframe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,6 +319,7 @@ GameObject:
   - component: {fileID: 7513274753051363248}
   - component: {fileID: 1573805216285270475}
   - component: {fileID: 3914782433355119965}
+  - component: {fileID: 6254499470195284430}
   m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
@@ -605,3 +569,31 @@ MonoBehaviour:
   animator: {fileID: 0}
   SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
   keyReader: {fileID: 0}
+--- !u!114 &6254499470195284430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7806512012686491739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -1964682195
+    DestinationState: 1217618454
+    TransitionDuration: 0.14187175
+    TriggerNameHash: 1423123024
+    TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1217618454
+    DestinationState: -1964682195
+    TransitionDuration: 0.35456574
+    TriggerNameHash: 1423123024
+    TransitionIndex: 0
+  m_Animator: {fileID: 4781071657143775951}

@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 7289088003824139006}
   - component: {fileID: 4076595586967919343}
   - component: {fileID: 6964017777082865586}
+  - component: {fileID: 5137449882981979248}
   m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
@@ -348,6 +349,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5137449882981979248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279069584212119884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -1964682195
+    DestinationState: 1217618454
+    TransitionDuration: 0.14187175
+    TriggerNameHash: 1423123024
+    TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1217618454
+    DestinationState: -1964682195
+    TransitionDuration: 0.35456574
+    TriggerNameHash: 1423123024
+    TransitionIndex: 0
+  m_Animator: {fileID: 7289088003824139006}
 --- !u!1 &6276160489273603122
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,8 +387,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7331723340642059716}
   - component: {fileID: 7352707504179468858}
-  - component: {fileID: -7775677862353360796}
-  - component: {fileID: -4755479520847921524}
   - component: {fileID: 2610302984413797019}
   m_Layer: 0
   m_Name: PRE_DoorWood_V1
@@ -405,41 +432,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.01944529, y: 0.0065714377, z: 0.02290447}
   m_Center: {x: 0.0001109475, y: -0.00014376447, z: 0.01131037}
---- !u!95 &-7775677862353360796
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6276160489273603122}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-4755479520847921524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6276160489273603122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TransitionStateInfoList: []
-  m_Animator: {fileID: -7775677862353360796}
 --- !u!114 &2610302984413797019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,7 +464,7 @@ GameObject:
   - component: {fileID: 8190780961224325189}
   - component: {fileID: 4263232712644475666}
   m_Layer: 0
-  m_Name: Dooerframe
+  m_Name: Doorframe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
