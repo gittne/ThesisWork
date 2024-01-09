@@ -5,7 +5,7 @@ using Unity.Netcode;
 
 public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 {
-    [SerializeField] SCR_Inventory_Visual inventory;
+    [SerializeField] SCR_Inventory_Visual_Multiplayer inventory;
 
     [Header("Light Sources")]
     [SerializeField] Light spotLight;
