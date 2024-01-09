@@ -93,8 +93,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     {
         currentTargetPlayer = null;
 
-        agent.speed = 3;
-        agent.acceleration = 30;
+        agent.speed = 2.5f;
+        agent.acceleration = 15;
         enemyState = EnemyState.ROAM;
         if(repositionCoroutine != null) StopCoroutine(repositionCoroutine);
         hasDestination = false;
@@ -104,7 +104,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     {
         hasDestination = false;
 
-        agent.speed = 3.5f;
+        agent.speed = 3f;
         agent.acceleration = 30;
         currentTargetPlayer = target;
         enemyState = EnemyState.FOLLOW;
@@ -234,7 +234,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
         agent.destination = transform.position;
 
-        agent.speed = 50;
+        agent.speed = 15;
         agent.angularSpeed = 1000;
         agent.velocity = agent.desiredVelocity;
         agent.acceleration = 500;

@@ -85,11 +85,14 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
     Image fader;
 
+    Vector3 respawnLocation;
+
     void Awake()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         fader = GameObject.FindGameObjectWithTag("BlackFade").GetComponent<Image>();
+        respawnLocation = GameObject.FindWithTag("RespawnLocation").transform.position;
     }
 
     void Update()
@@ -234,7 +237,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
             yield return new WaitForSeconds(0.001f);
         }
 
-        transform.position = new Vector3(0, 1, 0);
+        transform.position = respawnLocation;
         cameraHolder.transform.position += new Vector3(0, 1.7f, 0);
         transform.rotation = new Quaternion(0, 0, 0, 0);
         cameraHolder.transform.rotation = new Quaternion(0, 0, 0, 0);
