@@ -380,13 +380,17 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         cameraHolder.transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
-    public void GoRespawn()
+    [ClientRpc()]
+    public void GoRespawnClientRpc()
     {
+        if (!IsOwner) return;
+
         StartCoroutine(Respawn());
     }
 
     IEnumerator Respawn()
     {
+        yield return new WaitForSeconds(1);
         Color c = fader.color;
 
         for (int i = 0; i < 101; i++)

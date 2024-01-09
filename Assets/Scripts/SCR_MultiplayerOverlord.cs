@@ -67,16 +67,18 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         Debug.Log("Number of dead players: " + numberOfDeadPlayers + " and number of players is: " + players.Count);
 
         if (numberOfDeadPlayers >= players.Count)
-            RespawnPlayers();
+            RespawnPlayersServerRpc();
     }
 
-    public void RespawnPlayers()
+    [ServerRpc(RequireOwnership = false)]
+    public void RespawnPlayersServerRpc()
     {
+        if (!IsHost) return;
         Debug.Log("RESPAWN WORK");
 
         foreach(NetworkObject player in players)
         {
-            player.gameObject.GetComponent<SCR_First_Person_Controller>().GoRespawn();
+            player.gameObject.GetComponent<SCR_First_Person_Controller>().GoRespawnClientRpc();
         }
     }
 }
