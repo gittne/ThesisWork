@@ -5,6 +5,8 @@ using Unity.Netcode;
 
 public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 {
+    [SerializeField] SCR_Inventory_Visual inventory;
+
     [Header("Light Sources")]
     [SerializeField] Light spotLight;
     [SerializeField] Light lightBulb;
@@ -12,7 +14,13 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     [Header("Audio")]
     [SerializeField] AudioClip onSound;
     [SerializeField] AudioClip offSound;
+    [SerializeField] AudioClip reloadSound;
     [SerializeField] AudioSource audioSource;
+
+    [Header("Battery Variables")]
+    [SerializeField] float batteryLife;
+    [SerializeField] float minimumLightStrength;
+    float maxBattery;
 
     bool isEnabled;
 
@@ -26,6 +34,7 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         spotLight.enabled = false;
         lightBulb.enabled = false;
         isEnabled = false;
+        maxBattery = batteryLife;
     }
 
     void Update()
@@ -41,6 +50,8 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
             isEnabled = !isEnabled;
         }
+
+        BatteryStrength();
     }
 
     public void ChangeFlashlightState(bool currentState)
@@ -57,6 +68,23 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
             spotLight.enabled = false;
             lightBulb.enabled = false;
         }
+    }
+
+    void BatteryStrength()
+    {
+        if (isEnabled && batteryLife >= 0)
+        {
+            batteryLife -= Time.deltaTime;
+        }
+
+        spotLight.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
+        lightBulb.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
+    }
+
+    public void RefillBatteries()
+    {
+        batteryLife = maxBattery;
+        audioSource.PlayOneShot(reloadSound);
     }
 
     [ServerRpc(RequireOwnership = false)]

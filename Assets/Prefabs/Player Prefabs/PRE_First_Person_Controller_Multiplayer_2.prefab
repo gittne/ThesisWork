@@ -633,8 +633,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5445138783020416832}
   - component: {fileID: 8501136300626968791}
-  - component: {fileID: 7636098038654690485}
   - component: {fileID: 9051598226621829629}
+  - component: {fileID: 8441884591902106517}
   m_Layer: 8
   m_Name: PRE_Inventory
   m_TagString: Untagged
@@ -656,7 +656,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6624867916600440511}
-  m_Father: {fileID: 6896344574158656509}
+  m_Father: {fileID: 7777797363389520731}
   m_LocalEulerAnglesHint: {x: 0, y: -32.818, z: 0}
 --- !u!114 &8501136300626968791
 MonoBehaviour:
@@ -671,38 +671,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
---- !u!114 &7636098038654690485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719395644653204921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1420a826030b3454089d8dff8e4c6087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashlight: {fileID: 0}
-  fuseBoxes:
-  - {fileID: 0}
-  keyReaders:
-  - {fileID: 0}
-  squeakyToy: {fileID: 189007655893380298}
-  itemID:
-  - Item_1
-  - Item_2
-  - Item_3
-  - Item_4
-  amountIndicators:
-  - {fileID: 2550809360468629920}
-  - {fileID: 3892522534770682640}
-  - {fileID: 8041279121773059162}
-  - {fileID: 8378778491935327254}
-  itemIcons:
-  - {fileID: 6105263923517501455}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &9051598226621829629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,6 +688,33 @@ MonoBehaviour:
   backpackPrefab: {fileID: 2052493908429543203}
   startPosition: {fileID: 848819379840520405}
   endPosition: {fileID: 7969610873278408839}
+--- !u!114 &8441884591902106517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719395644653204921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d1cc5cfbae82042a023a9092b8cca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashlight: {fileID: 3449950483392923591}
+  fuseBoxes: []
+  keyReaders: []
+  squeakyToy: {fileID: 1792565658975344588}
+  itemID:
+  - Item_1
+  - Item_2
+  - Item_3
+  - Item_4
+  amountIndicators:
+  - {fileID: 2550809360468629920}
+  - {fileID: 3892522534770682640}
+  - {fileID: 8041279121773059162}
+  - {fileID: 8378778491935327254}
+  itemIcons: []
 --- !u!1 &812483264471799484
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,11 +895,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2612184544841297073}
-  - {fileID: 7969610873278408839}
-  - {fileID: 848819379840520405}
-  - {fileID: 5445138783020416832}
-  - {fileID: 7858050259082330799}
-  - {fileID: 2569438476566410188}
   - {fileID: 7777797363389520731}
   - {fileID: 6522148408209038563}
   m_Father: {fileID: 1930603868691801793}
@@ -1241,7 +1231,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 519581439787636578}
-  m_Father: {fileID: 6896344574158656509}
+  m_Father: {fileID: 7777797363389520731}
   m_LocalEulerAnglesHint: {x: -114.058, y: 0, z: 0}
 --- !u!1 &1467813226650777114
 GameObject:
@@ -1719,7 +1709,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6896344574158656509}
+  m_Father: {fileID: 7777797363389520731}
   m_LocalEulerAnglesHint: {x: 0, y: -32.818, z: 0}
 --- !u!1 &1952268360102445317
 GameObject:
@@ -1781,7 +1771,12 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5445138783020416832}
+  - {fileID: 2569438476566410188}
+  - {fileID: 7858050259082330799}
+  - {fileID: 7969610873278408839}
+  - {fileID: 848819379840520405}
   m_Father: {fileID: 6896344574158656509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1973074613681228005
@@ -1873,7 +1868,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6896344574158656509}
+  m_Father: {fileID: 7777797363389520731}
   m_LocalEulerAnglesHint: {x: 0, y: -32.818, z: 0}
 --- !u!1 &2052493908429543203
 GameObject:
@@ -2438,11 +2433,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af7329fc31827584b90d375e1d2db7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
   spotLight: {fileID: 9158619324979824551}
   lightBulb: {fileID: 3804534403738455017}
   onSound: {fileID: 8300000, guid: 522e7b30b761a62499ec3852d200646a, type: 3}
   offSound: {fileID: 8300000, guid: b8f2354c44cfc9f4fbf024b71cbeaac0, type: 3}
+  reloadSound: {fileID: 0}
   audioSource: {fileID: 2080865250652424521}
+  batteryLife: 0
+  minimumLightStrength: 0
 --- !u!1 &2506048472106136871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2761,7 +2760,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7636098038654690485}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SCR_Inventory_Use_Item, Assembly-CSharp
         m_MethodName: UseKeycard
         m_Mode: 1
@@ -3942,7 +3941,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6671640645601091036}
-  m_Father: {fileID: 6896344574158656509}
+  m_Father: {fileID: 7777797363389520731}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4404973685932513594
 GameObject:
@@ -5883,7 +5882,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7636098038654690485}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SCR_Inventory_Use_Item, Assembly-CSharp
         m_MethodName: UseMrWhiskars
         m_Mode: 1
@@ -6150,7 +6149,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7636098038654690485}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SCR_Inventory_Use_Item, Assembly-CSharp
         m_MethodName: UseFuzes
         m_Mode: 1
@@ -6812,7 +6811,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7636098038654690485}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SCR_Inventory_Use_Item, Assembly-CSharp
         m_MethodName: UseBatteries
         m_Mode: 1
@@ -6900,9 +6899,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2200849808694221780}
-  - component: {fileID: 189007655893380298}
   - component: {fileID: 3103008139068828286}
   - component: {fileID: 1274033100381082163}
+  - component: {fileID: 1792565658975344588}
   m_Layer: 8
   m_Name: Arm
   m_TagString: Untagged
@@ -6927,30 +6926,6 @@ Transform:
   - {fileID: 2847376357265424913}
   m_Father: {fileID: 519581439787636578}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &189007655893380298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8836557077738790761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cff7346bc569e2449e6044c72ccfd95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toyPrefab: {fileID: 8306587584287216110, guid: 12e0f1637bc40464da36d180c85f5cc0,
-    type: 3}
-  spawnPoint: {fileID: 0}
-  toyVisualObject: {fileID: 8535123152646644697}
-  itemHolder: {fileID: 8836557077738790761}
-  controller: {fileID: 6325361218952426608}
-  animator: {fileID: 3103008139068828286}
-  animationTrigger: ThrowingLeft
-  timeToWindUpThrow: 0.25
-  timeToBringArmDown: 0.175
-  initialVelocity: 80
-  initialRotationVelocity: 0.02
 --- !u!95 &3103008139068828286
 Animator:
   serializedVersion: 5
@@ -6998,6 +6973,30 @@ MonoBehaviour:
   yMinMovement: 0.2
   yMaxMovement: 0.1
   inventoryPosition: {x: 0, y: -0.3, z: 0}
+--- !u!114 &1792565658975344588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836557077738790761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717b11c674b90e3409c5f4dc502482e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toyPrefab: {fileID: 8306587584287216110, guid: 12e0f1637bc40464da36d180c85f5cc0,
+    type: 3}
+  spawnPoint: {fileID: 6896344574158656509}
+  toyVisualObject: {fileID: 8535123152646644697}
+  itemHolder: {fileID: 8836557077738790761}
+  controller: {fileID: 6325361218952426608}
+  animator: {fileID: 3103008139068828286}
+  animationTrigger: ThrowingLeft
+  timeToWindUpThrow: 0.25
+  timeToBringArmDown: 0.175
+  initialVelocity: 80
+  initialRotationVelocity: 0.02
 --- !u!1 &8959873094196005219
 GameObject:
   m_ObjectHideFlags: 0
