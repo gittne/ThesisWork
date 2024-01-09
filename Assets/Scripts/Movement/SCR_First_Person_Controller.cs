@@ -17,8 +17,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     //Base code provided by "Comp-3 Interactive": https://www.youtube.com/watch?v=Ew4l5RPltG8&list=PLfhbBaEcybmgidDH3RX_qzFM0mIxWJa21
 
     public bool canMove { get; private set; } = true;
+    public float crouchTimer { get; private set; }
     public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
-    public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKey(crouchKey);
+    public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKeyDown(crouchKey);
 
     [SerializeField] Transform cameraTransform;
     [SerializeField] GameObject playerCamera;
@@ -41,6 +42,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [SerializeField] float crouchSpeed = 1f;
     [SerializeField] float gravity = 30f;
 
+    [Header("Inventory Variables")]
+    [SerializeField] SCR_Inventory_Visual visualInventory;
+
     [Header("Mouse Look Variables")]
     [SerializeField, Range(1, 10)] float xLookSensitivity = 2f;
     [SerializeField, Range(1, 10)] float yLookSensitivity = 2f;
@@ -48,9 +52,24 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [SerializeField, Range(1, 100)] float lowerLookLimit = 80f;
 
     [Header("Crouching Variables")]
-    [SerializeField] float crouchHeight;
+    [SerializeField] float crouchingHeight;
+    public float crouchHeight
+    {
+        get { return crouchingHeight; }
+        private set { crouchingHeight = value; }
+    }
     [SerializeField] float standingHeight;
+    public float standHeight
+    {
+        get { return standingHeight; }
+        private set { standingHeight = value; }
+    }
     [SerializeField] float timeToCrouch;
+    public float crouchTime
+    {
+        get { return timeToCrouch; }
+        private set { timeToCrouch = value; }
+    }
     [SerializeField] Vector3 crouchCenter = new Vector3(0, 0.5f, 0);
     [SerializeField] Vector3 standingCenter = new Vector3(0, 0, 0);
     bool isCrouching;
@@ -63,19 +82,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [SerializeField] float runningBobAmount;
     [SerializeField] float crouchBobSpeed;
     [SerializeField] float crouchBobAmount;
+    [SerializeField] float yAxisMultiplier;
     float yDefaultPosition = 0;
     float headbobTimer;
-
-    [Header("Footstep Variables")]
-    [SerializeField] float baseStepSpeed;
-    [SerializeField] float crouchStepMultiplier;
-    [SerializeField] float runStepMultiplier;
-    [SerializeField] AudioSource audioSource = default;
-    [SerializeField] AudioClip[] carpetClips = default;
-    [SerializeField] AudioClip[] woodClips = default;
-    [SerializeField] AudioClip[] stoneClips = default;
-    float footstepTimer;
-    float getCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : isRunning ? baseStepSpeed * runStepMultiplier : baseStepSpeed;
 
     Vector3 movementDirection;
     Vector2 currentInput;
@@ -121,8 +130,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             {
                 Headbob();
             }
-
-            HandleFootsteps();
         }
 
         if (overlord == null)
@@ -176,9 +183,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         {
             headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
 
-            cameraTransform.transform.localPosition = new Vector3(cameraTransform.transform.localPosition.x, 
-                yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount), 
-                cameraTransform.transform.localPosition.z);
+            cameraHolder.transform.localRotation = Quaternion.Euler(yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount),
+                (yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount)) * yAxisMultiplier, cameraHolder.transform.localRotation.z);
         }
     }
 
@@ -196,7 +202,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         float timeElapsed = 0;
 
-        float targetHeight = isCrouching ? standingHeight : crouchHeight;
+        float targetHeight = isCrouching ? standingHeight : crouchingHeight;
 
         float currentHeight = characterController.height;
 
@@ -212,6 +218,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             yield return null;
         }
 
+        crouchTimer = timeElapsed;
+
         characterController.height = targetHeight;
 
         characterController.center = targetCenter;
@@ -219,39 +227,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         isCrouching = !isCrouching;
 
         duringCrouchAnimation = false;
-    }
-
-    void HandleFootsteps()
-    {
-        if (!characterController.isGrounded || currentInput == Vector2.zero)
-        {
-            return;
-        }
-
-        footstepTimer -= Time.deltaTime;
-
-        if (footstepTimer <= 0)
-        {
-            if (Physics.Raycast(cameraTransform.transform.position, Vector3.down, out RaycastHit hit, 3))
-            {
-                switch (hit.collider.tag)
-                {
-                    case "Material/Fabric":
-                        audioSource.PlayOneShot(carpetClips[Random.Range(0, carpetClips.Length - 1)]);
-                        break;
-                    case "Material/Wood":
-                        audioSource.PlayOneShot(woodClips[Random.Range(0, woodClips.Length - 1)]);
-                        break;
-                    case "Material/Stone":
-                        audioSource.PlayOneShot(stoneClips[Random.Range(0, stoneClips.Length - 1)]);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            footstepTimer = getCurrentOffset;
-        }
     }
 
     void ApplyMovement()
