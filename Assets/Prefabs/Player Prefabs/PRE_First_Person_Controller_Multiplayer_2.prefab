@@ -280,7 +280,7 @@ MonoBehaviour:
   runningSpeed: 4
   crouchSpeed: 1
   gravity: 30
-  visualInventory: {fileID: 9051598226621829629}
+  visualInventory: {fileID: 2570510372180571862}
   xLookSensitivity: 2
   yLookSensitivity: 2
   upperLookLimit: 80
@@ -633,8 +633,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5445138783020416832}
   - component: {fileID: 8501136300626968791}
-  - component: {fileID: 9051598226621829629}
   - component: {fileID: 8441884591902106517}
+  - component: {fileID: 2570510372180571862}
   m_Layer: 8
   m_Name: PRE_Inventory
   m_TagString: Untagged
@@ -671,23 +671,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
---- !u!114 &9051598226621829629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719395644653204921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60b9a3d22d400c247b8e0e9bcc987f55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryKey: 9
-  inventoryPrefab: {fileID: 719395644653204921}
-  backpackPrefab: {fileID: 2052493908429543203}
-  startPosition: {fileID: 848819379840520405}
-  endPosition: {fileID: 7969610873278408839}
 --- !u!114 &8441884591902106517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +698,23 @@ MonoBehaviour:
   - {fileID: 8041279121773059162}
   - {fileID: 8378778491935327254}
   itemIcons: []
+--- !u!114 &2570510372180571862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719395644653204921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3aadce0efe26134db2de0152ed7c3c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryKey: 9
+  inventoryPrefab: {fileID: 719395644653204921}
+  backpackPrefab: {fileID: 2052493908429543203}
+  startPosition: {fileID: 848819379840520405}
+  endPosition: {fileID: 7969610873278408839}
 --- !u!1 &812483264471799484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,7 +1825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8f7a7f666af504687032393103d7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 9051598226621829629}
+  inventory: {fileID: 0}
   isInLeftHand: 0
   swaySmoothing: 1.25
   swayMultiplier: 50
@@ -2433,7 +2433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af7329fc31827584b90d375e1d2db7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 9051598226621829629}
+  inventory: {fileID: 0}
   spotLight: {fileID: 9158619324979824551}
   lightBulb: {fileID: 3804534403738455017}
   onSound: {fileID: 8300000, guid: 522e7b30b761a62499ec3852d200646a, type: 3}
@@ -6959,7 +6959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8f7a7f666af504687032393103d7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 9051598226621829629}
+  inventory: {fileID: 0}
   isInLeftHand: 1
   swaySmoothing: 1.25
   swayMultiplier: 50
