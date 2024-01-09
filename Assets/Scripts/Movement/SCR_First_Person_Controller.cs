@@ -43,7 +43,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [SerializeField] float gravity = 30f;
 
     [Header("Inventory Variables")]
-    [SerializeField] SCR_Inventory_Visual visualInventory;
+    [SerializeField] SCR_Inventory_Visual_Multiplayer visualInventory;
 
     [Header("Mouse Look Variables")]
     [SerializeField, Range(1, 10)] float xLookSensitivity = 2f;
