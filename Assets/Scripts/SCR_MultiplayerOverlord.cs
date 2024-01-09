@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Multiplayer.Samples.Utilities.ClientAuthority;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using VivoxUnity;
 
 public class SCR_MultiplayerOverlord : NetworkBehaviour
@@ -66,17 +67,11 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         Debug.Log("Number of dead players: " + numberOfDeadPlayers + " and number of players is: " + players.Count);
 
         if (numberOfDeadPlayers >= players.Count)
-            RespawnPlayers();
+            BackToMenuClientRpc();
     }
 
-    public void RespawnPlayers()
+    public void BackToMenuClientRpc()
     {
-        Debug.Log("RESPAWN WORK");
-        monsterBrain.ResetMonster();
-
-        foreach(NetworkObject player in players)
-        {
-            player.gameObject.GetComponent<SCR_First_Person_Controller>().GoRespawnClientRpc();
-        }
+        SceneManager.LoadScene(0);
     }
 }
