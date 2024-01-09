@@ -54,6 +54,8 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
 
     public void RespawnPlayers()
     {
+        Debug.Log("RESPAWN NO WORK");
+
         foreach(NetworkObject player in players)
         {
             player.gameObject.GetComponent<SCR_First_Person_Controller>().GoRespawn();
