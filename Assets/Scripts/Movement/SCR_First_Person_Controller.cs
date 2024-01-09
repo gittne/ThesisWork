@@ -8,6 +8,7 @@ using Unity.Netcode.Components;
 using Unity.Multiplayer.Samples.Utilities.ClientAuthority;
 using Unity.Services.Lobbies.Models;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class SCR_First_Person_Controller : NetworkBehaviour
@@ -380,5 +381,14 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         cameraHolder.transform.position += new Vector3(0, 1.7f, 0);
         transform.rotation = new Quaternion(0, 0, 0, 0);
         cameraHolder.transform.rotation = new Quaternion(0, 0, 0, 0);
+    }
+
+    [ClientRpc]
+    public void BackToMenuClientRpc()
+    {
+        if (!IsOwner) return;
+
+        RelayMaker.Instance.LeaveRelay();
+        SceneManager.LoadScene(0);
     }
 }

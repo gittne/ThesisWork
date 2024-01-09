@@ -67,15 +67,19 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         Debug.Log("Number of dead players: " + numberOfDeadPlayers + " and number of players is: " + players.Count);
 
         if (numberOfDeadPlayers >= players.Count)
-            BackToMenuClientRpc();
+            foreach (NetworkObject player in players)
+            {
+                SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
+                cntr.BackToMenuClientRpc();
+            }
     }
 
-    [ClientRpc]
-    public void BackToMenuClientRpc()
-    {
-        if(!IsOwner) return;
+    //[ClientRpc]
+    //public void BackToMenuClientRpc()
+    //{
+    //    if(!IsOwner) return;
 
-        RelayMaker.Instance.LeaveRelay();
-        SceneManager.LoadScene(0);
-    }
+    //    RelayMaker.Instance.LeaveRelay();
+    //    SceneManager.LoadScene(0);
+    //}
 }
