@@ -54,7 +54,8 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         }
     }
 
-    private void CheckPlayerHealthStatus()
+    [ServerRpc(RequireOwnership = false)]
+    public void CheckPlayerHealthStatusServerRpc()
     {
         int numberOfDeadPlayers = 0;
 
@@ -67,11 +68,10 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         Debug.Log("Number of dead players: " + numberOfDeadPlayers + " and number of players is: " + players.Count);
 
         if (numberOfDeadPlayers >= players.Count)
-            RespawnPlayersServerRpc();
+            RespawnPlayers();
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    public void RespawnPlayersServerRpc()
+    public void RespawnPlayers()
     {
         Debug.Log("RESPAWN WORK");
         monsterBrain.ResetMonster();
