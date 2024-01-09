@@ -9,13 +9,15 @@ public class SCR_Player_Interactions : MonoBehaviour
     Vector3 playerLookOrigin;
     [SerializeField] Camera playerCamera;
     [SerializeField] float interactionMaxLength;
-    [SerializeField] GameObject interactTextCanvas;
-    [SerializeField] GameObject keyLockTextCanvas;
+    GameObject interactTextCanvas;
+    GameObject keyLockTextCanvas;
 
     private void Awake()
     {
         interactTextCanvas = GameObject.FindGameObjectWithTag("InteractionText");
         keyLockTextCanvas = GameObject.FindGameObjectWithTag("KeyLockText");
+        interactTextCanvas.SetActive(false);
+        keyLockTextCanvas.SetActive(false);
     }
 
     void Update()
