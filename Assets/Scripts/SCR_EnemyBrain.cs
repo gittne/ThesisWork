@@ -141,7 +141,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     IEnumerator RepositionDelay()
     {
         int mirrorChance = Random.Range(0, 10);
-        if (mirrorChance >= 7) 
+        if (mirrorChance >= 8) 
         { 
             GoFindMirror();
             yield break;
@@ -190,11 +190,14 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     [ContextMenu("Teleport")]
     void GoFindMirror()
     {
+        SCR_MirrorManager mirrorManager = FindObjectOfType<SCR_MirrorManager>();
+
+        if (mirrorManager.Mirrors.Count == 0) return;
+
         agent.speed = 4.5f;
 
         wantsToTeleport = true;
         enemyState = EnemyState.TELEPORTING;
-        SCR_MirrorManager mirrorManager = FindObjectOfType<SCR_MirrorManager>();
         agent.destination = mirrorManager.FindClosestEntrance(transform.position);
         Debug.Log("heading for mirror");
     }
