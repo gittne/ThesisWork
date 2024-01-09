@@ -84,7 +84,7 @@ public class RelayMaker : MonoBehaviour
         try
         {
             NetworkManager.Singleton.Shutdown();
-            VivoxPlayer.Instance.DisconnectAllChannels();
+            VivoxPlayer.Instance.Logout();
         }
         catch(RelayServiceException e)
         {
