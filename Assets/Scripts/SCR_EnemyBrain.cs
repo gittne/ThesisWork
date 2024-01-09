@@ -222,6 +222,9 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     [ContextMenu("Finish")]
     public void CommenceMultiplayerFinish()
     {
+        if (!SCR_MultiplayerOverlord.Instance.IsHost) return;
+
+
         enemyState = EnemyState.KILLING;
 
         if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
