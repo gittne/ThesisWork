@@ -115,7 +115,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         visualInventory.InventoryManagement();
 
-        if (canMove)
+        if (canMove && visualInventory.isInventoryActive == false)
         {
             MovementInput();
 
