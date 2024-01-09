@@ -39,8 +39,6 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
             Debug.Log("added a player");
             players.Add(player.Value.PlayerObject);
         }
-
-        InvokeRepeating("CheckPlayerHealthStatus", 0, 1);
     }
 
     [ServerRpc(RequireOwnership = false)]
