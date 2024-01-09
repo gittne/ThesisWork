@@ -113,6 +113,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             return;
         }
 
+        visualInventory.InventoryManagement();
+
         if (canMove)
         {
             MovementInput();

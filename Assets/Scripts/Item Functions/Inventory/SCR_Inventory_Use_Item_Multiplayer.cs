@@ -9,7 +9,7 @@ using Unity.Netcode;
 public class SCR_Inventory_Use_Item_Multiplayer : NetworkBehaviour
 {
     SCR_Inventory_System_Singleplayer inventory;
-    SCR_Inventory_Visual visualInventory;
+    SCR_Inventory_Visual_Multiplayer visualInventory;
     [Header("Related Equipment")]
     [SerializeField] SCR_Flashlight_Multiplayer flashlight;
     [SerializeField] SCR_FuseBox[] fuseBoxes;
@@ -30,7 +30,7 @@ public class SCR_Inventory_Use_Item_Multiplayer : NetworkBehaviour
         }
 
         inventory = GetComponent<SCR_Inventory_System_Singleplayer>();
-        visualInventory = GetComponent<SCR_Inventory_Visual>();
+        visualInventory = GetComponent<SCR_Inventory_Visual_Multiplayer>();
     }
 
     // Update is called once per frame
