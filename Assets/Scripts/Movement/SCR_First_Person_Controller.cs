@@ -124,6 +124,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             HandleFootsteps();
         }
 
+        if (overlord == null)
+            return;
 
         if(overlord.MonsterBrain != null)
         {

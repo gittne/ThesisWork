@@ -64,13 +64,15 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
             if(cntr.IsDead) numberOfDeadPlayers++;
         }
 
+        Debug.Log("Number of dead players: " + numberOfDeadPlayers + " and number of players is: " + players.Count);
+
         if (numberOfDeadPlayers >= players.Count)
             RespawnPlayers();
     }
 
     public void RespawnPlayers()
     {
-        Debug.Log("RESPAWN NO WORK");
+        Debug.Log("RESPAWN WORK");
 
         foreach(NetworkObject player in players)
         {
