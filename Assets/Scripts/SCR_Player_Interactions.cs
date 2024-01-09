@@ -12,6 +12,12 @@ public class SCR_Player_Interactions : MonoBehaviour
     [SerializeField] GameObject interactTextCanvas;
     [SerializeField] GameObject keyLockTextCanvas;
 
+    private void Awake()
+    {
+        interactTextCanvas = GameObject.FindGameObjectWithTag("InteractionText");
+        keyLockTextCanvas = GameObject.FindGameObjectWithTag("KeyLockText");
+    }
+
     void Update()
     {
         Interact();
