@@ -10,15 +10,18 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
     SCR_EnemyAnimator animator;
     SCR_EnemyVision vision;
 
+    int playersKilled;
+
     private void Start()
     {
         brain = GetComponentInParent<SCR_EnemyBrain>();
         animator = GetComponentInParent<SCR_EnemyAnimator>();
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Player"))
         {
             KillPlayers(other.gameObject);
@@ -27,28 +30,33 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
 
     void KillPlayers(GameObject player)
     {
+        player.transform.LookAt(transform.position);
+        transform.LookAt(player.transform.position);
+
         if (SCR_MultiplayerOverlord.Instance != null)
         {
             Debug.Log("multiplayer kill.");
-            //SCR_MultiplayerOverlord.Instance.KillAllPlayersServerRpc();
-
-            player.GetComponent<SCR_First_Person_Controller>().PlayerDie();
-            brain.CommenceMultiplayerFinish();
+            player.GetComponent<SCR_First_Person_Controller>().CommencePlayerDeath(player);
+            StartCoroutine(KillPlayerCutScene(true));
         }
         else
         {
             Debug.Log("singleplayer kill.");
-            player.GetComponent<SCR_First_Person_Controller_Singleplayer>().PlayerDie();
-            StartCoroutine(KillPlayerCutScene());
-            //player.transform.position = new Vector3(0, 0, 0);
+            player.GetComponent<SCR_First_Person_Controller_Singleplayer>().CommencePlayerDeath(player);
+            StartCoroutine(KillPlayerCutScene(false));
         }
     }
 
-    IEnumerator KillPlayerCutScene()
+    IEnumerator KillPlayerCutScene(bool isMultiplayer)
     {
         animator.PlayKillAnimation();
         brain.EnterKillingState();
         Debug.Log("KILL THEM");
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
+
+        if(isMultiplayer)
+            brain.CommenceMultiplayerFinish();
+        else
+            brain.CommenceRoam();
     }
 }

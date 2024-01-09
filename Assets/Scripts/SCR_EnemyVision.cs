@@ -41,12 +41,15 @@ public class SCR_EnemyVision : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (brain.enemyState != SCR_EnemyUtilities.EnemyState.ROAM && brain.enemyState != SCR_EnemyUtilities.EnemyState.FOLLOW && brain.enemyState != SCR_EnemyUtilities.EnemyState.HUNT)
+            return;
+
         if (other.CompareTag("Player"))
         {
             Vector3 dir = -(transform.position - other.transform.position).normalized;
             Ray ray = new Ray(transform.position, other.transform.position.normalized);
 
-            if(Physics.SphereCast(transform.position, 0.75f, dir, out hit, 30, mask))
+            if(Physics.SphereCast(transform.position, 0.75f, dir, out hit, 50, mask))
             {
                 if (hit.transform.CompareTag("Player"))
                 {

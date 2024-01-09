@@ -7,6 +7,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 using Unity.Netcode.Components;
 using Unity.Multiplayer.Samples.Utilities.ClientAuthority;
 using Unity.Services.Lobbies.Models;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class SCR_First_Person_Controller : NetworkBehaviour
@@ -20,6 +21,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     [SerializeField] Transform cameraTransform;
     [SerializeField] GameObject playerCamera;
+    [SerializeField] Transform cameraHolder;
     [SerializeField] CharacterController characterController;
     [Header("Functions")]
     [SerializeField] Vector3 spawnpoint = new Vector3(0, 0, 0);
@@ -79,14 +81,19 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     float xRotation = 0;
 
+    Image fader;
+
     SCR_MultiplayerOverlord overlord;
+
+    bool isDead = false;
+    public bool IsDead { get { return isDead; }}
 
     void Start()
     {
-        if (IsOwner)
-        {
-            StartCoroutine(SetupDelay());
-        }
+        if (!IsOwner) return;
+
+        StartCoroutine(SetupDelay());
+        fader = GameObject.FindGameObjectWithTag("BlackFade").GetComponent<Image>();
     }
 
     void Update()
@@ -117,6 +124,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             HandleFootsteps();
         }
 
+        if (overlord == null)
+            return;
 
         if(overlord.MonsterBrain != null)
         {
@@ -329,8 +338,70 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         cnt.Teleport(new Vector3(0, 1, 0), Quaternion.identity, transform.localScale);
     }
 
-    public void PlayerDie()
+    public void CommencePlayerDeath(GameObject monster)
+    {
+        isDead = true;
+
+        if (!IsOwner)
+            return;
+
+        StartCoroutine(DieAndGoToSpawn(monster));
+    }
+
+    IEnumerator DieAndGoToSpawn(GameObject monster)
     {
         canMove = false;
+        transform.position += new Vector3(0, 0.35f, 0);
+
+        yield return new WaitForSeconds(2);
+        while (cameraHolder.transform.position.y > 0.15f)
+        {
+
+            cameraHolder.LookAt(monster.transform.position + new Vector3(0, 1.5f, 0));
+            cameraHolder.transform.position -= new Vector3(0, 0.03f, 0);
+            yield return new WaitForSeconds(0.001f);
+        }
+
+        Color c = fader.color;
+
+        for (int i = 0; i < 51; i++)
+        {
+            c.a = 0.05f * i;
+            fader.color = c;
+
+            yield return new WaitForSeconds(0.001f);
+        }
+
+        ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
+        cnt.Teleport(new Vector3(0, 1, 0), Quaternion.identity, transform.localScale);
+
+        cameraHolder.transform.position += new Vector3(0, 1.7f, 0);
+        transform.rotation = new Quaternion(0, 0, 0, 0);
+        cameraHolder.transform.rotation = new Quaternion(0, 0, 0, 0);
+    }
+
+    [ClientRpc()]
+    public void GoRespawnClientRpc()
+    {
+        if (!IsOwner) return;
+
+        StartCoroutine(Respawn());
+    }
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(1);
+        Color c = fader.color;
+
+        for (int i = 0; i < 101; i++)
+        {
+            c.a = 1 - 0.01f * i;
+            fader.color = c;
+
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        canMove = true;
+        isDead = false;
     }
 }

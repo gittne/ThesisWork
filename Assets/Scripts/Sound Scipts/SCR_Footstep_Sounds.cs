@@ -43,12 +43,14 @@ public class SCR_Footstep_Sounds : MonoBehaviour
         if (monsterRigidbody != null)
         {
             characterSpeed = new Vector2(monsterRigidbody.velocity.x, monsterRigidbody.velocity.z).magnitude;
+
+            if (characterSpeed > 5f)
+            {
+                characterSpeed = new Vector2(monsterRigidbody.velocity.x, monsterRigidbody.velocity.z).magnitude / 1.3f;
+            }
         }
 
-        if (characterSpeed > 0)
-        {
-            PlayFootsteps();
-        }
+        PlayFootsteps();
     }
 
     void PlayFootsteps()

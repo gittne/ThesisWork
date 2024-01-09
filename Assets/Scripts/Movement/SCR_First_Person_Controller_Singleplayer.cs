@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 {
@@ -79,10 +82,14 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
     float xRotation = 0;
 
+
+    Image fader;
+
     void Awake()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        fader = GameObject.FindGameObjectWithTag("BlackFade").GetComponent<Image>();
     }
 
     void Update()
@@ -198,9 +205,51 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         characterController.Move(movementDirection * Time.deltaTime);
     }
 
-    public void PlayerDie()
+    public void CommencePlayerDeath(GameObject monster)
+    {
+        StartCoroutine(DieAndRespawn(monster));
+    }
+
+    IEnumerator DieAndRespawn(GameObject monster)
     {
         canMove = false;
-        transform.position += new Vector3(0, 0.5f, 0);
+        transform.position += new Vector3(0, 0.35f, 0);
+
+        yield return new WaitForSeconds(2);
+        while(cameraHolder.transform.position.y > 0.15f)
+        {
+
+            cameraHolder.LookAt(monster.transform.position + new Vector3(0, 1.5f, 0));
+            cameraHolder.transform.position -= new Vector3(0, 0.03f, 0);
+            yield return new WaitForSeconds(0.001f);
+        }
+
+        Color c = fader.color;
+
+        for(int i = 0; i < 51; i++) 
+        {
+            c.a = 0.05f * i;
+            fader.color = c;
+
+            yield return new WaitForSeconds(0.001f);
+        }
+
+        transform.position = new Vector3(0, 1, 0);
+        cameraHolder.transform.position += new Vector3(0, 1.7f, 0);
+        transform.rotation = new Quaternion(0, 0, 0, 0);
+        cameraHolder.transform.rotation = new Quaternion(0, 0, 0, 0);
+
+
+        yield return new WaitForSeconds(0.5f);
+
+        for (int i = 0; i < 101; i++)
+        {
+            c.a = 1 - 0.01f * i;
+            fader.color = c;
+
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        canMove = true;
     }
 }

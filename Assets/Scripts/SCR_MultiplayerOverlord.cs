@@ -39,6 +39,8 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
             Debug.Log("added a player");
             players.Add(player.Value.PlayerObject);
         }
+
+        InvokeRepeating("CheckPlayerHealthStatus", 0, 1);
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -49,6 +51,34 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         {
             SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
             cntr.PlayerDeathClientRpc();
+        }
+    }
+
+    private void CheckPlayerHealthStatus()
+    {
+        int numberOfDeadPlayers = 0;
+
+        foreach (NetworkObject player in players)
+        {
+            SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
+            if(cntr.IsDead) numberOfDeadPlayers++;
+        }
+
+        Debug.Log("Number of dead players: " + numberOfDeadPlayers + " and number of players is: " + players.Count);
+
+        if (numberOfDeadPlayers >= players.Count)
+            RespawnPlayersServerRpc();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void RespawnPlayersServerRpc()
+    {
+        if (!IsHost) return;
+        Debug.Log("RESPAWN WORK");
+
+        foreach(NetworkObject player in players)
+        {
+            player.gameObject.GetComponent<SCR_First_Person_Controller>().GoRespawnClientRpc();
         }
     }
 }

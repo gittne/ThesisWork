@@ -234,7 +234,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         GameObject[] players = new GameObject[2];
         players[0] = SCR_MultiplayerOverlord.Instance.Players[0].gameObject;
-        players[1] = SCR_MultiplayerOverlord.Instance.Players[0].gameObject;
+        players[1] = SCR_MultiplayerOverlord.Instance.Players[1].gameObject;
 
         if(Vector3.Distance(transform.position, players[0].transform.position) < Vector3.Distance(transform.position, players[1].transform.position))
         {
@@ -251,5 +251,12 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     void Finishing()
     {
         agent.destination = currentTargetPlayer.transform.position;
+    }
+
+    public void ResetMonster()
+    {
+        transform.position = new Vector3(0, 0, 0);
+        enemyState = EnemyState.ROAM;
+        rageMeter = 0;
     }
 }

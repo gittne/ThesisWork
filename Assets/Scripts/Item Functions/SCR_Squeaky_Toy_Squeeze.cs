@@ -44,8 +44,6 @@ public class SCR_Squeaky_Toy_Squeeze : MonoBehaviour
         {
             animator.SetTrigger(animationName);
 
-            Debug.Log("Hitting ground");
-
             if (canMakeSound)
             {
                 StartCoroutine(PlaySound());
@@ -74,6 +72,8 @@ public class SCR_Squeaky_Toy_Squeeze : MonoBehaviour
 
     IEnumerator PlaySound()
     {
+        float randomPitch = Random.Range(0.8f, 1.2f);
+        soundSource.pitch = randomPitch;
         soundSource.PlayOneShot(squeezeSound);
         canMakeSound = false;
         yield return new WaitForSeconds(resetTimer);
