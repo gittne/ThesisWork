@@ -73,6 +73,8 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
     [ClientRpc]
     public void BackToMenuClientRpc()
     {
+        if(!IsOwner) return;
+
         RelayMaker.Instance.LeaveRelay();
         SceneManager.LoadScene(0);
     }
