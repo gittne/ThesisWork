@@ -85,6 +85,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     SCR_MultiplayerOverlord overlord;
 
+    bool isDead = false;
+    public bool IsDead { get { return isDead; }}
+
     void Start()
     {
         if (!IsOwner) return;
@@ -338,11 +341,12 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        StartCoroutine(DieAndRespawn(monster));
+        StartCoroutine(DieAndGoToSpawn(monster));
     }
 
-    IEnumerator DieAndRespawn(GameObject monster)
+    IEnumerator DieAndGoToSpawn(GameObject monster)
     {
+        isDead = true;
         canMove = false;
         transform.position += new Vector3(0, 0.35f, 0);
 

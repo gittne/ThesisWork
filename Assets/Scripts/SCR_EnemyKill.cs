@@ -10,11 +10,13 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
     SCR_EnemyAnimator animator;
     SCR_EnemyVision vision;
 
+    int playersKilled;
+
     private void Start()
     {
         brain = GetComponentInParent<SCR_EnemyBrain>();
         animator = GetComponentInParent<SCR_EnemyAnimator>();
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,11 +25,6 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             KillPlayers(other.gameObject);
-
-            if (brain.enemyState == SCR_EnemyUtilities.EnemyState.FINISHING)
-            {
-                SCR_MultiplayerOverlord.Instance.RespawnPlayers();
-            }
         }
     }
 
