@@ -25,7 +25,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [SerializeField] Transform cameraHolder;
     [SerializeField] CharacterController characterController;
     [Header("Functions")]
-    [SerializeField] Vector3 spawnpoint = new Vector3(0, 0, 0);
+    [SerializeField] Vector3 spawnpoint;
     [SerializeField] bool canSprintDebug = true;
     [SerializeField] bool canCrouchDebug = true;
     [SerializeField] bool canHeadbobDebug = true;
@@ -271,7 +271,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             yield return null;
         }
 
-        transform.position = spawnpoint;
+        spawnpoint = GameObject.FindWithTag("RespawnLocation").transform.position;
+        ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
+        cnt.Teleport(spawnpoint, Quaternion.identity, transform.localScale);
 
         yDefaultPosition = cameraTransform.transform.localPosition.y;
 
