@@ -6,13 +6,18 @@ using Unity.Netcode;
 public class SCR_Item_Bobbing : NetworkBehaviour
 {
     [SerializeField] CharacterController controller;
+    [SerializeField] SCR_First_Person_Controller controllerScript;
+    [Header("Which hand is holding")]
+    [SerializeField] bool isInLeftHand;
     [Header("Bobbing Values")]
-    [SerializeField] float curveSpeed;
+    float curveSpeed;
     [SerializeField] Vector3 travelLimit = Vector3.one * 0.025f;
     [SerializeField] Vector3 bobLimit = Vector3.one * 0.01f;
-
+    [Header("Smoothing Values")]
     [SerializeField] float smoothing = 10f;
     [SerializeField] float smoothingRotation = 12f;
+    [Header("Movement Multipliers")]
+    [SerializeField] float movementMultiplier;
 
     float sinCurve { get => Mathf.Sin(curveSpeed); }
     float cosCurve { get => Mathf.Cos(curveSpeed); }
@@ -35,7 +40,15 @@ public class SCR_Item_Bobbing : NetworkBehaviour
             return;
         }
 
-        horizontalInput = Input.GetAxis("Horizontal");
+        if (!isInLeftHand)
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            horizontalInput = -Input.GetAxis("Horizontal");
+        }
+
         verticalInput = Input.GetAxis("Vertical");
 
         horizontalVerticalInput.x = horizontalInput;
@@ -48,7 +61,7 @@ public class SCR_Item_Bobbing : NetworkBehaviour
 
     void BobRotation()
     {
-        eulerRotation.x = (horizontalVerticalInput != Vector2.zero ? 
+        eulerRotation.x = (horizontalVerticalInput != Vector2.zero ?
             multiplier.x * (Mathf.Sin(2 * curveSpeed)) : multiplier.x * (Mathf.Sin(2 * curveSpeed)) / 2);
 
         eulerRotation.y = (horizontalVerticalInput != Vector2.zero ? multiplier.y * cosCurve : 0);
@@ -58,9 +71,9 @@ public class SCR_Item_Bobbing : NetworkBehaviour
 
     void BobOffset()
     {
-        curveSpeed += Time.deltaTime * (controller.isGrounded ? controller.velocity.magnitude : 1f) + 0.01f;
+        curveSpeed += Time.deltaTime * (controller.isGrounded ? controller.velocity.magnitude * movementMultiplier : 1f) + 0.01f;
 
-        bobPosition.x = (cosCurve * bobLimit.x * (controller.isGrounded ? 1 : 0)) 
+        bobPosition.x = (cosCurve * bobLimit.x * (controller.isGrounded ? 1 : 0))
             - (horizontalVerticalInput.x * travelLimit.x);
 
         bobPosition.y = (sinCurve * bobLimit.y)
@@ -71,9 +84,15 @@ public class SCR_Item_Bobbing : NetworkBehaviour
 
     void CompositePositionRotation()
     {
+        if (controller.height < controllerScript.standHeight && controller.height > controllerScript.crouchHeight || controller.velocity.y != 0)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition, 1500f * Time.deltaTime);
+        }
+        else
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, bobPosition, (controller.velocity.magnitude > 0.1f ? controller.velocity.magnitude * Time.deltaTime : smoothing * Time.deltaTime));
+        }
 
-        transform.localPosition = Vector3.Lerp(transform.localPosition, bobPosition, Time.deltaTime * smoothing);
-
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(eulerRotation), Time.deltaTime * smoothingRotation);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(eulerRotation), (controller.velocity.magnitude > 0.1 ? controller.velocity.magnitude * Time.deltaTime : smoothingRotation * Time.deltaTime));
     }
 }

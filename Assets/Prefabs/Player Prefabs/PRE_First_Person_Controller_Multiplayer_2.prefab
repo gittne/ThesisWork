@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1420a826030b3454089d8dff8e4c6087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashlight: {fileID: 2752218876339059700}
+  flashlight: {fileID: 0}
   fuseBoxes:
   - {fileID: 0}
   keyReaders:
@@ -762,7 +762,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6671640645601091036}
-  - component: {fileID: 1222177637312939858}
+  - component: {fileID: 8196065857523073670}
   m_Layer: 8
   m_Name: Item Holder Bobbing Object
   m_TagString: Untagged
@@ -786,7 +786,7 @@ Transform:
   - {fileID: 7492215913991091543}
   m_Father: {fileID: 2569438476566410188}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1222177637312939858
+--- !u!114 &8196065857523073670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -795,13 +795,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 888407631780842996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eee27c1034422cc4baf495fd12c93054, type: 3}
+  m_Script: {fileID: 11500000, guid: a05b23427b616ed4487d1ddb5d038972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6325361218952426608}
-  controllerScript: {fileID: 0}
+  controllerScript: {fileID: 3862914370081655145}
   isInLeftHand: 0
-  travelLimit: {x: 0.01, y: 0.1, z: 0.02}
+  travelLimit: {x: 0.01, y: 0.01, z: 0.02}
   bobLimit: {x: 0.012, y: 0.02, z: 0.7}
   smoothing: 0.8
   smoothingRotation: 5
@@ -1762,7 +1762,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7492215913991091543}
-  - component: {fileID: 3505035835216453076}
+  - component: {fileID: 4412285325348583914}
   m_Layer: 8
   m_Name: Arm
   m_TagString: Untagged
@@ -1787,7 +1787,7 @@ Transform:
   - {fileID: 2581611128115046978}
   m_Father: {fileID: 6671640645601091036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3505035835216453076
+--- !u!114 &4412285325348583914
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1796,23 +1796,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1973074613681228005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705e78a721001cb4daa831078f1d5630, type: 3}
+  m_Script: {fileID: 11500000, guid: ba8f7a7f666af504687032393103d7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 9051598226621829629}
   isInLeftHand: 0
-  swaySmoothing: 6
-  swayMultiplier: 55
-  xMaxRotation: 0.15
-  yMaxRotation: 0.21
+  swaySmoothing: 1.25
+  swayMultiplier: 50
+  xMaxRotation: 0.2
+  yMaxRotation: 0.15
   inventoryRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  lerpSpeed: 0.8
-  movementMultiplier: 0.8
-  xMinMovement: 0.2
-  xMaxMovement: 0.15
+  lerpSpeed: 0.5
+  movementMultiplier: 0.5
+  xMinMovement: 0.1
+  xMaxMovement: 0.2
   yMinMovement: 0.2
-  yMaxMovement: 0.175
-  inventoryPosition: {x: 0, y: -0.2, z: 0}
+  yMaxMovement: 0.1
+  inventoryPosition: {x: 0, y: -0.3, z: 0}
 --- !u!1 &1979708475484495353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,7 +2224,7 @@ GameObject:
   - component: {fileID: 3845561151708724306}
   - component: {fileID: 8763625033727824970}
   - component: {fileID: 2080865250652424521}
-  - component: {fileID: 2752218876339059700}
+  - component: {fileID: 3449950483392923591}
   m_Layer: 8
   m_Name: PRE_Flashlight_Flatscreen
   m_TagString: Untagged
@@ -2395,7 +2395,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2752218876339059700
+--- !u!114 &3449950483392923591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2404,18 +2404,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2400975786305961649}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b9ef6cda884a04b8bbeddceb1b4906, type: 3}
+  m_Script: {fileID: 11500000, guid: af7329fc31827584b90d375e1d2db7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 9051598226621829629}
   spotLight: {fileID: 9158619324979824551}
   lightBulb: {fileID: 3804534403738455017}
   onSound: {fileID: 8300000, guid: 522e7b30b761a62499ec3852d200646a, type: 3}
   offSound: {fileID: 8300000, guid: b8f2354c44cfc9f4fbf024b71cbeaac0, type: 3}
-  reloadSound: {fileID: 8300000, guid: cbd8b2d0689c9834681830b6ee8482b5, type: 3}
   audioSource: {fileID: 2080865250652424521}
-  batteryLife: 240
-  minimumLightStrength: 20
 --- !u!1 &2506048472106136871
 GameObject:
   m_ObjectHideFlags: 0
@@ -5294,7 +5290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 519581439787636578}
-  - component: {fileID: 7123718992888921718}
+  - component: {fileID: 6920976650797318111}
   m_Layer: 8
   m_Name: Item Holder Bobbing Object
   m_TagString: Untagged
@@ -5318,7 +5314,7 @@ Transform:
   - {fileID: 2200849808694221780}
   m_Father: {fileID: 7858050259082330799}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7123718992888921718
+--- !u!114 &6920976650797318111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5327,13 +5323,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6253058152724837981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eee27c1034422cc4baf495fd12c93054, type: 3}
+  m_Script: {fileID: 11500000, guid: a05b23427b616ed4487d1ddb5d038972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6325361218952426608}
-  controllerScript: {fileID: 0}
+  controllerScript: {fileID: 3862914370081655145}
   isInLeftHand: 1
-  travelLimit: {x: 0.01, y: 0.1, z: 0.02}
+  travelLimit: {x: 0.01, y: 0.01, z: 0.02}
   bobLimit: {x: 0.012, y: 0.02, z: 0.7}
   smoothing: 0.8
   smoothingRotation: 5
@@ -6873,9 +6869,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2200849808694221780}
-  - component: {fileID: 9218627005500949032}
   - component: {fileID: 189007655893380298}
   - component: {fileID: 3103008139068828286}
+  - component: {fileID: 1274033100381082163}
   m_Layer: 8
   m_Name: Arm
   m_TagString: Untagged
@@ -6900,32 +6896,6 @@ Transform:
   - {fileID: 2847376357265424913}
   m_Father: {fileID: 519581439787636578}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9218627005500949032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8836557077738790761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705e78a721001cb4daa831078f1d5630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 9051598226621829629}
-  isInLeftHand: 1
-  swaySmoothing: 1.25
-  swayMultiplier: 50
-  xMaxRotation: 0.2
-  yMaxRotation: 0.15
-  inventoryRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  lerpSpeed: 0.5
-  movementMultiplier: 0.5
-  xMinMovement: 0.1
-  xMaxMovement: 0.2
-  yMinMovement: 0.2
-  yMaxMovement: 0.1
-  inventoryPosition: {x: 0, y: -0.3, z: 0}
 --- !u!114 &189007655893380298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6971,6 +6941,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1274033100381082163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836557077738790761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8f7a7f666af504687032393103d7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 9051598226621829629}
+  isInLeftHand: 1
+  swaySmoothing: 1.25
+  swayMultiplier: 50
+  xMaxRotation: 0.2
+  yMaxRotation: 0.15
+  inventoryRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
+  lerpSpeed: 0.5
+  movementMultiplier: 0.5
+  xMinMovement: 0.1
+  xMaxMovement: 0.2
+  yMinMovement: 0.2
+  yMaxMovement: 0.1
+  inventoryPosition: {x: 0, y: -0.3, z: 0}
 --- !u!1 &8959873094196005219
 GameObject:
   m_ObjectHideFlags: 0
