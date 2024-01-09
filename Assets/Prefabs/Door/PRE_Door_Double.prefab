@@ -163,6 +163,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7227085231354239729}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cdae3b8f9644e54fb4b068b3569044a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5766115425861898878}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cdae3b8f9644e54fb4b068b3569044a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3480136876581292491}
     - targetCorrespondingSourceObject: {fileID: 5092708244707826562, guid: 8cdae3b8f9644e54fb4b068b3569044a,
         type: 3}
       insertIndex: -1
@@ -264,6 +272,54 @@ MonoBehaviour:
   animator: {fileID: 0}
   SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
   keyReader: {fileID: 0}
+--- !u!114 &5766115425861898878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244179696128586726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -1083834667
+    DestinationState: -656102061
+    TransitionDuration: 0.25
+    TriggerNameHash: 1423123024
+    TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -656102061
+    DestinationState: -1083834667
+    TransitionDuration: 0.24999988
+    TriggerNameHash: 1423123024
+    TransitionIndex: 0
+  m_Animator: {fileID: 4469038994534821952}
+--- !u!114 &-3480136876581292491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244179696128586726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &6568975234839418165 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5092708244707826562, guid: 8cdae3b8f9644e54fb4b068b3569044a,
