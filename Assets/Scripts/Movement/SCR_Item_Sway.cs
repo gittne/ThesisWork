@@ -9,7 +9,7 @@ public class SCR_Item_Sway : NetworkBehaviour
     //holding them in hand in the game.
     //Base code provided by "Plai": https://www.youtube.com/watch?v=QIVN-T-1QBE
 
-    [SerializeField] SCR_Inventory_Visual inventory;
+    [SerializeField] SCR_Inventory_Visual_Multiplayer inventory;
     [Header("Which hand is holding")]
     [SerializeField] bool isInLeftHand;
     float mouseX;
