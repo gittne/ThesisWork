@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SCR_Player_Interactions : MonoBehaviour
 {
@@ -12,8 +13,16 @@ public class SCR_Player_Interactions : MonoBehaviour
     GameObject interactTextCanvas;
     GameObject keyLockTextCanvas;
 
+    //textmeshPro Allows you to have one textinput and change of text. 
+    [SerializeField] string[] Prompts;
+    [SerializeField] GameObject TextPrompt;
+    TextMeshProUGUI Tmpro;
+    //TextmeshPro End
     private void Awake()
     {
+        Tmpro = TextPrompt.GetComponent<TextMeshProUGUI>(); // Gets textmeshpro from TextPrompt Gameobejct.
+        Tmpro.SetText(""); // sets TmPro to empty
+
         interactTextCanvas = GameObject.FindGameObjectWithTag("InteractionText");
         keyLockTextCanvas = GameObject.FindGameObjectWithTag("KeyLockText");
         interactTextCanvas.SetActive(false);
@@ -75,17 +84,45 @@ public class SCR_Player_Interactions : MonoBehaviour
                     interactTextCanvas.SetActive(true);
                     
                 }
+            }
+            
+            if (obj.TryGetComponent(out SCR_KeyReader KeyRead)) // Temporary unlock script  "Alexander"
+            {
+
+                if (KeyRead.canReadCard == false)
+                {
+                    Tmpro.SetText("Keycard is required");
+                }
+                else
+                {
+                    Tmpro.SetText("E");
+                }
+
+                if (Input.GetKeyDown(interactionKey) && KeyRead.canReadCard == true)
+                {
+                    KeyRead.UnlockDoor();
+                }
+
+            }
+            if (obj.TryGetComponent(out SCR_KeyPickup keyPickUp))
+            {
+
+                    Tmpro.SetText("E");
 
                 if (Input.GetKeyDown(interactionKey))
                 {
-                    anim.SwitchAnimationState();
+                    keyPickUp.Pickup();
                 }
-            }
+
+            } // Temporary unlock script End "Alexander"
+
         }
         else
         {
             keyLockTextCanvas.SetActive(false);
             interactTextCanvas.SetActive(false);
+            
+            Tmpro.SetText(""); // sets TmPro to empty
         }
     }
 }

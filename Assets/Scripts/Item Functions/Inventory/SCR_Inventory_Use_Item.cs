@@ -13,6 +13,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     [SerializeField] SCR_Flashlight_Non_VR flashlight;
     [SerializeField] SCR_FuseBox[] fuseBoxes;
     [SerializeField] SCR_Key_Card_Reader[] keyReaders;
+    [SerializeField] SCR_KeyReader[] Temp_keyRead; // for SCR_KeyReader "Alexander"
     [SerializeField] SCR_Squeaky_Toy_Functionality squeakyToy;
     [Header("Item IDs")]
     [SerializeField] string[] itemID;
@@ -128,6 +129,26 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
             }
         }
     }
+    public void Temp_UseKeycard() // "Alexander"
+    {
+        List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
+
+        foreach (Inventory_Item item in inventoryCopy)
+        {
+            
+            foreach (SCR_KeyReader locks in Temp_keyRead)
+            {
+                
+                if (locks.canReadCard)
+                {
+                    if (itemID[2] == item.itemData.itemID && item.stackSize > 0 && locks.canReadCard == true && itemID[2] == locks.keycardItemID)
+                    {
+                        locks.ReadCard();
+                    }
+                }
+            }
+        }
+    } // "Alexander" End
 
     public void UseMrWhiskars()
     {
