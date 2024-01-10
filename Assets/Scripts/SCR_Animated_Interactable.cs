@@ -20,7 +20,7 @@ public class SCR_Animated_Interactable : MonoBehaviour
     AudioSource SoundSource;
     [SerializeField] AudioClip SoundFX;
     [SerializeField] SCR_Key_Card_Reader keycardReader; // To revert change to "keyReader" 
-    [SerializeField] SCR_KeyReader keyReader; // Used to get SCR_KeyReader "Alexander" 
+    //[SerializeField] SCR_KeyReader keyReader; // Used to get SCR_KeyReader "Alexander" 
 
 
     private void Start()
@@ -35,9 +35,9 @@ public class SCR_Animated_Interactable : MonoBehaviour
 
     private void Update()
     {
-        if (keyReader != null)
+        if (keycardReader != null)
         {
-            if (keyReader.isActivated)
+            if (keycardReader.isActivated)
             {
                 lockState = LockState.Unlocked;
             }
