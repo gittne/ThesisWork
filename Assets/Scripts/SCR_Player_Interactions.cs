@@ -104,6 +104,15 @@ public class SCR_Player_Interactions : MonoBehaviour
                 }
 
             }
+            if (obj.TryGetComponent(out SCR_TempWinScript Tempwin)) // Temporary script for ending the game
+            {
+                if (Input.GetKeyDown(interactionKey))
+                {
+                    Tempwin.VictoryScreen();
+                }
+
+            }
+
             if (obj.TryGetComponent(out SCR_KeyPickup keyPickUp))
             {
 
