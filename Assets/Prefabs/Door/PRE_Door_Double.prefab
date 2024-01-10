@@ -154,15 +154,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cdae3b8f9644e54fb4b068b3569044a,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1269230488342035719}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cdae3b8f9644e54fb4b068b3569044a,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4469038994534821952}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cdae3b8f9644e54fb4b068b3569044a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7227085231354239729}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cdae3b8f9644e54fb4b068b3569044a,
         type: 3}
       insertIndex: -1
@@ -214,27 +206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81a4c878c77a3a43bd8ee07d7e96249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &1269230488342035719
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244179696128586726}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.022451553, y: 0.020202335, z: 0.022432279}
-  m_Center: {x: 0.000000038146972, y: -0.00034680785, z: 0.00054786564}
 --- !u!95 &4469038994534821952
 Animator:
   serializedVersion: 5
@@ -256,22 +227,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7227085231354239729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244179696128586726}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockState: 1
-  animator: {fileID: 0}
-  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
-  keyReader: {fileID: 0}
 --- !u!114 &5766115425861898878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,9 +314,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockState: 1
+  lockState: 0
   animator: {fileID: 4469038994534821952}
   SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
+  keycardReader: {fileID: 0}
   keyReader: {fileID: 0}
 --- !u!82 &2859519554610516338
 AudioSource:
@@ -498,9 +454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockState: 1
+  lockState: 0
   animator: {fileID: 4469038994534821952}
   SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
+  keycardReader: {fileID: 0}
   keyReader: {fileID: 0}
 --- !u!82 &5336708320185260870
 AudioSource:
