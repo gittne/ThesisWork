@@ -88,7 +88,7 @@ public class SCR_Player_Interactions : MonoBehaviour
             
             if (obj.TryGetComponent(out SCR_KeyReader KeyRead)) // Temporary unlock script  "Alexander"
             {
-
+              
                 if (KeyRead.canReadCard == false)
                 {
                     Tmpro.SetText("Keycard is required");

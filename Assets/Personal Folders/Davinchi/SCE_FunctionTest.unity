@@ -131,6 +131,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3285427323583512727, guid: 0c34f8f28a719fd4aa0754ba0ce87968,
+        type: 3}
+      propertyPath: Keyreader
+      value: 
+      objectReference: {fileID: 1907011159}
     - target: {fileID: 5907166762122244081, guid: 0c34f8f28a719fd4aa0754ba0ce87968,
         type: 3}
       propertyPath: m_Name
@@ -189,11 +194,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5907166762122244081, guid: 0c34f8f28a719fd4aa0754ba0ce87968,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 201972113}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c34f8f28a719fd4aa0754ba0ce87968, type: 3}
 --- !u!1 &114256751
 GameObject:
@@ -329,25 +330,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -85}
   m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &201972105 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5907166762122244081, guid: 0c34f8f28a719fd4aa0754ba0ce87968,
-    type: 3}
-  m_PrefabInstance: {fileID: 109416814}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &201972113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201972105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8b8b1eef54da084bb98f0d59fa46cd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Keyreader: {fileID: 1907011159}
 --- !u!1001 &342650296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1019,15 +1001,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 494774093860243500, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
+        type: 3}
+      propertyPath: InventoryItemUse
+      value: 
+      objectReference: {fileID: 424115990}
     - target: {fileID: 2793505240832737500, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
         type: 3}
       propertyPath: m_Name
       value: PRE_KeyCardReader
-      objectReference: {fileID: 0}
-    - target: {fileID: 2793505240832737500, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3282937880799304294, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
         type: 3}
@@ -1079,19 +1061,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
-    - target: {fileID: 3789221793240089308, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2793505240832737500, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1907011159}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f1a1eae3907ab34f846e0e130c67ce0, type: 3}
 --- !u!1001 &1246229202
 PrefabInstance:
@@ -1968,26 +1941,18 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &1907011151 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2793505240832737500, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
+--- !u!114 &1907011159 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 494774093860243500, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
     type: 3}
   m_PrefabInstance: {fileID: 1085356999}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1907011159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907011151}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccf3faf800421fe49af6bf03e7f170c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryItemUse: {fileID: 424115990}
-  keycardItemID: Item_3
 --- !u!4 &2010529290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1877972989397379420, guid: 7e29c1191488a8741bfad3b8f57a68b8,
