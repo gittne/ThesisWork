@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class SCR_Fps : MonoBehaviour
 {
+
+	[SerializeField] int MaxFps = 60;
+
 	void Awake()
 	{
 		QualitySettings.vSyncCount = 1;
-		Application.targetFrameRate = 60;
+		Application.targetFrameRate = MaxFps;
 	}
 }
