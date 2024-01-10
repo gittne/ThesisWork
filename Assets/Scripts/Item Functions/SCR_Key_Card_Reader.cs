@@ -25,6 +25,7 @@ public class SCR_Key_Card_Reader : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canReadCard = true;
+            Debug.Log("Walking into zone");
         }
     }
 
