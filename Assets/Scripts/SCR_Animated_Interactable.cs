@@ -19,9 +19,10 @@ public class SCR_Animated_Interactable : MonoBehaviour
     bool canInteract;
     AudioSource SoundSource;
     [SerializeField] AudioClip SoundFX;
-    [SerializeField] SCR_Key_Card_Reader keyReader;
+    [SerializeField] SCR_Key_Card_Reader keycardReader; // To revert change to "keyReader" 
+    [SerializeField] SCR_KeyReader keyReader; // Used to get SCR_KeyReader "Alexander" 
 
-    
+
     private void Start()
     {
         if (animator == null)
