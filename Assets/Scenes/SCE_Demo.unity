@@ -228,97 +228,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &246742386
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1254330189}
-    m_Modifications:
-    - target: {fileID: 494774093860243500, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: InventoryItemUse
-      value: 
-      objectReference: {fileID: 693295053}
-    - target: {fileID: 2793505240832737500, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_Name
-      value: PRE_KeyCardReader
-      objectReference: {fileID: 0}
-    - target: {fileID: 3282937880799304294, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.2767582
-      objectReference: {fileID: 0}
-    - target: {fileID: 3282937880799304294, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.044
-      objectReference: {fileID: 0}
-    - target: {fileID: 3282937880799304294, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.105140686
-      objectReference: {fileID: 0}
-    - target: {fileID: 3282937880799304294, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.5000007
-      objectReference: {fileID: 0}
-    - target: {fileID: 3282937880799304294, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.5000008
-      objectReference: {fileID: 0}
-    - target: {fileID: 3282937880799304294, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.49999925
-      objectReference: {fileID: 0}
-    - target: {fileID: 3282937880799304294, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.49999928
-      objectReference: {fileID: 0}
-    - target: {fileID: 3282937880799304294, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 3282937880799304294, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3282937880799304294, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4f1a1eae3907ab34f846e0e130c67ce0, type: 3}
---- !u!4 &246742387 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3282937880799304294, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-    type: 3}
-  m_PrefabInstance: {fileID: 246742386}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &246742388 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 494774093860243500, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-    type: 3}
-  m_PrefabInstance: {fileID: 246742386}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccf3faf800421fe49af6bf03e7f170c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &256916437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -952,14 +861,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5855246669896708900, guid: b3c3fc2454a397147b9f8864f348cf9d,
         type: 3}
+      propertyPath: keyReaders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855246669896708900, guid: b3c3fc2454a397147b9f8864f348cf9d,
+        type: 3}
+      propertyPath: keyReaders.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855246669896708900, guid: b3c3fc2454a397147b9f8864f348cf9d,
+        type: 3}
       propertyPath: Temp_keyRead.Array.data[0]
       value: 
-      objectReference: {fileID: 246742388}
+      objectReference: {fileID: 0}
     - target: {fileID: 5855246669896708900, guid: b3c3fc2454a397147b9f8864f348cf9d,
         type: 3}
       propertyPath: Temp_keyRead.Array.data[1]
       value: 
-      objectReference: {fileID: 741800269}
+      objectReference: {fileID: 0}
     - target: {fileID: 7197731065033015647, guid: b3c3fc2454a397147b9f8864f348cf9d,
         type: 3}
       propertyPath: m_Name
@@ -1121,18 +1040,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 741800267}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &741800269 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 494774093860243500, guid: 4f1a1eae3907ab34f846e0e130c67ce0,
-    type: 3}
-  m_PrefabInstance: {fileID: 741800267}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccf3faf800421fe49af6bf03e7f170c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &759336892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1246,11 +1153,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1254330189}
     m_Modifications:
-    - target: {fileID: 3285427323583512727, guid: 0c34f8f28a719fd4aa0754ba0ce87968,
-        type: 3}
-      propertyPath: Keyreader
-      value: 
-      objectReference: {fileID: 246742388}
     - target: {fileID: 5907166762122244081, guid: 0c34f8f28a719fd4aa0754ba0ce87968,
         type: 3}
       propertyPath: m_Name
@@ -1773,7 +1675,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 246742387}
   - {fileID: 741800268}
   - {fileID: 341450456}
   - {fileID: 1129213906}
@@ -2021,11 +1922,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1254330189}
     m_Modifications:
-    - target: {fileID: 3285427323583512727, guid: 0c34f8f28a719fd4aa0754ba0ce87968,
-        type: 3}
-      propertyPath: Keyreader
-      value: 
-      objectReference: {fileID: 741800269}
     - target: {fileID: 5907166762122244081, guid: 0c34f8f28a719fd4aa0754ba0ce87968,
         type: 3}
       propertyPath: m_Name
@@ -2181,7 +2077,12 @@ PrefabInstance:
         type: 3}
       propertyPath: keyReader
       value: 
-      objectReference: {fileID: 246742388}
+      objectReference: {fileID: 0}
+    - target: {fileID: 426192490299803857, guid: 6ac5ab9c775bd7643b746715da72687c,
+        type: 3}
+      propertyPath: keycardReader
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 453824694349700469, guid: 6ac5ab9c775bd7643b746715da72687c,
         type: 3}
       propertyPath: m_Layer
@@ -2331,7 +2232,7 @@ PrefabInstance:
         type: 3}
       propertyPath: keyReader
       value: 
-      objectReference: {fileID: 741800269}
+      objectReference: {fileID: 0}
     - target: {fileID: 1884479959575671304, guid: 6ac5ab9c775bd7643b746715da72687c,
         type: 3}
       propertyPath: m_Layer
@@ -2717,7 +2618,7 @@ PrefabInstance:
         type: 3}
       propertyPath: keyReader
       value: 
-      objectReference: {fileID: 741800269}
+      objectReference: {fileID: 0}
     - target: {fileID: 5682409963693965735, guid: 6ac5ab9c775bd7643b746715da72687c,
         type: 3}
       propertyPath: m_Layer
@@ -2822,7 +2723,12 @@ PrefabInstance:
         type: 3}
       propertyPath: keyReader
       value: 
-      objectReference: {fileID: 246742388}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676659953047993852, guid: 6ac5ab9c775bd7643b746715da72687c,
+        type: 3}
+      propertyPath: keycardReader
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6683998298645934725, guid: 6ac5ab9c775bd7643b746715da72687c,
         type: 3}
       propertyPath: GlobalObjectIdHash
@@ -3151,7 +3057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4968fbeb8141aa745afb0227db8b3ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyReader: {fileID: 741800269}
+  KeyReader: {fileID: 0}
   WinScreen: {fileID: 1132600829}
 --- !u!114 &1667890946
 MonoBehaviour:
@@ -3165,7 +3071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4968fbeb8141aa745afb0227db8b3ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyReader: {fileID: 741800269}
+  KeyReader: {fileID: 0}
   WinScreen: {fileID: 1132600829}
 --- !u!1 &1710409328
 GameObject:
@@ -3365,7 +3271,7 @@ Transform:
   m_GameObject: {fileID: 1933922981}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.491, y: 0.785, z: -1.469}
+  m_LocalPosition: {x: -4.023, y: 1.173, z: -3.762}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
