@@ -5,13 +5,13 @@ using UnityEngine;
 public class SCR_SoundTrigger : MonoBehaviour
 {
     [SerializeField] AudioSource soundSource;
-    [SerializeField] GameObject glassbottle;
+    [SerializeField] GameObject soundobj;
     // Start is called before the first frame update
   
 
      private void OnTriggerEnter(Collider other)
     {
         soundSource.Play();
-        Destroy(glassbottle,2f);
+        Destroy(soundobj,2f);
     }
 }
