@@ -59,6 +59,11 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
             {
                 amountIndicators[3].text = item.stackSize.ToString();
             }
+
+            if (itemID[4] == item.itemData.itemID && item.stackSize >= 0)
+            {
+                amountIndicators[4].text = item.stackSize.ToString();
+            }
         }
     }
 

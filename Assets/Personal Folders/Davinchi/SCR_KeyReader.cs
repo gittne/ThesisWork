@@ -29,7 +29,6 @@ public class SCR_KeyReader : MonoBehaviour
     public void UnlockDoor()
     {
         Debug.Log("Unlocking door");
-        InventoryItemUse.Temp_UseKeycard();
     }
 
     public void ReadCard()
