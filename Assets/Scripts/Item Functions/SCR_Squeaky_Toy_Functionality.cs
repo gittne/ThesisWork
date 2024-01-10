@@ -17,6 +17,7 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
     [SerializeField] float timeToBringArmDown;
     [SerializeField] float initialVelocity;
     [SerializeField] float initialRotationVelocity;
+    bool hasThrown;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire2") && isHolding)
+        if (Input.GetButtonDown("Fire2") && isHolding && !hasThrown)
         {
             animator.enabled = true;
             StartCoroutine(ThrowingToy());
@@ -51,9 +52,11 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
 
     IEnumerator ThrowingToy()
     {
-        if (isHolding)
+        if (isHolding && !hasThrown)
         {
             animator.Play(animationTrigger, 0, 0f);
+
+            hasThrown = true;
 
             yield return new WaitForSeconds(timeToWindUpThrow);
 
@@ -74,6 +77,8 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
             yield return new WaitForSeconds(timeToBringArmDown);
 
             animator.enabled = false;
+
+            hasThrown = false;
 
             itemHolder.transform.localPosition = Vector3.Lerp(itemHolder.transform.localPosition, new Vector3(0f, 0f, 0.3f), 3f * Time.deltaTime);
         }
