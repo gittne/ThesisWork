@@ -169,7 +169,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         xRotation -= Input.GetAxis("Mouse Y") * yLookSensitivity;
         xRotation = Mathf.Clamp(xRotation, -upperLookLimit, lowerLookLimit);
 
-        cameraTransform.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        cameraHolder.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * xLookSensitivity, 0 );
     }
@@ -185,7 +185,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         {
             headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
 
-            playerCamera.transform.localRotation = Quaternion.Euler(yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount),
+            cameraHolder.transform.localRotation = Quaternion.Euler(yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount),
                 (yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount)) * yAxisMultiplier, cameraHolder.transform.localRotation.z);
         }
     }
