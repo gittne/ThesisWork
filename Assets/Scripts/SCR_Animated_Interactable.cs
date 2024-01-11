@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SCR_Animated_Interactable : MonoBehaviour
 {
-    public enum LockState { Locked, Unlocked}
+    public enum LockState { Locked, Unlocked }
     [SerializeField] LockState lockState;
     public LockState lockStatus
     {
@@ -14,7 +14,7 @@ public class SCR_Animated_Interactable : MonoBehaviour
     }
     [SerializeField] Animator animator;
 
-    
+
     float openSpeed;
     bool canInteract;
     AudioSource SoundSource;
@@ -23,11 +23,13 @@ public class SCR_Animated_Interactable : MonoBehaviour
     //[SerializeField] SCR_KeyReader keyReader; // Used to get SCR_KeyReader "Alexander" 
 
 
+    bool isOpen;
+
     private void Start()
     {
         if (animator == null)
             animator = GetComponent<Animator>();
-        
+
         SoundSource = GetComponent<AudioSource>();
         openSpeed = animator.speed;
         canInteract = true;
@@ -50,7 +52,7 @@ public class SCR_Animated_Interactable : MonoBehaviour
 
     public void SwitchAnimationState()
     {
-        if(canInteract && lockState == LockState.Unlocked)
+        if (canInteract && lockState == LockState.Unlocked)
         {
             StartCoroutine(ChangeState());
         }
@@ -58,13 +60,29 @@ public class SCR_Animated_Interactable : MonoBehaviour
 
     IEnumerator ChangeState()
     {
+        isOpen = !isOpen;
+
         animator.SetTrigger("playAnim");
-        
+
         canInteract = false;
         SoundSource.PlayOneShot(SoundFX);
         yield return new WaitForSeconds(openSpeed);
-        
-        
+
+
         canInteract = true;
+    }
+
+    public void MonsterOpenDoor()
+    {
+        if (isOpen) return;
+
+        StartCoroutine(ChangeState());
+    }
+
+    public void MonsterCloseDoor()
+    {
+        if (!isOpen) return;
+
+        StartCoroutine(ChangeState());
     }
 }
