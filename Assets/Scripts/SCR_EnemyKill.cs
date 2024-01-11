@@ -30,6 +30,7 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
 
     void KillPlayers(GameObject player)
     {
+        player.transform.position = transform.position + transform.TransformDirection(Vector3.forward) * 1.5f;
         player.transform.LookAt(transform.position);
         transform.LookAt(player.transform.position);
 

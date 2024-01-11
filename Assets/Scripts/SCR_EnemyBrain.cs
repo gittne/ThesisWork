@@ -259,6 +259,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     public void ResetMonster()
     {
+        hasDestination = false;
         transform.position = monsterResetPosition.position;
         enemyState = EnemyState.ROAM;
         rageMeter = 0;
