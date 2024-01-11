@@ -252,9 +252,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
         cnt.Teleport(spawnpoint, Quaternion.identity, transform.localScale);
 
-        yDefaultPosition = cameraTransform.transform.localPosition.y;
+        yDefaultPosition = cameraHolder.transform.localPosition.y;
 
-        if (Instantiate(playerCamera, cameraTransform))
+        if (Instantiate(playerCamera, cameraHolder))
         {
             Debug.LogWarning("Kamera instantierad");
         }

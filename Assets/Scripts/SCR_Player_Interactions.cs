@@ -13,16 +13,8 @@ public class SCR_Player_Interactions : MonoBehaviour
     GameObject interactTextCanvas;
     GameObject keyLockTextCanvas;
 
-    //textmeshPro Allows you to have one textinput and change of text. 
-    [SerializeField] string[] Prompts;
-    [SerializeField] GameObject TextPrompt;
-    TextMeshProUGUI Tmpro;
-    //TextmeshPro End
     private void Awake()
     {
-        Tmpro = TextPrompt.GetComponent<TextMeshProUGUI>(); // Gets textmeshpro from TextPrompt Gameobejct.
-        Tmpro.SetText(""); // sets TmPro to empty
-
         interactTextCanvas = GameObject.FindGameObjectWithTag("InteractionText");
         keyLockTextCanvas = GameObject.FindGameObjectWithTag("KeyLockText");
         interactTextCanvas.SetActive(false);
@@ -85,53 +77,19 @@ public class SCR_Player_Interactions : MonoBehaviour
                     
                 }
             }
-            
-            if (obj.TryGetComponent(out SCR_KeyReader KeyRead)) // Temporary unlock script  "Alexander"
-            {
-              
-                if (KeyRead.canReadCard == false)
-                {
-                    Tmpro.SetText("Keycard is required");
-                }
-                else
-                {
-                    Tmpro.SetText("E");
-                }
 
-                if (Input.GetKeyDown(interactionKey) && KeyRead.canReadCard == true)
-                {
-                    KeyRead.UnlockDoor();
-                }
-
-            }
             if (obj.TryGetComponent(out SCR_TempWinScript Tempwin)) // Temporary script for ending the game
             {
                 if (Input.GetKeyDown(interactionKey))
                 {
                     Tempwin.VictoryScreen();
                 }
-
             }
-
-            if (obj.TryGetComponent(out SCR_KeyPickup keyPickUp))
-            {
-
-                    Tmpro.SetText("E");
-
-                if (Input.GetKeyDown(interactionKey))
-                {
-                    keyPickUp.Pickup();
-                }
-
-            } // Temporary unlock script End "Alexander"
-
         }
         else
         {
             keyLockTextCanvas.SetActive(false);
             interactTextCanvas.SetActive(false);
-            
-            Tmpro.SetText(""); // sets TmPro to empty
         }
     }
 }
