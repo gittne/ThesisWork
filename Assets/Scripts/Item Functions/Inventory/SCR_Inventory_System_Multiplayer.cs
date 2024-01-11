@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class SCR_Inventory_System_Multiplayer : MonoBehaviour
+public class SCR_Inventory_System_Multiplayer : NetworkBehaviour
 {
     public static SCR_Inventory_System_Multiplayer current;
     Dictionary<SCR_Inventory_Item_Data, Inventory_Item> itemDictionary;
@@ -12,6 +13,10 @@ public class SCR_Inventory_System_Multiplayer : MonoBehaviour
 
     private void Awake()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         current = this;
         inventory = new List<Inventory_Item>();
         itemDictionary = new Dictionary<SCR_Inventory_Item_Data, Inventory_Item>();
