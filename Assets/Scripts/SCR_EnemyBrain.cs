@@ -59,6 +59,10 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
             Hunt();
             HuntFumes();
         }
+        else if (enemyState == EnemyState.INVESTIGATING)
+        {
+            Investigate();
+        }
         else if (enemyState == EnemyState.FINISHING)
         {
             Finishing();
@@ -92,7 +96,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         agent.speed = 2.5f;
         agent.acceleration = 15;
         enemyState = EnemyState.ROAM;
-        if(repositionCoroutine != null) StopCoroutine(repositionCoroutine);
+        if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
         hasDestination = false;
     }
 
@@ -139,8 +143,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     IEnumerator RepositionDelay()
     {
         int mirrorChance = Random.Range(0, 10);
-        if (mirrorChance >= 8) 
-        { 
+        if (mirrorChance >= 8)
+        {
             GoFindMirror();
             yield break;
         }
@@ -181,7 +185,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         currentTargetPlayer = playa;
 
         if (currentTargetPlayer != null)
-            if(rageMeter < 80) enemyState = EnemyState.FOLLOW;
+            if (rageMeter < 80) enemyState = EnemyState.FOLLOW;
     }
 
     [ContextMenu("Teleport")]
@@ -216,7 +220,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     public void EnterKillingState()
     {
         enemyState = EnemyState.KILLING;
-        if(repositionCoroutine != null) StopCoroutine(repositionCoroutine);
+        if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
         agent.destination = transform.position;
     }
 
@@ -263,5 +267,23 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         enemyState = EnemyState.ROAM;
         rageMeter = 0;
         Debug.Log("im reset");
+    }
+
+    public void CommenceInvestigation(GameObject target)
+    {
+        enemyState = EnemyState.INVESTIGATING;
+        agent.speed = 3f;
+        agent.acceleration = 30;
+
+        agent.destination = target.transform.position;
+        currentTargetPlayer = target;
+    }
+
+    public void Investigate()
+    {
+        if (Vector3.Distance(currentTargetPlayer.transform.position, transform.position) <= 1f)
+        {
+            CommenceRoam();
+        }
     }
 }

@@ -93,6 +93,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     Image fader;
 
     SCR_MultiplayerOverlord overlord;
+    NuisanceEmitter nuisance;
 
     bool isDead = false;
     public bool IsDead { get { return isDead; }}
@@ -103,6 +104,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         StartCoroutine(SetupDelay());
         fader = GameObject.FindGameObjectWithTag("BlackFade").GetComponent<Image>();
+        nuisance = GetComponentInChildren<NuisanceEmitter>();
     }
 
     void Update()
@@ -300,11 +302,13 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     void EnableRadio()
     {
         VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.globalChannel);
+        nuisance.ToggleEnable(true);
     }
 
     private void DisableRadio()
     {
         VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
+        nuisance.ToggleEnable(false);
     }
 
     [ClientRpc]

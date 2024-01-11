@@ -21,6 +21,14 @@ public class SCR_EnemyDetector : MonoBehaviour
         {
             nuisancesList.Add(other.gameObject);
         }
+
+        if(other.CompareTag("Player"))
+        {
+            if(!other.gameObject.GetComponent<SCR_MonsterAttractor>().HasBeenInvestigated)
+            {
+
+            }
+        }
     }
 
     public void OnTriggerExit(Collider other)
