@@ -239,21 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransitionStateInfoList:
-  - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: -1083834667
-    DestinationState: -656102061
-    TransitionDuration: 0.25
-    TriggerNameHash: 1423123024
-    TransitionIndex: 0
-  - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: -656102061
-    DestinationState: -1083834667
-    TransitionDuration: 0.24999988
-    TriggerNameHash: 1423123024
-    TransitionIndex: 0
+  TransitionStateInfoList: []
   m_Animator: {fileID: 4469038994534821952}
 --- !u!114 &-3480136876581292491
 MonoBehaviour:
@@ -318,7 +304,6 @@ MonoBehaviour:
   animator: {fileID: 4469038994534821952}
   SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
   keycardReader: {fileID: 0}
-  keyReader: {fileID: 0}
 --- !u!82 &2859519554610516338
 AudioSource:
   m_ObjectHideFlags: 0
@@ -340,9 +325,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 35
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -350,23 +335,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.033333335
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -1.0344827
+      outSlope: -1.0344827
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -458,7 +443,6 @@ MonoBehaviour:
   animator: {fileID: 4469038994534821952}
   SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
   keycardReader: {fileID: 0}
-  keyReader: {fileID: 0}
 --- !u!82 &5336708320185260870
 AudioSource:
   m_ObjectHideFlags: 0
@@ -480,9 +464,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 35
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

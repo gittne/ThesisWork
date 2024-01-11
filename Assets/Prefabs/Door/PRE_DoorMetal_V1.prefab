@@ -478,9 +478,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 35
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -581,19 +581,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransitionStateInfoList:
-  - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: -1964682195
-    DestinationState: 1217618454
-    TransitionDuration: 0.14187175
-    TriggerNameHash: 1423123024
-    TransitionIndex: 0
-  - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: 1217618454
-    DestinationState: -1964682195
-    TransitionDuration: 0.35456574
-    TriggerNameHash: 1423123024
-    TransitionIndex: 0
+  TransitionStateInfoList: []
   m_Animator: {fileID: 4781071657143775951}
