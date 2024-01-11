@@ -238,7 +238,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         players[0] = SCR_MultiplayerOverlord.Instance.Players[0].gameObject;
         players[1] = SCR_MultiplayerOverlord.Instance.Players[1].gameObject;
 
-        if(Vector3.Distance(transform.position, players[0].transform.position) < Vector3.Distance(transform.position, players[1].transform.position))
+        if (players[0].GetComponent<SCR_First_Person_Controller>().IsDead)
         {
             currentTargetPlayer = players[1];
         }
