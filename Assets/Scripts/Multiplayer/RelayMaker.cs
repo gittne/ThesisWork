@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using Unity.Services.Vivox;
 using VivoxUnity;
 using Unity.Services.Lobbies;
-using UnityEditor.PackageManager;
+//using UnityEditor.PackageManager;
 
 public class RelayMaker : MonoBehaviour
 {
@@ -69,7 +69,7 @@ public class RelayMaker : MonoBehaviour
             NetworkManager.Singleton.StartClient();
 
             Debug.Log("Joined a relay.");
-
+            
             VivoxService.Instance.Initialize();
             VivoxPlayer.Instance.LoginToVivox();
 
