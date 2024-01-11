@@ -81,6 +81,8 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
             hasThrown = false;
 
             itemHolder.transform.localPosition = Vector3.Lerp(itemHolder.transform.localPosition, new Vector3(0f, 0f, 0.3f), 3f * Time.deltaTime);
+
+            instantiatedObject.GetComponent<SCR_MonsterAttractor>().BroadcastLocation();
         }
     }
 }

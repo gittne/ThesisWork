@@ -20,8 +20,9 @@ public class SCR_MonsterAttractor : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if(other.CompareTag("KillZone"))
         {
+            Debug.Log("I got investigated.");
             Investigate();
             other.gameObject.GetComponent<SCR_EnemyBrain>().CommenceRoam();
         }
