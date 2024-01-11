@@ -85,9 +85,9 @@ public class RelayMaker : MonoBehaviour
     {
         try
         {
+            VivoxPlayer.Instance.Logout();
             LobbyManager.Instance.LeaveLobby();
 
-            VivoxPlayer.Instance.Logout();
             AuthenticationService.Instance.SignOut();
             NetworkManager.Singleton.Shutdown();
         }
