@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 5137449882981979248}
   m_Layer: 7
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,7 +214,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.010630633, y: 0.023363, z: 0.02128489}
+  m_Size: {x: 0.010630633, y: 0.02, z: 0.02128489}
   m_Center: {x: 0.0051889853, y: -0.0004288562, z: 0.00826677}
 --- !u!95 &7289088003824139006
 Animator:
@@ -253,7 +253,6 @@ MonoBehaviour:
   animator: {fileID: 0}
   SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
   keycardReader: {fileID: 0}
-  keyReader: {fileID: 0}
 --- !u!82 &6964017777082865586
 AudioSource:
   m_ObjectHideFlags: 0
