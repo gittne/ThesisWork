@@ -87,8 +87,8 @@ public class RelayMaker : MonoBehaviour
             //NetworkManager.Singleton.Shutdown()
 
             NetworkManager.Singleton.DisconnectClient(NetworkManager.Singleton.LocalClientId);
-            LobbyManager.Instance.LeaveLobby();
             NetworkManager.Singleton.Shutdown();
+            LobbyManager.Instance.LeaveLobby();
 
             VivoxPlayer.Instance.Logout();
             AuthenticationService.Instance.SignOut();
