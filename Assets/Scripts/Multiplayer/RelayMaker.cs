@@ -84,9 +84,8 @@ public class RelayMaker : MonoBehaviour
     {
         try
         {
-            //NetworkManager.Singleton.Shutdown()
-
-            NetworkManager.Singleton.DisconnectClient(NetworkManager.Singleton.LocalClientId);
+            if(SCR_MultiplayerOverlord.Instance.IsHost) NetworkManager.Singleton.DisconnectClient(NetworkManager.Singleton.LocalClientId);
+            
             NetworkManager.Singleton.Shutdown();
             LobbyManager.Instance.LeaveLobby();
 
