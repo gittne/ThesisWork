@@ -4335,8 +4335,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 1.75}
-  m_Center: {x: 0, y: 0, z: 0.25}
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0.3}
 --- !u!114 &4145956535592146653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9817,8 +9817,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4461779397166893890}
-  - component: {fileID: 2361170839675087102}
   - component: {fileID: 1255222269309604899}
+  - component: {fileID: 8582256750256454755}
   m_Layer: 0
   m_Name: DoorOpener
   m_TagString: Untagged
@@ -9841,8 +9841,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8849089804104160390}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2361170839675087102
-BoxCollider:
+--- !u!114 &1255222269309604899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4868456749954113624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dd977c1e72331499120df5e0944401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &8582256750256454755
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9859,21 +9871,11 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 1.75}
-  m_Center: {x: 0, y: 0, z: 0.25}
---- !u!114 &1255222269309604899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4868456749954113624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61dd977c1e72331499120df5e0944401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5013334282802920227
 GameObject:
   m_ObjectHideFlags: 0
@@ -10903,7 +10905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 705
   visionLossDelay: 0
 --- !u!1 &5467041369830225621
 GameObject:
@@ -17914,7 +17916,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 9084170006093455390}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.75
+  m_Radius: 1
   m_Speed: 2.5
   m_Acceleration: 15
   avoidancePriority: 50
@@ -17923,7 +17925,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 1.5
+  m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -17958,7 +17960,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}

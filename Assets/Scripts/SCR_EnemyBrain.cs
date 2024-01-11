@@ -80,13 +80,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     void Hunt()
     {
-
         agent.destination = currentTargetPlayer.transform.position;
-
-        if (Vector3.Distance(transform.position, currentTargetPlayer.transform.position) < 1) 
-        { 
-            FindNearestPlayer(); 
-        }
     }
 
     public void CommenceRoam()
@@ -117,6 +111,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         currentTargetPlayer = FindNearestPlayer();
         agent.speed = 7;
         agent.velocity = agent.desiredVelocity;
+
+        rageDuration = 7;
 
         agent.acceleration = 100;
         enemyState = EnemyState.HUNT;
@@ -184,7 +180,6 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         if (currentTargetPlayer != null)
             if(rageMeter < 80) enemyState = EnemyState.FOLLOW;
-        else enemyState = EnemyState.ROAM;
     }
 
     [ContextMenu("Teleport")]
@@ -262,8 +257,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     public void ResetMonster()
     {
-        transform.position = new Vector3(0, 0, 0);
         enemyState = EnemyState.ROAM;
         rageMeter = 0;
+        Debug.Log("im reset");
     }
 }

@@ -238,7 +238,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         }
 
         transform.position = respawnLocation;
-        cameraHolder.transform.position += new Vector3(0, 1.7f, 0);
+        cameraHolder.transform.position += new Vector3(0, 1.625f, 0);
         transform.rotation = new Quaternion(0, 0, 0, 0);
         cameraHolder.transform.rotation = new Quaternion(0, 0, 0, 0);
 

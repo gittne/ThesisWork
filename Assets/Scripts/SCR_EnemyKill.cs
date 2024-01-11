@@ -54,9 +54,9 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
         Debug.Log("KILL THEM");
         yield return new WaitForSeconds(5);
 
-        if(isMultiplayer)
+        if (isMultiplayer)
             brain.CommenceMultiplayerFinish();
         else
-            brain.CommenceRoam();
+            brain.ResetMonster();
     }
 }

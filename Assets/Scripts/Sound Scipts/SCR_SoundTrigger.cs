@@ -6,11 +6,11 @@ public class SCR_SoundTrigger : MonoBehaviour
 {
     [SerializeField] AudioSource soundSource;
     [SerializeField] GameObject soundobj;
-    // Start is called before the first frame update
-  
 
      private void OnTriggerEnter(Collider other)
     {
+        if (!other.CompareTag("Player")) return;
+
         soundSource.Play();
         Destroy(soundobj,2f);
     }

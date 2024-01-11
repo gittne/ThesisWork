@@ -32,7 +32,6 @@ public class SCR_Animated_Interactable : MonoBehaviour
 
         SoundSource = GetComponent<AudioSource>();
         openSpeed = animator.speed;
-        canInteract = true;
     }
 
     private void Update()
@@ -52,37 +51,31 @@ public class SCR_Animated_Interactable : MonoBehaviour
 
     public void SwitchAnimationState()
     {
-        if (canInteract && lockState == LockState.Unlocked)
+        if (lockState == LockState.Unlocked)
         {
-            StartCoroutine(ChangeState());
+            ChangeState();
         }
     }
 
-    IEnumerator ChangeState()
+    void ChangeState()
     {
         isOpen = !isOpen;
 
-        animator.SetTrigger("playAnim");
-
-        canInteract = false;
+        animator.SetBool("isOpen", isOpen);
         SoundSource.PlayOneShot(SoundFX);
-        yield return new WaitForSeconds(openSpeed);
-
-
-        canInteract = true;
     }
 
     public void MonsterOpenDoor()
     {
         if (isOpen) return;
 
-        StartCoroutine(ChangeState());
+        ChangeState();
     }
 
     public void MonsterCloseDoor()
     {
         if (!isOpen) return;
 
-        StartCoroutine(ChangeState());
+        ChangeState();
     }
 }

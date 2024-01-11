@@ -32,7 +32,7 @@ public class SCR_EnemyVision : MonoBehaviour
             SendVisionInformation();
         else
         {
-            hasVisionOfPlayer = false;
+            visiblePlayer = null;
 
             if(brain.enemyState != SCR_EnemyUtilities.EnemyState.HUNT)
                 brain.ReceiveVisionInformation(null);
