@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Unity.Services.Vivox;
 using VivoxUnity;
 using UnityEditor.PackageManager;
+using Unity.Services.Lobbies;
 
 public class RelayMaker : MonoBehaviour
 {
@@ -87,8 +88,11 @@ public class RelayMaker : MonoBehaviour
             //NetworkManager.Singleton.Shutdown()
 
             NetworkManager.Singleton.DisconnectClient(NetworkManager.Singleton.LocalClientId);
+            LobbyManager.Instance.LeaveLobby();
+            NetworkManager.Singleton.Shutdown();
 
             VivoxPlayer.Instance.Logout();
+            AuthenticationService.Instance.SignOut();
         }
         catch(RelayServiceException e)
         {
