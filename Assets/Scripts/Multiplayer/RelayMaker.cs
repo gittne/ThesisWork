@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 using Unity.Services.Vivox;
 using VivoxUnity;
-using UnityEditor.PackageManager;
 using Unity.Services.Lobbies;
 
 public class RelayMaker : MonoBehaviour

@@ -29,6 +29,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     bool wantsToTeleport;
 
+    [SerializeField] Transform monsterResetPosition;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -257,6 +259,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     public void ResetMonster()
     {
+        transform.position = monsterResetPosition.position;
         enemyState = EnemyState.ROAM;
         rageMeter = 0;
         Debug.Log("im reset");
