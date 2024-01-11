@@ -59,10 +59,6 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
             Hunt();
             HuntFumes();
         }
-        else if (enemyState == EnemyState.INVESTIGATING)
-        {
-            Investigate();
-        }
         else if (enemyState == EnemyState.FINISHING)
         {
             Finishing();
@@ -277,13 +273,5 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         agent.destination = target.transform.position;
         currentTargetPlayer = target;
-    }
-
-    public void Investigate()
-    {
-        if (Vector3.Distance(currentTargetPlayer.transform.position, transform.position) <= 1f)
-        {
-            CommenceRoam();
-        }
     }
 }

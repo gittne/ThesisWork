@@ -22,11 +22,11 @@ public class SCR_EnemyDetector : MonoBehaviour
             nuisancesList.Add(other.gameObject);
         }
 
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("SqueakyToy"))
         {
             if(!other.gameObject.GetComponent<SCR_MonsterAttractor>().HasBeenInvestigated)
             {
-
+                brain.CommenceInvestigation(other.gameObject);
             }
         }
     }
