@@ -52,6 +52,16 @@ public class SCR_Player_Interactions : MonoBehaviour
                 }
             }
 
+            if (obj.TryGetComponent(out SCR_Inventory_Pickup_Multiplayer pickupMultiplayer))
+            {
+                interactTextCanvas.SetActive(true);
+
+                if (Input.GetKeyDown(interactionKey))
+                {
+                    pickupMultiplayer.OnHandlePickupItem();
+                }
+            }
+
             if (obj.TryGetComponent(out SCR_Animated_Interactable anim))
             {
                 if (anim.lockStatus == SCR_Animated_Interactable.LockState.Locked)
