@@ -185,7 +185,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
 
             float yBobRotation = yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount);
-            float xBobRotation = xRotation; // Preserve the original X-axis rotation
+            float xBobRotation = yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount);
 
             cameraHolder.transform.localRotation = Quaternion.Euler(xBobRotation, yBobRotation, 0);
         }
