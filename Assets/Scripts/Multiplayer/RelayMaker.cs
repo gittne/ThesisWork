@@ -85,13 +85,11 @@ public class RelayMaker : MonoBehaviour
     {
         try
         {
-            if(SCR_MultiplayerOverlord.Instance.IsHost) NetworkManager.Singleton.DisconnectClient(NetworkManager.Singleton.LocalClientId);
-            
-            NetworkManager.Singleton.Shutdown();
             LobbyManager.Instance.LeaveLobby();
 
             VivoxPlayer.Instance.Logout();
             AuthenticationService.Instance.SignOut();
+            NetworkManager.Singleton.Shutdown();
         }
         catch(RelayServiceException e)
         {
