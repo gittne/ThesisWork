@@ -10,7 +10,7 @@ using UnityEngine.AI;
 
 public class SCR_EnemyUtilities : MonoBehaviour
 {
-    public enum EnemyState { ROAM, FOLLOW, HUNT, TELEPORTING, KILLING, FINISHING }
+    public enum EnemyState { ROAM, FOLLOW, HUNT, INVESTIGATING, TELEPORTING, KILLING, FINISHING }
 
     //Get a random position on a navmesh sphere around it.
     public Vector3 RandomNavmeshPosition(float radius)

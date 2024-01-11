@@ -593,6 +593,7 @@ GameObject:
   - component: {fileID: 7322561167753855765}
   - component: {fileID: 388557389514651547}
   - component: {fileID: 8696720191265456170}
+  - component: {fileID: 1533243838706136504}
   m_Layer: 7
   m_Name: Pre_Squeaky_Toy_Cat
   m_TagString: Untagged
@@ -890,6 +891,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.25, y: 0.3, z: 0.25}
   m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!114 &1533243838706136504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8306587584287216110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0395c2d24cd99964f904802c198256fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInvestigatableByMonster: 1
 --- !u!1 &8654229418277161799
 GameObject:
   m_ObjectHideFlags: 0
