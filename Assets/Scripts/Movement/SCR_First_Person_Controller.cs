@@ -21,7 +21,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
     public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKeyDown(crouchKey);
 
-    [SerializeField] Transform cameraTransform;
     [SerializeField] GameObject playerCamera;
     [SerializeField] Transform cameraHolder;
     [SerializeField] CharacterController characterController;
@@ -185,8 +184,10 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         {
             headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
 
-            cameraHolder.transform.localRotation = Quaternion.Euler(yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount),
-                (yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount)) * yAxisMultiplier, cameraHolder.transform.localRotation.z);
+            float yBobRotation = yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount);
+            float xBobRotation = xRotation; // Preserve the original X-axis rotation
+
+            cameraHolder.transform.localRotation = Quaternion.Euler(xBobRotation, yBobRotation, 0);
         }
     }
 
