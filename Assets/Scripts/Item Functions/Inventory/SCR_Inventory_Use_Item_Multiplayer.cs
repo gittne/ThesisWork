@@ -8,7 +8,7 @@ using Unity.Netcode;
 
 public class SCR_Inventory_Use_Item_Multiplayer : NetworkBehaviour
 {
-    SCR_Inventory_System_Singleplayer inventory;
+    SCR_Inventory_System_Multiplayer inventory;
     SCR_Inventory_Visual_Multiplayer visualInventory;
     [Header("Related Equipment")]
     [SerializeField] SCR_Flashlight_Multiplayer flashlight;
@@ -29,7 +29,7 @@ public class SCR_Inventory_Use_Item_Multiplayer : NetworkBehaviour
             return;
         }
 
-        inventory = GetComponent<SCR_Inventory_System_Singleplayer>();
+        inventory = GetComponent<SCR_Inventory_System_Multiplayer>();
         visualInventory = GetComponent<SCR_Inventory_Visual_Multiplayer>();
     }
 

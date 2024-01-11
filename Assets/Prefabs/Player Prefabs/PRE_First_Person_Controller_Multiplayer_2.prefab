@@ -264,7 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b259bad77f36ef4f988eb5ca61bb84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 6896344574158656509}
   playerCamera: {fileID: 3998720923358931972, guid: 47285442102f23b42b46be4f1b9fef0c,
     type: 3}
   cameraHolder: {fileID: 6896344574158656509}
@@ -632,9 +631,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5445138783020416832}
-  - component: {fileID: 8501136300626968791}
   - component: {fileID: 8441884591902106517}
   - component: {fileID: 2570510372180571862}
+  - component: {fileID: 7046551204609714558}
   m_Layer: 8
   m_Name: PRE_Inventory
   m_TagString: Untagged
@@ -658,19 +657,6 @@ Transform:
   - {fileID: 6624867916600440511}
   m_Father: {fileID: 7777797363389520731}
   m_LocalEulerAnglesHint: {x: 0, y: -32.818, z: 0}
---- !u!114 &8501136300626968791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719395644653204921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea1950c7cfce3245bfcd32425f3c56c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: []
 --- !u!114 &8441884591902106517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +701,19 @@ MonoBehaviour:
   backpackPrefab: {fileID: 2052493908429543203}
   startPosition: {fileID: 848819379840520405}
   endPosition: {fileID: 7969610873278408839}
+--- !u!114 &7046551204609714558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719395644653204921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748743c03a3fa43489d0b14063309fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
 --- !u!1 &812483264471799484
 GameObject:
   m_ObjectHideFlags: 0
