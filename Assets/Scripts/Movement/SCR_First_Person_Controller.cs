@@ -367,14 +367,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         if (!IsOwner) return;
 
         RelayMaker.Instance.LeaveRelay();
-        StartCoroutine(AwaitLobbyShutdown());
-    }
-
-    IEnumerator AwaitLobbyShutdown()
-    {
-        while(NetworkManager.Singleton.ShutdownInProgress)
-            yield return null;
-
         SceneManager.LoadScene(0);
     }
 }
