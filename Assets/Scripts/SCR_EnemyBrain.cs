@@ -175,7 +175,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     public void ReceiveVisionInformation(GameObject playa)
     {
-        if (enemyState == EnemyState.KILLING || enemyState == EnemyState.FINISHING)
+        if (enemyState == EnemyState.KILLING)
             return;
 
         currentTargetPlayer = playa;
@@ -255,6 +255,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     void Finishing()
     {
         agent.destination = currentTargetPlayer.transform.position;
+        rageMeter = 100;
     }
 
     public void ResetMonster()

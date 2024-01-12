@@ -47,6 +47,9 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI player1NameDisplay;
     [SerializeField] TextMeshProUGUI player2NameDisplay;
 
+    [SerializeField] GameObject lobbyMainDisplay;
+    [SerializeField] GameObject lobbyCodeDisplayObject;
+
     string attemptJoinCode;
 
     public class LobbyEventArgs : EventArgs
@@ -158,6 +161,9 @@ public class LobbyManager : MonoBehaviour
             };
             Lobby lobby = await Lobbies.Instance.JoinLobbyByCodeAsync(attemptJoinCode, joinLobbyByCodeOptions);
 
+            lobbyMainDisplay.SetActive(true);
+            lobbyCodeDisplayObject.SetActive(true);
+
             Debug.Log("Joined lobby with code: " + lobbyCodeDisplay.text.ToUpper());
 
             OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
@@ -165,6 +171,7 @@ public class LobbyManager : MonoBehaviour
             joinedLobby = lobby;
 
             RefreshLobbyDisplay();
+
         } catch(LobbyServiceException e)
         {
             Debug.LogError(e);

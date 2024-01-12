@@ -61,7 +61,7 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         foreach (NetworkObject player in players)
         {
             SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
-            if(cntr.IsDead) numberOfDeadPlayers++;
+            if(cntr.AmIDead.Value) numberOfDeadPlayers++;
         }
 
         Debug.Log("Number of dead players: " + numberOfDeadPlayers + " and number of players is: " + players.Count);

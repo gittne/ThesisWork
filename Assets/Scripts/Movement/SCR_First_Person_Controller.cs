@@ -98,6 +98,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     bool isDead = false;
     public bool IsDead { get { return isDead; }}
 
+    public NetworkVariable<bool> AmIDead;
+
     void Start()
     {
         if (!IsOwner) return;
@@ -105,6 +107,11 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         StartCoroutine(SetupDelay());
         fader = GameObject.FindGameObjectWithTag("BlackFade").GetComponent<Image>();
         nuisance = GetComponentInChildren<NuisanceEmitter>();
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        AmIDead.Value = false;
     }
 
     void Update()
@@ -274,24 +281,16 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         }
         
         VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
-        InvokeRepeating("GoUpdatePosition", 0, 0.1f);
+        InvokeRepeating("Update3DPosition", 0, 0.1f);
         overlord = SCR_MultiplayerOverlord.Instance;
     }
 
-    void GoUpdatePosition()
-    {
-        if (!VivoxPlayer.Instance.LoginSession.GetChannelSession(VivoxPlayer.Instance.localChannel).IsTransmitting)
-            return;
-
-        Update3DPosition(transform, transform);
-    }
-
-    void Update3DPosition(Transform listener, Transform speaker)
+    void Update3DPosition()
     {
         try
         {
-            VivoxPlayer.Instance.TransmittingSession.Set3DPosition(speaker.position, listener.position,
-            listener.forward, listener.up);
+            VivoxPlayer.Instance.TransmittingSession.Set3DPosition(transform.position, transform.position,
+            transform.forward, transform.up);
         }
         catch
         {
@@ -324,6 +323,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     public void CommencePlayerDeath(GameObject monster)
     {
         isDead = true;
+        AmIDead.Value = true;
 
         if (!IsOwner)
             return;

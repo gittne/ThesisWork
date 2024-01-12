@@ -13,7 +13,10 @@ using System.Threading.Tasks;
 using Unity.Services.Vivox;
 using VivoxUnity;
 using Unity.Services.Lobbies;
-//using UnityEditor.PackageManager;
+
+#if UNITY_EDITOR
+using UnityEditor.PackageManager;
+#endif
 
 public class RelayMaker : MonoBehaviour
 {
