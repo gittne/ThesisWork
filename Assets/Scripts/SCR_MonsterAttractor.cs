@@ -20,7 +20,7 @@ public class SCR_MonsterAttractor : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("KillZone"))
+        if(other.CompareTag("KillZone") && !hasBeenInvestigated)
         {
             Debug.Log("I got investigated.");
             Investigate();
