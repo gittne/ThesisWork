@@ -18,6 +18,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] Camera playerCamera;
     [SerializeField] Transform cameraHolder;
     [SerializeField] CharacterController characterController;
+    [SerializeField] SCR_PauseMenu pauseMenu; 
     [Header("Functions")]
     [SerializeField] bool canSprintDebug = true;
     [SerializeField] bool canCrouchDebug = true;
@@ -102,8 +103,11 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         if (canMove && visualInventory.isInventoryActive == false)
         {
             MovementInput();
-
-            MouseLook();
+            if (!pauseMenu.GameIsPaused)
+            {
+                MouseLook();
+            }
+         
 
             ApplyMovement();
 

@@ -440,7 +440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -0.841, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -425, y: 138}
+  m_AnchoredPosition: {x: -389, y: 40}
   m_SizeDelta: {x: 262.4009, y: 102.2417}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &82090114
@@ -2091,7 +2091,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -0.841, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -425, y: 26.771}
+  m_AnchoredPosition: {x: -389, y: -45}
   m_SizeDelta: {x: 137.4133, y: 53.5416}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &595782041
@@ -2212,7 +2212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -0.841, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -425, y: -51}
+  m_AnchoredPosition: {x: -389, y: -112}
   m_SizeDelta: {x: 137.4133, y: 53.5416}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &627372615
@@ -2314,7 +2314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &629836828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2889,6 +2889,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5324463902653114955, guid: b3c3fc2454a397147b9f8864f348cf9d,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1082857605}
     - target: {fileID: 7197731065033015647, guid: b3c3fc2454a397147b9f8864f348cf9d,
         type: 3}
       propertyPath: m_Name
@@ -2897,7 +2902,7 @@ PrefabInstance:
     - target: {fileID: 7197731065033015647, guid: b3c3fc2454a397147b9f8864f348cf9d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3508,6 +3513,7 @@ GameObject:
   - component: {fileID: 1082857603}
   - component: {fileID: 1082857602}
   - component: {fileID: 1082857601}
+  - component: {fileID: 1082857605}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -3598,6 +3604,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1082857605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082857600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 727d16594b10a4b41a34dd85468f5eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameIsPaused: 0
+  pauseMenuUI: {fileID: 629836827}
 --- !u!1001 &1104941144
 PrefabInstance:
   m_ObjectHideFlags: 0
