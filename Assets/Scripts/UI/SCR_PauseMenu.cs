@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class SCR_PauseMenu : MonoBehaviour
 {
     public bool GameIsPaused = false;
@@ -41,15 +41,19 @@ public class SCR_PauseMenu : MonoBehaviour
           GameIsPaused = true;
         }
 
-        public void Settings()
-        {
-          
-        }
+    public void SettingsON()
+    {
+      SettingsUI.SetActive(true);
+    }
 
-        public void MainMenu()
-        {
-          
-        }
+    public void SettingsOFF()
+    {
+      SettingsUI.SetActive(false);
+    }
+    public void MainMenu()
+    {
+      SceneManager.LoadScene(0);
+    }
 
 
 }
