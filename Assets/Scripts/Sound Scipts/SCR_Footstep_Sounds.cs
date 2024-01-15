@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SCR_Footstep_Sounds : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class SCR_Footstep_Sounds : MonoBehaviour
     float characterSpeed;
     GameObject characterObject;
     CharacterController playerController;
-    Rigidbody monsterRigidbody;
+    NavMeshAgent monsterNavMeshAgent;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,7 @@ public class SCR_Footstep_Sounds : MonoBehaviour
 
         playerController = characterObject.GetComponent<CharacterController>();
 
-        monsterRigidbody = characterObject.GetComponent<Rigidbody>();
+        monsterNavMeshAgent = characterObject.GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -39,15 +40,9 @@ public class SCR_Footstep_Sounds : MonoBehaviour
                 characterSpeed = new Vector2(playerController.velocity.x, playerController.velocity.z).magnitude / 1.3f;
             }
         }
-
-        if (monsterRigidbody != null)
+        else if (monsterNavMeshAgent != null)
         {
-            characterSpeed = new Vector2(monsterRigidbody.velocity.x, monsterRigidbody.velocity.z).magnitude;
-
-            if (characterSpeed > 5f)
-            {
-                characterSpeed = new Vector2(monsterRigidbody.velocity.x, monsterRigidbody.velocity.z).magnitude / 1.3f;
-            }
+            characterSpeed = new Vector2(monsterNavMeshAgent.velocity.x, monsterNavMeshAgent.velocity.z).magnitude / 1.3f;
         }
 
         PlayFootsteps();

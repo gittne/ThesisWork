@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7a0f497b354dc9346ac0c47ddd9be603,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2767582
+      value: -24.79
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a0f497b354dc9346ac0c47ddd9be603,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.044
+      value: 1.202
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a0f497b354dc9346ac0c47ddd9be603,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.105140686
+      value: -67.738
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a0f497b354dc9346ac0c47ddd9be603,
         type: 3}
@@ -62,11 +62,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 394bbd7fb3a6ea74b8192d49c6588a4a, type: 2}
+      objectReference: {fileID: 2100000, guid: a991a9ca4e6f1364389ead40c8efa659, type: 2}
     - target: {fileID: 919132149155446097, guid: 7a0f497b354dc9346ac0c47ddd9be603,
         type: 3}
       propertyPath: m_Name
-      value: PRE_KeyCardReader
+      value: PRE_KeyCardReader_Red
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7a0f497b354dc9346ac0c47ddd9be603,
         type: 3}
@@ -85,6 +85,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8216930843480831047}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a0f497b354dc9346ac0c47ddd9be603,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 97718802565850495}
   m_SourcePrefab: {fileID: 100100000, guid: 7a0f497b354dc9346ac0c47ddd9be603, type: 3}
 --- !u!1 &2793505240832737500 stripped
 GameObject:
@@ -93,6 +97,40 @@ GameObject:
   m_PrefabInstance: {fileID: 3028090098316623245}
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &3789221793240089308
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793505240832737500}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.012308812, y: 0.018320128, z: 0.03213304}
+  m_Center: {x: -0.0054340055, y: 0.00007374465, z: 0.00014109015}
+--- !u!114 &8216930843480831047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793505240832737500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f670e5ee7d519d745859e6fcb83a33f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keycardItemID: Item_4
+--- !u!65 &97718802565850495
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,17 +150,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.0008400281, y: 0.0023229658, z: 0.003289524}
-  m_Center: {x: 0.00030038803, y: 0.00007374468, z: 0.00014109066}
---- !u!114 &8216930843480831047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2793505240832737500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f670e5ee7d519d745859e6fcb83a33f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keycardItemID: Item_3
+  m_Center: {x: 0.00030038803, y: 0.000073744915, z: 0.00014109066}
