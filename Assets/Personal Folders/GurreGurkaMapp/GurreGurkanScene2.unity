@@ -602,7 +602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e068b83e6fdafc4eb34aa3e5a5a17bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fusesLeftToInsert: 2
+  fusesLeftToInsert: 3
   fuseObjects:
   - {fileID: 179485339}
   - {fileID: 1155903583}
@@ -3846,11 +3846,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5324463902653114955, guid: b3c3fc2454a397147b9f8864f348cf9d,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 2022595780}
+    - target: {fileID: 5855246669896708900, guid: b3c3fc2454a397147b9f8864f348cf9d,
+        type: 3}
+      propertyPath: fuseBoxes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5855246669896708900, guid: b3c3fc2454a397147b9f8864f348cf9d,
         type: 3}
       propertyPath: keyReaders.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5855246669896708900, guid: b3c3fc2454a397147b9f8864f348cf9d,
+        type: 3}
+      propertyPath: fuseBoxes.Array.data[0]
+      value: 
+      objectReference: {fileID: 124195335}
     - target: {fileID: 5855246669896708900, guid: b3c3fc2454a397147b9f8864f348cf9d,
         type: 3}
       propertyPath: keyReaders.Array.data[0]
@@ -4748,6 +4763,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4153e9d381741d40b5a61faf5ea6936, type: 3}
+--- !u!1 &2022595779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2022595781}
+  - component: {fileID: 2022595780}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2022595780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022595779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 727d16594b10a4b41a34dd85468f5eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameIsPaused: 0
+  pauseMenuUI: {fileID: 0}
+  SettingsUI: {fileID: 0}
+--- !u!4 &2022595781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022595779}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4081379, y: 2.1877527, z: 2.6878057}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2027347708
 GameObject:
   m_ObjectHideFlags: 0
@@ -5590,3 +5652,4 @@ SceneRoots:
   - {fileID: 1527730740}
   - {fileID: 541723332}
   - {fileID: 1031325212}
+  - {fileID: 2022595781}

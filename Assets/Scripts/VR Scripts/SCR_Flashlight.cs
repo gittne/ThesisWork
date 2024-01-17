@@ -16,11 +16,16 @@ public class SCR_Flashlight : MonoBehaviour
     [Header("Audio")]
     [SerializeField] AudioClip onSound;
     [SerializeField] AudioClip offSound;
+    [SerializeField] AudioClip reloadSound;
     [SerializeField] AudioSource audioSource;
 
     [Header("Rotation Angle")]
-    [SerializeField] Vector3 rotationAngles;
     XRGrabInteractable grabbable;
+
+    [Header("Battery Variables")]
+    [SerializeField] float batteryLife;
+    [SerializeField] float minimumLightStrength;
+    float maxBattery;
 
     void Start()
     {
@@ -29,7 +34,8 @@ public class SCR_Flashlight : MonoBehaviour
 
         grabbable = GetComponent<XRGrabInteractable>();
         grabbable.activated.AddListener(TurnOnOrOff);
-        
+
+        BatteryStrength();
     }
 
     void TurnOnOrOff(ActivateEventArgs arg)
@@ -46,5 +52,22 @@ public class SCR_Flashlight : MonoBehaviour
         {
             audioSource.PlayOneShot(offSound);
         }
+    }
+
+    void BatteryStrength()
+    {
+        if (spotLight.enabled && batteryLife >= 0)
+        {
+            batteryLife -= Time.deltaTime;
+        }
+
+        spotLight.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
+        lightBulb.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
+    }
+
+    public void RefillBatteries()
+    {
+        batteryLife = maxBattery;
+        audioSource.PlayOneShot(reloadSound);
     }
 }

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SCR_Key_Card_Reader : MonoBehaviour
 {
-    public bool isActivated { get; private set; }
+    public bool isActivated;
     public bool canReadCard { get; private set; }
+    public bool canActivate;
     public string keycardItemID;
 
     // Start is called before the first frame update

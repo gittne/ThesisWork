@@ -123,7 +123,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
         {
             foreach (SCR_Key_Card_Reader locks in keyReaders)
             {
-                if (locks.canReadCard)
+                if (locks.canReadCard && locks.canActivate)
                 {
                     if (itemID[2] == item.itemData.itemID && item.stackSize > 0 && locks.canReadCard == true && itemID[2] == locks.keycardItemID)
                     {
@@ -142,7 +142,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
         {
             foreach (SCR_Key_Card_Reader locks in keyReaders)
             {
-                if (locks.canReadCard)
+                if (locks.canReadCard && locks.canActivate)
                 {
                     if (itemID[4] == item.itemData.itemID && item.stackSize > 0 && locks.canReadCard == true && itemID[4] == locks.keycardItemID)
                     {
