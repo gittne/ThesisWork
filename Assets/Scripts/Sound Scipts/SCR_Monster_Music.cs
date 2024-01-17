@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class SCR_Monster_Music : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void StartFadeFX ()
     {
-        
+
     }
 
     // Update is called once per frame
