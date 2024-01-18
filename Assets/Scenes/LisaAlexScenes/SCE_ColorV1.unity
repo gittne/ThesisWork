@@ -45337,10 +45337,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9042398784323142139, guid: 6ac5ab9c775bd7643b746715da72687c,
         type: 3}
+      propertyPath: canActivate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042398784323142139, guid: 6ac5ab9c775bd7643b746715da72687c,
+        type: 3}
       propertyPath: keycardItemID
       value: Item_5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 440191846501561556, guid: 6ac5ab9c775bd7643b746715da72687c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
