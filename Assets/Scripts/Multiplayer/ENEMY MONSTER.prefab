@@ -12238,6 +12238,7 @@ GameObject:
   - component: {fileID: 2587188499511361479}
   - component: {fileID: 2110753152352556606}
   - component: {fileID: -1805613290156031515}
+  - component: {fileID: 8961300977846246195}
   m_Layer: 0
   m_Name: ENEMY MONSTER
   m_TagString: Untagged
@@ -12448,6 +12449,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8961300977846246195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6096257785713299312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 6290067348011554427}
 --- !u!1 &6112855791429582703
 GameObject:
   m_ObjectHideFlags: 0
