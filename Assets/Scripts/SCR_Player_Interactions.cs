@@ -16,6 +16,10 @@ public class SCR_Player_Interactions : NetworkBehaviour
 
     private void Awake()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         interactTextCanvas = GameObject.FindGameObjectWithTag("InteractionText");
         keyLockTextCanvas = GameObject.FindGameObjectWithTag("KeyLockText");
         interactTextCanvas.SetActive(false);
@@ -24,6 +28,11 @@ public class SCR_Player_Interactions : NetworkBehaviour
 
     void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         Interact();
 
         playerLookOrigin = playerCamera.transform.position;
