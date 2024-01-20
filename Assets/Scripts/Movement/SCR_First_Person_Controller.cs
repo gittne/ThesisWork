@@ -287,6 +287,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     void Update3DPosition()
     {
+        if (isDead) return;
+
         try
         {
             VivoxPlayer.Instance.TransmittingSession.Set3DPosition(transform.position, transform.position,
