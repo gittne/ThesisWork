@@ -16,7 +16,7 @@ public class SCR_Player_Interactions : NetworkBehaviour
 
     private void Awake()
     {
-        if (IsOwner)
+        if (!IsOwner)
         {
             return;
         }
@@ -28,7 +28,7 @@ public class SCR_Player_Interactions : NetworkBehaviour
 
     void Update()
     {
-        if (IsOwner)
+        if (!IsOwner)
         {
             return;
         }
