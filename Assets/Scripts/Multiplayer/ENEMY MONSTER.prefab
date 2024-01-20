@@ -12237,6 +12237,7 @@ GameObject:
   - component: {fileID: 337810516319414512}
   - component: {fileID: 2587188499511361479}
   - component: {fileID: 2110753152352556606}
+  - component: {fileID: -1805613290156031515}
   m_Layer: 0
   m_Name: ENEMY MONSTER
   m_TagString: Untagged
@@ -12297,8 +12298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b832fe0756a9943bc3f2746d228cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyState: 0
   rageMeter: 0
   rageDuration: 0
+  monsterResetPosition: {fileID: 0}
 --- !u!195 &8763673494821916901
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12433,6 +12436,18 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &-1805613290156031515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6096257785713299312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6112855791429582703
 GameObject:
   m_ObjectHideFlags: 0
@@ -15539,6 +15554,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
+  visionLossDelay: 0
 --- !u!1 &7577450624584246510
 GameObject:
   m_ObjectHideFlags: 0

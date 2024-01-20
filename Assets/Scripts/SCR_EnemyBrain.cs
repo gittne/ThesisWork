@@ -254,8 +254,14 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     void Finishing()
     {
-        agent.destination = currentTargetPlayer.transform.position;
         rageMeter = 100;
+
+        if (currentTargetPlayer == null)
+        {
+            agent.destination = GameObject.FindWithTag("Player").transform.position;
+            return;
+        }
+        agent.destination = currentTargetPlayer.transform.position;
     }
 
     public void ResetMonster()
