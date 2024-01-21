@@ -7,18 +7,58 @@ using UnityEngine.Audio;
 public class SCR_Monster_Music : MonoBehaviour
 {
     // Gameobjects that will be the songs thme self.
-    [SerializeField] AudioSource Spotted;
-    [SerializeField] AudioSource Triggerd;
-    [SerializeField] AudioSource Angry;
-    [SerializeField] AudioSource Chasing;
+    // This part works with SCR_Enemy Brain 
+    [SerializeField] AudioSource sourceSpotted;
+    [SerializeField] AudioClip clipSpotted;
+    [SerializeField] AudioSource sourceTriggerd;
+    [SerializeField] AudioClip clipTriggerd;
+    [SerializeField] AudioSource sourceAngry;
+    [SerializeField] AudioClip clipAngry;
+    [SerializeField] AudioSource sourceChasing;
+    [SerializeField] AudioClip clipChasing;
 
     void update()
     {
-
+        PlayerSpotted();
     }
 
     private void PlayerSpotted()
     {
+        //if (true)
+        //{
+        //    StartCoroutine(FadeAudioSource.StartFade(AudioSource audioSource, float duration, float targetVolume));
+        //    Spotted.Play(clipSpotted);
+        //}
+         
+    }
+
+    private void MonsterTriggerd()
+    {
+        //if (true)
+        //{
+        //    StartCoroutine(FadeAudioSource.StartFade(AudioSource audioSource, float duration, float targetVolume));
+        //    Triggerd.Play(clipTriggerd);
+        //}
+
+    }
+
+    private void MonsterAngry()
+    {
+        //if (true)
+        //{
+        //    StartCoroutine(FadeAudioSource.StartFade(AudioSource audioSource, float duration, float targetVolume));
+        //    Angry.Play(clipAngry);
+        //}
+
+    }
+
+    private void MonsterChasing()
+    {
+        //if (true) 
+        //{ 
+        //StartCoroutine(FadeAudioSource.StartFade(AudioSource audioSource, float duration, float targetVolume));
+        //Chasing.Play(clipChasing); 
+        //}
 
     }
 
