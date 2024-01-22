@@ -18202,7 +18202,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -18299,14 +18299,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c37f79678539d24496d909cf45db8a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdleSounds: []
+  IdleSounds:
+  - {fileID: 8300000, guid: 266f8c9506890ec43b1ce43a753121de, type: 3}
+  - {fileID: 8300000, guid: 266f8c9506890ec43b1ce43a753121de, type: 3}
+  - {fileID: 8300000, guid: 266f8c9506890ec43b1ce43a753121de, type: 3}
+  - {fileID: 8300000, guid: 266f8c9506890ec43b1ce43a753121de, type: 3}
   volSounds: {fileID: 4160301698016400556}
-  SpottedSounds: []
-  TriggerdSounds: []
-  AngrySounds: []
-  waitInterwall: 0
-  repInterwall: 0
-  startRepeating: 10
+  SpottedSounds:
+  - {fileID: 8300000, guid: a5b90aebf8829714d8474c988e6466ec, type: 3}
+  - {fileID: 8300000, guid: a5b90aebf8829714d8474c988e6466ec, type: 3}
+  - {fileID: 8300000, guid: 1b8cf76723bb64b4b9e3aa2dc0fdab61, type: 3}
+  AngrySounds:
+  - {fileID: 8300000, guid: ad211995b6f63c946a919a317fd8bba8, type: 3}
+  - {fileID: 8300000, guid: ad211995b6f63c946a919a317fd8bba8, type: 3}
+  waitInterwall: 45
+  repInterwall: 3
+  startRepeating: 2
 --- !u!1 &9136534478911009086
 GameObject:
   m_ObjectHideFlags: 0
