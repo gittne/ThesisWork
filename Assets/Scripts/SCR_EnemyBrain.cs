@@ -126,6 +126,11 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         rageMeter += val;
     }
 
+    public int GetRageAmount()
+    {
+        return rageMeter;
+    }
+
     public void RageTick()
     {
         if (enemyState == EnemyState.TELEPORTING || enemyState == EnemyState.KILLING) return;
