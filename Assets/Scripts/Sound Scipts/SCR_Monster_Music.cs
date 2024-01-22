@@ -6,61 +6,70 @@ using UnityEngine.Audio;
 // Written by Ben Schelhaas by the help of :https://johnleonardfrench.com/how-to-fade-audio-in-unity-i-tested-every-method-this-ones-the-best/
 public class SCR_Monster_Music : MonoBehaviour
 {
-    // Gameobjects that will be the songs thme self.
-    // This part works with SCR_Enemy Brain 
-    [SerializeField] AudioSource sourceSpotted;
-    [SerializeField] AudioClip clipSpotted;
-    [SerializeField] AudioSource sourceTriggerd;
-    [SerializeField] AudioClip clipTriggerd;
-    [SerializeField] AudioSource sourceAngry;
-    [SerializeField] AudioClip clipAngry;
-    [SerializeField] AudioSource sourceChasing;
-    [SerializeField] AudioClip clipChasing;
+    AudioSource[] musicSources;
+    Coroutine soundSwitcherCoroutine;
 
-    void update()
+    enum SoundState { NORMAL, HEIGHTENED, SEVERE }
+    SoundState currentSoundState = SoundState.NORMAL;
+
+    int soundStateIndex;
+
+    public void SwitchToNormal()
     {
-        PlayerSpotted();
+        if (currentSoundState == SoundState.NORMAL) return;
+
+        PrepareMusicSwitch(0);
     }
 
-    private void PlayerSpotted()
+    public void SwitchToHeightened()
     {
-        //if (true)
-        //{
-        //    StartCoroutine(FadeAudioSource.StartFade(AudioSource audioSource, float duration, float targetVolume));
-        //    Spotted.Play(clipSpotted);
-        //}
-         
+        if (currentSoundState == SoundState.HEIGHTENED) return;
+
+        PrepareMusicSwitch(1);
     }
 
-    private void MonsterTriggerd()
+    public void SwitchToSevere()
     {
-        //if (true)
-        //{
-        //    StartCoroutine(FadeAudioSource.StartFade(AudioSource audioSource, float duration, float targetVolume));
-        //    Triggerd.Play(clipTriggerd);
-        //}
+        if (currentSoundState == SoundState.SEVERE) return;
 
+        PrepareMusicSwitch(2);
     }
 
-    private void MonsterAngry()
+    void PrepareMusicSwitch(int newSoundStateIndex)
     {
-        //if (true)
-        //{
-        //    StartCoroutine(FadeAudioSource.StartFade(AudioSource audioSource, float duration, float targetVolume));
-        //    Angry.Play(clipAngry);
-        //}
+        if (soundSwitcherCoroutine != null)
+        {
+            StopCoroutine(soundSwitcherCoroutine);
+            soundSwitcherCoroutine = null;
 
+            for (int i = 0; i < musicSources.Length; i++)
+            {
+                if (i == soundStateIndex)
+                    continue;
+
+                musicSources[i].volume = 0;
+            }
+        }
+
+        soundSwitcherCoroutine = StartCoroutine(SwitchSoundPlayer(newSoundStateIndex));
     }
 
-    private void MonsterChasing()
+    public IEnumerator SwitchSoundPlayer(int newSoundStateIndex)
     {
-        //if (true) 
-        //{ 
-        //StartCoroutine(FadeAudioSource.StartFade(AudioSource audioSource, float duration, float targetVolume));
-        //Chasing.Play(clipChasing); 
-        //}
+        AudioSource originalMusicSource = musicSources[soundStateIndex];
+        AudioSource newMusicSource = musicSources[newSoundStateIndex];
 
+        for(int i = 100; i > 0; i--)
+        {
+            originalMusicSource.volume = (float)i / 100;
+            newMusicSource.volume = 1 - (float)i / 100;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        soundStateIndex = newSoundStateIndex;
     }
+
+
 
     public static IEnumerator StartFade(AudioMixer audioMixer, string exposedParam, float duration, float targetVolume)
     {
