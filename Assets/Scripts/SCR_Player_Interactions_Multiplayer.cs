@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.Netcode;
 
-public class SCR_Player_Interactions : MonoBehaviour
+public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
 {
     [SerializeField] KeyCode interactionKey = KeyCode.E;
     [SerializeField] LayerMask mask;
@@ -15,6 +16,10 @@ public class SCR_Player_Interactions : MonoBehaviour
 
     private void Awake()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         interactTextCanvas = GameObject.FindGameObjectWithTag("InteractionText");
         keyLockTextCanvas = GameObject.FindGameObjectWithTag("KeyLockText");
         interactTextCanvas.SetActive(false);
@@ -23,6 +28,10 @@ public class SCR_Player_Interactions : MonoBehaviour
 
     void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         Interact();
 
         playerLookOrigin = playerCamera.transform.position;
@@ -38,7 +47,7 @@ public class SCR_Player_Interactions : MonoBehaviour
 
         RaycastHit hit;
 
-        if(Physics.Raycast(playerLookOrigin, playerCamera.transform.forward, out hit, interactionMaxLength, mask)) 
+        if (Physics.Raycast(playerLookOrigin, playerCamera.transform.forward, out hit, interactionMaxLength, mask))
         {
             GameObject obj = hit.collider.gameObject;
 
@@ -84,7 +93,7 @@ public class SCR_Player_Interactions : MonoBehaviour
                 if (!inter.IsEnabled)
                 {
                     interactTextCanvas.SetActive(true);
-                    
+
                 }
             }
 
