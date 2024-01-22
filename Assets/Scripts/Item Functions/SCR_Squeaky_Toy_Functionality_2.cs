@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
+public class SCR_Squeaky_Toy_Functionality_2 : MonoBehaviour
 {
     [SerializeField] GameObject toyPrefab;
     [SerializeField] Transform spawnPoint;
