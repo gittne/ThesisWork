@@ -74,16 +74,16 @@ public class LobbyManager : MonoBehaviour
         Difficulty_Hard
     }
 
-    private void Update()
-    {
-        HandleLobbyHeartbeat();
-        HandleLobbyPolling();
-    }
+    //private void Update()
+    //{
+    //    HandleLobbyHeartbeat();
+    //    HandleLobbyPolling();
+    //}
 
     private void Start()
     {
-        //InvokeRepeating("HandleLobbyHeartbeat", 0, 1);
-        //InvokeRepeating("HandleLobbyPolling", 0, 1);
+        InvokeRepeating("HandleLobbyHeartbeat", 0, 0.1f);
+        InvokeRepeating("HandleLobbyPolling", 0, 0.1f);
     }
 
     private void OnApplicationQuit()
@@ -104,10 +104,7 @@ public class LobbyManager : MonoBehaviour
         await UnityServices.InitializeAsync(initializationOptions);
 
         AuthenticationService.Instance.SignedIn += () => {
-            // do nothing
             Debug.Log("Signed in with ID: " + AuthenticationService.Instance.PlayerId + "\n and username: " + EditPlayerName.Instance.GetPlayerName());
-
-            //RefreshLobbyList();
         };
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
