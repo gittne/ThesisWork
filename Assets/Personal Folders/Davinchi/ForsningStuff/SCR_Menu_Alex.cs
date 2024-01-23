@@ -52,4 +52,9 @@ public class SCR_Menu_Alex : MonoBehaviour
         SceneManager.LoadScene(SceneID);
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 }
