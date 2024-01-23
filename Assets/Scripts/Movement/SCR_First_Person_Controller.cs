@@ -104,6 +104,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         if (!IsOwner) return;
 
+        Debug.Log("im the owner of this one");
         StartCoroutine(SetupDelay());
         fader = GameObject.FindGameObjectWithTag("BlackFade").GetComponent<Image>();
         nuisance = GetComponentInChildren<NuisanceEmitter>();
