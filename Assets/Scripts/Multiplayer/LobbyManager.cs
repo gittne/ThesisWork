@@ -74,17 +74,11 @@ public class LobbyManager : MonoBehaviour
         Difficulty_Hard
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         HandleLobbyHeartbeat();
         HandleLobbyPolling();
     }
-
-    //private void Start()
-    //{
-    //    InvokeRepeating("HandleLobbyHeartbeat", 0, 0.1f);
-    //    InvokeRepeating("HandleLobbyPolling", 0, 0.1f);
-    //}
 
     private void OnApplicationQuit()
     {
