@@ -13135,7 +13135,7 @@ PrefabInstance:
     - target: {fileID: 44007227468700779, guid: 4280c53c53dccdf4ba88f81f42aad2ec,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.89
+      value: 0.931
       objectReference: {fileID: 0}
     - target: {fileID: 44007227468700779, guid: 4280c53c53dccdf4ba88f81f42aad2ec,
         type: 3}
@@ -37876,6 +37876,59 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986644540}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &991189289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 991189291}
+  - component: {fileID: 991189290}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &991189290
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991189289}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 77.61778, y: 4.0808487, z: 92.26972}
+  m_Center: {x: -24.346684, y: 1.5404243, z: 5.3964043}
+--- !u!4 &991189291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991189289}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.866764, y: -3.6, z: -43.777027}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &993113088
 GameObject:
   m_ObjectHideFlags: 0
@@ -39496,7 +39549,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: You exit the door. Hearing the faint sound of singing, screaming and pure
-    horror disipate. You feel safe. but for how long.
+    horror dissipate. You feel safe. but for how long.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 450933879c75ac646a46a60d129ad58c, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 450933879c75ac646a46a60d129ad58c, type: 2}
@@ -45690,6 +45743,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3102567936299285761, guid: 6ac5ab9c775bd7643b746715da72687c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Material/Fabric
+      objectReference: {fileID: 0}
     - target: {fileID: 3121934515129693096, guid: 6ac5ab9c775bd7643b746715da72687c,
         type: 3}
       propertyPath: GlobalObjectIdHash
@@ -46183,6 +46241,8 @@ PrefabInstance:
     - {fileID: 3073985406874961059, guid: 6ac5ab9c775bd7643b746715da72687c, type: 3}
     - {fileID: 865275594535479416, guid: 6ac5ab9c775bd7643b746715da72687c, type: 3}
     - {fileID: 6973478074193316717, guid: 6ac5ab9c775bd7643b746715da72687c, type: 3}
+    - {fileID: 7528322994690087798, guid: 6ac5ab9c775bd7643b746715da72687c, type: 3}
+    - {fileID: 4335469629910789619, guid: 6ac5ab9c775bd7643b746715da72687c, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7624385279621427822, guid: 6ac5ab9c775bd7643b746715da72687c,
         type: 3}
@@ -52104,7 +52164,7 @@ PrefabInstance:
     - target: {fileID: 44007227468700779, guid: 4280c53c53dccdf4ba88f81f42aad2ec,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -50.782
+      value: -50.606
       objectReference: {fileID: 0}
     - target: {fileID: 44007227468700779, guid: 4280c53c53dccdf4ba88f81f42aad2ec,
         type: 3}
@@ -52114,7 +52174,7 @@ PrefabInstance:
     - target: {fileID: 44007227468700779, guid: 4280c53c53dccdf4ba88f81f42aad2ec,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.222
+      value: -22.905
       objectReference: {fileID: 0}
     - target: {fileID: 44007227468700779, guid: 4280c53c53dccdf4ba88f81f42aad2ec,
         type: 3}
@@ -83663,6 +83723,7 @@ SceneRoots:
   - {fileID: 6714035980395800080}
   - {fileID: 1731845739}
   - {fileID: 1086299896}
+  - {fileID: 991189291}
   - {fileID: 348722570}
   - {fileID: 1991134983}
   - {fileID: 1321566358}
