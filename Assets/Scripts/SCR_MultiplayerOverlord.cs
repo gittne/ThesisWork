@@ -35,6 +35,13 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
 
         monsterBrain = GameObject.FindWithTag("Enemy").GetComponent<SCR_EnemyBrain>();
 
+        if(IsHost)
+            AddPlayersToListServerRpc();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void AddPlayersToListServerRpc()
+    {
         foreach (KeyValuePair<ulong, NetworkClient> player in NetworkManager.Singleton.ConnectedClients)
         {
             Debug.Log("added a player");
