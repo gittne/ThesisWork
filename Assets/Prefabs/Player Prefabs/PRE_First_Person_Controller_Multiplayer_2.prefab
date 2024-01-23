@@ -72,14 +72,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1930603868691801793}
-  - component: {fileID: 6325361218952426608}
-  - component: {fileID: 4519405049713452874}
-  - component: {fileID: 4507123473200178238}
   - component: {fileID: 3862914370081655145}
+  - component: {fileID: 4507123473200178238}
+  - component: {fileID: 6325361218952426608}
+  - component: {fileID: 5075199580965895206}
+  - component: {fileID: 1507887163021776595}
+  - component: {fileID: 4519405049713452874}
   - component: {fileID: 8109147918702127914}
   - component: {fileID: -7649367480188881165}
-  - component: {fileID: 3176818242388714882}
-  - component: {fileID: 5075199580965895206}
+  - component: {fileID: -1299541726299065120}
   m_Layer: 6
   m_Name: PRE_First_Person_Controller_Multiplayer_2
   m_TagString: Player
@@ -106,6 +107,79 @@ Transform:
   - {fileID: 6391140492078421598}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3862914370081655145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375525637493411978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b259bad77f36ef4f988eb5ca61bb84a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 3998720923358931972, guid: 47285442102f23b42b46be4f1b9fef0c,
+    type: 3}
+  cameraHolder: {fileID: 6896344574158656509}
+  characterController: {fileID: 6325361218952426608}
+  spawnpoint: {x: 0, y: 0, z: 0}
+  canSprintDebug: 1
+  canCrouchDebug: 1
+  canHeadbobDebug: 1
+  sprintKey: 304
+  crouchKey: 306
+  radioKey: 113
+  walkingSpeed: 2
+  runningSpeed: 4
+  crouchSpeed: 1
+  gravity: 30
+  visualInventory: {fileID: 2570510372180571862}
+  xLookSensitivity: 2
+  yLookSensitivity: 2
+  upperLookLimit: 80
+  lowerLookLimit: 80
+  crouchingHeight: 0.75
+  standingHeight: 1.85
+  timeToCrouch: 0.35
+  crouchCenter: {x: 0, y: 0.2, z: 0}
+  standingCenter: {x: 0, y: 0, z: 0}
+  walkBobSpeed: 14
+  walkBobAmount: 0.3
+  runningBobSpeed: 18
+  runningBobAmount: 0.55
+  crouchBobSpeed: 8
+  crouchBobAmount: 0.1
+  yAxisMultiplier: 0.5
+  AmIDead:
+    m_InternalValue: 0
+--- !u!114 &4507123473200178238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375525637493411978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2fbcb33b3487834bbe71d27f85a0cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepThreshold: 1
+  audioSource: {fileID: 4519405049713452874}
+  carpetClips:
+  - {fileID: 8300000, guid: 9a3342473bf768244bed940934decd73, type: 3}
+  - {fileID: 8300000, guid: b50c5ed0acda7fd49b4d1419d3488086, type: 3}
+  - {fileID: 8300000, guid: bbf190835e7ca0c45ab9f217aa1a4074, type: 3}
+  woodClips:
+  - {fileID: 8300000, guid: 603b77793c6c57948b2ebafc1cdf0a68, type: 3}
+  - {fileID: 8300000, guid: 0a68ff744995dff458993edf59248dac, type: 3}
+  - {fileID: 8300000, guid: 2bddc4f1bf888aa4f81e54351d15e4bc, type: 3}
+  stoneClips:
+  - {fileID: 8300000, guid: b034d78ffc9712b4b95e5f18a4b91db8, type: 3}
+  - {fileID: 8300000, guid: 94babc64002c6e44684a56f3440ea568, type: 3}
+  - {fileID: 8300000, guid: 152370bb4e6083b478f0843171982540, type: 3}
+  - {fileID: 8300000, guid: 8904fdfcbd791c14b932a5ce13802cb9, type: 3}
 --- !u!143 &6325361218952426608
 CharacterController:
   m_ObjectHideFlags: 0
@@ -132,6 +206,41 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &5075199580965895206
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375525637493411978}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1507887163021776595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375525637493411978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19de120ac332c847af5112d14de0414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nuisanceStrength: 5
+  isEnabled: 0
 --- !u!82 &4519405049713452874
 AudioSource:
   m_ObjectHideFlags: 0
@@ -228,77 +337,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4507123473200178238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375525637493411978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2fbcb33b3487834bbe71d27f85a0cff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stepThreshold: 1
-  audioSource: {fileID: 4519405049713452874}
-  carpetClips:
-  - {fileID: 8300000, guid: 9a3342473bf768244bed940934decd73, type: 3}
-  - {fileID: 8300000, guid: b50c5ed0acda7fd49b4d1419d3488086, type: 3}
-  - {fileID: 8300000, guid: bbf190835e7ca0c45ab9f217aa1a4074, type: 3}
-  woodClips:
-  - {fileID: 8300000, guid: 603b77793c6c57948b2ebafc1cdf0a68, type: 3}
-  - {fileID: 8300000, guid: 0a68ff744995dff458993edf59248dac, type: 3}
-  - {fileID: 8300000, guid: 2bddc4f1bf888aa4f81e54351d15e4bc, type: 3}
-  stoneClips:
-  - {fileID: 8300000, guid: b034d78ffc9712b4b95e5f18a4b91db8, type: 3}
-  - {fileID: 8300000, guid: 94babc64002c6e44684a56f3440ea568, type: 3}
-  - {fileID: 8300000, guid: 152370bb4e6083b478f0843171982540, type: 3}
-  - {fileID: 8300000, guid: 8904fdfcbd791c14b932a5ce13802cb9, type: 3}
---- !u!114 &3862914370081655145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375525637493411978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b259bad77f36ef4f988eb5ca61bb84a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCamera: {fileID: 3998720923358931972, guid: 47285442102f23b42b46be4f1b9fef0c,
-    type: 3}
-  cameraHolder: {fileID: 6896344574158656509}
-  characterController: {fileID: 6325361218952426608}
-  spawnpoint: {x: 0, y: 0, z: 0}
-  canSprintDebug: 1
-  canCrouchDebug: 1
-  canHeadbobDebug: 1
-  sprintKey: 304
-  crouchKey: 306
-  radioKey: 113
-  walkingSpeed: 2
-  runningSpeed: 4
-  crouchSpeed: 1
-  gravity: 30
-  visualInventory: {fileID: 2570510372180571862}
-  xLookSensitivity: 2
-  yLookSensitivity: 2
-  upperLookLimit: 80
-  lowerLookLimit: 80
-  crouchingHeight: 0.75
-  standingHeight: 1.85
-  timeToCrouch: 0.35
-  crouchCenter: {x: 0, y: 0.2, z: 0}
-  standingCenter: {x: 0, y: 0, z: 0}
-  walkBobSpeed: 14
-  walkBobAmount: 0.3
-  runningBobSpeed: 18
-  runningBobAmount: 0.55
-  crouchBobSpeed: 8
-  crouchBobAmount: 0.1
-  yAxisMultiplier: 0.5
 --- !u!114 &8109147918702127914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,7 +364,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375525637493411978}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
   m_Name: 
@@ -349,7 +387,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &3176818242388714882
+--- !u!114 &-1299541726299065120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -358,32 +396,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 375525637493411978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d19de120ac332c847af5112d14de0414, type: 3}
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nuisanceStrength: 5
-  isEnabled: 0
---- !u!95 &5075199580965895206
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375525637493411978}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 5075199580965895206}
 --- !u!1 &415323241765461590
 GameObject:
   m_ObjectHideFlags: 0

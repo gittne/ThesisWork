@@ -21,11 +21,13 @@ public class SCR_PauseMenu : MonoBehaviour
             if (GameIsPaused)
             {
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 Resume();
             }
             else
             {
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 Pause();
             }
         }
@@ -34,6 +36,7 @@ public class SCR_PauseMenu : MonoBehaviour
     public void Resume()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         closeAllMenues();
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -80,7 +83,8 @@ public class SCR_PauseMenu : MonoBehaviour
     }
     public void MainMenu() // loads main menu
     {
-      SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 
 

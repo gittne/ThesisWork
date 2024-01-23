@@ -1,11 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SCR_Key_Item_Placement_Randomizer : MonoBehaviour
+[Serializable]
+public class Key_Item_Generator
 {
     [SerializeField] Transform[] spawnpoints;
+    public Transform[] prefabSpawns
+    {
+        get { return spawnpoints; }
+        private set { spawnpoints = value; }
+    }
     [SerializeField] GameObject keyItemPrefab;
+    public GameObject keyItem
+    {
+        get { return keyItemPrefab; }
+        private set { keyItemPrefab = value; }
+    }
+}
+
+public class SCR_Key_Item_Placement_Randomizer : MonoBehaviour
+{
+    [SerializeField] List<Key_Item_Generator> keyItemGenerator;
 
     // Start is called before the first frame update
     void Start()
@@ -15,8 +32,11 @@ public class SCR_Key_Item_Placement_Randomizer : MonoBehaviour
 
     void RandomizingPlacement()
     {
-        int randomNumber = Random.Range(0, spawnpoints.Length);
+        foreach (Key_Item_Generator generators in keyItemGenerator)
+        {
+            int randomNumber = UnityEngine.Random.Range(0, generators.prefabSpawns.Length);
 
-        Instantiate(keyItemPrefab, spawnpoints[randomNumber]);
+            Instantiate(generators.keyItem, generators.prefabSpawns[randomNumber]);
+        }
     }
 }

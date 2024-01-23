@@ -3445,13 +3445,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48897cf70a98254cbfb13cee226b8b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnpoints:
-  - {fileID: 179182703}
-  - {fileID: 743909245}
-  - {fileID: 1506339143}
-  - {fileID: 1367477467}
-  keyItemPrefab: {fileID: 5907166762122244081, guid: 0c34f8f28a719fd4aa0754ba0ce87968,
-    type: 3}
+  keyItemGenerator:
+  - spawnpoints:
+    - {fileID: 179182703}
+    - {fileID: 743909245}
+    keyItemPrefab: {fileID: 6706674644872591746, guid: 4280c53c53dccdf4ba88f81f42aad2ec,
+      type: 3}
+  - spawnpoints:
+    - {fileID: 1506339143}
+    - {fileID: 1367477467}
+    keyItemPrefab: {fileID: 5907166762122244081, guid: 0c34f8f28a719fd4aa0754ba0ce87968,
+      type: 3}
 --- !u!1 &1328071006
 GameObject:
   m_ObjectHideFlags: 0
@@ -3964,7 +3968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1533438533
 MonoBehaviour:
   m_ObjectHideFlags: 0

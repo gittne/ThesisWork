@@ -80,12 +80,6 @@ public class LobbyManager : MonoBehaviour
         HandleLobbyPolling();
     }
 
-    private void Start()
-    {
-        //InvokeRepeating("HandleLobbyHeartbeat", 0, 1);
-        //InvokeRepeating("HandleLobbyPolling", 0, 1);
-    }
-
     private void OnApplicationQuit()
     {
         if(joinedLobby != null) LeaveLobby();
@@ -104,10 +98,7 @@ public class LobbyManager : MonoBehaviour
         await UnityServices.InitializeAsync(initializationOptions);
 
         AuthenticationService.Instance.SignedIn += () => {
-            // do nothing
             Debug.Log("Signed in with ID: " + AuthenticationService.Instance.PlayerId + "\n and username: " + EditPlayerName.Instance.GetPlayerName());
-
-            //RefreshLobbyList();
         };
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();

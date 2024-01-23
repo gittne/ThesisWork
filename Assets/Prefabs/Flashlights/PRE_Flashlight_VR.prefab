@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6416452433197738324}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Glove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 735317610906917242}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: IndexF.00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6826678418058696426}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Attach Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2066263757641063019}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: IndexF.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4047062398176034119}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GloveRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1582797638697912492}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Arm.bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6024702774046572204}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PinkieF.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1453765967844033564}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MiddleF01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 1720697109784931787}
   - component: {fileID: 6513338472266456130}
   - component: {fileID: 5443475444627626844}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,8 @@ GameObject:
   - component: {fileID: 7085239210936196499}
   - component: {fileID: 7802570184394172935}
   - component: {fileID: 6047590488889028009}
-  m_Layer: 0
+  - component: {fileID: 2212488521378398577}
+  m_Layer: 11
   m_Name: PRE_Flashlight_VR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +410,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2994532786898319333}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14003348, y: 0.14003345, z: -0.69310224, w: -0.6931021}
+  m_LocalRotation: {x: -0.14003079, y: 0.14003079, z: -0.6931027, w: -0.6931027}
   m_LocalPosition: {x: 0.011, y: 1.0988, z: 0.89}
   m_LocalScale: {x: 0.029, y: 0.029, z: 0.029}
   m_ConstrainProportionsScale: 1
@@ -534,22 +535,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spotLight: {fileID: 5490941540273749076}
   lightBulb: {fileID: 6513338472266456130}
-  flipLightButton:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Flip Light Button
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: ae100951-57ef-41a6-a2fe-ca3b621e4a18
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
   onSound: {fileID: 8300000, guid: 522e7b30b761a62499ec3852d200646a, type: 3}
   offSound: {fileID: 8300000, guid: b8f2354c44cfc9f4fbf024b71cbeaac0, type: 3}
+  reloadSound: {fileID: 8300000, guid: cbd8b2d0689c9834681830b6ee8482b5, type: 3}
   audioSource: {fileID: 7085239210936196499}
-  rotationAngles: {x: 0, y: 0, z: 0}
+  batteryLife: 100
+  minimumLightStrength: 1
+  refillCollider: {fileID: 2212488521378398577}
+  tagName: BatteryVR
 --- !u!114 &3838933288469630542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,6 +834,27 @@ MonoBehaviour:
   m_AddDefaultGrabTransformers: 1
   leftAttachTransform: {fileID: 6826678418058696426}
   rightAttachTransform: {fileID: 4029301407143552473}
+--- !u!65 &2212488521378398577
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994532786898319333}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 9, z: 3}
+  m_Center: {x: 0.000076684715, y: 0.13184822, z: 0.008205507}
 --- !u!1 &3301809752765728312
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +864,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6765189971179008864}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: IndexF.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -882,7 +896,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6350646977015669973}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Thumb.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -914,7 +928,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 296882231419084672}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PinkieF.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,7 +962,7 @@ GameObject:
   - component: {fileID: 6818387805181462090}
   - component: {fileID: 5490941540273749076}
   - component: {fileID: 3922690665355326194}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1065,7 +1079,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5806958124934605123}
   - component: {fileID: 2821682612645961382}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PRE_Glove_Right (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1129,7 +1143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5184014584542738570}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MiddleF02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1161,7 +1175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7197872908843479075}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Thumb.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1193,7 +1207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8049951928990618021}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RingF.00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1225,7 +1239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4778440129105245475}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: IndexF.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1257,7 +1271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9080500987103113943}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RingF.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1288,7 +1302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4768387104123445936}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PinkieF.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1320,7 +1334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1227548580476911529}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RingF.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1352,7 +1366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4029301407143552473}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Attach Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1383,7 +1397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8881754340975241737}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MiddleF03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1414,7 +1428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 318745944399611385}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Thumb.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1445,7 +1459,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3539392118806649577}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PinkieF.00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1477,7 +1491,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5185662925869371555}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MiddleF.00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1509,7 +1523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7752313209231024868}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RingF.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1542,7 +1556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1704049246483374059}
   - component: {fileID: 2546098706454759908}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Glove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1647,7 +1661,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1583668438937420207}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Thumb00
   m_TagString: Untagged
   m_Icon: {fileID: 0}

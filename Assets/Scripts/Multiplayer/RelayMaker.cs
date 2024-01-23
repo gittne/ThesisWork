@@ -68,11 +68,11 @@ public class RelayMaker : MonoBehaviour
             NetworkManager.Singleton.StartClient();
 
             Debug.Log("Joined a relay.");
-            
-            VivoxService.Instance.Initialize();
-            VivoxPlayer.Instance.LoginToVivox();
 
             multiplayerMenu.SetActive(false);
+
+            VivoxService.Instance.Initialize();
+            VivoxPlayer.Instance.LoginToVivox();
         }
         catch (RelayServiceException e)
         {

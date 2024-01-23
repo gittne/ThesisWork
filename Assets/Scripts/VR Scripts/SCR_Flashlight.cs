@@ -10,9 +10,6 @@ public class SCR_Flashlight : MonoBehaviour
     [SerializeField] Light spotLight;
     [SerializeField] Light lightBulb;
 
-    [Header("Controller Input Binding")]
-    [SerializeField] InputActionProperty flipLightButton;
-
     [Header("Audio")]
     [SerializeField] AudioClip onSound;
     [SerializeField] AudioClip offSound;
@@ -27,14 +24,23 @@ public class SCR_Flashlight : MonoBehaviour
     [SerializeField] float minimumLightStrength;
     float maxBattery;
 
+    [Header("Battery Refill Variables")]
+    [SerializeField] Collider refillCollider;
+    [SerializeField] string tagName;
+
     void Start()
     {
         spotLight.enabled = false;
         lightBulb.enabled = false;
 
+        maxBattery = batteryLife;
+
         grabbable = GetComponent<XRGrabInteractable>();
         grabbable.activated.AddListener(TurnOnOrOff);
+    }
 
+    private void Update()
+    {
         BatteryStrength();
     }
 
@@ -59,10 +65,24 @@ public class SCR_Flashlight : MonoBehaviour
         if (spotLight.enabled && batteryLife >= 0)
         {
             batteryLife -= Time.deltaTime;
+            Debug.Log("Flashlight is on");
         }
 
         spotLight.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
         lightBulb.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(tagName))
+        {
+            RefillBatteries();
+            Destroy(other.gameObject);
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void RefillBatteries()
