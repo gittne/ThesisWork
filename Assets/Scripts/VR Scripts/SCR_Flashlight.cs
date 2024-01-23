@@ -24,6 +24,10 @@ public class SCR_Flashlight : MonoBehaviour
     [SerializeField] float minimumLightStrength;
     float maxBattery;
 
+    [Header("Battery Refill Variables")]
+    [SerializeField] Collider refillCollider;
+    [SerializeField] string tagName;
+
     void Start()
     {
         spotLight.enabled = false;
@@ -66,6 +70,19 @@ public class SCR_Flashlight : MonoBehaviour
 
         spotLight.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
         lightBulb.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(tagName))
+        {
+            RefillBatteries();
+            Destroy(other.gameObject);
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void RefillBatteries()
