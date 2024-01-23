@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using VivoxUnity;
 
-public class SCR_MultiplayerOverlord : NetworkBehaviour
+public class SCR_MultiplayerOverlord : MonoBehaviour
 {
     [SerializeField] List <NetworkObject> players = new List <NetworkObject> ();
     public List<NetworkObject> Players { get { return players; } }
