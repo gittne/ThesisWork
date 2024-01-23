@@ -409,7 +409,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2994532786898319333}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14003348, y: 0.14003345, z: -0.69310224, w: -0.6931021}
+  m_LocalRotation: {x: -0.14003079, y: 0.14003079, z: -0.6931027, w: -0.6931027}
   m_LocalPosition: {x: 0.011, y: 1.0988, z: 0.89}
   m_LocalScale: {x: 0.029, y: 0.029, z: 0.029}
   m_ConstrainProportionsScale: 1
@@ -534,22 +534,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spotLight: {fileID: 5490941540273749076}
   lightBulb: {fileID: 6513338472266456130}
-  flipLightButton:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Flip Light Button
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: ae100951-57ef-41a6-a2fe-ca3b621e4a18
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
   onSound: {fileID: 8300000, guid: 522e7b30b761a62499ec3852d200646a, type: 3}
   offSound: {fileID: 8300000, guid: b8f2354c44cfc9f4fbf024b71cbeaac0, type: 3}
+  reloadSound: {fileID: 8300000, guid: cbd8b2d0689c9834681830b6ee8482b5, type: 3}
   audioSource: {fileID: 7085239210936196499}
-  rotationAngles: {x: 0, y: 0, z: 0}
+  batteryLife: 100
+  minimumLightStrength: 1
 --- !u!114 &3838933288469630542
 MonoBehaviour:
   m_ObjectHideFlags: 0
