@@ -16,6 +16,7 @@ public class SCR_WinScreen : MonoBehaviour
         if (other.tag == "Player")
         {
             WinScreen.SetActive(true);
+            Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
     }

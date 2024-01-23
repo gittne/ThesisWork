@@ -9586,10 +9586,20 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1840462392105910428, guid: 6d7f7331ed0179f49938ef6e178acbc9,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 2831425991204119614, guid: 6d7f7331ed0179f49938ef6e178acbc9,
         type: 3}
       propertyPath: m_Name
       value: PRE_FuseBox (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831425991204119614, guid: 6d7f7331ed0179f49938ef6e178acbc9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2945311452707685362, guid: 6d7f7331ed0179f49938ef6e178acbc9,
         type: 3}
@@ -46373,6 +46383,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6357140106563334040, guid: 6ac5ab9c775bd7643b746715da72687c,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 6434576980380206320, guid: 6ac5ab9c775bd7643b746715da72687c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -46441,7 +46456,7 @@ PrefabInstance:
     - target: {fileID: 7419826734644546362, guid: 6ac5ab9c775bd7643b746715da72687c,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7444387160733128075, guid: 6ac5ab9c775bd7643b746715da72687c,
         type: 3}
@@ -46571,7 +46586,7 @@ PrefabInstance:
     - target: {fileID: 8441117681061265544, guid: 6ac5ab9c775bd7643b746715da72687c,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8474630315957930765, guid: 6ac5ab9c775bd7643b746715da72687c,
         type: 3}
@@ -65326,7 +65341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 128
   playerCamera: {fileID: 1693222389}
   interactionMaxLength: 2
   TextPrompt: {fileID: 89227954}
@@ -73624,7 +73639,7 @@ PrefabInstance:
     - target: {fileID: 1032484843390130848, guid: b3c3fc2454a397147b9f8864f348cf9d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.48566
+      value: -20.28
       objectReference: {fileID: 0}
     - target: {fileID: 1032484843390130848, guid: b3c3fc2454a397147b9f8864f348cf9d,
         type: 3}
@@ -73634,7 +73649,7 @@ PrefabInstance:
     - target: {fileID: 1032484843390130848, guid: b3c3fc2454a397147b9f8864f348cf9d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -98.63567
+      value: -99.13
       objectReference: {fileID: 0}
     - target: {fileID: 1032484843390130848, guid: b3c3fc2454a397147b9f8864f348cf9d,
         type: 3}
@@ -73711,6 +73726,11 @@ PrefabInstance:
       propertyPath: keyReaders.Array.data[1]
       value: 
       objectReference: {fileID: 387495525}
+    - target: {fileID: 5879831980504304788, guid: b3c3fc2454a397147b9f8864f348cf9d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5922462707074276365, guid: b3c3fc2454a397147b9f8864f348cf9d,
         type: 3}
       propertyPath: m_Enabled
@@ -73735,6 +73755,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8729365685345241650, guid: b3c3fc2454a397147b9f8864f348cf9d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
