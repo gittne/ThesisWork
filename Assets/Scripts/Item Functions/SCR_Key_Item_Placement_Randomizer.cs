@@ -22,8 +22,6 @@ public class Key_Item_Generator
 
 public class SCR_Key_Item_Placement_Randomizer : MonoBehaviour
 {
-    //[SerializeField] Transform[] spawnpoints;
-    //[SerializeField] GameObject keyItemPrefab;
     [SerializeField] List<Key_Item_Generator> keyItemGenerator;
 
     // Start is called before the first frame update
