@@ -56,7 +56,10 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
     [ClientRpc]
     void SetServerListClientRpc(List<NetworkObject> playerList)
     {
-        players = playerList;
+        foreach(NetworkObject player in playerList)
+        {
+            players.Add(player);
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]
