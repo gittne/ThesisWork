@@ -8,8 +8,9 @@ using VivoxUnity;
 
 public class SCR_MultiplayerOverlord : NetworkBehaviour
 {
-    [SerializeField] List<NetworkObject> players = new List<NetworkObject>();
+    [SerializeField] List <NetworkObject> players = new List <NetworkObject> ();
     public List<NetworkObject> Players { get { return players; } }
+
 
     bool deathGrace;
 
@@ -18,8 +19,7 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
 
 
     private SCR_EnemyBrain monsterBrain;
-    public SCR_EnemyBrain MonsterBrain { get { return monsterBrain; } set { monsterBrain = value; } }
-
+    public SCR_EnemyBrain MonsterBrain { get { return monsterBrain; } set {  monsterBrain = value; } }
 
     private void Start()
     {
@@ -35,30 +35,10 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
 
         monsterBrain = GameObject.FindWithTag("Enemy").GetComponent<SCR_EnemyBrain>();
 
-        if(IsHost)
+        foreach (KeyValuePair<ulong, NetworkClient> player in NetworkManager.Singleton.ConnectedClients)
         {
-            foreach (KeyValuePair<ulong, NetworkClient> player in NetworkManager.Singleton.ConnectedClients)
-            {
-                Debug.Log("added a player");
-                players.Add(player.Value.PlayerObject);
-            }
-
-            CallForSettingServerListServerRpc();
-        }
-    }
-
-    [ServerRpc]
-    void CallForSettingServerListServerRpc()
-    {
-        SetServerListClientRpc(players);
-    }
-
-    [ClientRpc]
-    void SetServerListClientRpc(List<NetworkObject> playerList)
-    {
-        foreach(NetworkObject player in playerList)
-        {
-            players.Add(player);
+            Debug.Log("added a player");
+            players.Add(player.Value.PlayerObject);
         }
     }
 
@@ -81,7 +61,7 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         foreach (NetworkObject player in players)
         {
             SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
-            if (cntr.AmIDead.Value) numberOfDeadPlayers++;
+            if(cntr.AmIDead.Value) numberOfDeadPlayers++;
         }
 
         Debug.Log("Number of dead players: " + numberOfDeadPlayers + " and number of players is: " + players.Count);
