@@ -92,4 +92,10 @@ public class SCR_Animated_Interactable : NetworkBehaviour
 
         ChangeState();
     }
+
+    //[ServerRpc(RequireOwnership = false)]
+    //void SetIsOpenedValueServerRpc
+    //{
+        
+    //}
 }
