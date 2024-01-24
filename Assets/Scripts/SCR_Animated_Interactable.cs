@@ -27,7 +27,7 @@ public class SCR_Animated_Interactable : NetworkBehaviour
 
 
     bool isOpen;
-
+    // lol
     private void Start()
     {
         if (animator == null)
