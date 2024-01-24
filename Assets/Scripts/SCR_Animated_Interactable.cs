@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class SCR_Animated_Interactable : MonoBehaviour
     }
     [SerializeField] Animator animator;
 
+
+    NetworkVariable<bool> isOpened;
 
     float openSpeed;
     bool canInteract;
@@ -66,22 +69,24 @@ public class SCR_Animated_Interactable : MonoBehaviour
 
     void ChangeState()
     {
-        isOpen = !isOpen;
+        //isOpen = !isOpen;
 
-        animator.SetBool("isOpen", isOpen);
+        isOpened.Value = !isOpened.Value;
+
+        animator.SetBool("isOpen", isOpened.Value);
         SoundSource.PlayOneShot(SoundFX);
     }
 
     public void MonsterOpenDoor()
     {
-        if (isOpen) return;
+        if (isOpened.Value) return;
 
         ChangeState();
     }
 
     public void MonsterCloseDoor()
     {
-        if (!isOpen) return;
+        if (!isOpened.Value) return;
 
         ChangeState();
     }
