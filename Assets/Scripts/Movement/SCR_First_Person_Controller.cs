@@ -252,6 +252,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     IEnumerator SetupDelay()
     {
+        yield return null; 
         //while (VivoxPlayer.Instance.LoginState != LoginState.LoggedIn)
         //{
         //    yield return null;
