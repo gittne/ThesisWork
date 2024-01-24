@@ -19,6 +19,7 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
         if (!IsOwner)
         {
             playerCamera.enabled = false;
+            playerCamera.GetComponent<AudioListener>().enabled = false;
             return;
         }
         interactTextCanvas = GameObject.FindGameObjectWithTag("InteractionText");
@@ -31,7 +32,6 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            playerCamera.enabled = false;
             return;
         }
         Interact();
@@ -106,11 +106,6 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
                     Tempwin.VictoryScreen();
                 }
             }
-        }
-        else
-        {
-            keyLockTextCanvas.SetActive(false);
-            interactTextCanvas.SetActive(false);
         }
     }
 }
