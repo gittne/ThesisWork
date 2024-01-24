@@ -4,7 +4,7 @@ using Unity.Netcode;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
-public class SCR_Animated_Interactable : MonoBehaviour
+public class SCR_Animated_Interactable : NetworkBehaviour
 {
     public enum LockState { Locked, Unlocked }
     [SerializeField] LockState lockState;
