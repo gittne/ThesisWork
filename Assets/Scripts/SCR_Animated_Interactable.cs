@@ -51,9 +51,16 @@ public class SCR_Animated_Interactable : MonoBehaviour
 
     public void SwitchAnimationState()
     {
+
         if (lockState == LockState.Unlocked)
         {
+            Debug.Log("toggling my open / closed state.");
+
             ChangeState();
+        }
+        else
+        {
+            Debug.Log("I am a locked door.");
         }
     }
 
