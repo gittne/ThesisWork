@@ -19,6 +19,7 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
         if (!IsOwner)
         {
             playerCamera.enabled = false;
+            return;
         }
         interactTextCanvas = GameObject.FindGameObjectWithTag("InteractionText");
         keyLockTextCanvas = GameObject.FindGameObjectWithTag("KeyLockText");
@@ -31,6 +32,7 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
         if (!IsOwner)
         {
             playerCamera.enabled = false;
+            return;
         }
         Interact();
 
