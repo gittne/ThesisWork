@@ -697,7 +697,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.083333336
+  m_VoxelSize: 0.11666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 71dd25f053eea4844b8a1bbd60537df1, type: 2}
   m_BuildHeightMesh: 0
@@ -1223,6 +1223,8 @@ MonoBehaviour:
   lobbyCodeInput: {fileID: 0}
   player1NameDisplay: {fileID: 0}
   player2NameDisplay: {fileID: 0}
+  lobbyMainDisplay: {fileID: 0}
+  lobbyCodeDisplayObject: {fileID: 0}
 --- !u!4 &106762196
 Transform:
   m_ObjectHideFlags: 0
@@ -5212,7 +5214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &439264199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9118,6 +9120,8 @@ MonoBehaviour:
   lobbyCodeInput: {fileID: 658785511}
   player1NameDisplay: {fileID: 4818160}
   player2NameDisplay: {fileID: 1834166255}
+  lobbyMainDisplay: {fileID: 0}
+  lobbyCodeDisplayObject: {fileID: 0}
 --- !u!114 &804258547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9332,7 +9336,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.083333336
+  m_VoxelSize: 0.11666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
@@ -20056,7 +20060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1779356245
 Transform:
   m_ObjectHideFlags: 0
@@ -23215,7 +23219,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.083333336
+  m_VoxelSize: 0.11666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
@@ -26048,7 +26052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &538040693215724208
 Transform:
   m_ObjectHideFlags: 0
@@ -32820,6 +32824,7 @@ MonoBehaviour:
   enemyState: 0
   rageMeter: 0
   rageDuration: 0
+  monsterResetPosition: {fileID: 0}
 --- !u!4 &4466853656920615598
 Transform:
   m_ObjectHideFlags: 0
