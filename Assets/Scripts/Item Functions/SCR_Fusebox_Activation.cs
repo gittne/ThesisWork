@@ -18,12 +18,13 @@ public class SCR_Fusebox_Activation : MonoBehaviour
             {
                 keycardReader[i].canActivate = true;
             }
-                
         }
         else
         {
             for (int i = 0; i < keycardReader.Length; i++)
-                keycardReader[i].canActivate = false; 
+            {
+                keycardReader[i].canActivate = false;
+            }
         }
     }
 }
