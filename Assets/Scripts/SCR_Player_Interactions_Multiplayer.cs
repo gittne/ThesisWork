@@ -16,6 +16,10 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
 
     private void Awake()
     {
+    }
+
+    private void Start()
+    {
         if (!IsOwner)
         {
             playerCamera.enabled = false;
