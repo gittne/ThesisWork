@@ -30,7 +30,7 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            return;
+            Destroy(gameObject);
         }
         Interact();
 
