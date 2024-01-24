@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SCR_Fusebox_Activation : MonoBehaviour
+public class SCR_Fusebox_Activation_VR : MonoBehaviour
 {
     [Header("Fusebox Script")]
-    [SerializeField] SCR_FuseBox fusebox;
+    [SerializeField] SCR_Fusebox_VR fusebox;
     [Header("Keycard Script")]
     [SerializeField] SCR_Key_Card_Reader[] keycardReader;
 

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class SCR_Light_Indicator : MonoBehaviour
 {
-    enum LockType { Key, Fuse }
+    enum LockType { Key, Fuse, KeyVR, FuseVR }
     [SerializeField] LockType lockType;
     [SerializeField] GameObject lightIndicator;
     Material material;
     SCR_Key_Card_Reader keyReader;
     SCR_FuseBox fuseBox;
+    SCR_Fusebox_VR fuseBoxVR;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,11 @@ public class SCR_Light_Indicator : MonoBehaviour
         {
             fuseBox = GetComponent<SCR_FuseBox>();
         }
+
+        if (lockType == LockType.FuseVR)
+        {
+            fuseBoxVR = GetComponent<SCR_Fusebox_VR>();
+        }
     }
 
     // Update is called once per frame
@@ -38,6 +44,11 @@ public class SCR_Light_Indicator : MonoBehaviour
         if (lockType == LockType.Fuse)
         {
             FuseLight();
+        }
+
+        if (lockType == LockType.FuseVR)
+        {
+            FuseLightVR();
         }
     }
 
@@ -60,6 +71,18 @@ public class SCR_Light_Indicator : MonoBehaviour
     void FuseLight()
     {
         if (fuseBox.isActivated)
+        {
+            material.SetColor("_EmissionColor", Color.green);
+        }
+        else
+        {
+            material.SetColor("_EmissionColor", Color.red);
+        }
+    }
+
+    void FuseLightVR()
+    {
+        if (fuseBoxVR.isActivated)
         {
             material.SetColor("_EmissionColor", Color.green);
         }
