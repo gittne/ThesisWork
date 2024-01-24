@@ -10,6 +10,7 @@ public class SCR_Light_Indicator : MonoBehaviour
     Material material;
     SCR_Key_Card_Reader keyReader;
     SCR_FuseBox fuseBox;
+    SCR_Key_Card_Reader_VR keyReaderVR;
     SCR_Fusebox_VR fuseBoxVR;
 
     // Start is called before the first frame update
@@ -25,6 +26,11 @@ public class SCR_Light_Indicator : MonoBehaviour
         if (lockType == LockType.Fuse)
         {
             fuseBox = GetComponent<SCR_FuseBox>();
+        }
+
+        if (lockType == LockType.KeyVR)
+        {
+            keyReaderVR = GetComponent<SCR_Key_Card_Reader_VR>();
         }
 
         if (lockType == LockType.FuseVR)
@@ -44,6 +50,11 @@ public class SCR_Light_Indicator : MonoBehaviour
         if (lockType == LockType.Fuse)
         {
             FuseLight();
+        }
+
+        if (lockType == LockType.KeyVR)
+        {
+            KeyLightVR();
         }
 
         if (lockType == LockType.FuseVR)
@@ -77,6 +88,22 @@ public class SCR_Light_Indicator : MonoBehaviour
         else
         {
             material.SetColor("_EmissionColor", Color.red);
+        }
+    }
+
+    void KeyLightVR()
+    {
+        if (keyReaderVR.isActivated)
+        {
+            material.SetColor("_EmissionColor", Color.green);
+        }
+        else if (!keyReaderVR.isActivated && keyReaderVR.canActivate)
+        {
+            material.SetColor("_EmissionColor", Color.red);
+        }
+        else
+        {
+            material.SetColor("_EmissionColor", Color.black);
         }
     }
 
