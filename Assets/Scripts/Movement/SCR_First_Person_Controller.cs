@@ -264,14 +264,14 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         yDefaultPosition = cameraHolder.transform.localPosition.y;
 
-        if (Instantiate(playerCamera, cameraHolder))
-        {
-            Debug.LogWarning("Kamera instantierad");
-        }
-        else
-        {
-            Debug.LogWarning("Kamera inte instantierad");
-        }
+        //if (Instantiate(playerCamera, cameraHolder))
+        //{
+        //    Debug.LogWarning("Kamera instantierad");
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("Kamera inte instantierad");
+        //}
 
 
         Cursor.lockState = CursorLockMode.Locked;
