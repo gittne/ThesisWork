@@ -35,6 +35,8 @@ public class SCR_Animated_Interactable : MonoBehaviour
 
         SoundSource = GetComponent<AudioSource>();
         openSpeed = animator.speed;
+
+        isOpened.Value = false;
     }
 
     private void Update()
