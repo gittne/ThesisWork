@@ -41,8 +41,8 @@ public class RelayMaker : MonoBehaviour
 
             Debug.Log("Created a relay.");
 
-            VivoxService.Instance.Initialize();
-            VivoxPlayer.Instance.LoginToVivox();
+            //VivoxService.Instance.Initialize();
+            //VivoxPlayer.Instance.LoginToVivox();
 
             multiplayerMenu.SetActive(false);
 
@@ -71,8 +71,8 @@ public class RelayMaker : MonoBehaviour
 
             multiplayerMenu.SetActive(false);
 
-            VivoxService.Instance.Initialize();
-            VivoxPlayer.Instance.LoginToVivox();
+            //VivoxService.Instance.Initialize();
+            //VivoxPlayer.Instance.LoginToVivox();
         }
         catch (RelayServiceException e)
         {
