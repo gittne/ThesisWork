@@ -16,7 +16,7 @@ public class SCR_Animated_Interactable : NetworkBehaviour
     [SerializeField] Animator animator;
 
 
-    NetworkVariable<bool> isOpened;
+    NetworkVariable<bool> isOpened = new NetworkVariable<bool>();
 
     float openSpeed;
     bool canInteract;
