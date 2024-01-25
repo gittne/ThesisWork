@@ -73,7 +73,7 @@ public class SCR_Animated_Interactable : NetworkBehaviour
     {
         //isOpen = !isOpen;
 
-        isOpened.Value = !isOpened.Value;
+        SetIsOpenedValueServerRpc(!isOpened.Value);
 
         animator.SetBool("isOpen", isOpened.Value);
         float randomPitch = Random.Range(0.9f, 1.1f);
@@ -96,9 +96,9 @@ public class SCR_Animated_Interactable : NetworkBehaviour
         ChangeState();
     }
 
-    //[ServerRpc(RequireOwnership = false)]
-    //void SetIsOpenedValueServerRpc
-    //{
-        
-    //}
+    [ServerRpc(RequireOwnership = false)]
+    void SetIsOpenedValueServerRpc(bool newValue)
+    {
+        isOpened.Value = newValue;  
+    }
 }
