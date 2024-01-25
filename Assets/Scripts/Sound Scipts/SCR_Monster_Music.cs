@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-// Written by Ben Schelhaas by the help of :https://johnleonardfrench.com/how-to-fade-audio-in-unity-i-tested-every-method-this-ones-the-best/
+// Written by Tiger Martin and Ben Schelhaas by the help of :https://johnleonardfrench.com/how-to-fade-audio-in-unity-i-tested-every-method-this-ones-the-best/
 public class SCR_Monster_Music : MonoBehaviour
 {
-    AudioSource[] musicSources;
+    [SerializeField] AudioSource[] musicSources;
     Coroutine soundSwitcherCoroutine;
 
     enum SoundState { NORMAL, HEIGHTENED, SEVERE }
