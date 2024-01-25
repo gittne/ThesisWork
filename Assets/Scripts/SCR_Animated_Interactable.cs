@@ -76,6 +76,9 @@ public class SCR_Animated_Interactable : NetworkBehaviour
         isOpened.Value = !isOpened.Value;
 
         animator.SetBool("isOpen", isOpened.Value);
+        float randomPitch = Random.Range(0.9f, 1.1f);
+        SoundSource.pitch = randomPitch;
+
         SoundSource.PlayOneShot(SoundFX);
     }
 
