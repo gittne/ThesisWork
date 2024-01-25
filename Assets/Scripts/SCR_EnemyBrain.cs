@@ -271,9 +271,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     public void ResetMonster()
     {
-        hasDestination = false;
         transform.position = monsterResetPosition.position;
-        enemyState = EnemyState.ROAM;
+        CommenceRoam();
         rageMeter = 0;
         Debug.Log("im reset");
     }
@@ -281,8 +280,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     public void CommenceInvestigation(GameObject target)
     {
         enemyState = EnemyState.INVESTIGATING;
-        agent.speed = 3f;
-        agent.acceleration = 30;
+        agent.speed = 5f;
+        agent.acceleration = 50;
 
         agent.destination = target.transform.position;
         currentTargetPlayer = target;

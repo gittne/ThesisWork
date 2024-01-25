@@ -16,6 +16,7 @@ public class SCR_MonsterAttractor : MonoBehaviour
     public void Investigate()
     {
         hasBeenInvestigated = true;
+        Destroy(gameObject);
     }
 
     private void OnTriggerStay(Collider other)
@@ -24,7 +25,7 @@ public class SCR_MonsterAttractor : MonoBehaviour
         {
             Debug.Log("I got investigated.");
             Investigate();
-            other.gameObject.GetComponent<SCR_EnemyBrain>().CommenceRoam();
+            other.gameObject.GetComponent<SCR_EnemyBrain>().ResetMonster();
         }
     }
 }
