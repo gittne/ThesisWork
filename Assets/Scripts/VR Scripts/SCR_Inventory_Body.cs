@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [System.Serializable]
 public class InventorySocket
@@ -27,12 +28,29 @@ public class SCR_Inventory_Body : MonoBehaviour
 {
     [Header("HMD (Head Mounted Display)")]
     [SerializeField] GameObject headset;
+    [SerializeField] InputActionReference stickInput;
+    private bool isRotating = false;
+    private float startTime;
 
     [Header("Inventory Sockets")]
     [SerializeField] InventorySocket[] sockets;
 
     Vector3 headsetPosition;
     Quaternion headsetRotation;
+
+    void OnEnable()
+    {
+        stickInput.action.Enable();
+        stickInput.action.started += OnRotateStarted;
+        stickInput.action.canceled += OnRotateCanceled;
+    }
+
+    void OnDisable()
+    {
+        stickInput.action.Disable();
+        stickInput.action.started -= OnRotateStarted;
+        stickInput.action.canceled -= OnRotateCanceled;
+    }
 
     void Update()
     {
@@ -45,6 +63,19 @@ public class SCR_Inventory_Body : MonoBehaviour
         }
 
         UpdateSocketPosition();
+
+        if (isRotating)
+        {
+            float timeElapsed = Time.time - startTime;
+            float t = Mathf.Sin(timeElapsed * Mathf.PI * 0.5f);
+
+            headset.transform.rotation = Quaternion.Euler(0f, t * 90f, 0f);
+
+            if (timeElapsed >= 0.5f)
+            {
+                isRotating = false;
+            }
+        }
     }
 
     void UpdateSocketHeight(InventorySocket socket)
@@ -68,6 +99,17 @@ public class SCR_Inventory_Body : MonoBehaviour
     void UpdateSocketPosition()
     {
         transform.localPosition = new Vector3(headsetPosition.x, 0, headsetPosition.z);
-        transform.rotation = new Quaternion(transform.rotation.x, headsetRotation.y, transform.rotation.z, headsetRotation.w);
+        transform.localRotation = new Quaternion(transform.rotation.x, headsetRotation.y, transform.rotation.z, headsetRotation.w);
+    }
+
+    void OnRotateStarted(InputAction.CallbackContext context)
+    {
+        isRotating = true;
+        startTime = Time.time;
+    }
+
+    void OnRotateCanceled(InputAction.CallbackContext context)
+    {
+        isRotating = false;
     }
 }

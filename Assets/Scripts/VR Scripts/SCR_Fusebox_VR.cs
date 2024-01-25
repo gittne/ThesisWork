@@ -53,7 +53,7 @@ public class SCR_Fusebox_VR : MonoBehaviour
 
         if (isActivated)
         {
-            Debug.Log("Activated");
+            //Debug.Log("Activated");
         }
     }
 }
