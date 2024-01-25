@@ -11,9 +11,6 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
     [SerializeField] List <NetworkObject> players = new List <NetworkObject> ();
     public List<NetworkObject> Players { get { return players; } }
 
-
-    bool deathGrace;
-
     public static SCR_MultiplayerOverlord Instance { get; private set; }
     private void Awake() { Instance = this; }
 
@@ -36,11 +33,7 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         if (GameObject.FindWithTag("Enemy") != null)
             monsterBrain = GameObject.FindWithTag("Enemy").GetComponent<SCR_EnemyBrain>();
 
-        //foreach (KeyValuePair<ulong, NetworkClient> player in NetworkManager.Singleton.ConnectedClients)
-        //{
-        //    Debug.Log("added a player");
-        //    players.Add(player.Value.PlayerObject);
-        //}
+        SwitchToMultiplayerInteractables();
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -73,5 +66,14 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
                 SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
                 cntr.BackToMenuClientRpc();
             }
+    }
+
+    void SwitchToMultiplayerInteractables()
+    {
+        foreach(GameObject interactable in GameObject.FindGameObjectsWithTag("Interactable"))
+        {
+            interactable.GetComponent<SCR_Animated_Interactable>().enabled = false;
+            interactable.GetComponent<SCR_Animated_Interactable_Multiplayer>().enabled = true;
+        }
     }
 }

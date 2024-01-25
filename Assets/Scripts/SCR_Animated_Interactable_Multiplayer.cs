@@ -4,7 +4,7 @@ using Unity.Netcode;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
-public class SCR_Animated_Interactable : MonoBehaviour
+public class SCR_Animated_Interactable_Multiplayer : NetworkBehaviour
 {
     public enum LockState { Locked, Unlocked }
     [SerializeField] LockState lockState;
@@ -16,6 +16,8 @@ public class SCR_Animated_Interactable : MonoBehaviour
     [SerializeField] Animator animator;
 
 
+    NetworkVariable<bool> isOpened = new NetworkVariable<bool>();
+
     float openSpeed;
     bool canInteract;
     AudioSource SoundSource;
@@ -24,8 +26,7 @@ public class SCR_Animated_Interactable : MonoBehaviour
     //[SerializeField] SCR_KeyReader keyReader; // Used to get SCR_KeyReader "Alexander" 
 
 
-    bool isOpen = false;
-
+    bool isOpen;
     // lol
     private void Start()
     {
@@ -34,6 +35,8 @@ public class SCR_Animated_Interactable : MonoBehaviour
 
         SoundSource = GetComponent<AudioSource>();
         openSpeed = animator.speed;
+
+        isOpened.Value = false;
     }
 
     private void Update()
@@ -68,9 +71,11 @@ public class SCR_Animated_Interactable : MonoBehaviour
 
     void ChangeState()
     {
-        isOpen = !isOpen;
+        //isOpen = !isOpen;
 
-        animator.SetBool("isOpen", isOpen);
+        SetIsOpenedValueServerRpc(!isOpened.Value);
+
+        animator.SetBool("isOpen", isOpened.Value);
         float randomPitch = Random.Range(0.9f, 1.1f);
         SoundSource.pitch = randomPitch;
 
@@ -79,15 +84,21 @@ public class SCR_Animated_Interactable : MonoBehaviour
 
     public void MonsterOpenDoor()
     {
-        if (isOpen) return;
+        if (isOpened.Value) return;
 
         ChangeState();
     }
 
     public void MonsterCloseDoor()
     {
-        if (!isOpen) return;
+        if (!isOpened.Value) return;
 
         ChangeState();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void SetIsOpenedValueServerRpc(bool newValue)
+    {
+        isOpened.Value = newValue;  
     }
 }

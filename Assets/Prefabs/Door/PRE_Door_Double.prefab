@@ -108,6 +108,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8cdae3b8f9644e54fb4b068b3569044a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 2224087808546110297, guid: 8cdae3b8f9644e54fb4b068b3569044a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -175,6 +180,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2859519554610516338}
+    - targetCorrespondingSourceObject: {fileID: 5092708244707826562, guid: 8cdae3b8f9644e54fb4b068b3569044a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1661403599072491044}
     - targetCorrespondingSourceObject: {fileID: 8839568720538273707, guid: 8cdae3b8f9644e54fb4b068b3569044a,
         type: 3}
       insertIndex: -1
@@ -187,6 +196,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5336708320185260870}
+    - targetCorrespondingSourceObject: {fileID: 8839568720538273707, guid: 8cdae3b8f9644e54fb4b068b3569044a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4561458061367138219}
   m_SourcePrefab: {fileID: 100100000, guid: 8cdae3b8f9644e54fb4b068b3569044a, type: 3}
 --- !u!1 &1244179696128586726 stripped
 GameObject:
@@ -400,6 +413,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1661403599072491044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6568975234839418165}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cb8bc9f3961e44096b80500e5c5f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockState: 0
+  animator: {fileID: 4469038994534821952}
+  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
+  keycardReader: {fileID: 0}
 --- !u!1 &7433520953891801372 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8839568720538273707, guid: 8cdae3b8f9644e54fb4b068b3569044a,
@@ -539,3 +568,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4561458061367138219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7433520953891801372}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cb8bc9f3961e44096b80500e5c5f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockState: 0
+  animator: {fileID: 4469038994534821952}
+  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
+  keycardReader: {fileID: 0}

@@ -97,9 +97,10 @@ GameObject:
   - component: {fileID: 7837908350289076143}
   - component: {fileID: 8780527737859255853}
   - component: {fileID: 7289088003824139006}
-  - component: {fileID: 4076595586967919343}
   - component: {fileID: 6964017777082865586}
   - component: {fileID: 5137449882981979248}
+  - component: {fileID: 4076595586967919343}
+  - component: {fileID: 8552862393582668164}
   m_Layer: 7
   m_Name: Door
   m_TagString: Door
@@ -237,22 +238,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4076595586967919343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3279069584212119884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockState: 1
-  animator: {fileID: 0}
-  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
-  keycardReader: {fileID: 0}
 --- !u!82 &6964017777082865586
 AudioSource:
   m_ObjectHideFlags: 0
@@ -363,6 +348,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
   m_Animator: {fileID: 7289088003824139006}
+--- !u!114 &4076595586967919343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279069584212119884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockState: 1
+  animator: {fileID: 7289088003824139006}
+  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
+  keycardReader: {fileID: 0}
+--- !u!114 &8552862393582668164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279069584212119884}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cb8bc9f3961e44096b80500e5c5f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockState: 1
+  animator: {fileID: 7289088003824139006}
+  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
+  keycardReader: {fileID: 0}
 --- !u!1 &6276160489273603122
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +393,7 @@ GameObject:
   - component: {fileID: 2610302984413797019}
   m_Layer: 0
   m_Name: PRE_DoorWood_V1
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1445873730943078302}
   m_Layer: 0
   m_Name: PRE_DoorMetal_V1
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,8 +318,9 @@ GameObject:
   - component: {fileID: 4781071657143775951}
   - component: {fileID: 7513274753051363248}
   - component: {fileID: 1573805216285270475}
-  - component: {fileID: 3914782433355119965}
   - component: {fileID: 6254499470195284430}
+  - component: {fileID: 3914782433355119965}
+  - component: {fileID: 6744793890105632278}
   m_Layer: 7
   m_Name: Door
   m_TagString: Door
@@ -553,22 +554,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3914782433355119965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7806512012686491739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockState: 1
-  animator: {fileID: 0}
-  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
-  keycardReader: {fileID: 0}
 --- !u!114 &6254499470195284430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,3 +568,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
   m_Animator: {fileID: 4781071657143775951}
+--- !u!114 &3914782433355119965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7806512012686491739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockState: 1
+  animator: {fileID: 4781071657143775951}
+  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
+  keycardReader: {fileID: 0}
+--- !u!114 &6744793890105632278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7806512012686491739}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cb8bc9f3961e44096b80500e5c5f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockState: 1
+  animator: {fileID: 4781071657143775951}
+  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
+  keycardReader: {fileID: 0}

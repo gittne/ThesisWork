@@ -24,7 +24,7 @@ public class SCR_EnemyDetector : MonoBehaviour
 
         if(other.CompareTag("SqueakyToy"))
         {
-            if(!other.gameObject.GetComponent<SCR_MonsterAttractor>().HasBeenInvestigated)
+            if(!other.gameObject.GetComponent<SCR_MonsterAttractor>().HasBeenInvestigated && brain.enemyState != SCR_EnemyUtilities.EnemyState.KILLING && brain.enemyState != SCR_EnemyUtilities.EnemyState.FINISHING)
             {
                 brain.CommenceInvestigation(other.gameObject);
             }

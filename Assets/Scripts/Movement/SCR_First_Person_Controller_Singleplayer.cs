@@ -219,21 +219,15 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
     IEnumerator DieAndRespawn(GameObject monster)
     {
+        Animator animator = GetComponentInChildren<Animator>();
+        animator.enabled = true;
         canMove = false;
-        transform.position += new Vector3(0, 0.35f, 0);
 
         yield return new WaitForSeconds(2);
-        while(cameraHolder.transform.position.y > 0.15f)
-        {
-
-            cameraHolder.LookAt(monster.transform.position + new Vector3(0, 1.5f, 0));
-            cameraHolder.transform.position -= new Vector3(0, 0.03f, 0);
-            yield return new WaitForSeconds(0.001f);
-        }
 
         Color c = fader.color;
 
-        for(int i = 0; i < 51; i++) 
+        for (int i = 0; i < 51; i++)
         {
             c.a = 0.05f * i;
             fader.color = c;
@@ -242,12 +236,9 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         }
 
         transform.position = respawnLocation;
-        cameraHolder.transform.position += new Vector3(0, 1.625f, 0);
-        transform.rotation = new Quaternion(0, 0, 0, 0);
-        cameraHolder.transform.rotation = new Quaternion(0, 0, 0, 0);
+        animator.enabled = false;
 
-
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(3f);
 
         for (int i = 0; i < 101; i++)
         {
