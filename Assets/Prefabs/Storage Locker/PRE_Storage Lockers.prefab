@@ -95,6 +95,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fcbfca6a3020c2747950e3527ae1a44d,
         type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fcbfca6a3020c2747950e3527ae1a44d,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -143,6 +148,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7460143870147993091}
+    - targetCorrespondingSourceObject: {fileID: -8068073526183931155, guid: fcbfca6a3020c2747950e3527ae1a44d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6975184724475960489}
+    - targetCorrespondingSourceObject: {fileID: -8068073526183931155, guid: fcbfca6a3020c2747950e3527ae1a44d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6437823997416034611}
     - targetCorrespondingSourceObject: {fileID: 3031775844500247890, guid: fcbfca6a3020c2747950e3527ae1a44d,
         type: 3}
       insertIndex: -1
@@ -159,6 +172,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6820898821768448500}
+    - targetCorrespondingSourceObject: {fileID: 3031775844500247890, guid: fcbfca6a3020c2747950e3527ae1a44d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 171458523189624070}
     - targetCorrespondingSourceObject: {fileID: -3225959511443494117, guid: fcbfca6a3020c2747950e3527ae1a44d,
         type: 3}
       insertIndex: -1
@@ -377,8 +394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockState: 1
-  animator: {fileID: 0}
-  SoundFX: {fileID: 8300000, guid: 2e24e8b5b8e2f4945acb4dadc03a5082, type: 3}
+  animator: {fileID: 9174581402773730560}
+  SoundFX: {fileID: 8300000, guid: 1256de3863fdb374dba2819ff2f7cf50, type: 3}
   keycardReader: {fileID: 0}
 --- !u!82 &6820898821768448500
 AudioSource:
@@ -476,6 +493,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &171458523189624070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374057551515999416}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cb8bc9f3961e44096b80500e5c5f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockState: 1
+  animator: {fileID: 9174581402773730560}
+  SoundFX: {fileID: 8300000, guid: 1256de3863fdb374dba2819ff2f7cf50, type: 3}
+  keycardReader: {fileID: 0}
 --- !u!1 &7092688226315344647 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8068073526183931155, guid: fcbfca6a3020c2747950e3527ae1a44d,
@@ -537,7 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockState: 1
-  animator: {fileID: 0}
+  animator: {fileID: 8340182025518525510}
   SoundFX: {fileID: 8300000, guid: 1256de3863fdb374dba2819ff2f7cf50, type: 3}
   keycardReader: {fileID: 0}
 --- !u!82 &7460143870147993091
@@ -636,3 +669,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6975184724475960489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092688226315344647}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cb8bc9f3961e44096b80500e5c5f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockState: 1
+  animator: {fileID: 8340182025518525510}
+  SoundFX: {fileID: 8300000, guid: 1256de3863fdb374dba2819ff2f7cf50, type: 3}
+  keycardReader: {fileID: 0}
+--- !u!114 &6437823997416034611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092688226315344647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

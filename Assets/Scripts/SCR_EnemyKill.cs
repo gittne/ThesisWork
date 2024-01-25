@@ -30,11 +30,11 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
 
     void KillPlayers(GameObject player)
     {
-        player.transform.position = transform.position + transform.TransformDirection(Vector3.forward) * 1.5f;
-        player.transform.LookAt(transform.position);
+        //player.transform.position = transform.position + transform.TransformDirection(Vector3.forward) * 1.5f;
+        //player.transform.LookAt(transform.position);
         transform.LookAt(player.transform.position);
 
-        if (SCR_MultiplayerOverlord.Instance != null)
+        if (SCR_MultiplayerOverlord.Instance != null && player.GetComponent<SCR_First_Person_Controller>() != null)
         {
             Debug.Log("multiplayer kill.");
             player.GetComponent<SCR_First_Person_Controller>().CommencePlayerDeath(player);
@@ -44,6 +44,7 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
         {
             Debug.Log("singleplayer kill.");
             player.GetComponent<SCR_First_Person_Controller_Singleplayer>().CommencePlayerDeath(player);
+            player.GetComponentInChildren<Animator>().SetTrigger("Die");
             StartCoroutine(KillPlayerCutScene(false));
         }
     }

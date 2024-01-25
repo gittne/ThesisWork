@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4928662625886812233}
   m_Layer: 0
   m_Name: PRE_DoorMetal_V2
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,11 +236,12 @@ GameObject:
   - component: {fileID: 7135104826602153364}
   - component: {fileID: 3139554616462751126}
   - component: {fileID: 4332878549988156559}
-  - component: {fileID: 4434071128538832862}
   - component: {fileID: 8262083222390710257}
   - component: {fileID: 9020280052395542985}
   - component: {fileID: 6235048537345912142}
   - component: {fileID: 2378746922335851009}
+  - component: {fileID: 4434071128538832862}
+  - component: {fileID: 4373910501928995932}
   m_Layer: 7
   m_Name: Door
   m_TagString: Door
@@ -337,22 +338,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.010630633, y: 0.0011233632, z: 0.02128489}
   m_Center: {x: 0.0051889815, y: -0.00042879288, z: 0.008266771}
---- !u!114 &4434071128538832862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6450592987162732521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockState: 1
-  animator: {fileID: 0}
-  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
-  keycardReader: {fileID: 0}
 --- !u!95 &8262083222390710257
 Animator:
   serializedVersion: 5
@@ -505,6 +490,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
   m_Animator: {fileID: 8262083222390710257}
+--- !u!114 &4434071128538832862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6450592987162732521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockState: 1
+  animator: {fileID: 8262083222390710257}
+  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
+  keycardReader: {fileID: 0}
+--- !u!114 &4373910501928995932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6450592987162732521}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cb8bc9f3961e44096b80500e5c5f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockState: 1
+  animator: {fileID: 8262083222390710257}
+  SoundFX: {fileID: 8300000, guid: 093f84d90bfc1d4489e3aefdbd0b416b, type: 3}
+  keycardReader: {fileID: 0}
 --- !u!1 &6533235848367421545
 GameObject:
   m_ObjectHideFlags: 0
