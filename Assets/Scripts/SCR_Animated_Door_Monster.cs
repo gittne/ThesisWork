@@ -82,6 +82,7 @@ public class SCR_Animated_Door_Monster : MonoBehaviour
         }
         else
         {
+            Debug.Log("Wrong tag");
             return;
         }
     }
