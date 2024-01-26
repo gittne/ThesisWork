@@ -9,7 +9,7 @@ public class SCR_Fusebox_VR : MonoBehaviour
     [SerializeField] GameObject[] fuseObjects;
     [SerializeField] GameObject[] fuseSocketsObjects;
     [SerializeField] SCR_XR_Socket_Fuse_Check[] fuseSockets;
-    [SerializeField] bool[] isFuseInserted;
+    bool[] isFuseInserted;
 
     void Start()
     {
