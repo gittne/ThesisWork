@@ -7,7 +7,7 @@ public class SCR_Fusebox_Activation_VR : MonoBehaviour
     [Header("Fusebox Script")]
     [SerializeField] SCR_Fusebox_VR fusebox;
     [Header("Keycard Script")]
-    [SerializeField] SCR_Key_Card_Reader[] keycardReader;
+    [SerializeField] SCR_Key_Card_Reader_VR[] keycardReader;
 
     // Update is called once per frame
     void Update()
