@@ -152,14 +152,12 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
             return;
         }
 
-        float randomNumber = Random.Range(1f, 5f);
-
         if (Mathf.Abs(movementDirection.x) > 0.1f || Mathf.Abs(movementDirection.z) > 0.1f)
         {
             headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
 
             cameraHolder.transform.localRotation = Quaternion.Euler(yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount),
-                (yDefaultPosition + (Mathf.Sin(headbobTimer) / randomNumber) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount)) * yAxisMultiplier, cameraHolder.transform.localRotation.z);
+                (yDefaultPosition + (Mathf.Sin(headbobTimer) / 4.2f) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount)) * yAxisMultiplier, cameraHolder.transform.localRotation.z);
         }
     }
 
