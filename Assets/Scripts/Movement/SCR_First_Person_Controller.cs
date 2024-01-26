@@ -252,11 +252,11 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     IEnumerator SetupDelay()
     {
-        yield return null; 
-        //while (VivoxPlayer.Instance.LoginState != LoginState.LoggedIn)
-        //{
-        //    yield return null;
-        //}
+        yield return null;
+        while (VivoxPlayer.Instance.LoginState != LoginState.LoggedIn)
+        {
+            yield return null;
+        }
 
         spawnpoint = GameObject.FindWithTag("RespawnLocation").transform.position;
         ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
@@ -268,13 +268,14 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        //while(!VivoxPlayer.Instance.LocalChannelExists)
-        //{
-        //    yield return null;
-        //}
-        
-        //VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
-        //InvokeRepeating("Update3DPosition", 0, 0.1f);
+        while (!VivoxPlayer.Instance.LocalChannelExists)
+        {
+            yield return null;
+        }
+
+        VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
+        InvokeRepeating("Update3DPosition", 0, 0.1f);
+
         overlord = SCR_MultiplayerOverlord.Instance;
     }
 
