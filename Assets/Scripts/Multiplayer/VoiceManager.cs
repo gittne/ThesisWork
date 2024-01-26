@@ -9,12 +9,6 @@ public class VoiceManager : MonoBehaviour
 {
     public ILoginSession LoginSession;
 
-    private void Start()
-    {
-        //Login("hey");
-        //JoinChannel("1", )
-    }
-
     private void OnApplicationQuit()
     {
         if(LoginSession != null) LoginSession.Logout();
@@ -47,11 +41,9 @@ public class VoiceManager : MonoBehaviour
         }
     }
 
-    public void Login(string displayName = null)
+    public void Login(string displayName = "Player")
     {
         var account = new Account(displayName);
-        //bool connectAudio = true;
-        //bool connectText = true;
 
         LoginSession = VivoxService.Instance.Client.GetLoginSession(account);
         LoginSession.PropertyChanged += LoginSession_PropertyChanged;
@@ -86,11 +78,7 @@ public class VoiceManager : MonoBehaviour
                 bool connectAudio = true;
                 bool connectText = true;
 
-                // This puts you into an echo channel where you can hear yourself speaking.
-                // If you can hear yourself, then everything is working and you are ready to integrate Vivox into your project.
                 JoinChannel("TestChannel", ChannelType.Echo, connectAudio, connectText);
-                // To test with multiple users, try joining a non-positional channel.
-                // JoinChannel("MultipleUserTestChannel", ChannelType.NonPositional, connectAudio, connectText);
             }
         }
     }
