@@ -21,10 +21,13 @@ public class SCR_EnemyDetector : MonoBehaviour
         {
             nuisancesList.Add(other.gameObject);
         }
+    }
 
-        if(other.CompareTag("SqueakyToy"))
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("SqueakyToy"))
         {
-            if(!other.gameObject.GetComponent<SCR_MonsterAttractor>().HasBeenInvestigated && brain.enemyState != SCR_EnemyUtilities.EnemyState.KILLING && brain.enemyState != SCR_EnemyUtilities.EnemyState.FINISHING)
+            if (!other.gameObject.GetComponent<SCR_MonsterAttractor>().HasBeenInvestigated && brain.enemyState != SCR_EnemyUtilities.EnemyState.KILLING && brain.enemyState != SCR_EnemyUtilities.EnemyState.FINISHING)
             {
                 brain.CommenceInvestigation(other.gameObject);
             }

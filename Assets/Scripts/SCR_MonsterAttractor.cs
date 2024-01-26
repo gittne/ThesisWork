@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class SCR_MonsterAttractor : MonoBehaviour
 {
-    private bool hasBeenInvestigated = true;
+    [SerializeField] private bool hasBeenInvestigated = true;
 
     public bool HasBeenInvestigated { get {  return hasBeenInvestigated; } }
 
+    [ContextMenu("Activate squeaky toy")]
     public void BroadcastLocation()
     {
         hasBeenInvestigated = false;
@@ -25,7 +26,7 @@ public class SCR_MonsterAttractor : MonoBehaviour
         {
             Debug.Log("I got investigated.");
             Investigate();
-            other.gameObject.GetComponent<SCR_EnemyBrain>().ResetMonster();
+            other.gameObject.GetComponentInParent<SCR_EnemyBrain>().ResetMonster();
         }
     }
 }
