@@ -23,4 +23,15 @@ public class SCR_XR_Socket_Fuse_Check : XRSocketInteractor
             isInserted = true;
         }
     }
+
+    [System.Obsolete]
+    protected override void OnSelectExited(XRBaseInteractable interactable)
+    {
+        base.OnSelectExited(interactable);
+
+        if (interactable.CompareTag(targetTag))
+        {
+            isInserted = false;
+        }
+    }
 }

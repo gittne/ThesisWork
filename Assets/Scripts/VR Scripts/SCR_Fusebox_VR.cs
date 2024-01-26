@@ -32,6 +32,8 @@ public class SCR_Fusebox_VR : MonoBehaviour
     void Update()
     {
         FillFusebox();
+
+        Debug.Log(isActivated);
     }
 
     public void FillFusebox()
@@ -42,18 +44,20 @@ public class SCR_Fusebox_VR : MonoBehaviour
             {
                 isFuseInserted[i] = true;
             }
+            else
+            {
+                isFuseInserted[i] = false;
+            }
 
             if (isFuseInserted[i] == false)
             {
+                isActivated = false;
                 return;
             }
-
-            isActivated = true;
-        }
-
-        if (isActivated)
-        {
-            //Debug.Log("Activated");
+            else
+            {
+                isActivated = true;
+            }
         }
     }
 }
