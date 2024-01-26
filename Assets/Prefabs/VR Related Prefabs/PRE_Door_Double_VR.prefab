@@ -573,7 +573,7 @@ Transform:
   m_GameObject: {fileID: 1461589509975727675}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.010526431, y: -0.0005092488, z: 0.009127191}
+  m_LocalPosition: {x: -0.01052643, y: -0.00051, z: 0.00913}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -727,6 +727,8 @@ GameObject:
   - component: {fileID: 8432098756610127475}
   - component: {fileID: 2179124780215309755}
   - component: {fileID: 9115928676343138456}
+  - component: {fileID: 2823460686238611227}
+  - component: {fileID: 8699701852829480648}
   m_Layer: 7
   m_Name: PRE_Door_Double_VR
   m_TagString: Interactable
@@ -868,6 +870,43 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!65 &2823460686238611227
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484381619556010110}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.015627338, y: 0.000319987, z: 0.0005511236}
+  m_Center: {x: -0.00015826881, y: 0.00018408563, z: 0.010666368}
+--- !u!114 &8699701852829480648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484381619556010110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6eebd18af701ad44acc72e415ac9e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LockType: 0
+  fusebox: {fileID: 0}
+  keyReader: {fileID: 0}
+  lockCollider: {fileID: 2823460686238611227}
 --- !u!1 &3616155960874552987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,7 +1434,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.00013283044, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.0993128, y: 0.27789128, z: 1.6263258}
+  m_ConnectedAnchor: {x: -1.439186, y: 0.278, z: 3.4688184}
   serializedVersion: 2
   m_UseSpring: 0
   m_Spring:
