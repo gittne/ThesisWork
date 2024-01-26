@@ -271,7 +271,6 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     public void ResetMonster()
     {
-        transform.position = monsterResetPosition.position;
         CommenceRoam();
         rageMeter = 0;
         Debug.Log("im reset");
