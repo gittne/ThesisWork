@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SCR_Key_Card_Reader_VR : MonoBehaviour
 {
-    public bool isActivated;
-    public bool canReadCard { get; private set; }
+    public bool isActivated { get; private set; }
     public bool canActivate;
     public string keycardTag;
 
@@ -17,7 +16,7 @@ public class SCR_Key_Card_Reader_VR : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(keycardTag))
+        if (other.CompareTag(keycardTag) && canActivate)
         {
             isActivated = true;
             Debug.Log("Activated keyreader");

@@ -32,8 +32,6 @@ public class SCR_Fusebox_VR : MonoBehaviour
     void Update()
     {
         FillFusebox();
-
-        Debug.Log(isActivated);
     }
 
     public void FillFusebox()
