@@ -219,8 +219,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
     IEnumerator DieAndRespawn(GameObject monster)
     {
-        Animator animator = GetComponentInChildren<Animator>();
-        animator.enabled = true;
+        //Animator animator = GetComponentInChildren<Animator>();
+        //animator.enabled = true;
         canMove = false;
 
         yield return new WaitForSeconds(2);
@@ -239,7 +239,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
         yield return new WaitForSeconds(4.5f);
 
-        animator.enabled = false;
+        //animator.enabled = false;
         canMove = true;
 
         yield return new WaitForSeconds(0.5f);
