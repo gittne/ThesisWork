@@ -237,11 +237,11 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
         transform.position = respawnLocation;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         animator.enabled = false;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         for (int i = 0; i < 101; i++)
         {
