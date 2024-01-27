@@ -22,7 +22,7 @@ public class SCR_Monster_SoundFX : MonoBehaviour
     void Start()
     {
         brain = GetComponent<SCR_EnemyBrain>();
-        Thold = UnityEngine.Random.Range(0, 55);
+        Thold = UnityEngine.Random.Range(0, 55); // Thold is give a value between 1 and 55. 
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class SCR_Monster_SoundFX : MonoBehaviour
     void IdleSoundManager()
     {
 
-        if (Thold > waitInterwall)
+        if (Thold > waitInterwall) // will only play sound if thold is larger then waitinterwall. Problem, thold value is only created at start, meaning if value is under X, sound will never play. 
         {
             volSounds.PlayOneShot(IdleSounds[Random.Range(0, IdleSounds.Length - 1)]);
     
