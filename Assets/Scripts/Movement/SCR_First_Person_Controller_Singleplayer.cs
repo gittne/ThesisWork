@@ -236,6 +236,9 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         }
 
         transform.position = respawnLocation;
+
+        yield return new WaitForSeconds(2f);
+
         animator.enabled = false;
 
         yield return new WaitForSeconds(3f);

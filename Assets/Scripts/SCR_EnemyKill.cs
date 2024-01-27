@@ -30,8 +30,8 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
 
     void KillPlayers(GameObject player)
     {
-        //player.transform.position = transform.position + transform.TransformDirection(Vector3.forward) * 1.5f;
-        //player.transform.LookAt(transform.position);
+        player.transform.position = transform.position + transform.TransformDirection(Vector3.forward) * 1.5f;
+        player.transform.LookAt(transform.position);
         transform.LookAt(player.transform.position);
 
         if (SCR_MultiplayerOverlord.Instance != null && player.GetComponent<SCR_First_Person_Controller>() != null)
