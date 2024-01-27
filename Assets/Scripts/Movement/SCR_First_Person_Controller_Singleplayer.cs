@@ -239,17 +239,19 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
         yield return new WaitForSeconds(4.5f);
 
-        animator.enabled = false;
+       // animator.enabled = false;
+        
+
+        yield return new WaitForSeconds(2f);
         canMove = true;
-
-        yield return new WaitForSeconds(0.5f);
-
         for (int i = 0; i < 101; i++)
         {
             c.a = 1 - 0.01f * i;
             fader.color = c;
 
             yield return new WaitForSeconds(0.01f);
+
         }
+
     }
 }
