@@ -22,15 +22,20 @@ public class SCR_Monster_SoundFX : MonoBehaviour
     void Start()
     {
         brain = GetComponent<SCR_EnemyBrain>();
-        Thold = UnityEngine.Random.Range(0, 55); // Thold is give a value between 1 and 55. 
+        Thold = Random.Range(0, 55); // Thold is give a value between 1 and 55. 
+        Debug.Log("Thold Value:" + Thold);
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("is update playing");
         if (!canPlayNewSounds) return;
-        StartCoroutine(SoundDelay());
+        StartCoroutine(SoundDelay()); 
 
+        if (Thold <= waitInterwall)
+            StartCoroutine(noSoundPlayed());
+        
         if (brain.GetRageAmount() < 30)
         {
             IdleSoundManager();
@@ -44,6 +49,8 @@ public class SCR_Monster_SoundFX : MonoBehaviour
         {
             AngrySoundManager();
         }
+
+
     }
 
     void IdleSoundManager()
@@ -52,7 +59,7 @@ public class SCR_Monster_SoundFX : MonoBehaviour
         if (Thold > waitInterwall) // will only play sound if thold is larger then waitinterwall. Problem, thold value is only created at start, meaning if value is under X, sound will never play. 
         {
             volSounds.PlayOneShot(IdleSounds[Random.Range(0, IdleSounds.Length - 1)]);
-    
+            Thold = 0;
         }
 
     }
@@ -63,7 +70,7 @@ public class SCR_Monster_SoundFX : MonoBehaviour
         if (Thold > waitInterwall)
         {
             volSounds.PlayOneShot(SpottedSounds[Random.Range(0, SpottedSounds.Length - 1)]);
-           
+            Thold = 0;
         }
 
     }
@@ -74,7 +81,7 @@ public class SCR_Monster_SoundFX : MonoBehaviour
         if (Thold > waitInterwall)
         {
             volSounds.PlayOneShot(AngrySounds[Random.Range(0, AngrySounds.Length - 1)]);
-           
+           Thold = 0;
         }
 
     }
@@ -91,5 +98,15 @@ public class SCR_Monster_SoundFX : MonoBehaviour
 
     }
 
+
+    IEnumerator noSoundPlayed()
+    {
+
+        
+        Thold = Random.Range(0, 55);
+        Debug.Log("In inumerator, Thold Value:" + Thold);
+        yield return new WaitForSeconds(5);
+        
+    }
 
 }
