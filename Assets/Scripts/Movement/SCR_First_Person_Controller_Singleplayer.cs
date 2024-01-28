@@ -212,15 +212,15 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         characterController.Move(movementDirection * Time.deltaTime);
     }
 
-    public void CommencePlayerDeath(GameObject monster)
+    public void CommencePlayerDeath()
     {
-        StartCoroutine(DieAndRespawn(monster));
+        StartCoroutine(DieAndRespawn());
     }
 
-    IEnumerator DieAndRespawn(GameObject monster)
+    IEnumerator DieAndRespawn()
     {
-        //Animator animator = GetComponentInChildren<Animator>();
-        //animator.enabled = true;
+        Animator animator = GetComponentInChildren<Animator>();
+        animator.enabled = true;
         canMove = false;
 
         yield return new WaitForSeconds(2);
@@ -239,7 +239,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
         yield return new WaitForSeconds(4.5f);
 
-        //animator.enabled = false;
         canMove = true;
 
         yield return new WaitForSeconds(0.5f);

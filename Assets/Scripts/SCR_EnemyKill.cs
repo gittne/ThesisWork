@@ -43,7 +43,7 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
         else
         {
             Debug.Log("singleplayer kill.");
-            player.GetComponent<SCR_First_Person_Controller_Singleplayer>().CommencePlayerDeath(player);
+            player.GetComponent<SCR_First_Person_Controller_Singleplayer>().CommencePlayerDeath();
             player.GetComponentInChildren<Animator>().SetTrigger("Die");
             StartCoroutine(KillPlayerCutScene(false));
         }

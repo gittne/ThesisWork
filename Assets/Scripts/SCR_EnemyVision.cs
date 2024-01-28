@@ -16,6 +16,8 @@ public class SCR_EnemyVision : MonoBehaviour
 
     GameObject visiblePlayer;
 
+    Vector3 bodyOffset = new Vector3(0, 1f, 0);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,15 +48,18 @@ public class SCR_EnemyVision : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            Debug.Log("I KNOW YOU HERE, RAT");
+
             Vector3 dir = -(transform.position - other.transform.position).normalized;
             Ray ray = new Ray(transform.position, other.transform.position.normalized);
 
-            if(Physics.SphereCast(transform.position, 0.75f, dir, out hit, 50, mask))
+            if(Physics.SphereCast(transform.position + bodyOffset, 0.5f, dir, out hit, 50, mask))
             {
                 if (hit.transform.CompareTag("Player"))
                 {
+                    Debug.Log("I SEE YOU, RAT");
                     visiblePlayer = other.gameObject;
-                    visionLossDelay = 2;
+                    visionLossDelay = 1.5f;
                     SendVisionInformation();
                     return;
                 }

@@ -11,12 +11,15 @@ public class SCR_MirrorLink : MonoBehaviour
         mirrorManager = FindObjectOfType<SCR_MirrorManager>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
             Debug.Log("enemy entered my mirror");
             SCR_EnemyBrain brain = other.gameObject.GetComponent<SCR_EnemyBrain>();
+
+            if (!brain.WantsToTeleport) return;
+
             FindClosestExitToTarget(other.gameObject);
         }
            
@@ -46,7 +49,6 @@ public class SCR_MirrorLink : MonoBehaviour
             }
         }
 
-        //enemy.transform.position = mirrorManager.Mirrors[chosenIndex].transform.position;
         enemy.GetComponent<SCR_EnemyBrain>().PerformMirrorWarp(mirrorManager.Mirrors[chosenIndex].transform.position);
     }
 }

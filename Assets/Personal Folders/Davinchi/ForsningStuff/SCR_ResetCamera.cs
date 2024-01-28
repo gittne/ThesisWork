@@ -16,7 +16,7 @@ public class SCR_ResetCamera : MonoBehaviour
     IEnumerator WaitForAnimation()
     {
         Animator animator = GetComponent<Animator>();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         Debug.Log("ExitDone");
         animator.enabled = false;
     }

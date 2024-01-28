@@ -8,15 +8,15 @@ using VivoxUnity;
 
 public class SCR_MultiplayerOverlord : NetworkBehaviour
 {
-    [SerializeField] List <NetworkObject> players = new List <NetworkObject> ();
-    public List<NetworkObject> Players { get { return players; } }
-
     public static SCR_MultiplayerOverlord Instance { get; private set; }
     private void Awake() { Instance = this; }
 
 
     private SCR_EnemyBrain monsterBrain;
     public SCR_EnemyBrain MonsterBrain { get { return monsterBrain; } set {  monsterBrain = value; } }
+
+    List<GameObject> playerObjects;
+    public List<GameObject> PlayerObjects { get { return playerObjects; } set {  playerObjects = value; } }
 
     private void Start()
     {
@@ -33,16 +33,21 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         if (GameObject.FindWithTag("Enemy") != null)
             monsterBrain = GameObject.FindWithTag("Enemy").GetComponent<SCR_EnemyBrain>();
 
+        foreach(GameObject pla in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            playerObjects.Add(pla);
+        }
+
         SwitchToMultiplayerInteractables();
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void KillAllPlayersServerRpc()
     {
-        Debug.Log("playas " + players.Count);
-        foreach (NetworkObject player in players)
+        Debug.Log("playas " + playerObjects.Count);
+        foreach (GameObject player in playerObjects)
         {
-            SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
+            SCR_First_Person_Controller cntr = player.GetComponent<SCR_First_Person_Controller>();
             cntr.PlayerDeathClientRpc();
         }
     }
@@ -52,19 +57,18 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
     {
         int numberOfDeadPlayers = 0;
 
-        foreach (NetworkObject player in players)
+        foreach (GameObject player in playerObjects)
         {
-            SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
+            SCR_First_Person_Controller cntr = player.GetComponent<SCR_First_Person_Controller>();
             if(cntr.AmIDead.Value) numberOfDeadPlayers++;
         }
 
-        Debug.Log("Number of dead players: " + numberOfDeadPlayers + " and number of players is: " + players.Count);
+        Debug.Log("Number of dead players: " + numberOfDeadPlayers + " and number of players is: " + playerObjects.Count);
 
-        if (numberOfDeadPlayers >= players.Count)
-            foreach (NetworkObject player in players)
+        if (numberOfDeadPlayers >= playerObjects.Count)
+            foreach (GameObject player in playerObjects)
             {
                 SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
-                cntr.BackToMenuClientRpc();
             }
     }
 

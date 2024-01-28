@@ -23,13 +23,11 @@ public class SCR_Monster_SoundFX : MonoBehaviour
     {
         brain = GetComponent<SCR_EnemyBrain>();
         Thold = Random.Range(0, 55); // Thold is give a value between 1 and 55. 
-        Debug.Log("Thold Value:" + Thold);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("is update playing");
         if (!canPlayNewSounds) return;
         StartCoroutine(SoundDelay()); 
 
@@ -101,12 +99,7 @@ public class SCR_Monster_SoundFX : MonoBehaviour
 
     IEnumerator noSoundPlayed()
     {
-
-        
         Thold = Random.Range(0, 55);
-        Debug.Log("In inumerator, Thold Value:" + Thold);
         yield return new WaitForSeconds(5);
-        
     }
-
 }
