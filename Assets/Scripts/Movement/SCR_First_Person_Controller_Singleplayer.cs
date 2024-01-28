@@ -124,10 +124,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
                 Headbob();
             }
         }
-
-        Debug.DrawRay(characterController.transform.position, characterController.transform.up * (characterController.height / 2) + new Vector3(0, crouchRaycastModifier, 0), Color.blue);
-
-        Debug.Log(shouldCrouch);
     }
 
     void MovementInput()
