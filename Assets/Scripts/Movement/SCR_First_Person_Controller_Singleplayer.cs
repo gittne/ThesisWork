@@ -13,7 +13,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     public bool canMove { get; private set; } = true;
     public float crouchTimer { get; private set; }
     public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
-    public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKeyDown(crouchKey);
+    public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKeyDown(crouchKey) 
+        && !Physics.Raycast(characterController.transform.position, characterController.transform.up, out crouchRaycast, (characterController.height / 2) + crouchRaycastModifier);
 
     [SerializeField] Camera playerCamera;
     [SerializeField] Transform cameraHolder;
@@ -66,6 +67,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] Vector3 standingCenter = new Vector3(0, 0, 0);
     bool isCrouching;
     bool duringCrouchAnimation;
+    RaycastHit crouchRaycast;
+    float crouchRaycastModifier;
 
     [Header("Headbob Variables")]
     [SerializeField] float walkBobSpeed;
@@ -121,6 +124,10 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
                 Headbob();
             }
         }
+
+        Debug.DrawRay(characterController.transform.position, characterController.transform.up * (characterController.height / 2) + new Vector3(0, crouchRaycastModifier, 0), Color.blue);
+
+        Debug.Log(shouldCrouch);
     }
 
     void MovementInput()
@@ -163,6 +170,15 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
     void Crouch()
     {
+        if (characterController.height <= standHeight - 0.1f)
+        {
+            crouchRaycastModifier = crouchCenter.y * 2f;
+        }
+        else
+        {
+            crouchRaycastModifier = 0;
+        }
+
         if (shouldCrouch)
         {
             StartCoroutine(CrouchAndStand());
