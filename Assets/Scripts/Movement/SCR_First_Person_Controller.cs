@@ -95,10 +95,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     SCR_MultiplayerOverlord overlord;
     NuisanceEmitter nuisance;
 
-    bool isDead = false;
-    public bool IsDead { get { return isDead; }}
-
     public NetworkVariable<bool> AmIDead;
+
+    Vector3 respawnLocation;
 
     void Start()
     {
@@ -108,6 +107,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         StartCoroutine(SetupDelay());
         fader = GameObject.FindGameObjectWithTag("BlackFade").GetComponent<Image>();
         nuisance = GetComponentInChildren<NuisanceEmitter>();
+
+        respawnLocation = GameObject.FindWithTag("RespawnLocation").transform.position;
     }
 
     public override void OnNetworkSpawn()
@@ -281,7 +282,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     void Update3DPosition()
     {
-        if (isDead) return;
+        if (AmIDead.Value) return;
 
         try
         {
@@ -312,34 +313,17 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
-        cnt.Teleport(new Vector3(0, 1, 0), Quaternion.identity, transform.localScale);
-    }
-
-    public void CommencePlayerDeath(GameObject monster)
-    {
-        isDead = true;
         AmIDead.Value = true;
-
-        if (!IsOwner)
-            return;
-
-        StartCoroutine(DieAndGoToSpawn(monster));
+        StartCoroutine(DieAndGoToSpawn());
     }
 
-    IEnumerator DieAndGoToSpawn(GameObject monster)
+    IEnumerator DieAndGoToSpawn()
     {
+        Animator animator = GetComponentInChildren<Animator>();
+        animator.enabled = true;
         canMove = false;
-        transform.position += new Vector3(0, 0.35f, 0);
 
         yield return new WaitForSeconds(2);
-        while (cameraHolder.transform.position.y > 0.15f)
-        {
-
-            cameraHolder.LookAt(monster.transform.position + new Vector3(0, 1.5f, 0));
-            cameraHolder.transform.position -= new Vector3(0, 0.03f, 0);
-            yield return new WaitForSeconds(0.001f);
-        }
 
         Color c = fader.color;
 
@@ -351,22 +335,36 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             yield return new WaitForSeconds(0.001f);
         }
 
-        SCR_MultiplayerOverlord.Instance.CheckPlayerHealthStatusServerRpc();
+        transform.position = respawnLocation;
 
         ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
-        cnt.Teleport(new Vector3(0, 1, 0), Quaternion.identity, transform.localScale);
-
-        cameraHolder.transform.position += new Vector3(0, 1.7f, 0);
-        transform.rotation = new Quaternion(0, 0, 0, 0);
-        cameraHolder.transform.rotation = new Quaternion(0, 0, 0, 0);
+        cnt.Teleport(respawnLocation, Quaternion.identity, transform.localScale);
     }
 
     [ClientRpc]
-    public void BackToMenuClientRpc()
+    public void PlayerRespawnClientRpc()
     {
-        if (!IsOwner) return;
+        if (!IsOwner)
+            return;
 
-        RelayMaker.Instance.LeaveRelay();
-        SceneManager.LoadScene(0);
+        AmIDead.Value = false;
+        StartCoroutine(RespawnPlayer());
+    }
+
+    IEnumerator RespawnPlayer()
+    {
+        Color c = fader.color;
+
+        canMove = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        for (int i = 0; i < 101; i++)
+        {
+            c.a = 1 - 0.01f * i;
+            fader.color = c;
+
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 }

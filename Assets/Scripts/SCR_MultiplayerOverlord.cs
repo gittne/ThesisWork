@@ -42,18 +42,7 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void KillAllPlayersServerRpc()
-    {
-        Debug.Log("playas " + playerObjects.Count);
-        foreach (GameObject player in playerObjects)
-        {
-            SCR_First_Person_Controller cntr = player.GetComponent<SCR_First_Person_Controller>();
-            cntr.PlayerDeathClientRpc();
-        }
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    public void CheckPlayerHealthStatusServerRpc()
+    public void PlayerKillServerRpc()
     {
         int numberOfDeadPlayers = 0;
 
@@ -66,10 +55,13 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         Debug.Log("Number of dead players: " + numberOfDeadPlayers + " and number of players is: " + playerObjects.Count);
 
         if (numberOfDeadPlayers >= playerObjects.Count)
+        {
             foreach (GameObject player in playerObjects)
             {
                 SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
+                cntr.PlayerRespawnClientRpc();
             }
+        }
     }
 
     void SwitchToMultiplayerInteractables()
