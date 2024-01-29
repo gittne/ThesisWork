@@ -31,7 +31,7 @@ public class SCR_Animated_Interactable_Multiplayer : NetworkBehaviour
     private void Start()
     {
         if (animator == null)
-            animator = GetComponent<Animator>();
+            animator = GetComponentInParent<Animator>();
 
         SoundSource = GetComponent<AudioSource>();
         openSpeed = animator.speed;

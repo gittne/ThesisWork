@@ -29,8 +29,18 @@ public class SCR_MirrorLink : MonoBehaviour
     {
         float lowestDistance = 9999;
         int chosenIndex = 0;
+        Vector3 randomPlayerLocation;
 
-        Vector3 randomPlayerLocation = mirrorManager.Players[Random.Range(0, mirrorManager.Players.Count - 1)].transform.position;
+        try
+        {
+            randomPlayerLocation = mirrorManager.Players[Random.Range(0, mirrorManager.Players.Count - 1)].transform.position;
+        }
+        catch
+        {
+            enemy.GetComponent<SCR_EnemyBrain>().CommenceRoam();
+            return;
+        }
+
 
         for (int i = 1; i < mirrorManager.Mirrors.Count; i++)
         {
