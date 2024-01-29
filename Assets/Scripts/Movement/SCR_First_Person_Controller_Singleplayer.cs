@@ -82,7 +82,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] float highestBobbingMultiplier;
     [SerializeField] float timerDuration;
     float headbobMultiplierTimer;
-    float bobMultiplier;
+    float bobMultiplierX;
+    float bobMultiplierY;
     float yDefaultPosition = 0;
     float headbobTimer;
 
@@ -132,7 +133,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
             }
         }
 
-        Debug.Log("bobMultiplier is: " + bobMultiplier);
+        Debug.Log("bobMultiplier is: " + bobMultiplierX);
     }
 
     void MovementInput()
@@ -159,11 +160,16 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
     void HeadbobNumberGenerator()
     {
-        float previousMultiplier = bobMultiplier;
-        float nextMultiplier = Random.Range(lowestBobbingMultiplier, highestBobbingMultiplier);
+        float previousMultiplierX = bobMultiplierX;
+        float nextMultiplierX = Random.Range(lowestBobbingMultiplier, highestBobbingMultiplier);
+
+        float previousMultiplierY = bobMultiplierY;
+        float nextMultiplierY = Random.Range(lowestBobbingMultiplier, highestBobbingMultiplier);
+
         headbobMultiplierTimer += Time.deltaTime / timerDuration;
 
-        bobMultiplier = Mathf.Lerp(previousMultiplier, nextMultiplier, headbobMultiplierTimer);
+        bobMultiplierX = Mathf.Lerp(previousMultiplierX, nextMultiplierX, headbobMultiplierTimer);
+        bobMultiplierY = Mathf.Lerp(previousMultiplierY, nextMultiplierY, headbobMultiplierTimer);
     }
 
     void Headbob() 
@@ -177,8 +183,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         {
             headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
 
-            cameraHolder.transform.localRotation = Quaternion.Euler(yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount) * bobMultiplier,
-                (yDefaultPosition + (Mathf.Sin(headbobTimer) / 4.2f) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount)) * yAxisMultiplier, cameraHolder.transform.localRotation.z);
+            cameraHolder.transform.localRotation = Quaternion.Euler(yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount) * bobMultiplierX,
+                (yDefaultPosition + (Mathf.Sin(headbobTimer) / 4.2f) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount)) * bobMultiplierY, cameraHolder.transform.localRotation.z);
         }
     }
 
