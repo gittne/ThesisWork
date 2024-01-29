@@ -160,16 +160,16 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     IEnumerator RepositionDelay()
     {
-        int mirrorChance = Random.Range(0, 10);
-        if (mirrorChance >= 9 && canTeleport)
-        {
-            if (Vector3.Distance(transform.position, FindNearestPlayer().transform.position) > 15)
-            {
-                hasDestination = true;
-                GoFindMirror();
-                yield break;
-            }
-        }
+        //int mirrorChance = Random.Range(0, 10);
+        //if (mirrorChance >= 9 && canTeleport)
+        //{
+        //    if (Vector3.Distance(transform.position, FindNearestPlayer().transform.position) > 15)
+        //    {
+        //        hasDestination = true;
+        //        GoFindMirror();
+        //        yield break;
+        //    }
+        //}
 
         agent.destination = RandomNavmeshPosition(roamRange);
 
