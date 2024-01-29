@@ -863,7 +863,7 @@ MonoBehaviour:
   isInLeftHand: 1
   travelLimit: {x: 0.01, y: 0.1, z: 0.02}
   bobLimit: {x: 0.012, y: 0.02, z: 0.7}
-  smoothing: 0.8
+  smoothing: 1
   smoothingRotation: 5
   movementMultiplier: 1.3
   multiplier: {x: 1, y: 2, z: 5}
@@ -6339,10 +6339,10 @@ MonoBehaviour:
   isInLeftHand: 0
   travelLimit: {x: 0.01, y: 0.1, z: 0.02}
   bobLimit: {x: 0.012, y: 0.02, z: 0.7}
-  smoothing: 0.8
-  smoothingRotation: 2.64
-  movementMultiplier: 3
-  multiplier: {x: 1, y: 2, z: 5}
+  smoothing: 1
+  smoothingRotation: 0.5
+  movementMultiplier: 1
+  multiplier: {x: 3, y: 5, z: 5}
 --- !u!1 &5879831980504304788
 GameObject:
   m_ObjectHideFlags: 0
@@ -6883,7 +6883,7 @@ Transform:
   m_GameObject: {fileID: 6032145345789100340}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7549,8 +7549,9 @@ GameObject:
   - component: {fileID: 8319358230552766113}
   - component: {fileID: 5922462707074276365}
   - component: {fileID: 5811354479890046497}
-  - component: {fileID: 6719363515240474502}
   - component: {fileID: 2261037557436130128}
+  - component: {fileID: 6017641864774729870}
+  - component: {fileID: 2850718322885801219}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -7719,7 +7720,37 @@ MonoBehaviour:
   playerCamera: {fileID: 4034617860117860621}
   interactionMaxLength: 2
   TextPrompt: {fileID: 6832140839701762947}
---- !u!95 &6719363515240474502
+--- !u!114 &2261037557436130128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6946158529377229816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c343f68619efc4592bf9a7be51b8a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6017641864774729870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6946158529377229816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3898ae0b2bf094409d52b8b6fd42ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask:
+    serializedVersion: 2
+    m_Bits: 128
+  playerCamera: {fileID: 4034617860117860621}
+  interactionMaxLength: 2
+  TextPrompt: {fileID: 6832140839701762947}
+--- !u!95 &2850718322885801219
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -7740,18 +7771,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2261037557436130128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6946158529377229816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97c343f68619efc4592bf9a7be51b8a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6971233376462442905
 GameObject:
   m_ObjectHideFlags: 0
@@ -8296,10 +8315,10 @@ MonoBehaviour:
   yLookSensitivity: 2
   upperLookLimit: 80
   lowerLookLimit: 80
-  crouchingHeight: 0.75
+  crouchingHeight: 0.95
   standingHeight: 1.85
   timeToCrouch: 0.35
-  crouchCenter: {x: 0, y: 0.2, z: 0}
+  crouchCenter: {x: 0, y: 0.3, z: 0}
   standingCenter: {x: 0, y: 0, z: 0}
   walkBobSpeed: 14
   walkBobAmount: 0.3
@@ -8320,7 +8339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fbcb33b3487834bbe71d27f85a0cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepThreshold: 1
+  stepThreshold: 1.2
   audioSource: {fileID: 8818260603339505658}
   carpetClips:
   - {fileID: 8300000, guid: 9a3342473bf768244bed940934decd73, type: 3}
