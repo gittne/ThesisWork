@@ -132,8 +132,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
                 HeadbobNumberGenerator();
             }
         }
-
-        Debug.Log("bobMultiplier is: " + bobMultiplierX);
     }
 
     void MovementInput()
