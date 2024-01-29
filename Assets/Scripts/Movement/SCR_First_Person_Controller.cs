@@ -325,7 +325,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        AmIDead.Value = true;
+        ToggleDeathServerRpc(true);
         StartCoroutine(DieAndGoToSpawn());
     }
 
@@ -359,7 +359,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        AmIDead.Value = false;
+        ToggleDeathServerRpc(false);
         StartCoroutine(RespawnPlayer());
     }
 
@@ -378,5 +378,11 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
             yield return new WaitForSeconds(0.01f);
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void ToggleDeathServerRpc(bool enableDeath)
+    {
+        AmIDead.Value = enableDeath;
     }
 }
