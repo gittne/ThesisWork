@@ -864,9 +864,9 @@ MonoBehaviour:
   travelLimit: {x: 0.01, y: 0.1, z: 0.02}
   bobLimit: {x: 0.012, y: 0.02, z: 0.7}
   smoothing: 1
-  smoothingRotation: 5
-  movementMultiplier: 1.3
-  multiplier: {x: 1, y: 2, z: 5}
+  smoothingRotation: 0.5
+  movementMultiplier: 0.3
+  multiplier: {x: 4, y: 5, z: 5}
 --- !u!1 &622575657354676042
 GameObject:
   m_ObjectHideFlags: 0
@@ -6341,8 +6341,8 @@ MonoBehaviour:
   bobLimit: {x: 0.012, y: 0.02, z: 0.7}
   smoothing: 1
   smoothingRotation: 0.5
-  movementMultiplier: 1
-  multiplier: {x: 3, y: 5, z: 5}
+  movementMultiplier: 0.3
+  multiplier: {x: 4, y: 5, z: 5}
 --- !u!1 &5879831980504304788
 GameObject:
   m_ObjectHideFlags: 0
