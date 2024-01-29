@@ -59,6 +59,7 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         {
             foreach (GameObject player in playerObjects)
             {
+                Debug.Log("I am going to respawn.");
                 SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
                 cntr.PlayerRespawnClientRpc();
             }

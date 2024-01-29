@@ -345,8 +345,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             yield return new WaitForSeconds(0.001f);
         }
 
-        transform.position = respawnLocation;
-
         ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
         cnt.Teleport(respawnLocation, Quaternion.identity, transform.localScale);
     }
