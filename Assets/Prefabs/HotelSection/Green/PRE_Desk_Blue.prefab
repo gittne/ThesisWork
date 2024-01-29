@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5965680796257861412}
   - component: {fileID: 3231862148735391089}
   - component: {fileID: 5365350581872407320}
-  - component: {fileID: 344115837578939059}
   - component: {fileID: 1334872214671749647}
   - component: {fileID: 4622458184566141087}
+  - component: {fileID: 344115837578939059}
   - component: {fileID: 4744375518996526682}
   - component: {fileID: 2352416872401684397}
   - component: {fileID: 8164325651297517753}
@@ -89,22 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &344115837578939059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1617723418983035139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockState: 1
-  animator: {fileID: 0}
-  SoundFX: {fileID: 8300000, guid: 2e24e8b5b8e2f4945acb4dadc03a5082, type: 3}
-  keycardReader: {fileID: 0}
 --- !u!82 &1334872214671749647
 AudioSource:
   m_ObjectHideFlags: 0
@@ -222,6 +206,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &344115837578939059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617723418983035139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockState: 1
+  animator: {fileID: 0}
+  SoundFX: {fileID: 8300000, guid: 2e24e8b5b8e2f4945acb4dadc03a5082, type: 3}
+  keycardReader: {fileID: 0}
 --- !u!114 &4744375518996526682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,9 +456,9 @@ GameObject:
   - component: {fileID: 7422546417620574809}
   - component: {fileID: 1413076035999398356}
   - component: {fileID: 602681401017143666}
-  - component: {fileID: 8446507433671999592}
   - component: {fileID: 700128887039888582}
   - component: {fileID: 6675322219906018765}
+  - component: {fileID: 8446507433671999592}
   - component: {fileID: 4403681327003912460}
   - component: {fileID: 1181186878593337265}
   - component: {fileID: 7099386279564864960}
@@ -535,22 +535,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8446507433671999592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7796024294316820378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockState: 1
-  animator: {fileID: 0}
-  SoundFX: {fileID: 8300000, guid: 2e24e8b5b8e2f4945acb4dadc03a5082, type: 3}
-  keycardReader: {fileID: 0}
 --- !u!82 &700128887039888582
 AudioSource:
   m_ObjectHideFlags: 0
@@ -668,7 +652,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4403681327003912460
+--- !u!114 &8446507433671999592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -676,6 +660,22 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7796024294316820378}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d9e274eb6c7fb48ba9e616f02060a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockState: 1
+  animator: {fileID: 0}
+  SoundFX: {fileID: 8300000, guid: 2e24e8b5b8e2f4945acb4dadc03a5082, type: 3}
+  keycardReader: {fileID: 0}
+--- !u!114 &4403681327003912460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7796024294316820378}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44cb8bc9f3961e44096b80500e5c5f40, type: 3}
   m_Name: 

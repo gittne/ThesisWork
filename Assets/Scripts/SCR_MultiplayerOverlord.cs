@@ -69,8 +69,8 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
     {
         foreach(GameObject interactable in GameObject.FindGameObjectsWithTag("Interactable"))
         {
-            interactable.GetComponentInChildren<SCR_Animated_Interactable>().enabled = false;
-            interactable.GetComponentInChildren<SCR_Animated_Interactable_Multiplayer>().enabled = true;
+            if(interactable.GetComponentInChildren<SCR_Animated_Interactable>() != null ) interactable.GetComponentInChildren<SCR_Animated_Interactable>().enabled = false;
+            if (interactable.GetComponentInChildren<SCR_Animated_Interactable_Multiplayer>() != null) interactable.GetComponentInChildren<SCR_Animated_Interactable_Multiplayer>().enabled = true;
         }
     }
 }
