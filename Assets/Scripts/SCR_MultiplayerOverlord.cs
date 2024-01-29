@@ -15,7 +15,7 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
     private SCR_EnemyBrain monsterBrain;
     public SCR_EnemyBrain MonsterBrain { get { return monsterBrain; } set {  monsterBrain = value; } }
 
-    List<GameObject> playerObjects;
+    [SerializeField] List<GameObject> playerObjects;
     public List<GameObject> PlayerObjects { get { return playerObjects; } set {  playerObjects = value; } }
 
     private void Start()
