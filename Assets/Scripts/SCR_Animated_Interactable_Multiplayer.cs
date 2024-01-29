@@ -75,6 +75,8 @@ public class SCR_Animated_Interactable_Multiplayer : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     void SetIsOpenedValueServerRpc(bool newValue)
     {
+        Debug.Log("i am door");
+
         isOpened.Value = newValue;
 
         animator.SetBool("isOpen", isOpened.Value);
