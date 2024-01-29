@@ -6,18 +6,12 @@ using UnityEngine.SceneManagement;
 public class SCR_MultiplayerToggler : MonoBehaviour
 {
     bool multiplayerIsEnabled = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneWasChanged;
     }
-
-
 
     public void EnableMultiplayer()
     {
