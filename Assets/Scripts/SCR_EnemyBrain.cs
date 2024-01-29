@@ -29,8 +29,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     Coroutine repositionCoroutine;
 
-    bool wantsToTeleport;
-    public bool WantsToTeleport { get { return wantsToTeleport; } set {  wantsToTeleport = value; } }
+    bool canTeleport = true;
+    public bool CanTeleport { get { return canTeleport; } set { canTeleport = value; } }
 
     private void Start()
     {
@@ -46,6 +46,8 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     private void Update()
     {
         rageMeter = Mathf.Clamp(rageMeter, 0, 100);
+
+        agent.velocity = agent.desiredVelocity;
 
         if (enemyState == EnemyState.ROAM)
         {
@@ -98,8 +100,10 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     {
         currentTargetPlayer = null;
 
+        Debug.Log("Commencing roam");
+
         agent.speed = 2.5f;
-        agent.acceleration = 15;
+        agent.acceleration = 30;
         enemyState = EnemyState.ROAM;
         if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
         hasDestination = false;
@@ -143,7 +147,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     public void RageTick()
     {
-        if (enemyState == EnemyState.KILLING || enemyState == EnemyState.FINISHING) return;
+        if (enemyState == EnemyState.KILLING || enemyState == EnemyState.FINISHING || enemyState == EnemyState.TELEPORTING) return;
 
         RageDurationTick();
 
@@ -151,16 +155,17 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         if (rageMeter > 80 && enemyState != EnemyState.HUNT) CommenceHunt();
 
-        if (rageMeter < 20) CommenceRoam();
+        if (rageMeter < 20 && enemyState != EnemyState.ROAM) CommenceRoam();
     }
 
     IEnumerator RepositionDelay()
     {
         int mirrorChance = Random.Range(0, 10);
-        if (mirrorChance >= 9)
+        if (mirrorChance >= 9 && canTeleport)
         {
             if (Vector3.Distance(transform.position, FindNearestPlayer().transform.position) > 15)
             {
+                hasDestination = true;
                 GoFindMirror();
                 yield break;
             }
@@ -188,7 +193,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
             rageDuration = 7;
         }
 
-        if (rageDuration <= 0)
+        if (rageDuration <= 0 && enemyState != EnemyState.ROAM)
         {
             rageMeter = 0;
             CommenceRoam();
@@ -214,24 +219,23 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         if (mirrorManager.Mirrors.Count == 0) return;
 
-        if(repositionCoroutine != null) StopCoroutine(repositionCoroutine);
+        enemyState = EnemyState.TELEPORTING;
+
+        if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
 
         agent.speed = 4.5f;
-
-        wantsToTeleport = true;
-        enemyState = EnemyState.TELEPORTING;
         agent.destination = mirrorManager.FindClosestEntrance(transform.position);
         Debug.Log("heading for mirror");
     }
 
     public void PerformMirrorWarp(Vector3 dest)
     {
-        if (!wantsToTeleport)
+        if (!canTeleport)
                 return;
 
         if (Vector3.Distance(transform.position, dest) < 5)
         {
-            wantsToTeleport = false;
+            StartCoroutine(SetMirroringOnCooldown());
 
             if (rageMeter < 20) CommenceRoam();
             else
@@ -239,7 +243,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
             return;
         }
 
-            wantsToTeleport = false;
+        StartCoroutine(SetMirroringOnCooldown());
         agent.Warp(dest);
         CommenceFollow(FindNearestPlayer());
     }
@@ -310,5 +314,12 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         agent.destination = target.transform.position;
         currentTargetPlayer = target;
+    }
+    
+    IEnumerator SetMirroringOnCooldown()
+    {
+        canTeleport = false;
+        yield return new WaitForSeconds(5);
+        canTeleport = true;
     }
 }

@@ -48,8 +48,6 @@ public class SCR_EnemyVision : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("I KNOW YOU HERE, RAT");
-
             Vector3 dir = -(transform.position - other.transform.position).normalized;
             Ray ray = new Ray(transform.position, other.transform.position.normalized);
 
@@ -57,7 +55,6 @@ public class SCR_EnemyVision : MonoBehaviour
             {
                 if (hit.transform.CompareTag("Player"))
                 {
-                    Debug.Log("I SEE YOU, RAT");
                     visiblePlayer = other.gameObject;
                     visionLossDelay = 1.5f;
                     SendVisionInformation();

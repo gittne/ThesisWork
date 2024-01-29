@@ -18,7 +18,7 @@ public class SCR_MirrorLink : MonoBehaviour
             Debug.Log("enemy entered my mirror");
             SCR_EnemyBrain brain = other.gameObject.GetComponent<SCR_EnemyBrain>();
 
-            if (!brain.WantsToTeleport) return;
+            if (!brain.CanTeleport) return;
 
             FindClosestExitToTarget(other.gameObject);
         }
