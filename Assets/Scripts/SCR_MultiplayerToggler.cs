@@ -33,6 +33,12 @@ public class SCR_MultiplayerToggler : MonoBehaviour
                 Destroy(GameObject.FindWithTag("MultiplayerCanvas"));
                 Destroy(GameObject.FindWithTag("TemporaryMultiDeleteCamera"));
             }
+            else
+            {
+                Destroy(GameObject.FindWithTag("Player"));
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
     }
 }
