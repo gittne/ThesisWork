@@ -33667,8 +33667,8 @@ MonoBehaviour:
     EnableTimeResync: 0
     TimeResyncInterval: 30
     EnsureNetworkVariableLengthSafety: 0
-    EnableSceneManagement: 1
-    ForceSamePrefabs: 1
+    EnableSceneManagement: 0
+    ForceSamePrefabs: 0
     RecycleNetworkIds: 1
     NetworkIdRecycleDelay: 120
     RpcHashSize: 0
@@ -56481,6 +56481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984633add9cc3b44baeeee33710594cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObjects: []
 --- !u!4 &1435404265
 Transform:
   m_ObjectHideFlags: 0
