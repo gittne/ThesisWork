@@ -111,7 +111,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         fader = GameObject.FindGameObjectWithTag("BlackFade").GetComponent<Image>();
         nuisance = GetComponentInChildren<NuisanceEmitter>();
 
-        respawnLocation = GameObject.FindWithTag("RespawnLocation").transform.position;
+        spawnpoint = GameObject.FindWithTag("RespawnLocation").transform.position;
+        ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
+        cnt.Teleport(spawnpoint, Quaternion.identity, transform.localScale);
     }
 
     public override void OnNetworkSpawn()
@@ -270,10 +272,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         {
             yield return null;
         }
-
-        spawnpoint = GameObject.FindWithTag("RespawnLocation").transform.position;
-        ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
-        cnt.Teleport(spawnpoint, Quaternion.identity, transform.localScale);
 
         yDefaultPosition = cameraHolder.transform.localPosition.y;
 
