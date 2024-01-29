@@ -33,6 +33,7 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
         if (GameObject.FindWithTag("Enemy") != null)
             monsterBrain = GameObject.FindWithTag("Enemy").GetComponent<SCR_EnemyBrain>();
 
+        yield return new WaitForSeconds(1);
         foreach(GameObject pla in GameObject.FindGameObjectsWithTag("Player"))
         {
             playerObjects.Add(pla);
