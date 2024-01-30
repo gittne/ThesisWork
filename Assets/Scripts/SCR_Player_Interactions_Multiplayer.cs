@@ -55,7 +55,7 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
 
             if (obj.TryGetComponent(out SCR_Inventory_Pickup_Singeplayer pickup))
             {
-                interactTextCanvas.SetActive(true);
+                //interactTextCanvas.SetActive(true);
 
                 if (Input.GetKeyDown(interactionKey))
                 {
@@ -65,7 +65,7 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
 
             if (obj.TryGetComponent(out SCR_Inventory_Pickup_Multiplayer pickupMultiplayer))
             {
-                interactTextCanvas.SetActive(true);
+                //interactTextCanvas.SetActive(true);
 
                 if (Input.GetKeyDown(interactionKey))
                 {
@@ -81,7 +81,7 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
                 }
                 else
                 {
-                    interactTextCanvas.SetActive(true);
+                    //interactTextCanvas.SetActive(true);
                 }
 
                 if (Input.GetKeyDown(interactionKey))
@@ -94,7 +94,7 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
             {
                 if (!inter.IsEnabled)
                 {
-                    interactTextCanvas.SetActive(true);
+                    //interactTextCanvas.SetActive(true);
 
                 }
             }
