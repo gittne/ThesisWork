@@ -107,8 +107,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
             return;
         }
 
-        ToggleTopLayerVisibility();
-
         Debug.Log("im the owner of this one");
         StartCoroutine(SetupDelay());
         fader = GameObject.FindGameObjectWithTag("BlackFade").GetComponent<Image>();
@@ -285,6 +283,8 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         {
             yield return null;
         }
+
+        ToggleTopLayerVisibility();
 
         VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
         InvokeRepeating("Update3DPosition", 0, 0.1f);
