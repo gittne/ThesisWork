@@ -104,6 +104,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         if (!IsOwner)
         {
+            ToggleTopLayerVisibility();
             return;
         }
 
@@ -283,8 +284,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         {
             yield return null;
         }
-
-        ToggleTopLayerVisibility();
 
         VivoxPlayer.Instance.LoginSession.SetTransmissionMode(TransmissionMode.Single, VivoxPlayer.Instance.localChannel);
         InvokeRepeating("Update3DPosition", 0, 0.1f);
