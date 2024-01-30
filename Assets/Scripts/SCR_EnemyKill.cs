@@ -63,6 +63,7 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
         if (isMultiplayer)
         {
             KillPlayerServerRpc();
+            yield return new WaitForSeconds(3);
             brain.CommenceMultiplayerFinish();
         }
         else
