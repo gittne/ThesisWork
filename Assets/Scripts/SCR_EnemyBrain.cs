@@ -29,8 +29,11 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     Coroutine repositionCoroutine;
 
+    bool wantsToTeleport;
     bool canTeleport = true;
     public bool CanTeleport { get { return canTeleport; } set { canTeleport = value; } }
+
+    float investigationInterestDuration;
 
     private void Start()
     {
@@ -64,6 +67,10 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         else if (enemyState == EnemyState.FINISHING)
         {
             Finishing();
+        }
+        else if (enemyState == EnemyState.INVESTIGATING)
+        {
+            Investigating();
         }
     }
 
@@ -100,8 +107,6 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     {
         currentTargetPlayer = null;
 
-        Debug.Log("Commencing roam");
-
         agent.speed = 2.5f;
         agent.acceleration = 30;
         enemyState = EnemyState.ROAM;
@@ -112,6 +117,9 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     public void CommenceFollow(GameObject target)
     {
         enemyState = EnemyState.FOLLOW;
+
+        if(rageMeter < 20)
+            rageMeter = 30;
         if (repositionCoroutine != null && currentTargetPlayer == null) StopCoroutine(repositionCoroutine);
         hasDestination = false;
 
@@ -155,21 +163,21 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         if (rageMeter > 80 && enemyState != EnemyState.HUNT) CommenceHunt();
 
-        if (rageMeter < 20 && enemyState != EnemyState.ROAM) CommenceRoam();
+        if (rageMeter < 20 && enemyState != EnemyState.ROAM && enemyState != EnemyState.INVESTIGATING) CommenceRoam();
     }
 
     IEnumerator RepositionDelay()
     {
-        //int mirrorChance = Random.Range(0, 10);
-        //if (mirrorChance >= 9 && canTeleport)
-        //{
-        //    if (Vector3.Distance(transform.position, FindNearestPlayer().transform.position) > 15)
-        //    {
-        //        hasDestination = true;
-        //        GoFindMirror();
-        //        yield break;
-        //    }
-        //}
+        int mirrorChance = Random.Range(0, 10);
+        if (mirrorChance >= 8 && canTeleport)
+        {
+            if (Vector3.Distance(transform.position, FindNearestPlayer().transform.position) > 15)
+            {
+                hasDestination = true;
+                GoFindMirror();
+                yield break;
+            }
+        }
 
         agent.destination = RandomNavmeshPosition(roamRange);
 
@@ -193,7 +201,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
             rageDuration = 7;
         }
 
-        if (rageDuration <= 0 && enemyState != EnemyState.ROAM)
+        if (rageDuration <= 0 && enemyState == EnemyState.HUNT)
         {
             rageMeter = 0;
             CommenceRoam();
@@ -214,18 +222,19 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     [ContextMenu("Teleport")]
     void GoFindMirror()
     {
+
         SCR_MirrorManager mirrorManager = FindObjectOfType<SCR_MirrorManager>();
         if (mirrorManager == null) return;
 
         if (mirrorManager.Mirrors.Count == 0) return;
 
+        wantsToTeleport = true;
         enemyState = EnemyState.TELEPORTING;
 
         if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
 
         agent.speed = 4.5f;
         agent.destination = mirrorManager.FindClosestEntrance(transform.position);
-        Debug.Log("heading for mirror");
     }
 
     public void PerformMirrorWarp(Vector3 dest)
@@ -233,19 +242,13 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         if (!canTeleport)
                 return;
 
-        if (Vector3.Distance(transform.position, dest) < 5)
-        {
-            StartCoroutine(SetMirroringOnCooldown());
-
-            if (rageMeter < 20) CommenceRoam();
-            else
-                CommenceFollow(FindNearestPlayer());
-            return;
-        }
+        wantsToTeleport = false;
 
         StartCoroutine(SetMirroringOnCooldown());
         agent.Warp(dest);
-        CommenceFollow(FindNearestPlayer());
+
+        CommenceInvestigation(FindNearestPlayer());
+        Debug.DrawLine(transform.position, FindNearestPlayer().transform.position, Color.red, 10);
     }
 
     public void EnterKillingState()
@@ -309,17 +312,37 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     public void CommenceInvestigation(GameObject target)
     {
         enemyState = EnemyState.INVESTIGATING;
+        if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
+
         agent.speed = 5f;
         agent.acceleration = 50;
 
+        investigationInterestDuration = 5;
+
         agent.destination = target.transform.position;
         currentTargetPlayer = target;
+    }
+
+    void Investigating()
+    {
+        investigationInterestDuration -= Time.deltaTime;
+        investigationInterestDuration = Mathf.Clamp(investigationInterestDuration, 0, 5);
+
+        if (investigationInterestDuration <= 0)
+        {
+            if (rageMeter < 20)
+                CommenceRoam();
+            else if (rageMeter < 80 && rageMeter > 20)
+                CommenceFollow(FindNearestPlayer());
+            else
+                CommenceRoam();
+        }
     }
     
     IEnumerator SetMirroringOnCooldown()
     {
         canTeleport = false;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
         canTeleport = true;
     }
 }

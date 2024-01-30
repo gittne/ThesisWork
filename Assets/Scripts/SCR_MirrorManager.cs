@@ -11,8 +11,13 @@ public class SCR_MirrorManager : MonoBehaviour
     public List<GameObject> Mirrors { get { return mirrors; } }
     public List<GameObject> Players { get {  return players; } }
 
+    private int lastEnteredMirror;
+    public int LastEnteredMirror { get { return lastEnteredMirror; } set { lastEnteredMirror = value; } }
+
     void Start()
     {
+        lastEnteredMirror = Mirrors.Count;
+
         foreach(GameObject mirror in GameObject.FindGameObjectsWithTag("Mirror"))
         {
             mirrors.Add(mirror);
@@ -37,6 +42,7 @@ public class SCR_MirrorManager : MonoBehaviour
             {
                 lowestDistance = currentMirrorDistance;
                 chosenIndex = i;
+                lastEnteredMirror = i;
             }
         }
 
