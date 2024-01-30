@@ -386,6 +386,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     void ToggleTopLayerVisibility()
     {
+        visualInventory.gameObject.SetActive(false);
         foreach (GameObject topLayer in GetGameObjectsInLayer(8))
         {
             topLayer.layer = 6;
