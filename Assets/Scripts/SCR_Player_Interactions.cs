@@ -53,6 +53,16 @@ public class SCR_Player_Interactions : MonoBehaviour
                 }
             }
 
+            if (obj.TryGetComponent(out SCR_Animated_Interactable_Multiplayer animM))
+            {
+
+                if (Input.GetKeyDown(interactionKey))
+                {
+                    animM.SwitchAnimationState();
+                }
+            }
+
+
             if (obj.TryGetComponent(out SCR_Animated_Interactable anim))
             {
 

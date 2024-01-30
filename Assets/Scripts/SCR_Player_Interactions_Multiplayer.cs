@@ -77,9 +77,9 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
                 }
             }
 
-            if (obj.TryGetComponent(out SCR_Animated_Interactable anim))
+            if (obj.TryGetComponent(out SCR_Animated_Interactable_Multiplayer anim))
             {
-                if (anim.lockStatus == SCR_Animated_Interactable.LockState.Locked)
+                if (anim.lockStatus == SCR_Animated_Interactable_Multiplayer.LockState.Locked)
                 {
                     keyLockTextCanvas.SetActive(true);
                 }

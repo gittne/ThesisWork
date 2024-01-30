@@ -56,11 +56,9 @@ public class SCR_Animated_Interactable_Multiplayer : NetworkBehaviour
 
     public void SwitchAnimationState()
     {
-
         if (lockState == LockState.Unlocked)
         {
             Debug.Log("toggling my open / closed state.");
-
             ChangeState();
         }
         else
@@ -71,9 +69,21 @@ public class SCR_Animated_Interactable_Multiplayer : NetworkBehaviour
 
     void ChangeState()
     {
-        //isOpen = !isOpen;
-
         SetIsOpenedValueServerRpc(!isOpened.Value);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void SetIsOpenedValueServerRpc(bool newValue)
+    {
+        Debug.Log("i am door");
+
+        isOpened.Value = newValue;
+
+        animator.SetBool("isOpen", isOpened.Value);
+        float randomPitch = Random.Range(0.9f, 1.1f);
+        SoundSource.pitch = randomPitch;
+
+        SoundSource.PlayOneShot(SoundFX);
     }
 
     public void MonsterOpenDoor()
@@ -88,22 +98,5 @@ public class SCR_Animated_Interactable_Multiplayer : NetworkBehaviour
         if (!isOpened.Value) return;
 
         ChangeState();
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    void SetIsOpenedValueServerRpc(bool newValue)
-    {
-        isOpened.Value = newValue;
-        DoorAnimatorClientRpc();
-    }
-
-    [ClientRpc()]
-    void DoorAnimatorClientRpc()
-    {
-        animator.SetBool("isOpen", isOpened.Value);
-        float randomPitch = Random.Range(0.9f, 1.1f);
-        SoundSource.pitch = randomPitch;
-
-        SoundSource.PlayOneShot(SoundFX);
     }
 }
