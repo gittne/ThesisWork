@@ -10,6 +10,7 @@ public class SCR_Inventory_Pickup_Multiplayer : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void OnHandlePickupItemServerRPC()
     {
+        Debug.Log("I was picked up");
         SCR_Inventory_System_Multiplayer.current.AddItem(referenceItem);
         Destroy(gameObject);
     }
