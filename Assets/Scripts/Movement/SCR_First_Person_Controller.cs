@@ -355,8 +355,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        ToggleDeathServerRpc(false);
+        Debug.Log("im respawning.");
         StartCoroutine(RespawnPlayer());
+        ToggleDeathServerRpc(false);
     }
 
     IEnumerator RespawnPlayer()
