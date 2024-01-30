@@ -335,7 +335,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         Color c = fader.color;
 
-        for (int i = 0; i < 51; i++)
+        for (int i = 0; i < 101; i++)
         {
             c.a = 0.05f * i;
             fader.color = c;
