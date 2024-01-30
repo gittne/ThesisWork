@@ -73,7 +73,7 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
 
                 if (Input.GetKeyDown(interactionKey))
                 {
-                    pickupMultiplayer.OnHandlePickupItem();
+                    pickupMultiplayer.OnHandlePickupItemServerRPC();
                 }
             }
 
