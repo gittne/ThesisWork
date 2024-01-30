@@ -17,9 +17,6 @@ public class LobbyManager : MonoBehaviour
     public static LobbyManager Instance { get; private set; }
     private void Awake() { Instance = this; }
 
-
-    [SerializeField] TextMeshProUGUI usernameText;
-
     [SerializeField] TextMeshProUGUI lobbyNameText;
 
     [SerializeField] string playerName;
@@ -35,7 +32,6 @@ public class LobbyManager : MonoBehaviour
     public event EventHandler<LobbyEventArgs> OnJoinedLobby;
     public event EventHandler<LobbyEventArgs> OnJoinedLobbyUpdate;
     public event EventHandler<LobbyEventArgs> OnKickedFromLobby;
-    public event EventHandler<LobbyEventArgs> OnLobbyGameModeChanged;
 
     public event EventHandler<EventArgs> OnGameStarted;
 
@@ -60,9 +56,7 @@ public class LobbyManager : MonoBehaviour
     private Lobby joinedLobby;
     private float heartbeatTimer;
     private float lobbyPollTimer;
-    private float refreshLobbyListTimer = 5f;
 
-    public event EventHandler<OnLobbyListChangedEventArgs> OnLobbyListChanged;
     public class OnLobbyListChangedEventArgs : EventArgs
     {
         public List<Lobby> lobbyList;

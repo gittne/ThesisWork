@@ -43,7 +43,7 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void PlayerKillServerRpc()
+    public void PlayerLifeStatusServerRpc()
     {
         int numberOfDeadPlayers = 0;
 

@@ -40,7 +40,7 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
         if (SCR_MultiplayerOverlord.Instance != null && player.GetComponent<SCR_First_Person_Controller>() != null)
         {
             Debug.Log("multiplayer kill.");
-            SCR_MultiplayerOverlord.Instance.PlayerKillServerRpc();
+            SCR_MultiplayerOverlord.Instance.PlayerLifeStatusServerRpc();
 
             latestKilledPlayer = player;
             StartCoroutine(KillPlayerCutScene(true));
