@@ -8,13 +8,16 @@ using Unity.Netcode;
 
 public class SCR_Inventory_Use_Item_Multiplayer : NetworkBehaviour
 {
-    SCR_Inventory_System_Multiplayer inventory;
+    SCR_Inventory_System_Singleplayer inventory;
     SCR_Inventory_Visual_Multiplayer visualInventory;
     [Header("Related Equipment")]
     [SerializeField] SCR_Flashlight_Multiplayer flashlight;
     [SerializeField] SCR_FuseBox[] fuseBoxes;
     [SerializeField] SCR_Key_Card_Reader[] keyReaders;
-    [SerializeField] SCR_Squeaky_Toy_Functionality_Multiplayer squeakyToy;
+    [SerializeField] SCR_Squeaky_Toy_Functionality mrWhiskars;
+    [SerializeField] SCR_Inventory_Item_Data mrWhiskarsData;
+    [SerializeField] SCR_Squeaky_Toy_Functionality_2 msBunny;
+    [SerializeField] SCR_Inventory_Item_Data msBunnyData;
     [Header("Item IDs")]
     [SerializeField] string[] itemID;
     [Header("Item Amount Text")]
@@ -29,7 +32,7 @@ public class SCR_Inventory_Use_Item_Multiplayer : NetworkBehaviour
             return;
         }
 
-        inventory = GetComponent<SCR_Inventory_System_Multiplayer>();
+        inventory = GetComponent<SCR_Inventory_System_Singleplayer>();
         visualInventory = GetComponent<SCR_Inventory_Visual_Multiplayer>();
     }
 
@@ -69,6 +72,16 @@ public class SCR_Inventory_Use_Item_Multiplayer : NetworkBehaviour
             if (itemID[3] == item.itemData.itemID && item.stackSize >= 0)
             {
                 amountIndicators[3].text = item.stackSize.ToString();
+            }
+
+            if (itemID[4] == item.itemData.itemID && item.stackSize >= 0)
+            {
+                amountIndicators[4].text = item.stackSize.ToString();
+            }
+
+            if (itemID[5] == item.itemData.itemID && item.stackSize >= 0)
+            {
+                amountIndicators[5].text = item.stackSize.ToString();
             }
         }
     }
@@ -140,18 +153,65 @@ public class SCR_Inventory_Use_Item_Multiplayer : NetworkBehaviour
         }
     }
 
+    public void UseLevel2Keycard()
+    {
+        List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
+
+        foreach (Inventory_Item item in inventoryCopy)
+        {
+            foreach (SCR_Key_Card_Reader locks in keyReaders)
+            {
+                if (locks.canReadCard && locks.canActivate)
+                {
+                    if (itemID[4] == item.itemData.itemID && item.stackSize > 0 && locks.canReadCard == true && itemID[4] == locks.keycardItemID)
+                    {
+                        locks.ReadCard();
+                    }
+                }
+            }
+        }
+    }
+
     public void UseMrWhiskars()
     {
         List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
 
         foreach (Inventory_Item item in inventoryCopy)
         {
-            if (itemID[3] == item.itemData.itemID && item.stackSize > 0 && !squeakyToy.isHolding)
+            if (itemID[3] == item.itemData.itemID && item.stackSize > 0 && !mrWhiskars.isHolding)
             {
-                squeakyToy.BringUpToy();
+                mrWhiskars.BringUpToy();
                 inventory.SubtractItem(item.itemData);
                 amountIndicators[3].text = item.stackSize.ToString();
                 visualInventory.ChangeInventoryState();
+
+                if (msBunny.isHolding)
+                {
+                    msBunny.BringDownToy();
+                    inventory.AddItem(msBunnyData);
+                }
+            }
+        }
+    }
+
+    public void UseMsBunny()
+    {
+        List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
+
+        foreach (Inventory_Item item in inventoryCopy)
+        {
+            if (itemID[5] == item.itemData.itemID && item.stackSize > 0 && !msBunny.isHolding)
+            {
+                msBunny.BringUpToy();
+                inventory.SubtractItem(item.itemData);
+                amountIndicators[5].text = item.stackSize.ToString();
+                visualInventory.ChangeInventoryState();
+
+                if (mrWhiskars.isHolding)
+                {
+                    mrWhiskars.BringDownToy();
+                    inventory.AddItem(mrWhiskarsData);
+                }
             }
         }
     }
