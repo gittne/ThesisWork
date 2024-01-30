@@ -100,8 +100,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     public NetworkVariable<bool> AmIDead;
 
-    Vector3 respawnLocation;
-
     void Start()
     {
         if (!IsOwner) return;
@@ -346,7 +344,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         }
 
         ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
-        cnt.Teleport(respawnLocation, Quaternion.identity, transform.localScale);
+        cnt.Teleport(spawnpoint, Quaternion.identity, transform.localScale);
     }
 
     [ClientRpc]
