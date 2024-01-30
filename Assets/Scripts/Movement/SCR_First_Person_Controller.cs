@@ -104,6 +104,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         if (!IsOwner)
         {
+            ToggleTopLayerVisibility();
             return;
         }
 
@@ -385,16 +386,17 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     void ToggleTopLayerVisibility()
     {
-        foreach (GameObject topLayer in GetGameObjectsInLayer(gameObject.transform, 8))
+        visualInventory.gameObject.SetActive(false);
+        foreach (GameObject topLayer in GetGameObjectsInLayer(8))
         {
             topLayer.layer = 6;
         }
     }
 
-    List<GameObject> GetGameObjectsInLayer(Transform parent, LayerMask layer)
+    List<GameObject> GetGameObjectsInLayer(LayerMask layer)
     {
         // Get all descendants of the parent
-        Transform[] children = parent.GetComponentsInChildren<Transform>(true);
+        Transform[] children = GetComponentsInChildren<Transform>(true);
 
         // List to store objects on the specified layer
         List<GameObject> objectsInLayer = new List<GameObject>();
@@ -402,7 +404,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         foreach (Transform child in children)
         {
             // Check if the current child is on the specified layer
-            if ((layer.value & (1 << child.gameObject.layer)) != 0)
+            if (child.gameObject.layer == layer)
             {
                 // Add the GameObject to the list
                 objectsInLayer.Add(child.gameObject);
