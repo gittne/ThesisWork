@@ -112,6 +112,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         spawnpoint = GameObject.FindWithTag("RespawnLocation").transform.position;
         ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
         cnt.Teleport(spawnpoint, Quaternion.identity, transform.localScale);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public override void OnNetworkSpawn()
@@ -272,10 +275,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         }
 
         yDefaultPosition = cameraHolder.transform.localPosition.y;
-
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
 
         while (!VivoxPlayer.Instance.LocalChannelExists)
         {
