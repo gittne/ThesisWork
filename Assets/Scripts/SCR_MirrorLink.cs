@@ -15,7 +15,6 @@ public class SCR_MirrorLink : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("enemy entered my mirror");
             SCR_EnemyBrain brain = other.gameObject.GetComponent<SCR_EnemyBrain>();
 
             if (!brain.CanTeleport) return;
