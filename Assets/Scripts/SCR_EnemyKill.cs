@@ -39,15 +39,11 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
 
         if (SCR_MultiplayerOverlord.Instance != null && player.GetComponent<SCR_First_Person_Controller>() != null)
         {
-            Debug.Log("multiplayer kill.");
-            SCR_MultiplayerOverlord.Instance.PlayerKillServerRpc();
-
             latestKilledPlayer = player;
             StartCoroutine(KillPlayerCutScene(true));
         }
         else
         {
-            Debug.Log("singleplayer kill.");
             player.GetComponent<SCR_First_Person_Controller_Singleplayer>().CommencePlayerDeath();
             StartCoroutine(KillPlayerCutScene(false));
         }
@@ -57,7 +53,6 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
     {
         animator.PlayKillAnimation();
         brain.EnterKillingState();
-        Debug.Log("KILL THEM");
         yield return new WaitForSeconds(5);
 
         if (isMultiplayer)
@@ -65,6 +60,7 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
             KillPlayerServerRpc();
             yield return new WaitForSeconds(3);
             brain.CommenceMultiplayerFinish();
+            SCR_MultiplayerOverlord.Instance.PlayerLifeStatusServerRpc();
         }
         else
             brain.ResetMonster();

@@ -43,7 +43,7 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void PlayerKillServerRpc()
+    public void PlayerLifeStatusServerRpc()
     {
         int numberOfDeadPlayers = 0;
 
@@ -61,6 +61,8 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
                 SCR_First_Person_Controller cntr = player.gameObject.GetComponent<SCR_First_Person_Controller>();
                 cntr.PlayerRespawnClientRpc();
             }
+
+            monsterBrain.ResetMonster();
         }
     }
 

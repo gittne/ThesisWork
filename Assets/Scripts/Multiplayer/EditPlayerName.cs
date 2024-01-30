@@ -11,10 +11,6 @@ public class EditPlayerName : MonoBehaviour {
 
     public static EditPlayerName Instance { get; private set; }
 
-
-    public event EventHandler OnNameChanged;
-
-
     [SerializeField] private GameObject playerNameText;
 
 

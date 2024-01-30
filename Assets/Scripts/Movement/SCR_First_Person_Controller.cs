@@ -100,8 +100,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     public NetworkVariable<bool> AmIDead;
 
-    Vector3 respawnLocation;
-
     void Start()
     {
         if (!IsOwner) return;
@@ -114,6 +112,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         spawnpoint = GameObject.FindWithTag("RespawnLocation").transform.position;
         ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
         cnt.Teleport(spawnpoint, Quaternion.identity, transform.localScale);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public override void OnNetworkSpawn()
@@ -275,10 +276,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         yDefaultPosition = cameraHolder.transform.localPosition.y;
 
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
         while (!VivoxPlayer.Instance.LocalChannelExists)
         {
             yield return null;
@@ -337,7 +334,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         Color c = fader.color;
 
-        for (int i = 0; i < 51; i++)
+        for (int i = 0; i < 101; i++)
         {
             c.a = 0.05f * i;
             fader.color = c;
@@ -346,7 +343,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         }
 
         ClientNetworkTransform cnt = GetComponent<ClientNetworkTransform>();
-        cnt.Teleport(respawnLocation, Quaternion.identity, transform.localScale);
+        cnt.Teleport(spawnpoint, Quaternion.identity, transform.localScale);
     }
 
     [ClientRpc]
