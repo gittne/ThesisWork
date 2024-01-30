@@ -53,8 +53,6 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
             if(cntr.AmIDead.Value) numberOfDeadPlayers++;
         }
 
-        Debug.Log("Number of dead players: " + numberOfDeadPlayers + " and number of players is: " + playerObjects.Count);
-
         if (numberOfDeadPlayers >= playerObjects.Count)
         {
             foreach (GameObject player in playerObjects)

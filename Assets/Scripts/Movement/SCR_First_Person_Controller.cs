@@ -366,7 +366,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         canMove = true;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(3f);
 
         for (int i = 0; i < 101; i++)
         {
