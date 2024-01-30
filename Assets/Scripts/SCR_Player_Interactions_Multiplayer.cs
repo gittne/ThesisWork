@@ -26,10 +26,6 @@ public class SCR_Player_Interactions_Multiplayer : NetworkBehaviour
             playerCamera.GetComponent<AudioListener>().enabled = false;
             return;
         }
-        interactTextCanvas = GameObject.FindGameObjectWithTag("InteractionText");
-        keyLockTextCanvas = GameObject.FindGameObjectWithTag("KeyLockText");
-        interactTextCanvas.SetActive(false);
-        keyLockTextCanvas.SetActive(false);
     }
 
     void Update()

@@ -102,7 +102,10 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     void Start()
     {
-        if (!IsOwner) return;
+        if (!IsOwner)
+        {
+            return;
+        }
 
         Debug.Log("im the owner of this one");
         StartCoroutine(SetupDelay());
@@ -378,5 +381,34 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     void ToggleDeathServerRpc(bool enableDeath)
     {
         AmIDead.Value = enableDeath;
+    }
+
+    void ToggleTopLayerVisibility()
+    {
+        foreach (GameObject topLayer in GetGameObjectsInLayer(gameObject.transform, 8))
+        {
+            topLayer.layer = 6;
+        }
+    }
+
+    List<GameObject> GetGameObjectsInLayer(Transform parent, LayerMask layer)
+    {
+        // Get all descendants of the parent
+        Transform[] children = parent.GetComponentsInChildren<Transform>(true);
+
+        // List to store objects on the specified layer
+        List<GameObject> objectsInLayer = new List<GameObject>();
+
+        foreach (Transform child in children)
+        {
+            // Check if the current child is on the specified layer
+            if ((layer.value & (1 << child.gameObject.layer)) != 0)
+            {
+                // Add the GameObject to the list
+                objectsInLayer.Add(child.gameObject);
+            }
+        }
+
+        return objectsInLayer;
     }
 }
