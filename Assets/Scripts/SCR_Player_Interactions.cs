@@ -49,7 +49,7 @@ public class SCR_Player_Interactions : MonoBehaviour
 
                 if (Input.GetKeyDown(interactionKey))
                 {
-                    pickupMultiplayer.OnHandlePickupItem();
+                    pickupMultiplayer.OnHandlePickupItemServerRPC();
                 }
             }
 
