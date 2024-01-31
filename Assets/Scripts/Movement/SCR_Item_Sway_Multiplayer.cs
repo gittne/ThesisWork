@@ -19,6 +19,7 @@ public class SCR_Item_Sway_Multiplayer : NetworkBehaviour
     [SerializeField] float swayMultiplier; //The multiplier for sway amount
     [SerializeField] float xMaxRotation; //The max rotation the object can rotate on the X axis
     [SerializeField] float yMaxRotation; //The max rotation the object can rotate on the Y axis
+    [SerializeField] float mouseInputMultiplier;
     [SerializeField] Quaternion inventoryRotation;
     Quaternion targetRotation;
     [Header("Sway Movement Variables")]
@@ -50,14 +51,14 @@ public class SCR_Item_Sway_Multiplayer : NetworkBehaviour
         //These floats take the input from the mouse when moving it
         if (!isInLeftHand)
         {
-            mouseX = Input.GetAxisRaw("Mouse X");
+            mouseX = Input.GetAxisRaw("Mouse X") * mouseInputMultiplier;
         }
         else
         {
-            mouseX = -Input.GetAxisRaw("Mouse X");
+            mouseX = -Input.GetAxisRaw("Mouse X") * mouseInputMultiplier;
         }
 
-        mouseY = Input.GetAxisRaw("Mouse Y");
+        mouseY = Input.GetAxisRaw("Mouse Y") * mouseInputMultiplier;
 
         Sway();
     }
