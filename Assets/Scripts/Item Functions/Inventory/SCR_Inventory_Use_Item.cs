@@ -29,7 +29,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inventory = GetComponent<SCR_Inventory_System_Singleplayer>();
+        inventory = SCR_Inventory_System_Singleplayer.current;
 
         visualInventory = GetComponent<SCR_Inventory_Visual>();
     }
