@@ -22,9 +22,11 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKeyDown(crouchKey) 
         && !Physics.Raycast(characterController.transform.position, characterController.transform.up, out crouchRaycast, (characterController.height / 2) + crouchRaycastModifier);
 
+    [Header("Camera Stuff")]
     [SerializeField] GameObject playerCamera;
     [SerializeField] Transform cameraHolder;
     [SerializeField] CharacterController characterController;
+
     [Header("Functions")]
     [SerializeField] Vector3 spawnpoint;
     [SerializeField] bool canSprintDebug = true;
@@ -53,6 +55,11 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     [Header("Crouching Variables")]
     [SerializeField] float crouchingHeight;
+
+    [Header("Models")]
+    [SerializeField] GameObject nonPlayerObject;
+    [SerializeField] GameObject[] armObjects;
+
     public float crouchHeight
     {
         get { return crouchingHeight; }
@@ -104,7 +111,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            ToggleTopLayerVisibility();
+            TogglePlayerModelOwnershipVisibility();
             return;
         }
 
@@ -384,13 +391,20 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         AmIDead.Value = enableDeath;
     }
 
-    void ToggleTopLayerVisibility()
+    void TogglePlayerModelOwnershipVisibility()
     {
         visualInventory.gameObject.SetActive(false);
         foreach (GameObject topLayer in GetGameObjectsInLayer(8))
         {
             topLayer.layer = 6;
         }
+
+        foreach(GameObject hand in armObjects)
+        {
+            hand.SetActive(false);
+        }
+
+        nonPlayerObject.SetActive(true);
     }
 
     List<GameObject> GetGameObjectsInLayer(LayerMask layer)
