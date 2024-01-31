@@ -6,20 +6,19 @@ public class SCR_NotPCPlayer_Animator : MonoBehaviour
 {
     Animator animator;
 
-
     void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void ToggleRunning(bool running)
+    public void GetValues(bool running, float speed)
     {
         animator.SetBool("isRunning", running);
+        animator.SetFloat("velocity", speed);
+    }
+
+    public void OtherPlayerDeath()
+    {
+        animator.SetTrigger("Death");
     }
 }

@@ -56,6 +56,11 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         InvokeRepeating("RageTick", 0, 1);
     }
 
+    public void ActivateMonster()
+    {
+        isActivated = true;
+    }
+
     private void Update()
     {
         if (!isActivated) return;
@@ -251,7 +256,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     public void PerformMirrorWarp(Vector3 dest)
     {
-        if (!canTeleport)
+        if (!canTeleport || !wantsToTeleport)
                 return;
 
         wantsToTeleport = false;

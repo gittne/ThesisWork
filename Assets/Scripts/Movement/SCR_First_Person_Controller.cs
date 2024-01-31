@@ -59,6 +59,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     [Header("Models")]
     [SerializeField] GameObject nonPlayerObject;
     [SerializeField] GameObject[] armObjects;
+    SCR_NotPCPlayer_Animator otherPCAnimator;
 
     public float crouchHeight
     {
@@ -111,6 +112,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         if (!IsOwner)
         {
+            otherPCAnimator = GetComponentInChildren<SCR_NotPCPlayer_Animator>();
             TogglePlayerModelOwnershipVisibility();
             return;
         }
@@ -137,6 +139,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         if (!IsOwner)
         {
+            OtherPlayerAnimatorUpdater();
             return;
         }
 
@@ -329,7 +332,10 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     public void PlayerDeathClientRpc() 
     {
         if (!IsOwner)
+        {
+            otherPCAnimator.OtherPlayerDeath();
             return;
+        }
 
         ToggleDeathServerRpc(true);
         StartCoroutine(DieAndGoToSpawn());
@@ -426,5 +432,10 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         }
 
         return objectsInLayer;
+    }
+
+    void OtherPlayerAnimatorUpdater()
+    {
+        otherPCAnimator.GetValues(isRunning, characterController.velocity.magnitude);
     }
 }
