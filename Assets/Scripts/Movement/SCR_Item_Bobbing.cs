@@ -32,7 +32,6 @@ public class SCR_Item_Bobbing : NetworkBehaviour
     [SerializeField] Vector3 multiplier;
     Vector3 eulerRotation;
 
-    // Update is called once per frame
     void Update()
     {
         if (!IsOwner)

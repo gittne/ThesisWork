@@ -35,8 +35,18 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     float investigationInterestDuration;
 
+    bool isActivated;
+
     private void Start()
     {
+        StartCoroutine(WaitForActivation());
+    }
+
+    IEnumerator WaitForActivation()
+    {
+        while(!isActivated)
+            yield return null;
+
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<SCR_EnemyAnimator>();
         vision = GetComponentInChildren<SCR_EnemyVision>();
@@ -48,8 +58,10 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     private void Update()
     {
-        rageMeter = Mathf.Clamp(rageMeter, 0, 100);
+        if (!isActivated) return;
 
+
+        rageMeter = Mathf.Clamp(rageMeter, 0, 100);
         agent.velocity = agent.desiredVelocity;
 
         if (enemyState == EnemyState.ROAM)
