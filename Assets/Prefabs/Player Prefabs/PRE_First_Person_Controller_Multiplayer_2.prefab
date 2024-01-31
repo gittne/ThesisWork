@@ -1538,7 +1538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6671640645601091036}
-  - component: {fileID: 8196065857523073670}
+  - component: {fileID: 6680146484467657551}
   m_Layer: 8
   m_Name: Item Holder Bobbing Object
   m_TagString: Untagged
@@ -1562,7 +1562,7 @@ Transform:
   - {fileID: 7492215913991091543}
   m_Father: {fileID: 2569438476566410188}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8196065857523073670
+--- !u!114 &6680146484467657551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1571,7 +1571,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 888407631780842996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05b23427b616ed4487d1ddb5d038972, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ce5ccf5b859a914395ed868bb68c1ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6325361218952426608}
@@ -7986,7 +7986,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3040534486149978024}
-  - component: {fileID: 3337047193395518639}
+  - component: {fileID: 4260640389664322143}
   - component: {fileID: 5347161036727129688}
   - component: {fileID: 3811921337938731221}
   m_Layer: 8
@@ -8014,7 +8014,7 @@ Transform:
   - {fileID: 4849876581414076607}
   m_Father: {fileID: 3340462374423143401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3337047193395518639
+--- !u!114 &4260640389664322143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8023,16 +8023,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5377948638639664797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705e78a721001cb4daa831078f1d5630, type: 3}
+  m_Script: {fileID: 11500000, guid: ba8f7a7f666af504687032393103d7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
+  inventory: {fileID: 2570510372180571862}
   isInLeftHand: 1
   swaySmoothing: 1.25
   swayMultiplier: 50
   xMaxRotation: 0.2
   yMaxRotation: 0.15
-  mouseInputMultiplier: 1
   inventoryRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
   lerpSpeed: 0.5
   movementMultiplier: 0.5
@@ -8557,9 +8556,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5008823812011119510}
-  - component: {fileID: 7037565293554906812}
   - component: {fileID: 6913248148920163995}
   - component: {fileID: 8266887556685986387}
+  - component: {fileID: 743851286783410358}
   m_Layer: 8
   m_Name: ArmMsBunny
   m_TagString: Untagged
@@ -8585,33 +8584,6 @@ Transform:
   - {fileID: 330482701332247728}
   m_Father: {fileID: 3340462374423143401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7037565293554906812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5860659654578541997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705e78a721001cb4daa831078f1d5630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  isInLeftHand: 1
-  swaySmoothing: 1.25
-  swayMultiplier: 50
-  xMaxRotation: 0.2
-  yMaxRotation: 0.15
-  mouseInputMultiplier: 1
-  inventoryRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  lerpSpeed: 0.5
-  movementMultiplier: 0.5
-  xMinMovement: 0.1
-  xMaxMovement: 0.2
-  yMinMovement: 0.2
-  yMaxMovement: 0.1
-  inventoryPosition: {x: 0, y: -0.2, z: 0.3}
 --- !u!95 &6913248148920163995
 Animator:
   serializedVersion: 5
@@ -8657,6 +8629,32 @@ MonoBehaviour:
   timeToBringArmDown: 0.175
   initialVelocity: 80
   initialRotationVelocity: 0.02
+--- !u!114 &743851286783410358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860659654578541997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8f7a7f666af504687032393103d7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 2570510372180571862}
+  isInLeftHand: 1
+  swaySmoothing: 1.25
+  swayMultiplier: 50
+  xMaxRotation: 0.2
+  yMaxRotation: 0.15
+  inventoryRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
+  lerpSpeed: 0.5
+  movementMultiplier: 0.5
+  xMinMovement: 0.1
+  xMaxMovement: 0.2
+  yMinMovement: 0.2
+  yMaxMovement: 0.1
+  inventoryPosition: {x: 0, y: -0.2, z: 0.3}
 --- !u!1 &5876948047450512173
 GameObject:
   m_ObjectHideFlags: 0

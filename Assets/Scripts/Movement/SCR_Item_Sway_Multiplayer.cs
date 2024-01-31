@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class SCR_Item_Sway : NetworkBehaviour
+public class SCR_Item_Sway_Multiplayer : NetworkBehaviour
 {
     //SUMMARY: This code is responsible for making items sway when
     //holding them in hand in the game.
