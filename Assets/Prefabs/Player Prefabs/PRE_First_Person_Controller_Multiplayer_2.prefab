@@ -1161,9 +1161,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5445138783020416832}
-  - component: {fileID: 8441884591902106517}
   - component: {fileID: 2570510372180571862}
   - component: {fileID: 4605391086061514354}
+  - component: {fileID: 7463865242288306926}
   m_Layer: 8
   m_Name: PRE_Inventory
   m_TagString: Inventory
@@ -1187,40 +1187,6 @@ Transform:
   - {fileID: 6624867916600440511}
   m_Father: {fileID: 7777797363389520731}
   m_LocalEulerAnglesHint: {x: 0, y: -32.818, z: 0}
---- !u!114 &8441884591902106517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719395644653204921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d1cc5cfbae82042a023a9092b8cca6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashlight: {fileID: 3449950483392923591}
-  fuseBoxes: []
-  keyReaders: []
-  mrWhiskars: {fileID: 5347161036727129688}
-  mrWhiskarsData: {fileID: 11400000, guid: 05499161121d0884faa0c5304c2b8417, type: 2}
-  msBunny: {fileID: 8266887556685986387}
-  msBunnyData: {fileID: 11400000, guid: 8003387903271984c96466b3ed1505a9, type: 2}
-  itemID:
-  - Item_1
-  - Item_2
-  - Item_3
-  - Item_4
-  - Item_5
-  - Item_6
-  amountIndicators:
-  - {fileID: 2550809360468629920}
-  - {fileID: 3892522534770682640}
-  - {fileID: 8041279121773059162}
-  - {fileID: 8378778491935327254}
-  - {fileID: 1651125340205330052}
-  - {fileID: 5629858121838439513}
-  itemIcons: []
 --- !u!114 &2570510372180571862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1251,6 +1217,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
+--- !u!114 &7463865242288306926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719395644653204921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1420a826030b3454089d8dff8e4c6087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playMode: 1
+  flashlight: {fileID: 0}
+  flashlightMultiplayer: {fileID: 3449950483392923591}
+  fuseBoxes: []
+  keyReaders: []
+  mrWhiskars: {fileID: 5347161036727129688}
+  mrWhiskarsData: {fileID: 11400000, guid: 05499161121d0884faa0c5304c2b8417, type: 2}
+  msBunny: {fileID: 8266887556685986387}
+  msBunnyData: {fileID: 11400000, guid: 8003387903271984c96466b3ed1505a9, type: 2}
+  itemID:
+  - Item_1
+  - Item_2
+  - Item_3
+  - Item_4
+  - Item_5
+  - Item_6
+  amountIndicators:
+  - {fileID: 2550809360468629920}
+  - {fileID: 3892522534770682640}
+  - {fileID: 8041279121773059162}
+  - {fileID: 8378778491935327254}
+  - {fileID: 1651125340205330052}
+  - {fileID: 5629858121838439513}
+  itemIcons: []
 --- !u!1 &739966265145419509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2529,7 +2531,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7771670332630670342}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7463865242288306926}
+        m_TargetAssemblyTypeName: SCR_Inventory_Use_Item, Assembly-CSharp
+        m_MethodName: UseLevel2Keycard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1486432260734618635
 GameObject:
   m_ObjectHideFlags: 0
@@ -5542,9 +5556,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8441884591902106517}
+      - m_Target: {fileID: 7463865242288306926}
         m_TargetAssemblyTypeName: SCR_Inventory_Use_Item, Assembly-CSharp
-        m_MethodName: UseKeycard
+        m_MethodName: UseLevel1Keycard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6378,7 +6392,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5702947786038724355}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7463865242288306926}
+        m_TargetAssemblyTypeName: SCR_Inventory_Use_Item, Assembly-CSharp
+        m_MethodName: UseMsBunny
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3642189937663933054
 GameObject:
   m_ObjectHideFlags: 0
@@ -10764,7 +10790,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8441884591902106517}
+      - m_Target: {fileID: 7463865242288306926}
         m_TargetAssemblyTypeName: SCR_Inventory_Use_Item, Assembly-CSharp
         m_MethodName: UseMrWhiskars
         m_Mode: 1
@@ -11067,7 +11093,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8441884591902106517}
+      - m_Target: {fileID: 7463865242288306926}
         m_TargetAssemblyTypeName: SCR_Inventory_Use_Item, Assembly-CSharp
         m_MethodName: UseFuzes
         m_Mode: 1
@@ -13046,8 +13072,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8441884591902106517}
-        m_TargetAssemblyTypeName: SCR_Inventory_Use_Item_Multiplayer, Assembly-CSharp
+      - m_Target: {fileID: 7463865242288306926}
+        m_TargetAssemblyTypeName: SCR_Inventory_Use_Item, Assembly-CSharp
         m_MethodName: UseBatteries
         m_Mode: 1
         m_Arguments:

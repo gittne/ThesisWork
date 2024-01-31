@@ -7,10 +7,13 @@ using TMPro;
 
 public class SCR_Inventory_Use_Item : MonoBehaviour
 {
+    enum playmode { Singleplayer, Multiplayer }
+    [SerializeField] playmode playMode;
     SCR_Inventory_System_Singleplayer inventory;
     SCR_Inventory_Visual visualInventory;
     [Header("Related Equipment")]
     [SerializeField] SCR_Flashlight_Non_VR flashlight;
+    [SerializeField] SCR_Flashlight_Multiplayer flashlightMultiplayer;
     [SerializeField] SCR_FuseBox[] fuseBoxes;
     [SerializeField] SCR_Key_Card_Reader[] keyReaders;
     [SerializeField] SCR_Squeaky_Toy_Functionality mrWhiskars;
@@ -27,6 +30,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     void Start()
     {
         inventory = GetComponent<SCR_Inventory_System_Singleplayer>();
+
         visualInventory = GetComponent<SCR_Inventory_Visual>();
     }
 
@@ -95,9 +99,18 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
         {
             if (itemID[0] == item.itemData.itemID && item.stackSize > 0)
             {
-                flashlight.RefillBatteries();
-                inventory.SubtractItem(item.itemData);
-                amountIndicators[0].text = item.stackSize.ToString();
+                if (playMode == playmode.Singleplayer)
+                {
+                    flashlight.RefillBatteries();
+                    inventory.SubtractItem(item.itemData);
+                    amountIndicators[0].text = item.stackSize.ToString();
+                }
+                else if (playMode == playmode.Multiplayer)
+                {
+                    flashlightMultiplayer.RefillBatteries();
+                    inventory.SubtractItem(item.itemData);
+                    amountIndicators[0].text = item.stackSize.ToString();
+                }
             }
         }
     }

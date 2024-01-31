@@ -9,7 +9,7 @@ public class SCR_Inventory_Pickup_Multiplayer : NetworkBehaviour
     
     public void OnHandlePickupItem()
     {
-        SCR_Inventory_System_Multiplayer.current.AddItem(referenceItem);
+        SCR_Inventory_System_Singleplayer.current.AddItem(referenceItem);
         DestroyPickupServerRPC();
     }
 
