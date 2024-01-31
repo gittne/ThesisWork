@@ -3651,8 +3651,9 @@ MonoBehaviour:
   isInLeftHand: 0
   swaySmoothing: 6
   swayMultiplier: 55
-  xMaxRotation: 0.15
-  yMaxRotation: 0.21
+  xMaxRotation: 0.3
+  yMaxRotation: 0.3
+  mouseInputMultiplier: 0.375
   inventoryRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
   lerpSpeed: 0.8
   movementMultiplier: 0.8
@@ -8485,6 +8486,7 @@ MonoBehaviour:
   swayMultiplier: 50
   xMaxRotation: 0.2
   yMaxRotation: 0.15
+  mouseInputMultiplier: 1
   inventoryRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
   lerpSpeed: 0.5
   movementMultiplier: 0.5
@@ -8507,10 +8509,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toyPrefab: {fileID: 8306587584287216110, guid: 12e0f1637bc40464da36d180c85f5cc0,
     type: 3}
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 4172983942607998960}
   toyVisualObject: {fileID: 6446735700949407337}
   itemHolder: {fileID: 5377948638639664797}
-  controller: {fileID: 0}
+  controller: {fileID: 6325361218952426608}
   animator: {fileID: 3811921337938731221}
   animationTrigger: ThrowingLeft
   timeToWindUpThrow: 0.25
@@ -9072,10 +9074,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toyPrefab: {fileID: 8042006383506607443, guid: 997fd81306ba5c943a12ed3b430fc012,
     type: 3}
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 4172983942607998960}
   toyVisualObject: {fileID: 6805337323773345646}
   itemHolder: {fileID: 5860659654578541997}
-  controller: {fileID: 0}
+  controller: {fileID: 6325361218952426608}
   animator: {fileID: 6913248148920163995}
   animationTrigger: ThrowingLeft
   timeToWindUpThrow: 0.25
@@ -9100,6 +9102,7 @@ MonoBehaviour:
   swayMultiplier: 50
   xMaxRotation: 0.2
   yMaxRotation: 0.15
+  mouseInputMultiplier: 1
   inventoryRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
   lerpSpeed: 0.5
   movementMultiplier: 0.5
