@@ -14,15 +14,28 @@ public class SCR_Inventory_Pickup_Multiplayer : NetworkBehaviour
 
     private void Awake()
     {
-        for (int i = 0; i < players.Length; i++)
-        {
-            players[i] = GameObject.FindWithTag("Player");
-        }
-
-        Debug.Log("These are the player in the scene are: " + players);
+        MeowServerRPC();
     }
 
     private void Update()
+    {
+        DistanceCheckerServerRPC();
+    }
+
+    public void OnHandlePickupItem()
+    {
+        nearestInventory.AddItem(referenceItem);
+        DestroyPickupServerRPC();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void DestroyPickupServerRPC()
+    {
+        Destroy(gameObject);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void DistanceCheckerServerRPC()
     {
         for (int i = 0; i < players.Length; i++)
         {
@@ -40,15 +53,14 @@ public class SCR_Inventory_Pickup_Multiplayer : NetworkBehaviour
         Debug.Log("The nearest player is: " + nearestPlayer + ", with the nearest inventory being: " + nearestInventory);
     }
 
-    public void OnHandlePickupItem()
-    {
-        nearestInventory.AddItem(referenceItem);
-        DestroyPickupServerRPC();
-    }
-
     [ServerRpc(RequireOwnership = false)]
-    void DestroyPickupServerRPC()
+    void MeowServerRPC()
     {
-        Destroy(gameObject);
+        for (int i = 0; i < players.Length; i++)
+        {
+            players[i] = GameObject.FindWithTag("Player");
+        }
+
+        Debug.Log("These are the player in the scene are: " + players);
     }
 }
