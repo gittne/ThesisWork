@@ -44,15 +44,16 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
     IEnumerator WaitForActivation()
     {
-        while(!isActivated)
-            yield return null;
-
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<SCR_EnemyAnimator>();
         vision = GetComponentInChildren<SCR_EnemyVision>();
         enemyState = EnemyState.ROAM;
 
         destinationReachScaleMeasure = transform.localScale.y;
+
+        while (!isActivated)
+            yield return null;
+
         InvokeRepeating("RageTick", 0, 1);
     }
 
@@ -67,9 +68,6 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
 
         rageMeter = Mathf.Clamp(rageMeter, 0, 100);
-
-        if(agent.desiredVelocity != null)
-            agent.velocity = agent.desiredVelocity;
 
         if (enemyState == EnemyState.ROAM)
         {

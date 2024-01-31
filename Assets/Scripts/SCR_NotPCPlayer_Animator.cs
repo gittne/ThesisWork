@@ -11,11 +11,11 @@ public class SCR_NotPCPlayer_Animator : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void GetValues(bool running, float speed)
+    public void SendValues(bool running, bool moving)
     {
-        Debug.Log("Velocity is: " + speed);
         animator.SetBool("isRunning", running);
-        animator.SetFloat("velocity", speed);
+        animator.SetBool("isMoving", moving);
+        //animator.SetFloat("velocity", speed);
     }
 
     public void OtherPlayerDeath()
