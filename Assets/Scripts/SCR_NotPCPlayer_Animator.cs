@@ -13,6 +13,7 @@ public class SCR_NotPCPlayer_Animator : MonoBehaviour
 
     public void GetValues(bool running, float speed)
     {
+        Debug.Log("Velocity is: " + speed);
         animator.SetBool("isRunning", running);
         animator.SetFloat("velocity", speed);
     }

@@ -67,7 +67,9 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
 
         rageMeter = Mathf.Clamp(rageMeter, 0, 100);
-        agent.velocity = agent.desiredVelocity;
+
+        if(agent.desiredVelocity != null)
+            agent.velocity = agent.desiredVelocity;
 
         if (enemyState == EnemyState.ROAM)
         {
