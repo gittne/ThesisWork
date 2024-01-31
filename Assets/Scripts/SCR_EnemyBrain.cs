@@ -334,7 +334,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         agent.speed = 5f;
         agent.acceleration = 50;
 
-        investigationInterestDuration = 5;
+        investigationInterestDuration = 3;
 
         agent.destination = target.transform.position;
         currentTargetPlayer = target;
