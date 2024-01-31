@@ -11,7 +11,7 @@ public class SCR_MultiplayerOverlord : NetworkBehaviour
     public static SCR_MultiplayerOverlord Instance { get; private set; }
     private void Awake() { Instance = this; }
 
-
+    
     private SCR_EnemyBrain monsterBrain;
     public SCR_EnemyBrain MonsterBrain { get { return monsterBrain; } set {  monsterBrain = value; } }
 
