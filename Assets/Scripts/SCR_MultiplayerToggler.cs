@@ -28,6 +28,7 @@ public class SCR_MultiplayerToggler : MonoBehaviour
                 Destroy(GameObject.FindWithTag("TemporaryMultiDeleteCamera"));
                 SCR_EnemyBrain enemyBrain = GameObject.FindWithTag("Enemy").GetComponent<SCR_EnemyBrain>();
                 enemyBrain.ActivateMonster();
+                Destroy(SCR_MultiplayerOverlord.Instance);
             }
             else
             {
