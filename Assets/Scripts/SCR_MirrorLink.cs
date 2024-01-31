@@ -26,39 +26,7 @@ public class SCR_MirrorLink : MonoBehaviour
 
     public void FindClosestExitToTarget(GameObject enemy)
     {
-        float lowestDistance = 9999;
         int chosenIndex = Random.Range(0, mirrorManager.Mirrors.Count - 1);
-
-        bool hasFoundOtherMirror;
-        //Vector3 randomPlayerLocation;
-
-        //try
-        //{
-        //    randomPlayerLocation = mirrorManager.Players[Random.Range(0, mirrorManager.Players.Count - 1)].transform.position;
-        //}
-        //catch
-        //{
-        //    enemy.GetComponent<SCR_EnemyBrain>().CommenceRoam();
-        //    return;
-        //}
-
-
-        //for (int i = 1; i < mirrorManager.Mirrors.Count; i++)
-        //{
-        //    float currentMirrorDistance = Vector3.Distance(mirrorManager.Mirrors[i].transform.position, randomPlayerLocation);
-
-        //    if(currentMirrorDistance < 10)
-        //    {
-        //        continue;
-        //    }
-
-        //    if (currentMirrorDistance < lowestDistance)
-        //    {
-
-        //        lowestDistance = currentMirrorDistance;
-        //        chosenIndex = i;
-        //    }
-        //}
 
         while(chosenIndex == mirrorManager.LastEnteredMirror)
             chosenIndex = Random.Range(0, mirrorManager.Mirrors.Count - 1);
