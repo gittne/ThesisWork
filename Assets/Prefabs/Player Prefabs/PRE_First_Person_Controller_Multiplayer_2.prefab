@@ -1538,7 +1538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6671640645601091036}
-  - component: {fileID: 6680146484467657551}
+  - component: {fileID: 1578729803245881780}
   m_Layer: 8
   m_Name: Item Holder Bobbing Object
   m_TagString: Untagged
@@ -1562,7 +1562,7 @@ Transform:
   - {fileID: 7492215913991091543}
   m_Father: {fileID: 2569438476566410188}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6680146484467657551
+--- !u!114 &1578729803245881780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1571,18 +1571,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 888407631780842996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ce5ccf5b859a914395ed868bb68c1ff, type: 3}
+  m_Script: {fileID: 11500000, guid: a05b23427b616ed4487d1ddb5d038972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6325361218952426608}
   controllerScript: {fileID: 3862914370081655145}
-  isInLeftHand: 0
-  travelLimit: {x: 0.01, y: 0.01, z: 0.02}
+  isInLeftHand: 1
+  travelLimit: {x: 0.01, y: 0.1, z: 0.02}
   bobLimit: {x: 0.012, y: 0.02, z: 0.7}
-  smoothing: 0.8
-  smoothingRotation: 5
-  movementMultiplier: 1.3
-  multiplier: {x: 1, y: 2, z: 5}
+  smoothing: 1
+  smoothingRotation: 0.5
+  movementMultiplier: 0.3
+  multiplier: {x: 4, y: 5, z: 5}
 --- !u!1 &958810140321634453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2225,7 +2225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2704247206531203527
 Transform:
   m_ObjectHideFlags: 0
@@ -2236,8 +2236,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2961751480241767192}
   - {fileID: 428655185233244326}
@@ -5123,7 +5123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3340462374423143401}
-  - component: {fileID: 5597597997713895726}
+  - component: {fileID: 3844397786643248339}
   m_Layer: 8
   m_Name: Item Holder Bobbing Object
   m_TagString: Untagged
@@ -5148,7 +5148,7 @@ Transform:
   - {fileID: 5008823812011119510}
   m_Father: {fileID: 7655651694477428400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5597597997713895726
+--- !u!114 &3844397786643248339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5157,7 +5157,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2984539922696263636}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eee27c1034422cc4baf495fd12c93054, type: 3}
+  m_Script: {fileID: 11500000, guid: a05b23427b616ed4487d1ddb5d038972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
