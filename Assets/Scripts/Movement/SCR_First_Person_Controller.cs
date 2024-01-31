@@ -112,7 +112,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            otherPCAnimator = GetComponentInChildren<SCR_NotPCPlayer_Animator>();
             TogglePlayerModelOwnershipVisibility();
             return;
         }
@@ -399,6 +398,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     void TogglePlayerModelOwnershipVisibility()
     {
+        nonPlayerObject.SetActive(true);
+        otherPCAnimator = GetComponentInChildren<SCR_NotPCPlayer_Animator>();
+
         visualInventory.gameObject.SetActive(false);
         foreach (GameObject topLayer in GetGameObjectsInLayer(8))
         {
@@ -409,8 +411,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         {
             hand.SetActive(false);
         }
-
-        nonPlayerObject.SetActive(true);
     }
 
     List<GameObject> GetGameObjectsInLayer(LayerMask layer)
