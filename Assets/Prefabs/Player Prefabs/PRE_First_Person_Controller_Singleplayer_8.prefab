@@ -2102,7 +2102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1420a826030b3454089d8dff8e4c6087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playMode: 0
   flashlight: {fileID: 1019732854558482169}
+  flashlightMultiplayer: {fileID: 0}
   fuseBoxes:
   - {fileID: 0}
   - {fileID: 0}
@@ -7740,7 +7742,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -8422,9 +8424,9 @@ MonoBehaviour:
   stepThreshold: 1.2
   audioSource: {fileID: 8818260603339505658}
   carpetClips:
-  - {fileID: 8300000, guid: 9a3342473bf768244bed940934decd73, type: 3}
-  - {fileID: 8300000, guid: b50c5ed0acda7fd49b4d1419d3488086, type: 3}
-  - {fileID: 8300000, guid: bbf190835e7ca0c45ab9f217aa1a4074, type: 3}
+  - {fileID: 8300000, guid: 7b209d592a0c67b42bb2a4df039e6322, type: 3}
+  - {fileID: 8300000, guid: 4ffc49acbc35ed84c9c018a9f19d68ac, type: 3}
+  - {fileID: 8300000, guid: cd6541acfb52da949b373da19bd0439c, type: 3}
   woodClips:
   - {fileID: 8300000, guid: 603b77793c6c57948b2ebafc1cdf0a68, type: 3}
   - {fileID: 8300000, guid: 0a68ff744995dff458993edf59248dac, type: 3}
