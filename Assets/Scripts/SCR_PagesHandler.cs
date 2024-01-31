@@ -38,4 +38,9 @@ public class SCR_PagesHandler : MonoBehaviour
 
         pages[currentIndex].SetActive(true);
     }
+
+    public void ResetPages()
+    {
+        currentIndex = 0;
+    }
 }
