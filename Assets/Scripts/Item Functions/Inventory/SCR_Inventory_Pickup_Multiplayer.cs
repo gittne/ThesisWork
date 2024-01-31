@@ -16,6 +16,12 @@ public class SCR_Inventory_Pickup_Multiplayer : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     void DestroyPickupServerRPC()
     {
+        DestroyPickupClientRPC();
+    }
+
+    [ClientRpc]
+    void DestroyPickupClientRPC()
+    {
         Destroy(gameObject);
     }
 }
