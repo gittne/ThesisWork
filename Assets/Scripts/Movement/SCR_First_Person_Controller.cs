@@ -436,6 +436,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     void OtherPlayerAnimatorUpdater()
     {
-        otherPCAnimator.GetValues(isRunning, characterController.velocity.magnitude);
+        bool isMoving = movementDirection == null ? true : false;
+        otherPCAnimator.SendValues(isRunning, isMoving);
     }
 }
