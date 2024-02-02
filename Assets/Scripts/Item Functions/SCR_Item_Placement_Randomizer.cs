@@ -1,17 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
+using VivoxUnity;
 
-public class SCR_Item_Placement_Randomizer : MonoBehaviour
+public class SCR_Item_Placement_Randomizer : NetworkBehaviour
 {
     [SerializeField] Transform[] spawnpoints;
     [SerializeField] GameObject[] prefabs;
+    [SerializeField] GameObject[] multiplayerPrefabs;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(SCR_MultiplayerOverlord.Instance != null)
+        {
+            RandomizePlacementsServerRpc();
+            return;
+        }
+
         RandomizePlacements();
     }
+
 
     void RandomizePlacements()
     {
@@ -22,6 +32,19 @@ public class SCR_Item_Placement_Randomizer : MonoBehaviour
             float randomRotation = Random.Range(0f, 360f);
 
             Instantiate(prefabs[randomNumber], spawnpoints.position, new Quaternion(0, randomRotation, 0, 0));
+        }
+    }
+
+    [ServerRpc(RequireOwnership = true)]
+    void RandomizePlacementsServerRpc()
+    {
+        foreach (Transform spawnpoints in spawnpoints)
+        {
+            int randomNumber = Random.Range(0, prefabs.Length);
+
+            float randomRotation = Random.Range(0f, 360f);
+
+            Instantiate(multiplayerPrefabs[randomNumber], spawnpoints.position, new Quaternion(0, randomRotation, 0, 0));
         }
     }
 }
