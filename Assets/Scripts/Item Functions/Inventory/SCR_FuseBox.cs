@@ -65,6 +65,12 @@ public class SCR_FuseBox : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void FillFuseboxServerRpc()
     {
+        FillFuseboxClientRpc();
+    }
+
+    [ClientRpc]
+    void FillFuseboxClientRpc()
+    {
         fusesInserted++;
 
         for (int i = 0; i < fusesInserted; i++)
