@@ -38,6 +38,7 @@ public class SCR_Item_Placement_Randomizer : NetworkBehaviour
     [ServerRpc(RequireOwnership = true)]
     void RandomizePlacementsServerRpc()
     {
+        Debug.Log("Spawning multiplayer prefabs");
         foreach (Transform spawnpoints in spawnpoints)
         {
             int randomNumber = Random.Range(0, prefabs.Length);
