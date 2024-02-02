@@ -13,7 +13,9 @@ public class SCR_Item_Placement_Randomizer : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(SCR_MultiplayerOverlord.Instance != null)
+        Debug.Log("START!");
+
+        if (SCR_MultiplayerOverlord.Instance != null)
         {
             RandomizePlacementsServerRpc();
             return;
