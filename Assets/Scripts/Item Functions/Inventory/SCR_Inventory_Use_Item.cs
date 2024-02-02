@@ -13,6 +13,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     [SerializeField] playmode playMode;
     SCR_Inventory_System_Singleplayer inventory;
     SCR_Inventory_Visual visualInventory;
+    SCR_Inventory_Visual_Multiplayer visualInventoryMultiplayer;
     [Header("Related Equipment")]
     [SerializeField] SCR_Flashlight_Non_VR flashlight;
     [SerializeField] SCR_Flashlight_Multiplayer flashlightMultiplayer;
@@ -32,6 +33,8 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     void Start()
     {
         inventory = SCR_Inventory_System_Singleplayer.current;
+
+        visualInventoryMultiplayer = GetComponent<SCR_Inventory_Visual_Multiplayer>();
 
         visualInventory = GetComponent<SCR_Inventory_Visual>();
 
@@ -205,7 +208,14 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                 mrWhiskars.BringUpToy();
                 inventory.SubtractItem(item.itemData);
                 amountIndicators[3].text = item.stackSize.ToString();
-                visualInventory.ChangeInventoryState();
+                if (playMode == playmode.Singleplayer)
+                {
+                    visualInventory.ChangeInventoryState();
+                }
+                else if (playMode == playmode.Multiplayer)
+                {
+                    visualInventoryMultiplayer.ChangeInventoryState();
+                }
 
                 if (msBunny.isHolding)
                 {
@@ -227,7 +237,14 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                 msBunny.BringUpToy();
                 inventory.SubtractItem(item.itemData);
                 amountIndicators[5].text = item.stackSize.ToString();
-                visualInventory.ChangeInventoryState();
+                if (playMode == playmode.Singleplayer)
+                {
+                    visualInventory.ChangeInventoryState();
+                }
+                else if (playMode == playmode.Multiplayer)
+                {
+                    visualInventoryMultiplayer.ChangeInventoryState();
+                }
 
                 if (mrWhiskars.isHolding)
                 {
