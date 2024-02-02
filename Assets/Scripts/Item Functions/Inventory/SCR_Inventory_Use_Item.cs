@@ -127,12 +127,16 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
             {
                 if (fuseBox.canInsertFuse)
                 {
-                    if (itemID[1] == item.itemData.itemID && item.stackSize > 0 && fuseBox.canInsertFuse == true && fuseBox.isActivated == false)
+                    if (itemID[1] == item.itemData.itemID && item.stackSize > 0 && !fuseBox.isActivated)
                     {
                         Debug.Log("Player successfully attempted to use fuse");
                         fuseBox.FillFusebox();
                         inventory.SubtractItem(item.itemData);
                         amountIndicators[1].text = item.stackSize.ToString();
+                    }
+                    else
+                    {
+                        Debug.Log("I was allowed to insert fuse but still failed. \n i tried with item id: " + item.itemData.itemID + "\nwhich has a stacksize of " + item.stackSize + "\nand is the fusebox activated? " + fuseBox.isActivated);
                     }
                 }
                 else
