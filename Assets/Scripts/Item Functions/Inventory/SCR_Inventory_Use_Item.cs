@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class SCR_Inventory_Use_Item : MonoBehaviour
 {
@@ -133,6 +134,10 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                         inventory.SubtractItem(item.itemData);
                         amountIndicators[1].text = item.stackSize.ToString();
                     }
+                }
+                else
+                {
+                    Debug.Log("I cannot insert fuse.");
                 }
             }
         }
