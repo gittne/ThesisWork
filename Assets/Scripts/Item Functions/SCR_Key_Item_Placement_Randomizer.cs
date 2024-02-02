@@ -45,7 +45,7 @@ public class SCR_Key_Item_Placement_Randomizer : NetworkBehaviour
         }
     }
 
-    [ServerRpc(RequireOwnership = true)]
+    [ServerRpc(RequireOwnership = false)]
     void RandomizePlacementServerRpc()
     {
         foreach (Key_Item_Generator generators in keyItemGenerator)

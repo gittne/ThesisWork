@@ -35,7 +35,7 @@ public class SCR_Item_Placement_Randomizer : NetworkBehaviour
         }
     }
 
-    [ServerRpc(RequireOwnership = true)]
+    [ServerRpc(RequireOwnership = false)]
     void RandomizePlacementsServerRpc()
     {
         Debug.Log("Spawning multiplayer prefabs");
