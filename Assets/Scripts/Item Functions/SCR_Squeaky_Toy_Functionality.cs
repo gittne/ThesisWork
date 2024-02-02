@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
@@ -32,7 +33,15 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
         if (Input.GetButtonDown("Fire2") && isHolding && !hasThrown)
         {
             animator.enabled = true;
-            StartCoroutine(ThrowingToy());
+
+            if (SCR_MultiplayerOverlord.Instance != null)
+            {
+                ThrowPlushieServerRpc();
+            }
+            else
+            {
+                StartCoroutine(ThrowingToy());
+            }
         }
 
         if (!isHolding)
@@ -54,6 +63,12 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
     {
         isHolding = false;
         toyVisualObject.SetActive(false);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void ThrowPlushieServerRpc()
+    {
+        StartCoroutine(ThrowingToy());
     }
 
     IEnumerator ThrowingToy()
