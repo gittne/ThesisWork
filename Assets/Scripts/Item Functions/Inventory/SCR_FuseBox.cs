@@ -26,6 +26,7 @@ public class SCR_FuseBox : NetworkBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("player has entered my fusebox zone");
             canInsertFuse = true;
         }
     }
@@ -40,7 +41,9 @@ public class SCR_FuseBox : NetworkBehaviour
 
     public void FillFusebox()
     {
-        if(SCR_MultiplayerOverlord.Instance != null)
+        Debug.Log("My fusebox was filled.");
+
+        if (SCR_MultiplayerOverlord.Instance != null)
         {
             FillFuseboxServerRpc();
             return;

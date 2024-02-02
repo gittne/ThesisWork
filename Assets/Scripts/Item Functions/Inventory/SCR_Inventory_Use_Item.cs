@@ -117,6 +117,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
 
     public void UseFuzes()
     {
+        Debug.Log("usefuse function was called");
         List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
 
         foreach (Inventory_Item item in inventoryCopy)
@@ -127,6 +128,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                 {
                     if (itemID[1] == item.itemData.itemID && item.stackSize > 0 && fuseBox.canInsertFuse == true && fuseBox.isActivated == false)
                     {
+                        Debug.Log("Player successfully attempted to use fuse");
                         fuseBox.FillFusebox();
                         inventory.SubtractItem(item.itemData);
                         amountIndicators[1].text = item.stackSize.ToString();
