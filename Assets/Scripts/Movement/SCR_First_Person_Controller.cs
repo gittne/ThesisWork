@@ -436,8 +436,6 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
     void OtherPlayerAnimatorUpdater()
     {
-        Debug.Log("sending anim data");
-
         bool isMoving = movementDirection == Vector3.zero ? true : false;
         otherPCAnimator.SendValues(isRunning, isMoving);
     }

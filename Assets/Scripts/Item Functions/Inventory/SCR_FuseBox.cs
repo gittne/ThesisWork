@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 [RequireComponent(typeof(SCR_Light_Indicator))]
-public class SCR_FuseBox : MonoBehaviour
+public class SCR_FuseBox : NetworkBehaviour
 {
     public int fusesInserted { get; private set; }
     public bool canInsertFuse { get; private set; }
@@ -38,6 +39,28 @@ public class SCR_FuseBox : MonoBehaviour
     }
 
     public void FillFusebox()
+    {
+        if(SCR_MultiplayerOverlord.Instance != null)
+        {
+            FillFuseboxServerRpc();
+            return;
+        }
+
+        fusesInserted++;
+
+        for (int i = 0; i < fusesInserted; i++)
+        {
+            fuseObjects[i].SetActive(true);
+        }
+
+        if (fusesInserted == fusesLeftToInsert)
+        {
+            isActivated = true;
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void FillFuseboxServerRpc()
     {
         fusesInserted++;
 
