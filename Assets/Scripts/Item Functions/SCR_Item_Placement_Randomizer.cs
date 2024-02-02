@@ -15,14 +15,15 @@ public class SCR_Item_Placement_Randomizer : NetworkBehaviour
     {
         Debug.Log("START!");
 
-        //if (SCR_MultiplayerOverlord.Instance != null)
-        //{
-        //    RandomizePlacementsServerRpc();
-        //    return;
-        //}
+        if (SCR_MultiplayerOverlord.Instance == null)
+        {
+            RandomizePlacements();
+        }
+    }
 
+    public override void OnNetworkSpawn()
+    {
         RandomizePlacementsServerRpc();
-        //RandomizePlacements();
     }
 
 
