@@ -362,6 +362,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 67828892}
+  - component: {fileID: 67828893}
   m_Layer: 0
   m_Name: Teleportation Anchors
   m_TagString: Untagged
@@ -386,6 +387,20 @@ Transform:
   - {fileID: 1753615356}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &67828893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67828891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd112f6596e9fb4784d7928ccc3623f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockType: 0
+  lightIndicator: {fileID: 0}
 --- !u!1 &97776583
 GameObject:
   m_ObjectHideFlags: 0
@@ -6162,11 +6177,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PRE_Flashlight_VR
-      objectReference: {fileID: 0}
-    - target: {fileID: 6047590488889028009, guid: 3b2feb500597b7244944e660a7458057,
-        type: 3}
-      propertyPath: m_InteractionLayers.m_Bits
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
