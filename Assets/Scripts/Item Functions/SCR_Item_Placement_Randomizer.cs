@@ -41,7 +41,7 @@ public class SCR_Item_Placement_Randomizer : NetworkBehaviour
         Debug.Log("Spawning multiplayer prefabs");
         foreach (Transform spawnpoints in spawnpoints)
         {
-            int randomNumber = Random.Range(0, prefabs.Length);
+            int randomNumber = Random.Range(0, multiplayerPrefabs.Length);
 
             float randomRotation = Random.Range(0f, 360f);
 
