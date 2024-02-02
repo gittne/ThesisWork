@@ -331,10 +331,10 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         enemyState = EnemyState.INVESTIGATING;
         if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
 
-        agent.speed = 5f;
+        agent.speed = 3.5f;
         agent.acceleration = 50;
 
-        investigationInterestDuration = 3;
+        investigationInterestDuration = 5;
 
         agent.destination = target.transform.position;
         currentTargetPlayer = target;
