@@ -26,13 +26,15 @@ public class SCR_Key_Item_Placement_Randomizer : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (SCR_MultiplayerOverlord.Instance != null)
+        if (SCR_MultiplayerOverlord.Instance == null)
         {
-            RandomizePlacementServerRpc();
-            return;
+            RandomizingPlacement();
         }
+    }
 
-        RandomizingPlacement();
+    public override void OnNetworkSpawn()
+    {
+        RandomizePlacementServerRpc();
     }
 
     void RandomizingPlacement()
@@ -45,14 +47,15 @@ public class SCR_Key_Item_Placement_Randomizer : NetworkBehaviour
         }
     }
 
-    [ServerRpc(RequireOwnership = false)]
+    [ServerRpc(RequireOwnership = true)]
     void RandomizePlacementServerRpc()
     {
         foreach (Key_Item_Generator generators in keyItemGenerator)
         {
             int randomNumber = UnityEngine.Random.Range(0, generators.prefabSpawns.Length);
 
-            Instantiate(generators.keyItem_Multiplayer, generators.prefabSpawns[randomNumber]);
+            GameObject temp = Instantiate(generators.keyItem_Multiplayer, generators.prefabSpawns[randomNumber]);
+            temp.GetComponent<NetworkObject>().Spawn();
         }
     }
 }

@@ -39,7 +39,7 @@ public class SCR_Item_Placement_Randomizer : NetworkBehaviour
         }
     }
 
-    [ServerRpc(RequireOwnership = false)]
+    [ServerRpc(RequireOwnership = true)]
     void RandomizePlacementsServerRpc()
     {
         Debug.Log("Spawning multiplayer prefabs");
@@ -49,7 +49,8 @@ public class SCR_Item_Placement_Randomizer : NetworkBehaviour
 
             float randomRotation = Random.Range(0f, 360f);
 
-            Instantiate(multiplayerPrefabs[randomNumber], spawnpoints.position, new Quaternion(0, randomRotation, 0, 0));
+            GameObject temp = Instantiate(multiplayerPrefabs[randomNumber], spawnpoints.position, new Quaternion(0, randomRotation, 0, 0));
+            temp.GetComponent<NetworkObject>().Spawn();
         }
     }
 }
