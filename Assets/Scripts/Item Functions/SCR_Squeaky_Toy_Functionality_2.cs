@@ -84,6 +84,7 @@ public class SCR_Squeaky_Toy_Functionality_2 : NetworkBehaviour
             toyVisualObject.SetActive(false);
 
             GameObject instantiatedObject = Instantiate(toyPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion(spawnPoint.rotation.x, 0f, 0f, 0f));
+            instantiatedObject.GetComponent<NetworkObject>().Spawn();
 
             Rigidbody rigidbody = instantiatedObject.GetComponent<Rigidbody>();
 

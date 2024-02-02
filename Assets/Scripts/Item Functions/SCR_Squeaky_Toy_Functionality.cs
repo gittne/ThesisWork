@@ -84,7 +84,8 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
             toyVisualObject.SetActive(false);
 
             GameObject instantiatedObject = Instantiate(toyPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion(spawnPoint.rotation.x, 0f, 0f, 0f));
-
+            instantiatedObject.GetComponent<NetworkObject>().Spawn();
+            
             Rigidbody rigidbody = instantiatedObject.GetComponent<Rigidbody>();
 
             Vector3 randomRotation = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
