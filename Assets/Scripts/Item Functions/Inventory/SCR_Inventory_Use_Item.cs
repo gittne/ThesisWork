@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class SCR_Inventory_Use_Item : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     [Header("Related Equipment")]
     [SerializeField] SCR_Flashlight_Non_VR flashlight;
     [SerializeField] SCR_Flashlight_Multiplayer flashlightMultiplayer;
-    [SerializeField] SCR_FuseBox[] fuseBoxes;
-    [SerializeField] SCR_Key_Card_Reader[] keyReaders;
+    [SerializeField] List<SCR_FuseBox> fuseBoxes;
+    [SerializeField] List<SCR_Key_Card_Reader> keyReaders;
     [SerializeField] SCR_Squeaky_Toy_Functionality mrWhiskars;
     [SerializeField] SCR_Inventory_Item_Data mrWhiskarsData;
     [SerializeField] SCR_Squeaky_Toy_Functionality_2 msBunny;
@@ -33,6 +34,12 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
         inventory = SCR_Inventory_System_Singleplayer.current;
 
         visualInventory = GetComponent<SCR_Inventory_Visual>();
+
+        foreach (GameObject fuseBox in GameObject.FindGameObjectsWithTag("FuseBox"))
+            fuseBoxes.Add(fuseBox.GetComponent<SCR_FuseBox>());
+
+        foreach (GameObject keyReader in GameObject.FindGameObjectsWithTag("KeycardReader"))
+            keyReaders.Add(keyReader.GetComponent<SCR_Key_Card_Reader>());
     }
 
     // Update is called once per frame
@@ -121,7 +128,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
         Debug.Log("usefuse function was called");
         List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
 
-        Debug.Log("inventory copy size " + inventoryCopy.Count);
+        Debug.Log("inventory copy size " + inventoryCopy.Count + "");
 
         foreach (Inventory_Item item in inventoryCopy)
         {
