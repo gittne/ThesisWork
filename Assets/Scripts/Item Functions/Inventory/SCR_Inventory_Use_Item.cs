@@ -121,6 +121,8 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
         Debug.Log("usefuse function was called");
         List<Inventory_Item> inventoryCopy = new List<Inventory_Item>(inventory.inventory);
 
+        Debug.Log("inventory copy size " + inventoryCopy.Count);
+
         foreach (Inventory_Item item in inventoryCopy)
         {
             foreach (SCR_FuseBox fuseBox in fuseBoxes)
