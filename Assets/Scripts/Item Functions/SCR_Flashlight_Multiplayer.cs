@@ -37,10 +37,6 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         lightBulb.enabled = false;
         isEnabled = false;
         maxBattery = batteryLife;
-    }
-
-    public override void OnNetworkSpawn()
-    {
         BatteryLife.Value = batteryLife;
     }
 
