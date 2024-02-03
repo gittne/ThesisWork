@@ -30,6 +30,7 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     {
         if (!IsOwner)
         {
+            InvokeRepeating("SyncBatteryLifeToServer", 1, 1);
             return;
         }
 
@@ -38,12 +39,17 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         isEnabled = false;
         maxBattery = batteryLife;
         BatteryLife.Value = batteryLife;
+
     }
 
     public override void OnNetworkSpawn()
     {
-        if (IsOwner) { UpdateBatteryLifeServerRpc(); }
+        if (IsOwner) 
+        { 
+            UpdateBatteryLifeServerRpc(); 
+        }
     }
+
     void Update()
     {
         if (IsOwner && Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
@@ -54,11 +60,6 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         }
 
         BatteryStrength();
-
-        if (!IsOwner)
-        {
-            batteryLife = BatteryLife.Value;
-        }
     }
 
     public void ChangeFlashlightState(bool currentState)
@@ -111,5 +112,10 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     public void UpdateBatteryLifeServerRpc()
     {
         BatteryLife.Value = batteryLife;
+    }
+
+    void SyncBatteryLifeToServer()
+    {
+        batteryLife = BatteryLife.Value;
     }
 }
