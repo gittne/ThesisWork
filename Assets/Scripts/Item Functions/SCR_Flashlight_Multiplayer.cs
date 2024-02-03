@@ -43,6 +43,9 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
             return;
         }
 
+        if (Input.GetKeyDown(KeyCode.Z))
+            Debug.Log("battery life value: " + batteryLife.Value);
+
         if (Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
         {
             ToggleFlashlightServerRpc(isEnabled);
