@@ -311,23 +311,21 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     {
         rageMeter = 100;
 
-        if (currentTargetPlayer == null)
+        //if (currentTargetPlayer == null)
+        //{
+        //    agent.destination = GameObject.FindWithTag("Player").transform.position;
+        //    return;
+        //}
+
+        foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
-            GameObject[] players = new GameObject[2];
-            players[0] = SCR_MultiplayerOverlord.Instance.PlayerObjects[0].gameObject;
-            players[1] = SCR_MultiplayerOverlord.Instance.PlayerObjects[1].gameObject;
-
-            if (players[0].GetComponent<SCR_First_Person_Controller>().AmIDead.Value)
+            if(player.GetComponent<SCR_First_Person_Controller>().AmIDead.Value)
             {
-                currentTargetPlayer = players[1];
-            }
-            else
-            {
-                currentTargetPlayer = players[0];
-            }
-
-            return;
+                agent.destination = player.transform.position;
+                return;
+            }    
         }
+
         agent.destination = currentTargetPlayer.transform.position;
     }
 
