@@ -42,12 +42,6 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
     void Update()
     {
-        if (!IsOwner)
-        {
-            if(BatteryLife != null)
-                batteryLife = BatteryLife.Value;
-        }
-
         if (IsOwner && Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
         {
             ToggleFlashlightServerRpc(isEnabled);
@@ -56,6 +50,11 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         }
 
         BatteryStrength();
+
+        if (!IsOwner)
+        {
+            batteryLife = BatteryLife.Value;
+        }
     }
 
     public void ChangeFlashlightState(bool currentState)
@@ -79,7 +78,7 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         if (isEnabled && batteryLife >= 0)
         {
             batteryLife -= Time.deltaTime;
-            if(IsOwner) BatteryLife.Value = batteryLife;
+            if (IsOwner) UpdateBatteryLifeServerRpc();
         }
 
         spotLight.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
@@ -102,5 +101,11 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     public void ToggleFlashlightClientRpc(bool enabled)
     {
         ChangeFlashlightState(enabled);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void UpdateBatteryLifeServerRpc()
+    {
+        BatteryLife.Value = batteryLife;
     }
 }
