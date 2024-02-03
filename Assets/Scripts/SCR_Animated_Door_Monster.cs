@@ -64,7 +64,7 @@ public class SCR_Animated_Door_Monster : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Monster"))
+        if (other.CompareTag("Enemy"))
         {
             animator.enabled = true;
         }
@@ -76,7 +76,7 @@ public class SCR_Animated_Door_Monster : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Monster"))
+        if (other.CompareTag("Enemy"))
         {
             animator.enabled = false;
         }

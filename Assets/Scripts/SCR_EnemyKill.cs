@@ -34,7 +34,7 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
         player.transform.LookAt(transform.position);
         transform.LookAt(player.transform.position);
 
-        player.GetComponentInChildren<Animator>().SetTrigger("Death");
+        //player.GetComponentInChildren<Animator>().SetTrigger("Death");
 
         if (SCR_MultiplayerOverlord.Instance != null && player.GetComponent<SCR_First_Person_Controller>() != null)
         {
@@ -52,12 +52,14 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
     {
         animator.PlayKillAnimation();
         brain.EnterKillingState();
+
+        if(isMultiplayer)
+            KillPlayerServerRpc();
+
         yield return new WaitForSeconds(5);
 
         if (isMultiplayer)
         {
-            KillPlayerServerRpc();
-            yield return new WaitForSeconds(3);
             brain.CommenceMultiplayerFinish();
             SCR_MultiplayerOverlord.Instance.PlayerLifeStatusServerRpc();
         }

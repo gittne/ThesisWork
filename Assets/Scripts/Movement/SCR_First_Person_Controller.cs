@@ -138,7 +138,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            OtherPlayerAnimatorUpdater();
+            //OtherPlayerAnimatorUpdater();
             return;
         }
 
@@ -332,7 +332,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            otherPCAnimator.OtherPlayerDeath();
+            //otherPCAnimator.OtherPlayerDeath();
             return;
         }
 
@@ -380,6 +380,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
         yield return new WaitForSeconds(3f);
 
         canMove = true;
+
+        SCR_Flashlight_Multiplayer flashlight = GetComponentInChildren<SCR_Flashlight_Multiplayer>();
+        flashlight.RefillBatteries();
 
         for (int i = 0; i < 101; i++)
         {
