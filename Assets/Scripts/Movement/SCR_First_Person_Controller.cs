@@ -381,6 +381,9 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         canMove = true;
 
+        SCR_Flashlight_Multiplayer flashlight = GetComponentInChildren<SCR_Flashlight_Multiplayer>();
+        flashlight.RefillBatteries();
+
         for (int i = 0; i < 101; i++)
         {
             c.a = 1 - 0.01f * i;

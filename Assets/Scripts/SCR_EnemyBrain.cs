@@ -342,7 +342,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
 
         agent.speed = 3f;
-        agent.acceleration = 50;
+        agent.acceleration = 30;
 
         investigationInterestDuration = 2;
 

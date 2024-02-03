@@ -24,6 +24,8 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
     bool isEnabled;
 
+    NetworkVariable<float> BatteryLife;
+
     void Start()
     {
         if (!IsOwner)
@@ -41,10 +43,10 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            return;
+            batteryLife = BatteryLife.Value;
         }
 
-        if (Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
+        if (IsOwner && Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
         {
             ToggleFlashlightServerRpc(isEnabled);
 
@@ -75,6 +77,7 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         if (isEnabled && batteryLife >= 0)
         {
             batteryLife -= Time.deltaTime;
+            if(IsOwner) BatteryLife.Value = batteryLife;
         }
 
         spotLight.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
