@@ -18,41 +18,32 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     [SerializeField] AudioSource audioSource;
 
     [Header("Battery Variables")]
-    [SerializeField] float batteryLife;
+    [SerializeField] float maxBattery;
     [SerializeField] float minimumLightStrength;
-    float maxBattery;
+    NetworkVariable<float> batteryLife;
 
     bool isEnabled;
-
-    NetworkVariable<float> BatteryLife;
 
     void Start()
     {
         if (!IsOwner)
         {
-            InvokeRepeating("SyncBatteryLifeToServer", 1, 1);
             return;
         }
 
         spotLight.enabled = false;
         lightBulb.enabled = false;
         isEnabled = false;
-        maxBattery = batteryLife;
-        BatteryLife.Value = batteryLife;
-
-    }
-
-    public override void OnNetworkSpawn()
-    {
-        if (IsOwner) 
-        { 
-            UpdateBatteryLifeServerRpc(); 
-        }
     }
 
     void Update()
     {
-        if (IsOwner && Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
+        if (!IsOwner)
+        {
+            return;
+        }
+
+        if (Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
         {
             ToggleFlashlightServerRpc(isEnabled);
 
@@ -80,19 +71,18 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
     void BatteryStrength()
     {
-        if (isEnabled && batteryLife >= 0)
+        if (isEnabled && batteryLife.Value >= 0)
         {
-            batteryLife -= Time.deltaTime;
-            if (IsOwner) UpdateBatteryLifeServerRpc();
+            batteryLife.Value -= Time.deltaTime;
         }
 
-        spotLight.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
-        lightBulb.intensity = ((batteryLife + minimumLightStrength) / maxBattery);
+        spotLight.intensity = ((batteryLife.Value + minimumLightStrength) / maxBattery);
+        lightBulb.intensity = ((batteryLife.Value + minimumLightStrength) / maxBattery);
     }
 
     public void RefillBatteries()
     {
-        batteryLife = maxBattery;
+        batteryLife.Value = maxBattery;
         audioSource.PlayOneShot(reloadSound);
     }
 
@@ -106,16 +96,5 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     public void ToggleFlashlightClientRpc(bool enabled)
     {
         ChangeFlashlightState(enabled);
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    public void UpdateBatteryLifeServerRpc()
-    {
-        BatteryLife.Value = batteryLife;
-    }
-
-    void SyncBatteryLifeToServer()
-    {
-        batteryLife = BatteryLife.Value;
     }
 }
