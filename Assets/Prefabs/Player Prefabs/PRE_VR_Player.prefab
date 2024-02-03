@@ -977,6 +977,7 @@ GameObject:
   - component: {fileID: 6422724632535841645}
   - component: {fileID: 3247416761299052291}
   - component: {fileID: 8600442570308259110}
+  - component: {fileID: 5589811758810560327}
   m_Layer: 6
   m_Name: PRE_VR_Player
   m_TagString: Player
@@ -1268,6 +1269,34 @@ MonoBehaviour:
     m_Reference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   teleportationLine: {fileID: 8187655596202208533}
+--- !u!114 &5589811758810560327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4101216181873167747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2fbcb33b3487834bbe71d27f85a0cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepThreshold: 1.2
+  audioSource: {fileID: 8818260603339505658, guid: b3c3fc2454a397147b9f8864f348cf9d,
+    type: 3}
+  carpetClips:
+  - {fileID: 8300000, guid: 7b209d592a0c67b42bb2a4df039e6322, type: 3}
+  - {fileID: 8300000, guid: 4ffc49acbc35ed84c9c018a9f19d68ac, type: 3}
+  - {fileID: 8300000, guid: cd6541acfb52da949b373da19bd0439c, type: 3}
+  woodClips:
+  - {fileID: 8300000, guid: 603b77793c6c57948b2ebafc1cdf0a68, type: 3}
+  - {fileID: 8300000, guid: 0a68ff744995dff458993edf59248dac, type: 3}
+  - {fileID: 8300000, guid: 2bddc4f1bf888aa4f81e54351d15e4bc, type: 3}
+  stoneClips:
+  - {fileID: 8300000, guid: b034d78ffc9712b4b95e5f18a4b91db8, type: 3}
+  - {fileID: 8300000, guid: 94babc64002c6e44684a56f3440ea568, type: 3}
+  - {fileID: 8300000, guid: 152370bb4e6083b478f0843171982540, type: 3}
+  - {fileID: 8300000, guid: 8904fdfcbd791c14b932a5ce13802cb9, type: 3}
 --- !u!1 &5206392860463263463
 GameObject:
   m_ObjectHideFlags: 0
