@@ -138,7 +138,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            OtherPlayerAnimatorUpdater();
+            //OtherPlayerAnimatorUpdater();
             return;
         }
 
