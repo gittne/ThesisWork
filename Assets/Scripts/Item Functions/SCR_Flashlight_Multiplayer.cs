@@ -38,7 +38,7 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (IsOwner) batteryLife.Value = maxBattery;
+        if (IsOwner) ResetFlashlightValueServerRpc();
     }
 
     void Update()
@@ -89,7 +89,7 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
     public void RefillBatteries()
     {
-        batteryLife.Value = maxBattery;
+        ResetFlashlightValueServerRpc();
         audioSource.PlayOneShot(reloadSound);
     }
 
@@ -103,6 +103,12 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     public void ToggleFlashlightClientRpc(bool enabled)
     {
         ChangeFlashlightState(enabled);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void ResetFlashlightValueServerRpc()
+    {
+        batteryLife.Value = maxBattery;
     }
 
     [ServerRpc(RequireOwnership = false)]
