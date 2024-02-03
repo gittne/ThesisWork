@@ -124,7 +124,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     {
         currentTargetPlayer = null;
 
-        agent.speed = 2.5f;
+        agent.speed = 2f;
         agent.acceleration = 30;
         enemyState = EnemyState.ROAM;
         if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
@@ -140,7 +140,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         if (repositionCoroutine != null && currentTargetPlayer == null) StopCoroutine(repositionCoroutine);
         hasDestination = false;
 
-        agent.speed = 3f;
+        agent.speed = 2.5f;
         agent.acceleration = 30;
         currentTargetPlayer = target;
         agent.destination = target.transform.position;
@@ -250,7 +250,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
 
-        agent.speed = 4.5f;
+        agent.speed = 4f;
         agent.destination = mirrorManager.FindClosestEntrance(transform.position);
     }
 
@@ -286,7 +286,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
         if (repositionCoroutine != null) StopCoroutine(repositionCoroutine);
         agent.destination = transform.position;
 
-        agent.speed = 15;
+        agent.speed = 8;
         agent.angularSpeed = 1000;
         agent.velocity = agent.desiredVelocity;
         agent.acceleration = 500;
@@ -311,12 +311,6 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     {
         rageMeter = 100;
 
-        //if (currentTargetPlayer == null)
-        //{
-        //    agent.destination = GameObject.FindWithTag("Player").transform.position;
-        //    return;
-        //}
-
         foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
             if(!player.GetComponent<SCR_First_Person_Controller>().AmIDead.Value)
@@ -333,7 +327,6 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
     {
         CommenceRoam();
         rageMeter = 0;
-        Debug.Log("im reset");
     }
 
     public void CommenceInvestigation(GameObject target)
