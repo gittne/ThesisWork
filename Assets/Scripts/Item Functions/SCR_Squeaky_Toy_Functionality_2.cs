@@ -77,7 +77,7 @@ public class SCR_Squeaky_Toy_Functionality_2 : NetworkBehaviour
     {
         if (isHolding && !hasThrown)
         {
-            animator.Play(animationTrigger, 0, 0f);
+            //animator.Play(animationTrigger, 0, 0f);
 
             hasThrown = true;
 

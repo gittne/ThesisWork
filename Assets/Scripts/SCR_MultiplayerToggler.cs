@@ -37,5 +37,14 @@ public class SCR_MultiplayerToggler : MonoBehaviour
                 Cursor.visible = true;
             }
         }
+
+        if(scene.buildIndex == 2)
+        {
+            Destroy(GameObject.FindWithTag("MultiplayerCanvas"));
+            Destroy(GameObject.FindWithTag("TemporaryMultiDeleteCamera"));
+            SCR_EnemyBrain enemyBrain = GameObject.FindWithTag("Enemy").GetComponent<SCR_EnemyBrain>();
+            enemyBrain.ActivateMonster();
+            Destroy(SCR_MultiplayerOverlord.Instance);
+        }
     }
 }
