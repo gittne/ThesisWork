@@ -36,26 +36,33 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         isEnabled = false;
     }
 
+    public override void OnNetworkSpawn()
+    {
+        if (IsOwner) ResetFlashlightValueServerRpc();
+    }
+
     void Update()
     {
-        if (!IsOwner)
+        if(IsOwner)
         {
-            return;
+            if (Input.GetKeyDown(KeyCode.Z))
+                Debug.Log("battery life value: " + batteryLife.Value);
+
+            if (Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
+            {
+                ToggleFlashlightServerRpc(isEnabled);
+
+                isEnabled = !isEnabled;
+            }
         }
 
-        if (Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
-        {
-            ToggleFlashlightServerRpc(isEnabled);
-
-            isEnabled = !isEnabled;
-        }
 
         BatteryStrength();
     }
 
-    public void ChangeFlashlightState(bool currentState)
+    public void ChangeFlashlightState(bool setEnabled)
     {
-        if (currentState)
+        if (setEnabled)
         {
             audioSource.PlayOneShot(onSound);
             spotLight.enabled = true;
@@ -71,9 +78,9 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
     void BatteryStrength()
     {
-        if (isEnabled && batteryLife.Value >= 0)
+        if (IsOwner && isEnabled && batteryLife.Value >= 0)
         {
-            batteryLife.Value -= Time.deltaTime;
+            AlterFlashlightValueServerRpc();
         }
 
         spotLight.intensity = ((batteryLife.Value + minimumLightStrength) / maxBattery);
@@ -82,12 +89,12 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
     public void RefillBatteries()
     {
-        batteryLife.Value = maxBattery;
+        ResetFlashlightValueServerRpc();
         audioSource.PlayOneShot(reloadSound);
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void ToggleFlashlightServerRpc(bool enabled, ServerRpcParams serverRpcParams = default)
+    public void ToggleFlashlightServerRpc(bool enabled)
     {
         ToggleFlashlightClientRpc(enabled);
     }
@@ -96,5 +103,17 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     public void ToggleFlashlightClientRpc(bool enabled)
     {
         ChangeFlashlightState(enabled);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void ResetFlashlightValueServerRpc()
+    {
+        batteryLife.Value = maxBattery;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void AlterFlashlightValueServerRpc()
+    {
+        batteryLife.Value -= Time.deltaTime;
     }
 }
