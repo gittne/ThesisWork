@@ -40,6 +40,10 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         BatteryLife.Value = batteryLife;
     }
 
+    public override void OnNetworkSpawn()
+    {
+        if (IsOwner) { UpdateBatteryLifeServerRpc(); }
+    }
     void Update()
     {
         if (IsOwner && Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
