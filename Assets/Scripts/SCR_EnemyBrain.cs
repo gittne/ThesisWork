@@ -319,7 +319,7 @@ public class SCR_EnemyBrain : SCR_EnemyUtilities
 
         foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
-            if(player.GetComponent<SCR_First_Person_Controller>().AmIDead.Value)
+            if(!player.GetComponent<SCR_First_Person_Controller>().AmIDead.Value)
             {
                 agent.destination = player.transform.position;
                 return;
