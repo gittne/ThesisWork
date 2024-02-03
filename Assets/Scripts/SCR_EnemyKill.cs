@@ -52,12 +52,14 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
     {
         animator.PlayKillAnimation();
         brain.EnterKillingState();
+
+        if(isMultiplayer)
+            KillPlayerServerRpc();
+
         yield return new WaitForSeconds(5);
 
         if (isMultiplayer)
         {
-            KillPlayerServerRpc();
-            yield return new WaitForSeconds(3);
             brain.CommenceMultiplayerFinish();
             SCR_MultiplayerOverlord.Instance.PlayerLifeStatusServerRpc();
         }
