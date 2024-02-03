@@ -44,7 +44,8 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            batteryLife = BatteryLife.Value;
+            if(BatteryLife != null)
+                batteryLife = BatteryLife.Value;
         }
 
         if (IsOwner && Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
