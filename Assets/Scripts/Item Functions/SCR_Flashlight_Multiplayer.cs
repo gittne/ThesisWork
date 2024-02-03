@@ -38,20 +38,19 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
     void Update()
     {
-        if (!IsOwner)
+        if(IsOwner)
         {
-            return;
+            if (Input.GetKeyDown(KeyCode.Z))
+                Debug.Log("battery life value: " + batteryLife.Value);
+
+            if (Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
+            {
+                ToggleFlashlightServerRpc(isEnabled);
+
+                isEnabled = !isEnabled;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
-            Debug.Log("battery life value: " + batteryLife.Value);
-
-        if (Input.GetButtonDown("Fire1") && !inventory.isInventoryActive)
-        {
-            ToggleFlashlightServerRpc(isEnabled);
-
-            isEnabled = !isEnabled;
-        }
 
         BatteryStrength();
     }
@@ -74,7 +73,7 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
 
     void BatteryStrength()
     {
-        if (isEnabled && batteryLife.Value >= 0)
+        if (IsOwner && isEnabled && batteryLife.Value >= 0)
         {
             batteryLife.Value -= Time.deltaTime;
         }
