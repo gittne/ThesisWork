@@ -20,6 +20,8 @@ public class SCR_Squeaky_Toy_Functionality_2 : NetworkBehaviour
     [SerializeField] float initialRotationVelocity;
     bool hasThrown;
 
+    GameObject spawnedPlushie;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,8 +86,11 @@ public class SCR_Squeaky_Toy_Functionality_2 : NetworkBehaviour
             toyVisualObject.SetActive(false);
 
             GameObject instantiatedObject = Instantiate(toyPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion(spawnPoint.rotation.x, 0f, 0f, 0f));
+            spawnedPlushie = instantiatedObject;
+            SpawnPlushieServerRpc();
 
             Rigidbody rigidbody = instantiatedObject.GetComponent<Rigidbody>();
+            
 
             Vector3 randomRotation = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
 
@@ -94,8 +99,6 @@ public class SCR_Squeaky_Toy_Functionality_2 : NetworkBehaviour
             rigidbody.angularVelocity = randomRotation * initialRotationVelocity;
 
             isHolding = false;
-
-            instantiatedObject.GetComponent<NetworkObject>().Spawn();
 
             yield return new WaitForSeconds(timeToBringArmDown);
 
@@ -107,5 +110,11 @@ public class SCR_Squeaky_Toy_Functionality_2 : NetworkBehaviour
 
             instantiatedObject.GetComponent<SCR_MonsterAttractor>().BroadcastLocation();
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void SpawnPlushieServerRpc()
+    {
+        spawnedPlushie.GetComponent<NetworkObject>().Spawn();
     }
 }
