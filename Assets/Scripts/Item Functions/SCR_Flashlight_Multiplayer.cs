@@ -56,9 +56,9 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
         BatteryStrength();
     }
 
-    public void ChangeFlashlightState(bool currentState)
+    public void ChangeFlashlightState(bool setEnabled)
     {
-        if (currentState)
+        if (setEnabled)
         {
             audioSource.PlayOneShot(onSound);
             spotLight.enabled = true;
