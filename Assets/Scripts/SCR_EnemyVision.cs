@@ -56,7 +56,7 @@ public class SCR_EnemyVision : MonoBehaviour
                 if (hit.transform.CompareTag("Player"))
                 {
                     visiblePlayer = other.gameObject;
-                    visionLossDelay = 1.5f;
+                    visionLossDelay = 1f;
                     SendVisionInformation();
                     return;
                 }
@@ -80,7 +80,7 @@ public class SCR_EnemyVision : MonoBehaviour
             return;
 
         if (distanceToPlayer > 10) distanceToPlayer = 10;
-        int val = 15 - (int)Mathf.Round(distanceToPlayer);
+        int val = 10 - (int)Mathf.Round(distanceToPlayer);
 
         brain.AlterRage(val);
     }
