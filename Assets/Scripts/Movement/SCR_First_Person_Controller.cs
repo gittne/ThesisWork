@@ -332,7 +332,7 @@ public class SCR_First_Person_Controller : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            otherPCAnimator.OtherPlayerDeath();
+            //otherPCAnimator.OtherPlayerDeath();
             return;
         }
 
