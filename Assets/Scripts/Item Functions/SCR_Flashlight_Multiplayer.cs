@@ -20,7 +20,7 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     [Header("Battery Variables")]
     [SerializeField] float maxBattery;
     [SerializeField] float minimumLightStrength;
-    NetworkVariable<float> batteryLife;
+    NetworkVariable<float> batteryLife = new NetworkVariable<float>();
 
     bool isEnabled;
 
