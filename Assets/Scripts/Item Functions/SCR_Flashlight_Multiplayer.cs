@@ -75,7 +75,7 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     {
         if (IsOwner && isEnabled && batteryLife.Value >= 0)
         {
-            batteryLife.Value -= Time.deltaTime;
+            AlterFlashlightValueServerRpc();
         }
 
         spotLight.intensity = ((batteryLife.Value + minimumLightStrength) / maxBattery);
@@ -98,5 +98,11 @@ public class SCR_Flashlight_Multiplayer : NetworkBehaviour
     public void ToggleFlashlightClientRpc(bool enabled)
     {
         ChangeFlashlightState(enabled);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void AlterFlashlightValueServerRpc()
+    {
+        batteryLife.Value -= Time.deltaTime;
     }
 }
