@@ -41,6 +41,11 @@ public class SCR_EnemyKill_Multiplayer : MonoBehaviour
             latestKilledPlayer = player;
             StartCoroutine(KillPlayerCutScene(true));
         }
+        else if (player.GetComponent<SCR_Action_Based_Continuous_Move_Provider_Custom>() != null)
+        {
+            player.GetComponent<SCR_Action_Based_Continuous_Move_Provider_Custom>().CommencePlayerDeath();
+            StartCoroutine(KillPlayerCutScene(false));
+        }
         else
         {
             player.GetComponent<SCR_First_Person_Controller_Singleplayer>().CommencePlayerDeath();
