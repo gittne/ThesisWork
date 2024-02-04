@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -64,25 +65,37 @@ public class SCR_Footstep_Sounds : MonoBehaviour
 
         if (footstepTimer <= 0)
         {
-            if (Physics.Raycast(characterObject.transform.position, Vector3.down, out RaycastHit hit, 3))
-            {
-                switch (hit.collider.tag)
-                {
-                    case "Material/Fabric":
-                        audioSource.PlayOneShot(carpetClips[Random.Range(0, carpetClips.Length - 1)]);
-                        break;
-                    case "Material/Wood":
-                        audioSource.PlayOneShot(woodClips[Random.Range(0, woodClips.Length - 1)]);
-                        break;
-                    case "Material/Stone":
-                        audioSource.PlayOneShot(stoneClips[Random.Range(0, stoneClips.Length - 1)]);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            footstepTimer = timerActivationFloat;
+            PlaySoundServerRpc();
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void PlaySoundServerRpc()
+    {
+        PlaySoundClientRpc();
+    }
+
+    [ClientRpc]
+    void PlaySoundClientRpc()
+    {
+        if (Physics.Raycast(characterObject.transform.position, Vector3.down, out RaycastHit hit, 3))
+        {
+            switch (hit.collider.tag)
+            {
+                case "Material/Fabric":
+                    audioSource.PlayOneShot(carpetClips[Random.Range(0, carpetClips.Length - 1)]);
+                    break;
+                case "Material/Wood":
+                    audioSource.PlayOneShot(woodClips[Random.Range(0, woodClips.Length - 1)]);
+                    break;
+                case "Material/Stone":
+                    audioSource.PlayOneShot(stoneClips[Random.Range(0, stoneClips.Length - 1)]);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        footstepTimer = timerActivationFloat;
     }
 }
