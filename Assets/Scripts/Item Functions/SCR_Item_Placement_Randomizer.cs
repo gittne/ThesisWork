@@ -6,20 +6,12 @@ using VivoxUnity;
 
 public class SCR_Item_Placement_Randomizer : NetworkBehaviour
 {
+    public static SCR_Item_Placement_Randomizer Instance;
+    private void Awake() { Instance = this; }
+
     [SerializeField] Transform[] spawnpoints;
     [SerializeField] GameObject[] prefabs;
     [SerializeField] GameObject[] multiplayerPrefabs;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("START!");
-
-        if (SCR_MultiplayerOverlord.Instance == null)
-        {
-            RandomizePlacements();
-        }
-    }
 
     public override void OnNetworkSpawn()
     {
@@ -28,8 +20,7 @@ public class SCR_Item_Placement_Randomizer : NetworkBehaviour
         RandomizePlacementsServerRpc();
     }
 
-
-    void RandomizePlacements()
+    public void RandomizePlacements()
     {
         foreach (Transform spawnpoints in spawnpoints)
         {

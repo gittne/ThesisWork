@@ -21,16 +21,10 @@ public class Key_Item_Generator
 
 public class SCR_Key_Item_Placement_Randomizer : NetworkBehaviour
 {
-    [SerializeField] List<Key_Item_Generator> keyItemGenerator;
+    public static SCR_Key_Item_Placement_Randomizer Instance;
+    private void Awake() { Instance = this; }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (SCR_MultiplayerOverlord.Instance == null)
-        {
-            RandomizingPlacement();
-        }
-    }
+    [SerializeField] List<Key_Item_Generator> keyItemGenerator;
 
     public override void OnNetworkSpawn()
     {
@@ -39,7 +33,7 @@ public class SCR_Key_Item_Placement_Randomizer : NetworkBehaviour
         RandomizePlacementServerRpc();
     }
 
-    void RandomizingPlacement()
+    public void RandomizePlacements()
     {
         foreach (Key_Item_Generator generators in keyItemGenerator)
         {

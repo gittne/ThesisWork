@@ -284,5 +284,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f);
         }
+
+        animator.enabled = false;
     }
 }
