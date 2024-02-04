@@ -29,6 +29,9 @@ public class SCR_MultiplayerToggler : MonoBehaviour
                 SCR_EnemyBrain enemyBrain = GameObject.FindWithTag("Enemy").GetComponent<SCR_EnemyBrain>();
                 enemyBrain.ActivateMonster();
                 Destroy(SCR_MultiplayerOverlord.Instance);
+
+                SCR_Item_Placement_Randomizer.Instance.RandomizePlacements();
+                SCR_Key_Item_Placement_Randomizer.Instance.RandomizePlacements();
             }
             else
             {
