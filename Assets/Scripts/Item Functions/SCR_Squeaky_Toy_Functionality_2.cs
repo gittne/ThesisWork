@@ -36,7 +36,7 @@ public class SCR_Squeaky_Toy_Functionality_2 : NetworkBehaviour
         {
             animator.enabled = true;
 
-            if(SCR_MultiplayerOverlord.Instance != null)
+            if (SCR_MultiplayerOverlord.Instance != null)
             {
                 ThrowPlushieServerRpc();
             }
@@ -70,46 +70,45 @@ public class SCR_Squeaky_Toy_Functionality_2 : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     void ThrowPlushieServerRpc()
     {
+        Debug.Log("server throw plush");
         StartCoroutine(ThrowingToy());
     }
 
     IEnumerator ThrowingToy()
     {
-        if (isHolding && !hasThrown)
-        {
-            //animator.Play(animationTrigger, 0, 0f);
 
-            hasThrown = true;
+        animator.Play(animationTrigger, 0, 0f);
 
-            yield return new WaitForSeconds(timeToWindUpThrow);
+        hasThrown = true;
 
-            toyVisualObject.SetActive(false);
+        yield return new WaitForSeconds(timeToWindUpThrow);
 
-            GameObject instantiatedObject = Instantiate(toyPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion(spawnPoint.rotation.x, 0f, 0f, 0f));
-            spawnedPlushie = instantiatedObject;
-            SpawnPlushieServerRpc();
+        toyVisualObject.SetActive(false);
 
-            Rigidbody rigidbody = instantiatedObject.GetComponent<Rigidbody>();
-            
+        GameObject instantiatedObject = Instantiate(toyPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion(spawnPoint.rotation.x, 0f, 0f, 0f));
+        spawnedPlushie = instantiatedObject;
+        SpawnPlushieServerRpc();
 
-            Vector3 randomRotation = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+        Rigidbody rigidbody = instantiatedObject.GetComponent<Rigidbody>();
 
-            rigidbody.AddForce(spawnPoint.forward * initialVelocity, ForceMode.Impulse);
 
-            rigidbody.angularVelocity = randomRotation * initialRotationVelocity;
+        Vector3 randomRotation = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
 
-            isHolding = false;
+        rigidbody.AddForce(spawnPoint.forward * initialVelocity, ForceMode.Impulse);
 
-            yield return new WaitForSeconds(timeToBringArmDown);
+        rigidbody.angularVelocity = randomRotation * initialRotationVelocity;
 
-            animator.enabled = false;
+        isHolding = false;
 
-            hasThrown = false;
+        yield return new WaitForSeconds(timeToBringArmDown);
 
-            itemHolder.transform.localPosition = Vector3.Lerp(itemHolder.transform.localPosition, new Vector3(0f, 0f, 0.3f), 3f * Time.deltaTime);
+        animator.enabled = false;
 
-            instantiatedObject.GetComponent<SCR_MonsterAttractor>().BroadcastLocation();
-        }
+        hasThrown = false;
+
+        itemHolder.transform.localPosition = Vector3.Lerp(itemHolder.transform.localPosition, new Vector3(0f, 0f, 0.3f), 3f * Time.deltaTime);
+
+        instantiatedObject.GetComponent<SCR_MonsterAttractor>().BroadcastLocation();
     }
 
     [ServerRpc(RequireOwnership = false)]
