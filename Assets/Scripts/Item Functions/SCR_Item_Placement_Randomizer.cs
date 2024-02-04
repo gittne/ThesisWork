@@ -23,6 +23,8 @@ public class SCR_Item_Placement_Randomizer : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        if (!IsOwner) return;
+
         RandomizePlacementsServerRpc();
     }
 
