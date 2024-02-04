@@ -412,26 +412,23 @@ public class SCR_First_Person_Controller : NetworkBehaviour
 
         foreach(GameObject hand in armObjects)
         {
-            hand.SetActive(false);
+            SkinnedMeshRenderer[] meshRenderers = hand.GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach(SkinnedMeshRenderer mesh in meshRenderers)
+            {
+                mesh.enabled = false;
+            }
         }
     }
 
     List<GameObject> GetGameObjectsInLayer(LayerMask layer)
     {
-        // Get all descendants of the parent
         Transform[] children = GetComponentsInChildren<Transform>(true);
-
-        // List to store objects on the specified layer
         List<GameObject> objectsInLayer = new List<GameObject>();
 
         foreach (Transform child in children)
         {
-            // Check if the current child is on the specified layer
             if (child.gameObject.layer == layer)
-            {
-                // Add the GameObject to the list
                 objectsInLayer.Add(child.gameObject);
-            }
         }
 
         return objectsInLayer;
