@@ -78,6 +78,8 @@ public class SCR_Footstep_Sounds : MonoBehaviour
     [ClientRpc]
     void PlaySoundClientRpc()
     {
+        Debug.Log("walky walk sounds");
+
         if (Physics.Raycast(characterObject.transform.position, Vector3.down, out RaycastHit hit, 3))
         {
             switch (hit.collider.tag)
