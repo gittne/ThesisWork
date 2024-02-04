@@ -20,6 +20,8 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
     [SerializeField] float initialRotationVelocity;
     bool hasThrown;
 
+    GameObject spawnedPlushie;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,39 +75,43 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
 
     IEnumerator ThrowingToy()
     {
-        if (isHolding && !hasThrown)
-        {
-            animator.Play(animationTrigger, 0, 0f);
+        animator.Play(animationTrigger, 0, 0f);
 
-            hasThrown = true;
+        hasThrown = true;
 
-            yield return new WaitForSeconds(timeToWindUpThrow);
+        yield return new WaitForSeconds(timeToWindUpThrow);
 
-            toyVisualObject.SetActive(false);
+        toyVisualObject.SetActive(false);
 
-            GameObject instantiatedObject = Instantiate(toyPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion(spawnPoint.rotation.x, 0f, 0f, 0f));
-            
-            Rigidbody rigidbody = instantiatedObject.GetComponent<Rigidbody>();
+        GameObject instantiatedObject = Instantiate(toyPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion(spawnPoint.rotation.x, 0f, 0f, 0f));
+        spawnedPlushie = instantiatedObject;
+        SpawnPlushieServerRpc();
 
-            Vector3 randomRotation = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+        Rigidbody rigidbody = instantiatedObject.GetComponent<Rigidbody>();
 
-            rigidbody.AddForce(spawnPoint.forward * initialVelocity, ForceMode.Impulse);
 
-            rigidbody.angularVelocity = randomRotation * initialRotationVelocity;
+        Vector3 randomRotation = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
 
-            isHolding = false;
+        rigidbody.AddForce(spawnPoint.forward * initialVelocity, ForceMode.Impulse);
 
-            instantiatedObject.GetComponent<NetworkObject>().Spawn();
+        rigidbody.angularVelocity = randomRotation * initialRotationVelocity;
 
-            yield return new WaitForSeconds(timeToBringArmDown);
+        isHolding = false;
 
-            animator.enabled = false;
+        yield return new WaitForSeconds(timeToBringArmDown);
 
-            hasThrown = false;
+        animator.enabled = false;
 
-            itemHolder.transform.localPosition = Vector3.Lerp(itemHolder.transform.localPosition, new Vector3(0f, 0f, 0.3f), 3f * Time.deltaTime);
+        hasThrown = false;
 
-            instantiatedObject.GetComponent<SCR_MonsterAttractor>().BroadcastLocation();
-        }
+        itemHolder.transform.localPosition = Vector3.Lerp(itemHolder.transform.localPosition, new Vector3(0f, 0f, 0.3f), 3f * Time.deltaTime);
+
+        instantiatedObject.GetComponent<SCR_MonsterAttractor>().BroadcastLocation();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void SpawnPlushieServerRpc()
+    {
+        spawnedPlushie.GetComponent<NetworkObject>().Spawn();
     }
 }

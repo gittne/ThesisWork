@@ -76,7 +76,6 @@ public class SCR_Squeaky_Toy_Functionality_2 : NetworkBehaviour
 
     IEnumerator ThrowingToy()
     {
-
         animator.Play(animationTrigger, 0, 0f);
 
         hasThrown = true;
