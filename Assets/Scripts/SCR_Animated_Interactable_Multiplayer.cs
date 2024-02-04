@@ -74,10 +74,7 @@ public class SCR_Animated_Interactable_Multiplayer : NetworkBehaviour
         isOpened.Value = newValue;
 
         animator.SetBool("isOpen", isOpened.Value);
-        float randomPitch = Random.Range(0.9f, 1.1f);
-        SoundSource.pitch = randomPitch;
-
-        SoundSource.PlayOneShot(SoundFX);
+        PlaySoundClientRpc();
     }
 
     public void MonsterOpenDoor()
@@ -92,5 +89,14 @@ public class SCR_Animated_Interactable_Multiplayer : NetworkBehaviour
         if (!isOpened.Value) return;
 
         ChangeState();
+    }
+
+    [ClientRpc]
+    void PlaySoundClientRpc()
+    {
+        float randomPitch = Random.Range(0.9f, 1.1f);
+        SoundSource.pitch = randomPitch;
+
+        SoundSource.PlayOneShot(SoundFX);
     }
 }
