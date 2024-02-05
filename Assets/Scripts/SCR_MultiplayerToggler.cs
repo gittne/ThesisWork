@@ -36,6 +36,7 @@ public class SCR_MultiplayerToggler : MonoBehaviour
             else
             {
                 Destroy(GameObject.FindWithTag("Player"));
+                Destroy(GameObject.FindWithTag("PauseMenu"));
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
