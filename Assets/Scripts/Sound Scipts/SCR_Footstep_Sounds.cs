@@ -36,9 +36,9 @@ public class SCR_Footstep_Sounds : MonoBehaviour
         {
             characterSpeed = new Vector2(playerController.velocity.x, playerController.velocity.z).magnitude;
 
-            if (characterSpeed > 5f)
+            if (characterSpeed >= 2.1f)
             {
-                characterSpeed = new Vector2(playerController.velocity.x, playerController.velocity.z).magnitude / 1.3f;
+                characterSpeed = new Vector2(playerController.velocity.x, playerController.velocity.z).magnitude / 1.1f;
             }
         }
         else if (monsterNavMeshAgent != null)
