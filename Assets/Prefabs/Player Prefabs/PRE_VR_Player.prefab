@@ -978,6 +978,8 @@ GameObject:
   - component: {fileID: 3247416761299052291}
   - component: {fileID: 8600442570308259110}
   - component: {fileID: 5589811758810560327}
+  - component: {fileID: 3158344991270421640}
+  - component: {fileID: 5867388440118289113}
   m_Layer: 6
   m_Name: PRE_VR_Player
   m_TagString: Player
@@ -1282,8 +1284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepThreshold: 1.2
-  audioSource: {fileID: 8818260603339505658, guid: b3c3fc2454a397147b9f8864f348cf9d,
-    type: 3}
+  audioSource: {fileID: 5867388440118289113}
   carpetClips:
   - {fileID: 8300000, guid: 7b209d592a0c67b42bb2a4df039e6322, type: 3}
   - {fileID: 8300000, guid: 4ffc49acbc35ed84c9c018a9f19d68ac, type: 3}
@@ -1297,6 +1298,115 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 94babc64002c6e44684a56f3440ea568, type: 3}
   - {fileID: 8300000, guid: 152370bb4e6083b478f0843171982540, type: 3}
   - {fileID: 8300000, guid: 8904fdfcbd791c14b932a5ce13802cb9, type: 3}
+--- !u!114 &3158344991270421640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4101216181873167747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92296229616bc0f4288a4ab8f21d880f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementScript: {fileID: 7790940258089552712}
+--- !u!82 &5867388440118289113
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4101216181873167747}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5206392860463263463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2456,7 +2566,7 @@ GameObject:
   - component: {fileID: 7573714256945687237}
   m_Layer: 0
   m_Name: Camera Offset
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
