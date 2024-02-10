@@ -20,6 +20,24 @@ MonoBehaviour:
   passIndex: 0
   bindDepthStencilAttachment: 0
   m_Version: 1
+--- !u!114 &-3157255897615574572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 524fabb4882c2154a9b54d1dcb7654f0, type: 3}
+  m_Name: GrabPassRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  _timing: 1
+  _grabbedTextureName: _GrabbedTexture
+  _shaderLightModes:
+  - UseColorTexture
+  _sortingCriteria: 23
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +93,8 @@ MonoBehaviour:
   - {fileID: -1878332245247344467}
   - {fileID: 4398757083408806663}
   - {fileID: -6201071256930931021}
-  m_RendererFeatureMap: adc0de57c6d2eee507b3d00143860b3db32ebfe78b5ef1a9
+  - {fileID: 0}
+  m_RendererFeatureMap: adc0de57c6d2eee507b3d00143860b3db32ebfe78b5ef1a9d4d99d2d7d2c2fd4
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
