@@ -2648,6 +2648,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb011214e47f73f40868bb1d7fb20f06, type: 3}
+--- !u!1 &833335751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 833335753}
+  - component: {fileID: 833335752}
+  m_Layer: 0
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &833335752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833335751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea1950c7cfce3245bfcd32425f3c56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
+--- !u!4 &833335753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833335751}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.234893, y: 1.3142188, z: 7.203558}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &842621653
 GameObject:
   m_ObjectHideFlags: 0
@@ -3383,10 +3428,12 @@ MonoBehaviour:
     - {fileID: 743909245}
     keyItemPrefab: {fileID: 6706674644872591746, guid: 4280c53c53dccdf4ba88f81f42aad2ec,
       type: 3}
+    keyItemPrefab_Multiplayer: {fileID: 0}
   - spawnpoints:
     - {fileID: 1506339143}
     keyItemPrefab: {fileID: 5907166762122244081, guid: 0c34f8f28a719fd4aa0754ba0ce87968,
       type: 3}
+    keyItemPrefab_Multiplayer: {fileID: 0}
 --- !u!1 &1328071006
 GameObject:
   m_ObjectHideFlags: 0
@@ -3903,6 +3950,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1533438534}
   - component: {fileID: 1533438533}
+  - component: {fileID: 1533438535}
   m_Layer: 0
   m_Name: Consumables
   m_TagString: Untagged
@@ -3940,6 +3988,7 @@ MonoBehaviour:
   - {fileID: 6706674644872591746, guid: 4280c53c53dccdf4ba88f81f42aad2ec, type: 3}
   - {fileID: 8306587584287216110, guid: 12e0f1637bc40464da36d180c85f5cc0, type: 3}
   - {fileID: 8042006383506607443, guid: 997fd81306ba5c943a12ed3b430fc012, type: 3}
+  multiplayerPrefabs: []
 --- !u!4 &1533438534
 Transform:
   m_ObjectHideFlags: 0
@@ -3967,6 +4016,26 @@ Transform:
   - {fileID: 1377556580}
   m_Father: {fileID: 588294650}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1533438535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533438532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2695236074
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1001 &1536200966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4536,7 +4605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1871925037
 Transform:
   m_ObjectHideFlags: 0
@@ -4546,7 +4615,7 @@ Transform:
   m_GameObject: {fileID: 1871925036}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06284616, y: 1.0883789, z: 3.5526984}
+  m_LocalPosition: {x: 3.412, y: 1.0883789, z: 4.793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6721,3 +6790,4 @@ SceneRoots:
   - {fileID: 1909608672}
   - {fileID: 1743258925}
   - {fileID: 139464320030539877}
+  - {fileID: 833335753}
