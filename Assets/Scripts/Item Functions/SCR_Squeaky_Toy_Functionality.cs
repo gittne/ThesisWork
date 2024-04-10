@@ -20,8 +20,6 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
     [SerializeField] float initialRotationVelocity;
     bool hasThrown;
 
-    GameObject spawnedPlushie;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -89,7 +87,6 @@ public class SCR_Squeaky_Toy_Functionality : MonoBehaviour
 
         //Instantiate the object being thrown
         GameObject instantiatedObject = Instantiate(toyPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion(spawnPoint.rotation.x, 0f, 0f, 0f));
-        spawnedPlushie = instantiatedObject;
         //SpawnPlushieServerRpc();
 
         Rigidbody rigidbody = instantiatedObject.GetComponent<Rigidbody>();
