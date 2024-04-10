@@ -136,8 +136,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
     void MovementInput()
     {
-        currentInput = new Vector2((isCrouching ? crouchSpeed : isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical"),
-            (isCrouching ? crouchSpeed : isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal"));
+        currentInput = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
 
         float movementDirectionY = movementDirection.y;
 
@@ -243,7 +242,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
             movementDirection.y -= gravity * Time.deltaTime;
         }
 
-        characterController.Move(movementDirection * Time.deltaTime);
+        characterController.Move((isCrouching ? crouchSpeed : isRunning ? runningSpeed : walkingSpeed) * movementDirection.normalized * Time.deltaTime);
     }
 
     public void CommencePlayerDeath()

@@ -20,9 +20,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     [SerializeField] List<SCR_FuseBox> fuseBoxes;
     [SerializeField] List<SCR_Key_Card_Reader> keyReaders;
     [SerializeField] SCR_Squeaky_Toy_Functionality[] squeakyToys;
-    //[SerializeField] SCR_Squeaky_Toy_Functionality mrWhiskars;
     [SerializeField] SCR_Inventory_Item_Data mrWhiskarsData;
-    //[SerializeField] SCR_Squeaky_Toy_Functionality_2 msBunny;
     [SerializeField] SCR_Inventory_Item_Data msBunnyData;
     [Header("Item IDs")]
     [SerializeField] string[] itemID;
