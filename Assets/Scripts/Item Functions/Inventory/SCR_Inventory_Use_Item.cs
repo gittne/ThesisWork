@@ -19,9 +19,10 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     [SerializeField] SCR_Flashlight_Multiplayer flashlightMultiplayer;
     [SerializeField] List<SCR_FuseBox> fuseBoxes;
     [SerializeField] List<SCR_Key_Card_Reader> keyReaders;
-    [SerializeField] SCR_Squeaky_Toy_Functionality mrWhiskars;
+    [SerializeField] SCR_Squeaky_Toy_Functionality[] squeakyToys;
+    //[SerializeField] SCR_Squeaky_Toy_Functionality mrWhiskars;
     [SerializeField] SCR_Inventory_Item_Data mrWhiskarsData;
-    [SerializeField] SCR_Squeaky_Toy_Functionality_2 msBunny;
+    //[SerializeField] SCR_Squeaky_Toy_Functionality_2 msBunny;
     [SerializeField] SCR_Inventory_Item_Data msBunnyData;
     [Header("Item IDs")]
     [SerializeField] string[] itemID;
@@ -203,9 +204,9 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
 
         foreach (Inventory_Item item in inventoryCopy)
         {
-            if (itemID[3] == item.itemData.itemID && item.stackSize > 0 && !mrWhiskars.isHolding)
+            if (itemID[3] == item.itemData.itemID && item.stackSize > 0 && !squeakyToys[0].isHolding)
             {
-                mrWhiskars.BringUpToy();
+                squeakyToys[0].BringUpToy();
                 inventory.SubtractItem(item.itemData);
                 amountIndicators[3].text = item.stackSize.ToString();
                 if (playMode == playmode.Singleplayer)
@@ -217,9 +218,9 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                     visualInventoryMultiplayer.ChangeInventoryState();
                 }
 
-                if (msBunny.isHolding)
+                if (squeakyToys[1].isHolding)
                 {
-                    msBunny.BringDownToy();
+                    squeakyToys[1].BringDownToy();
                     inventory.AddItem(msBunnyData);
                 }
             }
@@ -232,9 +233,9 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
 
         foreach (Inventory_Item item in inventoryCopy)
         {
-            if (itemID[5] == item.itemData.itemID && item.stackSize > 0 && !msBunny.isHolding)
+            if (itemID[5] == item.itemData.itemID && item.stackSize > 0 && !squeakyToys[1].isHolding)
             {
-                msBunny.BringUpToy();
+                squeakyToys[1].BringUpToy();
                 inventory.SubtractItem(item.itemData);
                 amountIndicators[5].text = item.stackSize.ToString();
                 if (playMode == playmode.Singleplayer)
@@ -246,9 +247,9 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                     visualInventoryMultiplayer.ChangeInventoryState();
                 }
 
-                if (mrWhiskars.isHolding)
+                if (squeakyToys[0].isHolding)
                 {
-                    mrWhiskars.BringDownToy();
+                    squeakyToys[0].BringDownToy();
                     inventory.AddItem(mrWhiskarsData);
                 }
             }
