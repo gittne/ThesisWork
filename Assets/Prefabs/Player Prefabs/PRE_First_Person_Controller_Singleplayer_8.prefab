@@ -2097,9 +2097,7 @@ MonoBehaviour:
   keyReaders:
   - {fileID: 0}
   - {fileID: 0}
-  squeakyToys:
-  - {fileID: 3684596311795075762}
-  - {fileID: 3692523493402936345}
+  squeakyToys: []
   mrWhiskarsData: {fileID: 11400000, guid: 05499161121d0884faa0c5304c2b8417, type: 2}
   msBunnyData: {fileID: 11400000, guid: 8003387903271984c96466b3ed1505a9, type: 2}
   itemID:
@@ -5202,7 +5200,7 @@ GameObject:
   - component: {fileID: 8937769352529946117}
   - component: {fileID: 8574370174668624831}
   - component: {fileID: 523209170651548308}
-  - component: {fileID: 3692523493402936345}
+  - component: {fileID: 8309866920852842513}
   m_Layer: 8
   m_Name: ArmMsBunny
   m_TagString: Untagged
@@ -5276,7 +5274,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3692523493402936345
+--- !u!114 &8309866920852842513
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5285,7 +5283,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4765720605210666929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cff7346bc569e2449e6044c72ccfd95, type: 3}
+  m_Script: {fileID: 11500000, guid: 81d28a66dfbd2334f9019c875195f2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toyPrefab: {fileID: 8042006383506607443, guid: 997fd81306ba5c943a12ed3b430fc012,
@@ -8318,9 +8316,9 @@ MonoBehaviour:
   canHeadbobDebug: 1
   sprintKey: 304
   crouchKey: 306
-  walkingSpeed: 3
-  runningSpeed: 5
-  crouchSpeed: 1
+  walkingSpeed: 20
+  runningSpeed: 40
+  crouchSpeed: 15
   gravity: 30
   visualInventory: {fileID: 8552534329324572265}
   xLookSensitivity: 2
