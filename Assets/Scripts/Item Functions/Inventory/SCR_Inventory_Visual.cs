@@ -22,6 +22,7 @@ public class SCR_Inventory_Visual : MonoBehaviour
 
     public void InventoryManagement()
     {
+        //Change the state of the inventory as well as locking and unlocking the cursor when pressing the inventory button
         if (Input.GetKeyDown(inventoryKey))
         {
             isInventoryActive = !isInventoryActive;
@@ -38,6 +39,7 @@ public class SCR_Inventory_Visual : MonoBehaviour
             }
         }
 
+        //Moves the visual inventory up when inventory is active and moves the inventory when inventory is inactive
         if (isInventoryActive)
         {
             inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, endPosition.position, 3f * Time.deltaTime);
@@ -47,6 +49,7 @@ public class SCR_Inventory_Visual : MonoBehaviour
             inventoryPrefab.transform.position = Vector3.Lerp(inventoryPrefab.transform.position, startPosition.position, 5f * Time.deltaTime);
         }
 
+        //Deactivates the visual inventory prefab when at a certain position, otherwise enables it when moving out of said position
         if (inventoryPrefab.transform.position.y <= startPosition.transform.position.y + 0.01f)
         {
             backpackPrefab.SetActive(false);

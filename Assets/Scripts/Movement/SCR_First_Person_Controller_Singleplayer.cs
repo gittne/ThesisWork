@@ -13,7 +13,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     public bool canMove { get; private set; } = true;
     public float crouchTimer { get; private set; }
     public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
-    public bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded && Input.GetKeyDown(crouchKey) 
+    public bool shouldCrouch => !duringCrouch && characterController.isGrounded && Input.GetKeyDown(crouchKey) 
         && !Physics.Raycast(characterController.transform.position, characterController.transform.up, out crouchRaycast, (characterController.height / 2) + crouchRaycastModifier);
 
     [SerializeField] Camera playerCamera;
@@ -41,8 +41,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [Header("Mouse Look Variables")]
     [SerializeField, Range(1, 10)] float xLookSensitivity = 2f;
     [SerializeField, Range(1, 10)] float yLookSensitivity = 2f;
-    [SerializeField, Range(1, 100)] float upperLookLimit = 80f;
-    [SerializeField, Range(1, 100)] float lowerLookLimit = 80f;
+    [SerializeField, Range(1, 100)] float lookLimit = 80f;
 
     [Header("Crouching Variables")]
     [SerializeField] float crouchingHeight;
@@ -66,7 +65,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] Vector3 crouchCenter = new Vector3(0, 0.5f, 0);
     [SerializeField] Vector3 standingCenter = new Vector3(0, 0, 0);
     bool isCrouching;
-    bool duringCrouchAnimation;
+    bool duringCrouch;
     RaycastHit crouchRaycast;
     float crouchRaycastModifier;
 
@@ -92,7 +91,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
     float xRotation = 0;
 
-
     Image fader;
 
     Vector3 respawnLocation;
@@ -116,7 +114,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
             {
                 MouseLook();
             }
-         
 
             ApplyMovement();
 
@@ -136,35 +133,62 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
     void MovementInput()
     {
-        currentInput = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
+        //Stores the input of the player and stores as a Vector2
+        currentInput = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal")); 
 
         float movementDirectionY = movementDirection.y;
 
-        movementDirection = (transform.TransformDirection(Vector3.forward) * currentInput.x) + (transform.TransformDirection(Vector3.right) * currentInput.y);
+        //Applies the Vector2 input to a Vector3 which moves the character
+        movementDirection = (transform.TransformDirection(Vector3.forward) * (isCrouching ? crouchSpeed : isRunning && currentInput.x > 0 ? runningSpeed : walkingSpeed) * currentInput.x)
+            + (transform.TransformDirection(Vector3.right) * (isCrouching ? crouchSpeed : walkingSpeed) * currentInput.y);
 
+        //Ignores the Y-axis movement (up and down) so the gravity can be proparly applied
         movementDirection.y = movementDirectionY;
+    }
+
+    void ApplyMovement()
+    {
+        if (!characterController.isGrounded)
+        {
+            movementDirection.y -= gravity * Time.deltaTime;
+        }
+
+        Vector3 horizontalMovement = new Vector3(movementDirection.x, 0, movementDirection.z);
+        horizontalMovement = horizontalMovement.normalized * Mathf.Clamp(horizontalMovement.magnitude, 0, (isCrouching ? crouchSpeed : isRunning && currentInput.x > 0 ? runningSpeed : walkingSpeed));
+        //movementDirection = movementDirection.normalized * Mathf.Clamp(movementDirection.magnitude, 0, (isCrouching ? crouchSpeed : isRunning && currentInput.x > 0 ? runningSpeed : walkingSpeed));
+
+        movementDirection = new Vector3(horizontalMovement.x, movementDirection.y, horizontalMovement.z);
+        characterController.Move(movementDirection * Time.deltaTime);
     }
 
     void MouseLook()
     {
+        //Stores the movement of the mouse on the Y axis and multiplies it with the sensitivity value
         xRotation -= Input.GetAxis("Mouse Y") * yLookSensitivity;
-        xRotation = Mathf.Clamp(xRotation, -upperLookLimit, lowerLookLimit);
 
+        //Limits how far the camera can rotate when looking up and down
+        xRotation = Mathf.Clamp(xRotation, -lookLimit, lookLimit);
+
+        //Rotates the camera object on the X-axis (up and down)
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
+        //Rotates the player character on the Y-axis (left and right)
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * xLookSensitivity, 0);
     }
 
     void HeadbobNumberGenerator()
     {
+        //Generate a random number for the X and Y multipliers
         float previousMultiplierX = bobMultiplierX;
         float nextMultiplierX = Random.Range(lowestBobbingMultiplier, highestBobbingMultiplier);
 
         float previousMultiplierY = bobMultiplierY;
         float nextMultiplierY = Random.Range(lowestBobbingMultiplier, highestBobbingMultiplier);
 
+        //The time to lerp between the previous and next multiplier value
         headbobMultiplierTimer += Time.deltaTime / timerDuration;
 
+        //Lerp between the previous and next multiplier value to add variation in how much the camera bobs
         bobMultiplierX = Mathf.Lerp(previousMultiplierX, nextMultiplierX, headbobMultiplierTimer);
         bobMultiplierY = Mathf.Lerp(previousMultiplierY, nextMultiplierY, headbobMultiplierTimer);
     }
@@ -178,10 +202,10 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
         if (Mathf.Abs(movementDirection.x) > 0.1f || Mathf.Abs(movementDirection.z) > 0.1f)
         {
-            headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning ? runningBobSpeed : walkBobSpeed);
+            headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : isRunning && currentInput.x > 0 ? runningBobSpeed : walkBobSpeed);
 
-            cameraHolder.transform.localRotation = Quaternion.Euler(yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount) * bobMultiplierX,
-                (yDefaultPosition + (Mathf.Sin(headbobTimer) / 4.2f) * (isCrouching ? crouchBobAmount : isRunning ? runningBobAmount : walkBobAmount)) * bobMultiplierY, cameraHolder.transform.localRotation.z);
+            cameraHolder.transform.localRotation = Quaternion.Euler(yDefaultPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : isRunning && currentInput.x > 0 ? runningBobAmount : walkBobAmount) * bobMultiplierX,
+                (yDefaultPosition + (Mathf.Sin(headbobTimer) / 4.2f) * (isCrouching ? crouchBobAmount : isRunning && currentInput.x > 0 ? runningBobAmount : walkBobAmount)) * bobMultiplierY, cameraHolder.transform.localRotation.z);
         }
     }
 
@@ -204,16 +228,13 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
     IEnumerator CrouchAndStand()
     {
-        duringCrouchAnimation = true;
+        duringCrouch = true;
 
         float timeElapsed = 0;
-
         float targetHeight = isCrouching ? standingHeight : crouchingHeight;
-
         float currentHeight = characterController.height;
 
         Vector3 targetCenter = isCrouching ? standingCenter : crouchCenter;
-
         Vector3 currentCenter = characterController.center;
 
         while (timeElapsed < timeToCrouch)
@@ -225,24 +246,12 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         }
 
         crouchTimer = timeElapsed;
-
         characterController.height = targetHeight;
-
         characterController.center = targetCenter;
 
         isCrouching = !isCrouching;
 
-        duringCrouchAnimation = false;
-    }
-
-    void ApplyMovement()
-    {
-        if (!characterController.isGrounded)
-        {
-            movementDirection.y -= gravity * Time.deltaTime;
-        }
-
-        characterController.Move((isCrouching ? crouchSpeed : isRunning ? runningSpeed : walkingSpeed) * movementDirection.normalized * Time.deltaTime);
+        duringCrouch = false;
     }
 
     public void CommencePlayerDeath()
