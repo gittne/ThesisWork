@@ -10,6 +10,8 @@ public class SCR_Player_Interactions : MonoBehaviour
     Vector3 playerLookOrigin;
     [SerializeField] Camera playerCamera;
     [SerializeField] float interactionMaxLength;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip pickupSound;
 
 
     void Update()
@@ -35,18 +37,20 @@ public class SCR_Player_Interactions : MonoBehaviour
 
             if (obj.TryGetComponent(out SCR_Inventory_Pickup_Singeplayer pickup))
             {
-               
-
                 if (Input.GetKeyDown(interactionKey))
                 {
                     pickup.OnHandlePickupItem();
+
+                    float randomPitch = Random.Range(0.8f, 1.2f);
+
+                    audioSource.pitch = randomPitch;
+
+                    audioSource.PlayOneShot(pickupSound);
                 }
             }
 
             if (obj.TryGetComponent(out SCR_Inventory_Pickup_Multiplayer pickupMultiplayer))
             {
-                
-
                 if (Input.GetKeyDown(interactionKey))
                 {
                     pickupMultiplayer.OnHandlePickupItem();
@@ -55,7 +59,6 @@ public class SCR_Player_Interactions : MonoBehaviour
 
             if (obj.TryGetComponent(out SCR_Animated_Interactable_Multiplayer animM))
             {
-
                 if (Input.GetKeyDown(interactionKey))
                 {
                     animM.SwitchAnimationState();
@@ -65,8 +68,6 @@ public class SCR_Player_Interactions : MonoBehaviour
 
             if (obj.TryGetComponent(out SCR_Animated_Interactable anim))
             {
-
-
                 if (Input.GetKeyDown(interactionKey))
                 {
                     anim.SwitchAnimationState();

@@ -217,8 +217,6 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
             }
         }
 
-        Debug.Log("Stamina now is: " + stamina);
-
         StaminaVignetteFade((maxStamina - stamina) / maxStamina, staminaVignette);
     }
 

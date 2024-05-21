@@ -251,6 +251,11 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                     inventory.AddItem(mrWhiskarsData);
                 }
             }
+            else if (itemID[5] == item.itemData.itemID && squeakyToys[1].isHolding)
+            {
+                squeakyToys[1].BringDownToy();
+                inventory.AddItem(msBunnyData);
+            }
         }
     }
 }
