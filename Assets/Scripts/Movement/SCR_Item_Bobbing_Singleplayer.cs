@@ -17,6 +17,7 @@ public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
     [SerializeField] float smoothingRotation = 12f;
     [Header("Movement Multipliers")]
     [SerializeField] float movementMultiplier;
+    float maxStamina;
 
     float sinCurve { get => Mathf.Sin(curveSpeed); }
     float cosCurve { get => Mathf.Cos(curveSpeed); }
@@ -30,6 +31,11 @@ public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
     [Header("Bobbing Rotation Values")]
     [SerializeField] Vector3 multiplier;
     Vector3 eulerRotation;
+
+    private void Awake()
+    {
+        maxStamina = controllerScript.playerStamina;
+    }
 
     // Update is called once per frame
     void Update()
@@ -65,7 +71,7 @@ public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
 
     void BobOffset()
     {
-        curveSpeed += Time.deltaTime * (controller.isGrounded ? controller.velocity.magnitude * movementMultiplier : 1f) + 0.01f;
+        curveSpeed += Time.deltaTime * (controller.isGrounded ? controller.velocity.magnitude * movementMultiplier * -(0.15f * (controllerScript.playerStamina - maxStamina) - 1) : 1f) + 0.01f;
 
         bobPosition.x = (cosCurve * bobLimit.x * (controller.isGrounded ? 1 : 0))
             - (horizontalVerticalInput.x * travelLimit.x);
@@ -84,9 +90,9 @@ public class SCR_Item_Bobbing_Singleplayer : MonoBehaviour
         }
         else
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, bobPosition, (controller.velocity.magnitude > 0.1f ? controller.velocity.magnitude * Time.deltaTime : smoothing * Time.deltaTime));
+            transform.localPosition = Vector3.Lerp(transform.localPosition, bobPosition, (controller.velocity.magnitude > 0.1f ? controller.velocity.magnitude * -(0.5f * (controllerScript.playerStamina - maxStamina) - 1) * Time.deltaTime : smoothing * -(0.5f * (controllerScript.playerStamina - maxStamina) - 1) * Time.deltaTime));
         }
-
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(eulerRotation), (controller.velocity.magnitude > 0.1 ? controller.velocity.magnitude * Time.deltaTime : smoothingRotation * Time.deltaTime));
+        
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(eulerRotation), (controller.velocity.magnitude > 0.1 ? controller.velocity.magnitude * -(0.25f * (controllerScript.playerStamina - maxStamina) - 1) * Time.deltaTime : smoothingRotation * -(controllerScript.playerStamina - maxStamina - 1) * Time.deltaTime));
     }
 }

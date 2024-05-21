@@ -12,7 +12,7 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
 
     public bool canMove { get; private set; } = true;
     public float crouchTimer { get; private set; }
-    public bool isRunning => canSprintDebug && Input.GetKey(sprintKey);
+    public bool isRunning => canSprintDebug && Input.GetKey(sprintKey) && isStaminaActivatable;
     public bool shouldCrouch => !duringCrouch && characterController.isGrounded && Input.GetKeyDown(crouchKey) 
         && !Physics.Raycast(characterController.transform.position, characterController.transform.up, out crouchRaycast, (characterController.height / 2) + crouchRaycastModifier);
 
@@ -34,6 +34,22 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
     [SerializeField] float runningSpeed = 5f;
     [SerializeField] float crouchSpeed = 1f;
     [SerializeField] float gravity = 30f;
+
+    [Header("Stamina Variables")]
+    [SerializeField] float stamina;
+    public float playerStamina
+    {
+        get { return stamina; }
+        private set { stamina = value; }
+    }
+    [SerializeField] float maxStamina;
+    [SerializeField] float staminaRegenerationMultiplier;
+    [SerializeField] float staminaDegenerationMultiplier;
+    [SerializeField] float staminaReset;
+    [SerializeField] float staminaResetThreshold;
+    [SerializeField] AnimationCurve vignetteCurve;
+    bool isStaminaActivatable;
+    [SerializeField] Image staminaVignette;
 
     [Header("Inventory Variables")]
     [SerializeField] SCR_Inventory_Visual visualInventory;
@@ -101,6 +117,9 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         fader = GameObject.FindGameObjectWithTag("BlackFade").GetComponent<Image>();
         respawnLocation = GameObject.FindWithTag("RespawnLocation").transform.position;
+
+        stamina = maxStamina;
+        staminaReset = staminaResetThreshold - 0.1f;
     }
 
     void Update()
@@ -116,6 +135,8 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
             }
 
             ApplyMovement();
+
+            StaminaCheck();
 
             if (canCrouchDebug)
             {
@@ -153,12 +174,63 @@ public class SCR_First_Person_Controller_Singleplayer : MonoBehaviour
             movementDirection.y -= gravity * Time.deltaTime;
         }
 
+        //Normalize only the X and Z components of the movement direction
         Vector3 horizontalMovement = new Vector3(movementDirection.x, 0, movementDirection.z);
         horizontalMovement = horizontalMovement.normalized * Mathf.Clamp(horizontalMovement.magnitude, 0, (isCrouching ? crouchSpeed : isRunning && currentInput.x > 0 ? runningSpeed : walkingSpeed));
-        //movementDirection = movementDirection.normalized * Mathf.Clamp(movementDirection.magnitude, 0, (isCrouching ? crouchSpeed : isRunning && currentInput.x > 0 ? runningSpeed : walkingSpeed));
 
+        //Combine the normalized horizontal movement with the original Y component
         movementDirection = new Vector3(horizontalMovement.x, movementDirection.y, horizontalMovement.z);
+
+        //Move the character
         characterController.Move(movementDirection * Time.deltaTime);
+    }
+
+    void StaminaCheck()
+    {
+        if (isRunning && isStaminaActivatable)
+        {
+            stamina -= staminaDegenerationMultiplier * Time.deltaTime;
+        }
+        else
+        {
+            stamina += Time.deltaTime * staminaRegenerationMultiplier;
+
+            if (stamina > maxStamina)
+            {
+                stamina = maxStamina;
+            }
+        }
+
+        if (stamina <= 0)
+        {
+            isStaminaActivatable = false;
+        }
+
+        if (!isStaminaActivatable)
+        {
+            staminaReset += Time.deltaTime;
+
+            if (staminaReset > staminaResetThreshold)
+            {
+                isStaminaActivatable = true;
+                staminaReset = 0f;
+            }
+        }
+
+        Debug.Log("Stamina now is: " + stamina);
+
+        StaminaVignetteFade((maxStamina - stamina) / maxStamina, staminaVignette);
+    }
+
+    void StaminaVignetteFade(float imageAlphaValue, Image image)
+    {
+        Color alphaColor = image.color;
+
+        float alpha = vignetteCurve.Evaluate(imageAlphaValue);
+
+        alphaColor.a = alpha;
+
+        image.color = alphaColor;
     }
 
     void MouseLook()
