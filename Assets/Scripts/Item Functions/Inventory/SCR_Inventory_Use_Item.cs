@@ -178,6 +178,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                     if (itemID[2] == item.itemData.itemID && item.stackSize > 0 && locks.canReadCard == true && itemID[2] == locks.keycardItemID)
                     {
                         locks.ReadCard();
+                        audioSource.PlayOneShot(audioClips[1]);
                     }
                 }
             }
@@ -197,6 +198,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                     if (itemID[4] == item.itemData.itemID && item.stackSize > 0 && locks.canReadCard == true && itemID[4] == locks.keycardItemID)
                     {
                         locks.ReadCard();
+                        audioSource.PlayOneShot(audioClips[1]);
                     }
                 }
             }

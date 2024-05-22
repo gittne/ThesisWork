@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
 
-public class SCR_Key_Card_Reader : NetworkBehaviour
+public class SCR_Key_Card_Reader : MonoBehaviour
 {
     public bool isActivated;
     public bool canReadCard { get; private set; }
@@ -34,7 +33,7 @@ public class SCR_Key_Card_Reader : NetworkBehaviour
         }
         else
         {
-            ReadCardServerRpc();
+            //ReadCardServerRpc();
         }
     }
 
@@ -46,31 +45,31 @@ public class SCR_Key_Card_Reader : NetworkBehaviour
         }
         else
         {
-            ReaderActivationServerRpc();
+            //ReaderActivationServerRpc();
         }
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    void ReaderActivationServerRpc()
-    {
-        ReaderActivationClientRpc();
-    }
+    //[ServerRpc(RequireOwnership = false)]
+    //void ReaderActivationServerRpc()
+    //{
+    //    ReaderActivationClientRpc();
+    //}
 
-    [ClientRpc()]
-    void ReaderActivationClientRpc()
-    {
-        canActivate = true;
-    }
+    //[ClientRpc()]
+    //void ReaderActivationClientRpc()
+    //{
+    //    canActivate = true;
+    //}
 
-    [ServerRpc(RequireOwnership = false)]
-    void ReadCardServerRpc()
-    {
-        ReadCardClientRpc();
-    }
+    //[ServerRpc(RequireOwnership = false)]
+    //void ReadCardServerRpc()
+    //{
+    //    ReadCardClientRpc();
+    //}
 
-    [ClientRpc()]
-    void ReadCardClientRpc()
-    {
-        isActivated = true;
-    }
+    //[ClientRpc()]
+    //void ReadCardClientRpc()
+    //{
+    //    isActivated = true;
+    //}
 }
