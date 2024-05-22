@@ -12,6 +12,8 @@ public class SCR_FuseBox : MonoBehaviour
     [Range(1, 3)] [SerializeField] int fusesLeftToInsert;
     [SerializeField] GameObject[] fuseObjects;
     [SerializeField] Light[] lights;
+    AudioSource audioSource;
+    [SerializeField] AudioClip audioClip;
 
     void Start()
     {
@@ -21,6 +23,8 @@ public class SCR_FuseBox : MonoBehaviour
         {
             fuseObjects[i].SetActive(false);
         }
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,6 +71,12 @@ public class SCR_FuseBox : MonoBehaviour
             foreach (Light light in lights)
             {
                 light.enabled = true;
+
+                float randomPitch = Random.Range(0.85f, 1.15f);
+
+                audioSource.pitch = randomPitch;
+
+                audioSource.PlayOneShot(audioClip);
             }
         }
     }
