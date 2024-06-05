@@ -35,10 +35,13 @@ public class SCR_Key_Item_Placement_Randomizer : NetworkBehaviour
 
     public void RandomizePlacements()
     {
+        //Generates a key item for a random transform in the array
         foreach (Key_Item_Generator generators in keyItemGenerator)
         {
+            //Generate a random random number which corelates to a transform in an array
             int randomNumber = UnityEngine.Random.Range(0, generators.prefabSpawns.Length);
 
+            //Place the key item on said position
             Instantiate(generators.keyItem, generators.prefabSpawns[randomNumber]);
         }
     }

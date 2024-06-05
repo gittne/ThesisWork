@@ -16,7 +16,6 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     SCR_Inventory_Visual_Multiplayer visualInventoryMultiplayer;
     [Header("Related Equipment")]
     [SerializeField] SCR_Flashlight_Non_VR flashlight;
-    [SerializeField] SCR_Flashlight_Multiplayer flashlightMultiplayer;
     [SerializeField] List<SCR_FuseBox> fuseBoxes;
     [SerializeField] List<SCR_Key_Card_Reader> keyReaders;
     [SerializeField] SCR_Squeaky_Toy_Functionality[] squeakyToys;
@@ -26,6 +25,9 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
     [SerializeField] string[] itemID;
     [Header("Item Amount Text")]
     [SerializeField] TextMeshProUGUI[] amountIndicators;
+    [Header("Item Amount Text")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] List<AudioClip> audioClips;
     [Header("Icons")]
     [SerializeField] Image[] itemIcons;
     // Start is called before the first frame update
@@ -117,7 +119,6 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                 }
                 else if (playMode == playmode.Multiplayer)
                 {
-                    flashlightMultiplayer.RefillBatteries();
                     inventory.SubtractItem(item.itemData);
                     amountIndicators[0].text = item.stackSize.ToString();
                 }
@@ -144,6 +145,12 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                         fuseBox.FillFusebox();
                         inventory.SubtractItem(item.itemData);
                         amountIndicators[1].text = item.stackSize.ToString();
+
+                        float randomPitch = UnityEngine.Random.Range(0.8f, 1.2f);
+
+                        audioSource.pitch = randomPitch;
+
+                        audioSource.PlayOneShot(audioClips[0]);
                     }
                     else
                     {
@@ -171,6 +178,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                     if (itemID[2] == item.itemData.itemID && item.stackSize > 0 && locks.canReadCard == true && itemID[2] == locks.keycardItemID)
                     {
                         locks.ReadCard();
+                        audioSource.PlayOneShot(audioClips[1]);
                     }
                 }
             }
@@ -190,6 +198,7 @@ public class SCR_Inventory_Use_Item : MonoBehaviour
                     if (itemID[4] == item.itemData.itemID && item.stackSize > 0 && locks.canReadCard == true && itemID[4] == locks.keycardItemID)
                     {
                         locks.ReadCard();
+                        audioSource.PlayOneShot(audioClips[1]);
                     }
                 }
             }
