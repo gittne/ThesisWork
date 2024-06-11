@@ -91,12 +91,6 @@ public class SCR_Monster_SoundFX : MonoBehaviour
         canPlayNewSounds = true;
     }
 
-    void KillSound()
-    {
-
-    }
-
-
     IEnumerator noSoundPlayed()
     {
         Thold = Random.Range(0, 55);
